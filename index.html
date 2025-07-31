@@ -6,6 +6,7 @@
     <title>FRANCISCO SANTELICES - Contemporary Digital Artist & Multimedia Creator</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="assets/css/dynamic-gallery.css">
+    <link rel="stylesheet" href="assets/css/consultation-tool.css">
 </head>
 <body>
     <div id="custom-cursor"></div>
@@ -66,6 +67,31 @@
                 <div class="chat-input-container">
                     <span class="chat-prompt">&gt;</span>
                     <input type="text" id="chat-input" placeholder="Describe tu proyecto..." autocomplete="off">
+                </div>
+                
+                <!-- CONSULTATION TOOL INTEGRATION -->
+                <div class="consultation-container">
+                    <button class="consultation-trigger">Iniciar Consulta Metodológica</button>
+                    
+                    <div class="consultation-interface">
+                        <div class="conversation-area">
+                            <!-- Consultation messages will appear here -->
+                        </div>
+                        
+                        <div class="typing-indicator">
+                            Procesando...
+                            <div class="typing-dots">
+                                <div class="typing-dot"></div>
+                                <div class="typing-dot"></div>
+                                <div class="typing-dot"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="consultation-input-area">
+                            <input type="text" class="consultation-input" placeholder="Comparte los detalles de tu proyecto..." disabled>
+                            <button class="send-button">Enviar</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -193,5 +219,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/TextPlugin.min.js"></script>
     <script src="new-portfolio.js"></script>
     <script src="assets/js/gallery-controller.js"></script>
+    <script src="assets/js/consultation-flow.js"></script>
 </body>
 </html>
