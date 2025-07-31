@@ -14,9 +14,14 @@
 /* INTEGRACIÓN SEAMLESS CON SITIO EXISTENTE */
 .consultation-container {
     max-width: 800px;
-    margin: 20px auto;
+    margin: 0 auto;
     padding: 0 20px;
     font-family: 'Montserrat', sans-serif;
+}
+
+/* INTEGRACIÓN CON CHAT SECTION EXISTENTE */
+.chat-section .consultation-container {
+    margin-top: 40px;
 }
 
 /* TRIGGER INICIAL - RESPETANDO TU DISEÑO */

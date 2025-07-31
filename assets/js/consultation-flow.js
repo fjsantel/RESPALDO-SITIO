@@ -134,6 +134,13 @@ class ConsultationFlow {
         }
         if (this.conversationArea) {
             this.conversationArea.classList.add('active');
+            // Scroll suave a la conversación sin ir al final de la página
+            setTimeout(() => {
+                this.conversationArea.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }, 400);
         }
         
         // Iniciar con mensaje de bienvenida específico
@@ -285,10 +292,16 @@ class ConsultationFlow {
 
     scrollToBottom() {
         setTimeout(() => {
-            window.scrollTo({
-                top: document.body.scrollHeight,
-                behavior: 'smooth'
-            });
+            // Scroll suave dentro del área de conversación si es necesario
+            if (this.messagesContainer) {
+                const lastMessage = this.messagesContainer.lastElementChild;
+                if (lastMessage) {
+                    lastMessage.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'nearest'
+                    });
+                }
+            }
         }, 100);
     }
 }
