@@ -71,26 +71,30 @@
                 
                 <!-- CONSULTATION TOOL INTEGRATION -->
                 <div class="consultation-container">
-                    <button class="consultation-trigger">Iniciar Consulta Metodológica</button>
-                    
-                    <div class="consultation-interface">
-                        <div class="conversation-area">
-                            <!-- Consultation messages will appear here -->
+                    <!-- TRIGGER INICIAL CON TU TEXTO EXACTO -->
+                    <div class="consultation-trigger-section">
+                        <p class="trigger-message">Comienza aquí</p>
+                        <p class="trigger-question">¿Cuál es tu idea?</p>
+                        <button class="start-consultation-button" id="startConsultation">Iniciar Consulta Metodológica</button>
+                    </div>
+
+                    <!-- ÁREA DE CONVERSACIÓN (INICIALMENTE OCULTA) -->
+                    <div class="consultation-conversation-area" id="consultationConversationArea">
+                        <div id="consultationMessagesContainer">
+                            <!-- Los mensajes se generarán dinámicamente -->
                         </div>
-                        
-                        <div class="typing-indicator">
-                            Procesando...
-                            <div class="typing-dots">
-                                <div class="typing-dot"></div>
-                                <div class="typing-dot"></div>
-                                <div class="typing-dot"></div>
-                            </div>
-                        </div>
-                        
-                        <div class="consultation-input-area">
-                            <input type="text" class="consultation-input" placeholder="Comparte los detalles de tu proyecto..." disabled>
-                            <button class="send-button">Enviar</button>
-                        </div>
+                    </div>
+
+                    <!-- TYPING INDICATOR -->
+                    <div class="consultation-typing-indicator" id="consultationTypingIndicator">
+                        Analizando tu respuesta...
+                    </div>
+
+                    <!-- CTA FINAL -->
+                    <div class="consultation-final-cta" id="consultationFinalCta">
+                        <h3>Perfecto. Tengo una visión clara de tu proyecto.</h3>
+                        <p>Conversemos sobre cómo materializar tu visión creativa.</p>
+                        <a href="mailto:francisco@creativecontent.cl" class="consultation-final-link">Iniciemos el Proyecto</a>
                     </div>
                 </div>
             </div>
