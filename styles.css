@@ -683,15 +683,25 @@ section.animated-text-section {
 .cv-download-header {
     display: flex;
     align-items: center;
+}
+
+.cv-link {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
     cursor: pointer;
     transition: all 0.3s ease;
 }
 
-.cv-download-header:hover {
+.cv-link:hover {
     transform: translateY(-1px);
 }
 
-.cv-download-header:hover .cv-text {
+.cv-link:hover .cv-text {
+    color: var(--text-primary);
+}
+
+.cv-link:hover .cursor-blink {
     color: var(--text-primary);
 }
 
@@ -711,6 +721,7 @@ section.animated-text-section {
     color: var(--text-secondary);
     margin-left: 3px;
     animation: blink-cursor 1s step-end infinite;
+    transition: color 0.3s ease;
 }
 
 @keyframes blink-cursor {
