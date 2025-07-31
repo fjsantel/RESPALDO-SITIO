@@ -42,51 +42,87 @@
 }
 
 .palette-trigger {
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
+    width: 50px;
+    height: 120px;
+    border-radius: 25px;
     background: var(--glass-bg);
     backdrop-filter: blur(20px);
-    border: 2px solid var(--glass-border);
+    border: 1px solid var(--glass-border);
     cursor: pointer;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    position: relative;
+    overflow: hidden;
 }
 
 .palette-trigger:hover {
-    scale: 1.1;
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+    scale: 1.05;
+    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.3);
+    border-color: var(--primary-color);
 }
 
 .palette-icon {
-    width: 24px;
-    height: 24px;
-    background: conic-gradient(
-        var(--primary-color) 0deg 60deg,
-        var(--secondary-color) 60deg 120deg,
-        var(--accent-color) 120deg 180deg,
-        var(--primary-color) 180deg 240deg,
-        var(--secondary-color) 240deg 300deg,
-        var(--accent-color) 300deg 360deg
-    );
-    border-radius: 50%;
-    animation: rotate-colors 8s linear infinite;
+    width: 2px;
+    height: 80px;
+    position: relative;
+    background: transparent;
 }
 
-@keyframes rotate-colors {
-    to { transform: rotate(360deg); }
+.palette-icon::before,
+.palette-icon::after {
+    content: '';
+    position: absolute;
+    width: 2px;
+    height: 20px;
+    background: linear-gradient(to bottom, var(--primary-color), var(--secondary-color));
+    border-radius: 1px;
+    transition: all 0.3s ease;
+}
+
+.palette-icon::before {
+    top: 0;
+    animation: slide-down 2s ease-in-out infinite;
+}
+
+.palette-icon::after {
+    bottom: 0;
+    animation: slide-up 2s ease-in-out infinite reverse;
+}
+
+@keyframes slide-down {
+    0%, 100% { 
+        transform: translateY(0);
+        opacity: 1;
+    }
+    50% { 
+        transform: translateY(30px);
+        opacity: 0.3;
+    }
+}
+
+@keyframes slide-up {
+    0%, 100% { 
+        transform: translateY(0);
+        opacity: 1;
+    }
+    50% { 
+        transform: translateY(-30px);
+        opacity: 0.3;
+    }
 }
 
 .palette-options {
     position: absolute;
-    right: 80px;
+    right: 65px;
     top: 50%;
     transform: translateY(-50%);
     display: flex;
-    gap: 15px;
+    flex-direction: column;
+    gap: 10px;
     opacity: 0;
     visibility: hidden;
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
@@ -99,12 +135,12 @@
 }
 
 .palette-option {
-    width: 40px;
-    height: 40px;
+    width: 35px;
+    height: 35px;
     border-radius: 50%;
     cursor: pointer;
     transition: all 0.3s ease;
-    border: 3px solid transparent;
+    border: 2px solid transparent;
     position: relative;
     overflow: hidden;
 }
