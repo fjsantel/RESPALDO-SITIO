@@ -86,10 +86,10 @@
             <div class="bio-gallery-section">
                 <h3>Galería</h3>
                 <div class="bio-gallery-grid">
-                    <div class="bio-gallery-item">
+                    <div class="bio-gallery-item grid-item">
                         <img src="assets/fotosbio/Francisco Santelices Ariztía (1).png" alt="Francisco Santelices - Retrato profesional" loading="lazy">
                     </div>
-                    <div class="bio-gallery-item">
+                    <div class="bio-gallery-item grid-item">
                         <img src="assets/fotosbio/ojo.png" alt="Francisco Santelices - Trabajo artístico" loading="lazy">
                     </div>
                 </div>
@@ -105,5 +105,11 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="new-portfolio.js"></script>
+    <script>
+        // Initialize only CustomCursor for bio page
+        document.addEventListener('DOMContentLoaded', () => {
+            new CustomCursor();
+        });
+    </script>
 </body>
 </html>
