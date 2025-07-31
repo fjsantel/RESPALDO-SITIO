@@ -176,14 +176,17 @@ body.cursor-hover #custom-cursor {
 
 /* General Section Styling */
 section {
-    padding: 120px 60px 0 60px; /* Removed bottom padding */
+    padding: 120px 60px 0 60px;
     border-bottom: 1px solid var(--light-gray);
+    margin: 0;
 }
 
-/* Override for sections that should not have top padding */
+/* Override for sections that should not have padding */
 section.video-hero-section,
 section.animated-text-section {
     border-bottom: none;
+    padding: 0;
+    margin: 0;
 }
 
 /* Video Hero Section */
@@ -192,25 +195,26 @@ section.animated-text-section {
     padding: 0;
     position: relative;
     overflow: hidden;
-    background-color: var(--light-gray);
-    margin-bottom: 0;
-    border-bottom: none;
+    background-color: var(--black);
+    margin: 0;
+    border: none;
 }
 
 .hero-video-container {
     width: 100%;
     height: 100%;
+    position: relative;
+    overflow: hidden;
 }
 
 .hero-video, .side-video {
     position: absolute;
-    top: 50%;
-    left: 50%;
-    min-width: 100%;
-    min-height: 100%;
-    width: 125%; /* Force overscan */
-    height: 125%;
-    transform: translate(-50%, -50%);
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
     pointer-events: none;
 }
 
@@ -241,9 +245,9 @@ section.animated-text-section {
     justify-content: center;
     align-items: center;
     text-align: center;
-    padding: 40px;
-    margin-top: 0;
-    padding-top: 40px;
+    padding: 0 40px;
+    margin: 0;
+    border: none;
 }
 
 #typewriter {
@@ -804,6 +808,21 @@ section.animated-text-section {
     filter: grayscale(0%);
 }
 
+/* Detectar dispositivos touch y ocultar cursor personalizado */
+@media (hover: none) and (pointer: coarse) {
+    #custom-cursor {
+        display: none !important;
+    }
+    
+    * {
+        cursor: auto !important;
+    }
+    
+    body.cursor-hover #custom-cursor {
+        display: none !important;
+    }
+}
+
 /* --- RESPONSIVE DESIGN --- */
 
 /* Tablet styles (768px and below) */
@@ -841,27 +860,46 @@ section.animated-text-section {
         right: 1.25rem;
     }
     
-    /* Video hero section optimizado - menos altura para mejor UX */
+    /* Video hero section - sin franjas negras */
     .video-hero-section {
         height: 50vh;
         min-height: 20rem;
-        margin-bottom: 0;
-        border-bottom: none;
+        margin: 0;
+        padding: 0;
+        border: none;
+        background-color: var(--black);
+        overflow: hidden;
+    }
+    
+    .hero-video-container {
+        width: 100%;
+        height: 100%;
+        position: relative;
+        overflow: hidden;
+        margin: 0;
+        padding: 0;
     }
     
     .hero-video, .side-video {
+        position: absolute;
+        top: 0;
+        left: 0;
         width: 100%;
         height: 100%;
-        min-width: 100%;
-        min-height: 100%;
         object-fit: cover;
+        object-position: center center;
+        margin: 0;
+        padding: 0;
+        border: none;
     }
     
-    /* Animated text section con mejor espaciado */
+    /* Animated text section - pegado completamente */
     .animated-text-section {
         height: 60vh;
-        padding: 2rem 1rem;
-        padding-top: 2rem;
+        padding: 0 1rem;
+        margin: 0;
+        border: none;
+        background-color: var(--black);
     }
     
     /* Text adjustments con clamp() para fluidez */
@@ -987,6 +1025,7 @@ section.animated-text-section {
         letter-spacing: 0.03rem;
     }
     
+    
     .main-navigation {
         top: 3.75rem;
         right: 1rem;
@@ -998,19 +1037,49 @@ section.animated-text-section {
         padding: 0.75rem 1rem;
     }
     
-    /* Video hero section optimizado */
+    /* Video hero section - completamente sin franjas */
     .video-hero-section {
         height: 40vh;
         min-height: 18rem;
-        margin-bottom: 0;
-        border-bottom: none;
+        margin: 0;
+        padding: 0;
+        border: none;
+        background-color: var(--black);
+        overflow: hidden;
+        position: relative;
     }
     
-    /* Animated text section mejorado */
+    .hero-video-container {
+        width: 100%;
+        height: 100%;
+        position: relative;
+        overflow: hidden;
+        margin: 0;
+        padding: 0;
+        background-color: var(--black);
+    }
+    
+    .hero-video, .side-video {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center center;
+        margin: 0;
+        padding: 0;
+        border: none;
+        background-color: var(--black);
+    }
+    
+    /* Animated text section - pegado sin espacios */
     .animated-text-section {
         height: 50vh;
-        padding: 1.5rem 0.75rem;
-        padding-top: 1.5rem;
+        padding: 0 0.75rem;
+        margin: 0;
+        border: none;
+        background-color: var(--black);
     }
     
     /* Text con tipografía fluida y mejor legibilidad */
