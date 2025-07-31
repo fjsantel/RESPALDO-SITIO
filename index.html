@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FRANCISCO SANTELICES - Contemporary Digital Artist & Multimedia Creator</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="assets/css/dynamic-gallery.css">
 </head>
 <body>
     <div id="custom-cursor"></div>
@@ -94,6 +95,46 @@
             </div>
         </section>
 
+        <!-- DYNAMIC GALLERY SECTION -->
+        <section class="dynamic-gallery-container" id="dynamic-gallery">
+            <!-- Color Palette Controller -->
+            <div class="color-palette-controller">
+                <div class="palette-trigger">
+                    <div class="palette-icon"></div>
+                </div>
+                <div class="palette-options">
+                    <div class="palette-option active" data-palette="neon"></div>
+                    <div class="palette-option" data-palette="ocean"></div>
+                    <div class="palette-option" data-palette="sunset"></div>
+                    <div class="palette-option" data-palette="forest"></div>
+                    <div class="palette-option" data-palette="monochrome"></div>
+                </div>
+            </div>
+
+            <!-- Gallery Header -->
+            <div class="gallery-header">
+                <h2 class="gallery-title">PORTFOLIO DINÁMICO</h2>
+                <p class="gallery-subtitle">
+                    Explora mi trabajo a través de una experiencia visual interactiva. 
+                    Cambia los colores, filtra por categorías y sumérgete en cada proyecto.
+                </p>
+            </div>
+
+            <!-- Filter Controls -->
+            <div class="filter-controls">
+                <button class="filter-btn active" data-filter="all">Todos</button>
+                <button class="filter-btn" data-filter="motion">Motion Graphics</button>
+                <button class="filter-btn" data-filter="animation">Animación</button>
+                <button class="filter-btn" data-filter="commercial">Comercial</button>
+                <button class="filter-btn" data-filter="personal">Personal</button>
+            </div>
+
+            <!-- Media Grid -->
+            <div class="media-grid">
+                <!-- Media cards will be generated dynamically by JavaScript -->
+            </div>
+        </section>
+
         <section class="contact-section" id="contact">
             <div class="contact-container">
                 <div class="contact-content">
@@ -124,9 +165,33 @@
         </div>
     </footer>
 
+    <!-- Video Modal -->
+    <div class="video-modal">
+        <div class="modal-content">
+            <button class="close-modal">×</button>
+            <button class="modal-navigation modal-prev">‹</button>
+            <button class="modal-navigation modal-next">›</button>
+            
+            <video class="modal-video" controls preload="metadata">
+                <source src="" type="video/mp4">
+                Tu navegador no soporta la reproducción de video.
+            </video>
+            
+            <div class="modal-info">
+                <h3 class="modal-title"></h3>
+                <p class="modal-description"></p>
+                <div class="modal-meta">
+                    <span class="media-year"></span>
+                    <span class="media-client"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/TextPlugin.min.js"></script>
     <script src="new-portfolio.js"></script>
+    <script src="assets/js/gallery-controller.js"></script>
 </body>
 </html>
