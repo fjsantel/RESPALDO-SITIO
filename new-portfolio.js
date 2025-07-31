@@ -43,6 +43,9 @@ class NavigationManager {
     }
 
     handleNavClick(clickedBtn) {
+        // Do not run scroll logic for regular links
+        if (!clickedBtn.dataset.section) return;
+
         this.navBtns.forEach(btn => btn.classList.remove('active'));
         clickedBtn.classList.add('active');
         
@@ -243,15 +246,15 @@ class CustomCursor {
         gsap.set(this.cursor, { autoAlpha: 0 });
 
         window.addEventListener('mousemove', e => {
-            gsap.to(this.cursor, { duration: 0.3, x: e.clientX, y: e.clientY, ease: "power2.out" });
+            gsap.to(this.cursor, { duration: 0.1, x: e.clientX, y: e.clientY, ease: "power2.out" });
         });
 
         document.addEventListener('mouseenter', () => {
-            gsap.to(this.cursor, { duration: 0.3, autoAlpha: 1 });
+            gsap.to(this.cursor, { duration: 0.2, autoAlpha: 1 });
         });
 
         document.addEventListener('mouseleave', () => {
-            gsap.to(this.cursor, { duration: 0.3, autoAlpha: 0 });
+            gsap.to(this.cursor, { duration: 0.2, autoAlpha: 0 });
         });
 
         this.interactiveElements.forEach(el => {

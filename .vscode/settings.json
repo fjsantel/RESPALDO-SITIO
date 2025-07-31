@@ -1,0 +1,8 @@
+ {
+   2         "extensions.ignoreRecommendations": true,
+   3         "extensions.autoUpdate": false,
+   4         "extensions.autoCheckUpdates": false,
+   5         "extensions.experimental.affinity": {
+   6             "ritwickdey.liveserver": 1
+   7         }
+   8     }
