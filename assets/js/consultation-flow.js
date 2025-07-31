@@ -15,8 +15,14 @@ class ConsultationFlow {
     setupEventListeners() {
         // Botón iniciar consulta
         const triggerBtn = document.querySelector('.consultation-trigger');
+        console.log('setupEventListeners: Trigger button found:', !!triggerBtn);
+        
         if (triggerBtn) {
-            triggerBtn.addEventListener('click', () => this.startConsultation());
+            triggerBtn.addEventListener('click', () => {
+                console.log('Consultation trigger clicked!');
+                this.startConsultation();
+            });
+            console.log('Event listener added to trigger button');
         }
 
         // Input de consulta
@@ -151,21 +157,27 @@ class ConsultationFlow {
     }
 
     startConsultation() {
+        console.log('startConsultation called');
         this.isActive = true;
         
         // Ocultar botón iniciar
         const triggerBtn = document.querySelector('.consultation-trigger');
+        console.log('Start: Trigger button found:', !!triggerBtn);
         if (triggerBtn) {
             triggerBtn.classList.add('hidden');
+            console.log('Trigger button hidden');
         }
 
         // Mostrar interfaz de consulta
         const interface = document.querySelector('.consultation-interface');
+        console.log('Start: Interface found:', !!interface);
         if (interface) {
             interface.classList.add('active');
+            console.log('Interface activated');
         }
 
         // Iniciar flujo de mensajes
+        console.log('Starting message flow');
         this.startMessageFlow();
     }
 
@@ -381,9 +393,20 @@ class ConsultationFlow {
 
 // Inicializar cuando el DOM esté listo
 document.addEventListener('DOMContentLoaded', () => {
+    console.log('ConsultationFlow: DOM loaded');
+    
     // Solo inicializar si existen los elementos de consulta
-    if (document.querySelector('.consultation-container')) {
+    const container = document.querySelector('.consultation-container');
+    const triggerBtn = document.querySelector('.consultation-trigger');
+    
+    console.log('ConsultationFlow: Container found:', !!container);
+    console.log('ConsultationFlow: Trigger button found:', !!triggerBtn);
+    
+    if (container) {
+        console.log('ConsultationFlow: Initializing...');
         new ConsultationFlow();
+    } else {
+        console.log('ConsultationFlow: No container found, not initializing');
     }
 });
 
