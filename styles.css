@@ -180,6 +180,12 @@ section {
     border-bottom: 1px solid var(--light-gray);
 }
 
+/* Override for sections that should not have top padding */
+section.video-hero-section,
+section.animated-text-section {
+    border-bottom: none;
+}
+
 /* Video Hero Section */
 .video-hero-section {
     height: 100vh;
@@ -187,6 +193,8 @@ section {
     position: relative;
     overflow: hidden;
     background-color: var(--light-gray);
+    margin-bottom: 0;
+    border-bottom: none;
 }
 
 .hero-video-container {
@@ -222,7 +230,7 @@ section {
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(to top, rgba(13, 17, 23, 0.5) 0%, rgba(13, 17, 23, 0) 50%);
+    background: transparent;
 }
 
 /* Animated Text Section */
@@ -234,6 +242,8 @@ section {
     align-items: center;
     text-align: center;
     padding: 40px;
+    margin-top: 0;
+    padding-top: 40px;
 }
 
 #typewriter {
@@ -599,4 +609,203 @@ section {
     color: var(--text-secondary);
     margin-bottom: 20px;
     text-align: justify;
+}
+
+/* --- RESPONSIVE DESIGN --- */
+
+/* Tablet styles (768px and below) */
+@media screen and (max-width: 768px) {
+    /* Header adjustments */
+    .main-header {
+        padding: 15px 20px;
+    }
+    
+    .logo-image {
+        height: 45px;
+    }
+    
+    .logo-main {
+        font-size: 12px;
+        letter-spacing: 1px;
+    }
+    
+    .logo-sub {
+        font-size: 9px;
+    }
+    
+    .menu-trigger-text {
+        font-size: 10px;
+    }
+    
+    .main-navigation {
+        top: 75px;
+        right: 20px;
+    }
+    
+    /* Video hero section - maintain aspect ratio */
+    .video-hero-section {
+        height: 60vh;
+        min-height: 400px;
+        margin-bottom: 0;
+        border-bottom: none;
+    }
+    
+    .hero-video, .side-video {
+        width: 100%;
+        height: 100%;
+        min-width: 100%;
+        min-height: 100%;
+        object-fit: cover;
+    }
+    
+    /* Text adjustments */
+    #typewriter {
+        font-size: 8vw;
+        letter-spacing: 4px;
+    }
+    
+    /* Chat section */
+    .chat-section {
+        padding: 20px;
+    }
+    
+    .chat-container {
+        height: 70vh;
+        padding: 20px;
+    }
+    
+    /* Grid adjustments */
+    .grid-container {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 15px;
+    }
+    
+    /* Video description section */
+    .video-desc-container {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        text-align: center;
+    }
+    
+    .description-side {
+        padding-right: 0;
+    }
+    
+    /* Bio section */
+    .bio-container {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        text-align: center;
+    }
+    
+    /* General section padding */
+    section {
+        padding: 100px 20px 0 20px;
+    }
+    
+    /* Footer */
+    .main-footer {
+        padding: 30px 20px;
+    }
+    
+    .footer-content {
+        flex-direction: column;
+        gap: 20px;
+        text-align: center;
+    }
+}
+
+/* Mobile styles (480px and below) */
+@media screen and (max-width: 480px) {
+    /* Header further adjustments */
+    .main-header {
+        padding: 12px 15px;
+    }
+    
+    .logo-image {
+        height: 35px;
+    }
+    
+    .logo-main {
+        font-size: 10px;
+        letter-spacing: 0.5px;
+    }
+    
+    .logo-sub {
+        font-size: 8px;
+    }
+    
+    .menu-trigger-text {
+        display: none;
+    }
+    
+    .main-navigation {
+        top: 60px;
+        right: 15px;
+    }
+    
+    /* Video hero section - smaller but maintains proportion */
+    .video-hero-section {
+        height: 50vh;
+        min-height: 300px;
+        margin-bottom: 0;
+        border-bottom: none;
+    }
+    
+    /* Text further adjustments */
+    #typewriter {
+        font-size: 10vw;
+        letter-spacing: 2px;
+    }
+    
+    /* Chat adjustments */
+    .chat-container {
+        height: 60vh;
+        padding: 15px;
+    }
+    
+    #chat-title-main {
+        font-size: 1rem;
+        letter-spacing: 2px;
+    }
+    
+    .chat-input-container {
+        padding-top: 15px;
+    }
+    
+    #chat-input {
+        font-size: 16px;
+    }
+    
+    /* Grid for mobile */
+    .grid-container {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+    
+    /* Contact section */
+    .contact-content h2 {
+        font-size: 2rem;
+        margin-bottom: 40px;
+    }
+    
+    .contact-info {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+    
+    /* Bio adjustments */
+    .bio-text-container h2 {
+        font-size: 2rem;
+    }
+    
+    .bio-text-container p {
+        font-size: 1rem;
+        line-height: 1.6;
+    }
+    
+    /* Section padding for mobile */
+    section {
+        padding: 80px 15px 0 15px;
+    }
 }

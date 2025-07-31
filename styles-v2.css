@@ -1,0 +1,236 @@
+html, body {
+    height: 100%;
+    overflow-x: hidden;
+}
+
+html, body {
+    height: 100%;
+    overflow-x: hidden;
+}
+
+body {
+    font-family: var(--font-primary);
+    background-color: var(--black);
+    color: var(--text-primary);
+    line-height: 1.7;
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+#custom-cursor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: 9999;
+    width: 0;
+    height: 0;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-bottom: 14px solid var(--text-primary);
+    transition: all 0.3s ease-out;
+}
+
+body.cursor-hover #custom-cursor {
+    transform: scale(1.8);
+    border-bottom-color: var(--accent-yellow);
+}
+
+/* --- Universal Header & Menu --- */
+
+.main-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1100;
+    background: rgba(13, 17, 23, 0.85);
+    backdrop-filter: blur(12px);
+    padding: 20px 40px;
+    border-bottom: 1px solid var(--light-gray);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.logo-image {
+    height: 60px;
+    width: auto;
+}
+
+.logo-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.2;
+}
+
+.logo-main {
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    color: var(--text-primary);
+    text-transform: uppercase;
+}
+
+.logo-sub {
+    font-size: 10px;
+    font-weight: 400;
+    letter-spacing: 1px;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+}
+
+#menu-trigger {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.menu-trigger-text {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+}
+
+.menu-trigger-cursor {
+    width: 10px;
+    height: 10px;
+    background-color: var(--text-primary);
+    animation: blink 1s step-end infinite;
+}
+
+.main-navigation {
+    position: fixed;
+    top: 85px; /* Position below the header */
+    right: 40px;
+    background-color: var(--dark-gray);
+    border: 1px solid var(--light-gray);
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 10px;
+    border-radius: 5px;
+    z-index: 1200;
+    transform-origin: top right;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+    transform: scale(0.95) translateY(-10px);
+    opacity: 0;
+    pointer-events: none;
+}
+
+.main-navigation.active {
+    display: flex; /* Make it visible */
+    transform: scale(1) translateY(0);
+    opacity: 1;
+    pointer-events: all;
+}
+
+.nav-btn {
+    background: transparent;
+    border: none;
+    color: var(--text-secondary);
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 12px 18px;
+    width: 100%;
+    text-align: left;
+    transition: color 0.3s ease, background-color 0.3s ease;
+}
+
+.nav-btn:hover, .nav-btn.active {
+    color: var(--text-primary);
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+/* --- Other Sections --- */
+
+/* Terminal Section (Hidden for now) */
+.terminal-section { display: none; }
+
+/* Video Hero Container (Fixed Background) */
+.hero-video-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    z-index: -1; /* Behind other content */
+    background-color: var(--black); /* Fallback background */
+    transition: opacity 0.5s ease;
+}
+
+.hero-video-container.scrolled {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.hero-video, .side-video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: cover; /* Ensures video covers the area */
+    pointer-events: none;
+}
+
+/* Responsive adjustments for vertical screens */
+@media (orientation: portrait) {
+    .hero-video {
+        width: 100%;
+        height: auto;
+    }
+}
+
+/* Main content padding to clear fixed header */
+main {
+    padding-top: 100px; /* Adjust based on header height */
+}
+
+/* General Section Styling */
+section {
+    padding: 60px 60px 0 60px; /* Default padding for sections */
+    border-bottom: 1px solid var(--light-gray);
+}
+
+/* Override for the first section if it needs to start higher */
+.video-hero-section {
+    padding-top: 0; /* No padding for the first section */
+    height: 100vh; /* Ensure it takes full viewport height */
+    background-color: transparent; /* Make it transparent to show fixed video */
+    position: relative; /* Needed for z-index context */
+    z-index: 0; /* Above the fixed video */
+}
+
+/* Main content padding to clear fixed header */
+main {
+    padding-top: 100px; /* Adjust based on header height */
+}
+
+/* General Section Styling */
+section {
+    padding: 60px 60px 0 60px; /* Default padding for sections */
+    border-bottom: 1px solid var(--light-gray);
+}
+
+/* Override for the first section if it needs to start higher */
+.video-hero-section {
+    padding-top: 0; /* No padding for the first section */
+    height: 100vh; /* Ensure it takes full viewport height */
+    background-color: transparent; /* Make it transparent to show fixed video */
+    position: relative; /* Needed for z-index context */
+    z-index: 0; /* Above the fixed video */
+}
