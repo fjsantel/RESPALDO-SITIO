@@ -1,0 +1,130 @@
+{
+  "sliderSettings": {
+    "autoPlay": true,
+    "autoPlayDelay": 8000,
+    "transitionDuration": 800,
+    "pauseOnHover": true,
+    "showControls": true,
+    "showProgress": true,
+    "loop": true
+  },
+  "slides": [
+    {
+      "id": "slide-1",
+      "title": "REEL DIRECTOR",
+      "description": "Francisco Santelices Ariztía / Dirección & Realización",
+      "buttonText": "VIEW FULL REEL",
+      "buttonAction": "https://www.youtube.com/watch?v=JXoBSzmjMHY",
+      "video": {
+        "src": "https://www.youtube.com/embed/JXoBSzmjMHY?autoplay=1&mute=1&loop=1&playlist=JXoBSzmjMHY&controls=0&showinfo=0&rel=0&modestbranding=1",
+        "type": "youtube",
+        "videoId": "JXoBSzmjMHY",
+        "duration": "1:17",
+        "fallbackImage": "assets/images/reel-fallback.jpg"
+      },
+      "placeholder": {
+        "title": "Director's Reel",
+        "subtitle": "Professional Video Production & Direction",
+        "background": "linear-gradient(135deg, #2c5aa0, #6ba3d6)"
+      }
+    },
+    {
+      "id": "slide-2", 
+      "title": "MOTION GRAPHICS",
+      "description": "Animación Digital / Visual Effects & Animation",
+      "buttonText": "EXPLORE MOTION",
+      "buttonAction": "https://www.youtube.com/watch?v=IiQ-0QRDAgU",
+      "video": {
+        "src": "https://www.youtube.com/embed/IiQ-0QRDAgU?autoplay=1&mute=1&loop=1&playlist=IiQ-0QRDAgU&controls=0&showinfo=0&rel=0&modestbranding=1",
+        "type": "youtube",
+        "videoId": "IiQ-0QRDAgU",
+        "duration": "2:32",
+        "fallbackImage": "assets/images/motion-fallback.jpg"
+      },
+      "placeholder": {
+        "title": "Motion Graphics",
+        "subtitle": "Animation & Visual Effects Portfolio",
+        "background": "linear-gradient(135deg, #6ba3d6, #a8c8ec)"
+      }
+    },
+    {
+      "id": "slide-3",
+      "title": "BFA 2025 INAUGURAL",
+      "description": "Business Future of the Americas / Event Production",
+      "buttonText": "WATCH PROJECT",
+      "buttonAction": "https://www.youtube.com/watch?v=xGlbSt7tK5U",
+      "video": {
+        "src": "https://www.youtube.com/embed/xGlbSt7tK5U?autoplay=1&mute=1&loop=1&playlist=xGlbSt7tK5U&controls=0&showinfo=0&rel=0&modestbranding=1",
+        "type": "youtube",
+        "videoId": "xGlbSt7tK5U",
+        "duration": "2:45",
+        "fallbackImage": "assets/images/bfa-fallback.jpg"
+      },
+      "placeholder": {
+        "title": "Corporate Production",
+        "subtitle": "High-Profile Event & Commercial Video",
+        "background": "linear-gradient(135deg, #a8c8ec, #2c5aa0)"
+      }
+    },
+    {
+      "id": "slide-4",
+      "title": "DOCUMENTARY PROJECT",
+      "description": "Defensoras & Defensores DDHH / Instituto Nacional DDHH",
+      "buttonText": "VIEW DOCUMENTARY",
+      "buttonAction": "https://www.youtube.com/watch?v=kqRkiYIKBCU",
+      "video": {
+        "src": "https://www.youtube.com/embed/kqRkiYIKBCU?autoplay=1&mute=1&loop=1&playlist=kqRkiYIKBCU&controls=0&showinfo=0&rel=0&modestbranding=1",
+        "type": "youtube",
+        "videoId": "kqRkiYIKBCU",
+        "duration": "11:51",
+        "fallbackImage": "assets/images/documentary-fallback.jpg"
+      },
+      "placeholder": {
+        "title": "Social Documentary",
+        "subtitle": "Human Rights Defenders / Instituto Nacional DDHH",
+        "background": "linear-gradient(135deg, #2c5aa0, #96ceb4)"
+      }
+    }
+  ],
+  "customization": {
+    "colors": {
+      "primary": "#2c5aa0",
+      "secondary": "#6ba3d6",
+      "accent": "#a8c8ec",
+      "text": "#ffffff",
+      "overlay": "rgba(44, 90, 160, 0.8)"
+    },
+    "typography": {
+      "titleSize": "3.5rem",
+      "descriptionSize": "1.2rem",
+      "buttonSize": "1rem",
+      "fontFamily": "'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif"
+    },
+    "animations": {
+      "slideTransition": "cubic-bezier(0.4, 0, 0.2, 1)",
+      "contentDelay": "0.5s",
+      "buttonHover": "cubic-bezier(0.4, 0, 0.2, 1)"
+    }
+  },
+  "instructions": {
+    "videoReplacement": "Replace video URLs in the 'src' property of each slide with Francisco's portfolio videos",
+    "contentCustomization": "Modify texts in 'title', 'description' and 'buttonText' to showcase different aspects of Francisco's work",
+    "colorCustomization": "Adjust colors in 'customization.colors' to match artistic vision",
+    "settingsCustomization": "Modify 'sliderSettings' to change slider behavior for optimal portfolio presentation",
+    "buttonActions": "Change 'buttonAction' to define where buttons lead (portfolio sections, contact, social media)"
+  },
+  "examples": {
+    "localVideo": {
+      "src": "./assets/videos/mi-video.mp4",
+      "description": "Para usar videos locales, colócalos en la carpeta assets/videos/"
+    },
+    "youtubeEmbed": {
+      "note": "Para videos de YouTube, considera usar el embed API o convertir a MP4",
+      "example": "https://www.youtube.com/embed/VIDEO_ID?autoplay=1&mute=1&loop=1"
+    },
+    "vimeoEmbed": {
+      "note": "Para Vimeo, similar a YouTube pero con su propio embed",
+      "example": "https://player.vimeo.com/video/VIDEO_ID?autoplay=1&muted=1&loop=1"
+    }
+  }
+}

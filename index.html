@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FRANCISCO SANTELICES - Contemporary Digital Artist & Multimedia Creator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="custom-cursor"></div>
+    <!-- Navigation Header -->
+    <header class="main-header">
+        <div class="logo-container">
+            <img src="assets/logo.png" alt="Francisco Santelices Logo" class="logo-image">
+            <div class="logo-text">
+                <span class="logo-main">FRANCISCO SANTELICES ARIZTÍA</span>
+                <span class="logo-sub">CREATIVE CONTENT</span>
+            </div>
+        </div>
+        <div id="menu-trigger">
+            <span class="menu-trigger-text">CLICK TO MENU</span>
+            <span class="menu-trigger-cursor"></span>
+        </div>
+    </header>
+
+    <nav class="main-navigation">
+        <button class="nav-btn active" data-section="audiovisual">Audiovisual</button>
+        <button class="nav-btn" data-section="photography">Photography</button>
+        <button class="nav-btn" data-section="design">Design</button>
+        <button class="nav-btn contact-btn" data-section="contact">Contact</button>
+    </nav>
+
+    <!-- Sections -->
+    <main>
+        <section class="video-hero-section" id="audiovisual">
+            <div class="hero-video-container">
+                <div class="video-click-blocker"></div>
+                <iframe class="hero-video" src="https://www.youtube.com/embed/JXoBSzmjMHY?autoplay=1&mute=1&loop=1&playlist=JXoBSzmjMHY&controls=0&showinfo=0&rel=0&modestbranding=1&iv_load_policy=3" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            </div>
+            <div class="hero-overlay">
+                <!-- Text removed as per request -->
+            </div>
+        </section>
+
+        <section class="animated-text-section" id="animated-text">
+            <h1 id="typewriter"><span id="typewriter-text"></span><span class="typewriter-cursor"></span></h1>
+        </section>
+
+        <section class="chat-section" id="chat">
+            <div id="reset-animation-container">
+                <div class="reset-triangle-outline"></div>
+                <div class="reset-triangle-solid"></div>
+            </div>
+            <div class="chat-container">
+                <div class="chat-title-container">
+                    <h1 id="chat-title-main">LET'S CREATE</h1>
+                    <h2 id="chat-title-sub"></h2>
+                </div>
+                <div class="chat-history">
+                    <!-- Messages will be injected here -->
+                </div>
+                <div class="chat-input-container">
+                    <span class="chat-prompt">&gt;</span>
+                    <input type="text" id="chat-input" placeholder="Describe tu proyecto..." autocomplete="off">
+                </div>
+            </div>
+        </section>
+
+        <section class="photography-grid" id="photography">
+            <div class="grid-container">
+                <div class="grid-item" style="background-image: url('https://images.unsplash.com/photo-1516035069371-29a1b244cc32?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80');"></div>
+                <div class="grid-item" style="background-image: url('https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80');"></div>
+                <div class="grid-item" style="background-image: url('https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80');"></div>
+                <div class="grid-item" style="background-image: url('https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80');"></div>
+            </div>
+        </section>
+
+        <section class="video-description-section" id="design">
+            <div class="video-desc-container">
+                <div class="video-side">
+                    <div class="video-click-blocker"></div>
+                    <iframe class="side-video" src="https://www.youtube.com/embed/IiQ-0QRDAgU?autoplay=1&mute=1&loop=1&playlist=IiQ-0QRDAgU&controls=0&showinfo=0&rel=0&modestbranding=1&iv_load_policy=3" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                </div>
+                <div class="description-side">
+                    <div class="desc-symbol">◆</div>
+                    <div class="desc-content">
+                        <h3>Motion Graphics & Animation</h3>
+                        <p class="justified-text">Specialized in creating dynamic visual content that combines technical precision with artistic expression.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="contact-section" id="contact">
+            <div class="contact-container">
+                <div class="contact-content">
+                    <h2>Get in Touch</h2>
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <span class="contact-label">EMAIL:</span>
+                            <span class="contact-value">francisco@creativecontent.cl</span>
+                        </div>
+                        <div class="contact-item">
+                            <span class="contact-label">INSTAGRAM:</span>
+                            <span class="contact-value">@franciscosantelices</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="footer-content">
+            <div class="copyright">© 2025 FRANCISCO SANTELICES. All rights reserved.</div>
+            <div class="footer-links">
+                <a href="#" class="footer-link">[EN]</a>
+                <a href="#" class="footer-link">[ES]</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/TextPlugin.min.js"></script>
+    <script src="new-portfolio.js"></script>
+</body>
+</html>
