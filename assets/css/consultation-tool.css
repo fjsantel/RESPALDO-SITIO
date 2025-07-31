@@ -25,12 +25,15 @@
     transform: translateY(20px);
     transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     pointer-events: none;
+    display: block;
+    visibility: hidden;
 }
 
 .consultation-interface.active {
     opacity: 1;
     transform: translateY(0);
     pointer-events: all;
+    visibility: visible;
 }
 
 /* CONVERSACIÓN MINIMALISTA */
@@ -194,7 +197,11 @@
     transition: all 0.4s ease;
     text-transform: uppercase;
     letter-spacing: 0.5px;
-    margin-top: 20px;
+    margin: 20px 0;
+    display: block;
+    width: fit-content;
+    opacity: 1;
+    visibility: visible;
 }
 
 .consultation-trigger:hover {
