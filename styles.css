@@ -611,6 +611,48 @@ section.animated-text-section {
     text-align: justify;
 }
 
+.bio-text-container h3 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-top: 40px;
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+}
+
+.bio-text-container ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.bio-text-container li {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: var(--text-secondary);
+    margin-bottom: 15px;
+    padding-left: 20px;
+    position: relative;
+}
+
+.bio-text-container li::before {
+    content: "▪";
+    color: var(--accent-yellow);
+    font-size: 1.2rem;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.bio-text-container a {
+    color: var(--accent-yellow);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.bio-text-container a:hover {
+    color: var(--text-primary);
+}
+
 /* --- RESPONSIVE DESIGN --- */
 
 /* Tablet styles (768px and below) */

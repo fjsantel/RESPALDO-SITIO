@@ -43,6 +43,14 @@ class NavigationManager {
     }
 
     handleNavClick(clickedBtn) {
+        // Handle Bio section - open in new window
+        if (clickedBtn.dataset.section === 'bio') {
+            window.open('bio.html', '_blank');
+            this.isOpen = false;
+            this.toggleMenu(false);
+            return;
+        }
+
         // Do not run scroll logic for regular links
         if (!clickedBtn.dataset.section) return;
 
