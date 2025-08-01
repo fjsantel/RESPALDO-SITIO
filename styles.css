@@ -911,13 +911,16 @@ section.animated-text-section {
     /* Chat section con menos padding */
     .chat-section {
         padding: 1.25rem;
-        height: auto;
-        min-height: 70vh;
+        height: 85vh; /* Altura fija para forzar el contexto de scroll */
+        min-height: auto; /* Quitar min-height que compite con height */
+        display: flex; /* Usar flex para centrar el contenedor */
+        flex-direction: column;
     }
     
     .chat-container {
-        height: 65vh;
+        height: 100%; /* Ocupar toda la altura del padre (chat-section) */
         padding: 1.25rem;
+        width: 100%; /* Asegurar que ocupe todo el ancho */
     }
     
     /* Grid adjustments optimizado */

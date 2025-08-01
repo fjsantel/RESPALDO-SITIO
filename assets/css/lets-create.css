@@ -70,12 +70,13 @@
 .consultation-conversation-area {
     display: none; /* Oculto por defecto */
     flex-grow: 1;
-    overflow-y: auto;
+    overflow-y: auto; /* Habilitar scroll vertical */
     padding: 1rem;
     margin-top: 1rem;
     opacity: 0;
     transform: translateY(20px);
     transition: all 0.5s ease;
+    -webkit-overflow-scrolling: touch; /* Scroll suave en iOS */
 }
 
 .consultation-conversation-area.active {
