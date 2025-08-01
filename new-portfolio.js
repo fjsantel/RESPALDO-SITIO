@@ -212,7 +212,7 @@ class ScrollAnimator {
 
         let masterTl = gsap.timeline({
             scrollTrigger: {
-                trigger: ".animated-text-section",
+                trigger: ".seccion-texto-animado", // Renombrado
                 start: "top 60%",
                 toggleActions: "play pause resume reset"
             },

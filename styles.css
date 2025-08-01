@@ -189,9 +189,10 @@ section.animated-text-section {
     margin: 0;
 }
 
-/* Video Hero Section */
-.video-hero-section {
-    height: 100vh;
+/* Seccion Video Principal */
+.seccion-video-principal {
+    width: 100%;
+    aspect-ratio: 16 / 9;
     padding: 0;
     position: relative;
     overflow: hidden;
@@ -237,8 +238,8 @@ section.animated-text-section {
     background: transparent;
 }
 
-/* Animated Text Section */
-.animated-text-section {
+/* Seccion Texto Animado */
+.seccion-texto-animado {
     height: 100vh;
     background-color: var(--black);
     display: flex;
@@ -262,6 +263,28 @@ section.animated-text-section {
     min-height: 1.2em;
 }
 
+/* Seccion Video Insert */
+.seccion-video-insert {
+    width: 100%; /* Ocupa todo el ancho disponible */
+    aspect-ratio: 250 / 100; /* Proporción aún más extrema para un efecto muy angosto */
+    padding: 0;
+    position: relative;
+    overflow: hidden;
+    background-color: var(--black);
+    border: none;
+}
+
+.atmospheric-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
+    pointer-events: none;
+}
+
 .typewriter-cursor {
     display: inline-block;
     width: 0.7em;
@@ -276,7 +299,7 @@ section.animated-text-section {
     50% { opacity: 0; }
 }
 
-/* Chat Section - Final Polished Style */
+/* Seccion Let's Create */
 #reset-animation-container {
     position: absolute;
     top: 0; left: 0; right: 0; bottom: 0;
@@ -305,7 +328,7 @@ section.animated-text-section {
     position: absolute;
 }
 
-.chat-section {
+.seccion-lets-create {
     min-height: 100vh; /* Ocupa el 100% de la altura de la pantalla */
     background-color: var(--black);
     display: flex;
@@ -325,14 +348,6 @@ section.animated-text-section {
     flex-direction: column;
     padding: 20px;
     position: relative; /* Añadido para posicionar el cursor/temporizador */
-}
-
-.chat-title-container {
-    display: flex;
-    align-items: center;
-    padding-bottom: 20px;
-    border-bottom: 1px solid var(--light-gray);
-    overflow: hidden;
 }
 
 .chat-title-container {
@@ -729,7 +744,7 @@ section.animated-text-section {
 .cursor-blink {
     font-family: var(--font-primary);
     font-size: 12px;
-    color: var(--text-secondary);
+    color: var(--text-primary);
     margin-left: 3px;
     animation: blink-cursor 1s step-end infinite;
     transition: color 0.3s ease;
@@ -907,6 +922,7 @@ section.animated-text-section {
         margin: 0;
         border: none;
         background-color: var(--black);
+        overflow: hidden;
     }
     
     /* Text adjustments con clamp() para fluidez */
@@ -1092,6 +1108,7 @@ section.animated-text-section {
         margin: 0;
         border: none;
         background-color: var(--black);
+        overflow: hidden;
     }
     
     /* Text con tipografía fluida y mejor legibilidad */
@@ -1203,4 +1220,3 @@ section.animated-text-section {
         padding: 1.5rem 1rem;
     }
 }
-
