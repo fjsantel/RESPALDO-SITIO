@@ -877,8 +877,8 @@ section.seccion-video-principal {
     
     .header-actions .menu-trigger-text,
     .cv-text {
-        font-size: 0.65rem;
-        letter-spacing: 0.05rem;
+        font-size: 0.5rem;
+        letter-spacing: 0.02rem;
     }
     
     .main-navigation {
@@ -1045,8 +1045,9 @@ section.seccion-video-principal {
     }
     
     .logo-main {
-        font-size: 0.625rem;
-        letter-spacing: 0.03rem;
+        font-size: 0.5rem;
+        letter-spacing: 0;
+        white-space: nowrap;
     }
     
     .logo-sub {
@@ -1057,10 +1058,15 @@ section.seccion-video-principal {
         gap: 1rem;
     }
     
-    .header-actions .menu-trigger-text,
+    .menu-trigger-text {
+        font-size: 0.65rem !important;
+        letter-spacing: 0 !important;
+        white-space: nowrap !important;
+    }
+    
     .cv-text {
-        font-size: 0.6rem;
-        letter-spacing: 0.03rem;
+        font-size: 0.28rem;
+        letter-spacing: 0;
     }
     
     
