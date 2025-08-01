@@ -65,7 +65,7 @@ body.cursor-hover #custom-cursor {
     z-index: 1100;
     background: rgba(13, 17, 23, 0.85);
     backdrop-filter: blur(12px);
-    padding: 20px 40px;
+    padding: 12px 40px;
     border-bottom: 1px solid var(--light-gray);
     display: flex;
     justify-content: space-between;
@@ -182,11 +182,16 @@ section {
 }
 
 /* Override for sections that should not have padding */
-section.video-hero-section,
+section.seccion-video-principal,
 section.animated-text-section {
     border-bottom: none;
     padding: 0;
     margin: 0;
+}
+
+/* Specific margin-top for video section to account for fixed header */
+section.seccion-video-principal {
+    margin-top: 84px;
 }
 
 /* Seccion Video Principal */
@@ -197,7 +202,6 @@ section.animated-text-section {
     position: relative;
     overflow: hidden;
     background-color: var(--black);
-    margin: 0;
     border: none;
 }
 
@@ -214,8 +218,8 @@ section.animated-text-section {
     left: 0;
     width: 100%;
     height: 100%;
-    object-fit: cover;
-    object-position: center center;
+    object-fit: contain; /* Maintains original video aspect ratio */
+    object-position: center top; /* Keeps top part always visible */
     pointer-events: none;
 }
 
@@ -290,7 +294,7 @@ section.animated-text-section {
     width: 0.7em;
     height: 1em;
     background-color: var(--text-primary);
-    margin-left: 15px;
+    margin-left: 15px; /* Desktop value - reduced in mobile media queries */
     animation: blink 1s step-end infinite;
 }
 
@@ -851,7 +855,7 @@ section.animated-text-section {
 @media screen and (max-width: 768px) {
     /* Header adjustments con tipografía mejorada */
     .main-header {
-        padding: 1rem 1.25rem;
+        padding: 0.75rem 1.25rem;
     }
     
     .logo-image {
@@ -882,11 +886,12 @@ section.animated-text-section {
         right: 1.25rem;
     }
     
-    /* Video hero section - sin franjas negras */
-    .video-hero-section {
+    /* Video principal section - sin franjas negras */
+    section.seccion-video-principal {
         height: 50vh;
         min-height: 20rem;
         margin: 0;
+        margin-top: 63px !important; /* Account for smaller header on tablet */
         padding: 0;
         border: none;
         background-color: var(--black);
@@ -908,17 +913,17 @@ section.animated-text-section {
         left: 0;
         width: 100%;
         height: 100%;
-        object-fit: cover;
-        object-position: center center;
+        object-fit: contain;
+        object-position: center top;
         margin: 0;
         padding: 0;
         border: none;
     }
     
     /* Animated text section - pegado completamente */
-    .animated-text-section {
+    .seccion-texto-animado {
         height: 60vh;
-        padding: 0 1rem;
+        padding: 0 0.49rem; /* 30% reduction from 0.7rem */
         margin: 0;
         border: none;
         background-color: var(--black);
@@ -928,7 +933,12 @@ section.animated-text-section {
     /* Text adjustments con clamp() para fluidez */
     #typewriter {
         font-size: clamp(2rem, 8vw, 4rem);
-        letter-spacing: 0.25rem;
+        letter-spacing: 0.175rem; /* 30% reduction from 0.25rem */
+    }
+    
+    /* Typewriter cursor spacing reduction for tablet */
+    .typewriter-cursor {
+        margin-left: 10.5px; /* 30% reduction from 15px */
     }
     
     /* Chat section con menos padding */
@@ -1006,7 +1016,7 @@ section.animated-text-section {
     }
     
     /* Video y animated text sin padding top extra */
-    section.video-hero-section,
+    section.seccion-video-principal,
     section.animated-text-section {
         padding-top: 0;
     }
@@ -1027,7 +1037,7 @@ section.animated-text-section {
 @media screen and (max-width: 480px) {
     /* Header con mejor legibilidad */
     .main-header {
-        padding: 0.75rem 1rem;
+        padding: 0.25rem 1rem;
     }
     
     .logo-image {
@@ -1065,11 +1075,12 @@ section.animated-text-section {
         padding: 0.75rem 1rem;
     }
     
-    /* Video hero section - completamente sin franjas */
-    .video-hero-section {
+    /* Video principal section - completamente sin franjas */
+    section.seccion-video-principal {
         height: 40vh;
         min-height: 18rem;
         margin: 0;
+        margin-top: 29px !important; /* Account for smaller header on mobile */
         padding: 0;
         border: none;
         background-color: var(--black);
@@ -1093,8 +1104,8 @@ section.animated-text-section {
         left: 0;
         width: 100%;
         height: 100%;
-        object-fit: cover;
-        object-position: center center;
+        object-fit: contain;
+        object-position: center top;
         margin: 0;
         padding: 0;
         border: none;
@@ -1102,9 +1113,9 @@ section.animated-text-section {
     }
     
     /* Animated text section - pegado sin espacios */
-    .animated-text-section {
+    .seccion-texto-animado {
         height: 50vh;
-        padding: 0 0.75rem;
+        padding: 0 0.35rem; /* 30% reduction from 0.5rem */
         margin: 0;
         border: none;
         background-color: var(--black);
@@ -1114,7 +1125,12 @@ section.animated-text-section {
     /* Text con tipografía fluida y mejor legibilidad */
     #typewriter {
         font-size: clamp(1.5rem, 10vw, 3rem);
-        letter-spacing: 0.125rem;
+        letter-spacing: 0.0875rem; /* 30% reduction from 0.125rem */
+    }
+    
+    /* Typewriter cursor spacing reduction for mobile */
+    .typewriter-cursor {
+        margin-left: 10.5px; /* 30% reduction from 15px - consistent with tablet */
     }
     
     /* Chat section con mejor UX */
@@ -1151,12 +1167,12 @@ section.animated-text-section {
     /* Contact section responsivo */
     .contact-content h2 {
         font-size: clamp(1.5rem, 5vw, 2rem);
-        margin-bottom: 2.5rem;
+        margin-bottom: 1.5rem;
     }
     
     .contact-info {
         grid-template-columns: 1fr;
-        gap: 1.875rem;
+        gap: 1.25rem;
     }
     
     /* Bio section mobile optimizado */
@@ -1174,19 +1190,19 @@ section.animated-text-section {
     }
     
     .bio-block {
-        margin-bottom: 2.2rem;
-        padding: 1.5rem 0;
+        margin-bottom: 1.5rem;
+        padding: 1rem 0;
     }
     
     .bio-block h3 {
         font-size: clamp(1.1rem, 4vw, 1.3rem);
-        margin-bottom: 1.25rem;
+        margin-bottom: 1rem;
     }
     
     .bio-block p {
         font-size: 0.95rem; /* Ligeramente menor para mejor ajuste */
         line-height: 1.6;
-        margin-bottom: 1.25rem;
+        margin-bottom: 1rem;
         text-align: justify;
         text-justify: inter-word;
         hyphens: auto;
@@ -1206,17 +1222,17 @@ section.animated-text-section {
     
     /* Espaciado reducido entre secciones para móvil */
     section {
-        padding: 3rem 1rem 0 1rem;
+        padding: 1.8rem 1rem 0 1rem;
     }
     
     /* Video y animated text sin padding extra */
-    section.video-hero-section,
+    section.seccion-video-principal,
     section.animated-text-section {
         padding-top: 0;
     }
     
     /* Footer mobile */
     .main-footer {
-        padding: 1.5rem 1rem;
+        padding: 1.25rem 1rem;
     }
 }
