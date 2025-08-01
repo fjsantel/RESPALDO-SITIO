@@ -17,8 +17,10 @@
     display: grid;
     grid-template-columns: 3fr 2fr; /* 60% para contexto, 40% para acciones */
     gap: 2rem; /* Espacio entre los paneles */
-    padding-top: 1.5rem;
+    padding: 1.5rem 1rem;
     min-height: 0; /* Necesario para que el scroll funcione en flexbox */
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
 /* Sección del disparador inicial */
@@ -77,7 +79,8 @@
     display: flex;
     flex-direction: column;
     justify-content: flex-start; /* Alinear contenido al inicio */
-    align-items: flex-start; /* Alinear contenido a la izquierda */
+    align-items: center; /* Centrar contenido horizontalmente */
+    text-align: center; /* Centrar texto por defecto */
 }
 
 /* Panel de Acción (Derecho) */
@@ -85,7 +88,7 @@
     display: flex;
     flex-direction: column;
     justify-content: flex-start; /* Alinear contenido al inicio */
-    align-items: flex-start; /* Alinear contenido a la izquierda */
+    align-items: center; /* Centrar contenido horizontalmente */
     padding-left: 1rem; /* Espacio para el scrollbar */
 }
 
@@ -130,7 +133,8 @@
 
 /* Default text alignment for messages (not welcome, not user) */
 .consultation-message:not(.is-welcome):not(.user) .consultation-message-content p {
-    text-align: justify; /* Justificar el resto de los mensajes del asistente */
+    text-align: left; /* Alinear a la izquierda para mejor legibilidad en móvil */
+    max-width: 100%;
 }
 
 .consultation-message.user .consultation-message-content {
@@ -409,7 +413,57 @@ textarea.form-input {
 }
 
 /* Responsive */
+@media (max-width: 1024px) {
+    .consultation-container {
+        grid-template-columns: 1fr 1fr;
+        gap: 1.5rem;
+        padding: 1.5rem 0.8rem;
+    }
+    
+    #context-panel {
+        padding-right: 0.8rem;
+    }
+    
+    #action-panel {
+        padding-left: 0.8rem;
+    }
+    
+    .consultation-response-option {
+        padding: 1rem 1.2rem;
+        font-size: 0.88rem;
+    }
+    
+    .consultation-custom-input {
+        padding: 1.1rem 1.2rem;
+    }
+}
+
 @media (max-width: 768px) {
+    .consultation-container {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        padding: 1rem 0.5rem;
+    }
+    
+    /* Panel de contexto en móvil */
+    #context-panel {
+        order: 1;
+        padding-right: 0;
+        margin-bottom: 1rem;
+    }
+    
+    /* Panel de acción en móvil */
+    #action-panel {
+        order: 2;
+        padding-left: 0;
+        position: sticky;
+        bottom: 0;
+        background: var(--lc-background-primary);
+        padding-top: 1rem;
+        margin-top: 1rem;
+        border-top: 1px solid var(--lc-border-subtle);
+    }
+    
     .consultation-input-container {
         flex-direction: column;
         gap: 0.8rem;
@@ -418,6 +472,91 @@ textarea.form-input {
     .consultation-send-btn {
         align-self: stretch;
         text-align: center;
+        padding: 1.2rem 2rem;
+    }
+    
+    .consultation-response-options {
+        gap: 0.6rem;
+    }
+    
+    .consultation-response-option {
+        padding: 1.2rem 1rem;
+        font-size: 0.85rem;
+        text-align: center;
+    }
+    
+    .trigger-message {
+        font-size: 0.9rem;
+    }
+    
+    .trigger-question {
+        font-size: 1.1rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .start-consultation-button {
+        padding: 1.2rem 1.5rem;
+        font-size: 0.85rem;
+        width: 100%;
+        max-width: 300px;
+        margin: 0 auto;
+        display: block;
+    }
+    
+    .consultation-custom-input {
+        min-height: 100px;
+        padding: 1.2rem;
+    }
+    
+    .consultation-final-cta {
+        padding: 1.5rem;
+        margin-top: 1rem;
+    }
+    
+    .consultation-contact-form-section {
+        padding: 1rem;
+        margin-top: 1rem;
+    }
+    
+    .form-input {
+        padding: 1rem 0;
+        font-size: 0.9rem;
+    }
+    
+    .submit-button {
+        width: 100%;
+        padding: 1.2rem;
+        margin-top: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .consultation-container {
+        padding: 0.5rem 0.25rem;
+    }
+    
+    .consultation-response-option {
+        padding: 1rem 0.8rem;
+        font-size: 0.8rem;
+    }
+    
+    .consultation-custom-input {
+        padding: 1rem;
+        font-size: 0.85rem;
+    }
+    
+    .consultation-send-btn {
+        padding: 1rem 1.5rem;
+        font-size: 0.85rem;
+    }
+    
+    .trigger-question {
+        font-size: 1rem;
+    }
+    
+    .start-consultation-button {
+        padding: 1rem 1.2rem;
+        font-size: 0.8rem;
     }
 }
 
