@@ -91,10 +91,17 @@ class ConsultationFlow {
         if (isWelcome) {
             messageDiv.classList.add('is-welcome');
         }
-        const formattedContent = content.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>');
-        messageDiv.innerHTML = `<p>${formattedContent}</p>`;
+        const formattedContent = content.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '</p><p>');
+        messageDiv.innerHTML = `<div class="consultation-message-content"><p>${formattedContent}</p></div>`;
         this.contextPanel.appendChild(messageDiv);
-        this.contextPanel.scrollTop = this.contextPanel.scrollHeight; // Scroll al final del panel de contexto
+        
+        // Scroll suave al final del panel de contexto
+        setTimeout(() => {
+            this.contextPanel.scrollTo({
+                top: this.contextPanel.scrollHeight,
+                behavior: 'smooth'
+            });
+        }, 100);
     }
 
     displayOptions(options) {
@@ -129,7 +136,7 @@ class ConsultationFlow {
             const text = textarea.value.trim();
             if (text) {
                 this.userResponses.push(`Descripción libre: ${text}`);
-                this.displayMessage(`Tu descripción: "${text}"`, 'user');
+                this.displayMessage(text, 'user');
                 this.processUserInput(text);
             }
         };
@@ -143,9 +150,13 @@ class ConsultationFlow {
 
     selectOption(option) {
         this.userResponses.push(option.text);
-        this.displayMessage(`Tu elección: "${option.text}"`, 'user');
-        this.actionPanel.innerHTML = '<div class="typing-indicator visible">Analizando tu respuesta...</div>';
+        this.displayMessage(option.text, 'user');
+        this.showTypingIndicator();
         setTimeout(() => this.processStep(option.next), 1500);
+    }
+
+    showTypingIndicator() {
+        this.actionPanel.innerHTML = '<div class="consultation-typing-indicator visible">Analizando tu respuesta...</div>';
     }
 
     processStep(stepKey) {
@@ -165,7 +176,7 @@ class ConsultationFlow {
     }
 
     processUserInput(text) {
-        this.actionPanel.innerHTML = '<div class="typing-indicator visible">Analizando tu respuesta...</div>';
+        this.showTypingIndicator();
         setTimeout(() => this.processStep('analyze_description'), 1800);
     }
 

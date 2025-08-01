@@ -73,14 +73,30 @@
 
 /* Panel de Contexto (Izquierdo) */
 #context-panel {
-    overflow-y: auto; /* Scroll solo en este panel si el contenido es largo */
-    padding-right: 1rem; /* Espacio para el scrollbar */
+    overflow-y: auto;
+    max-height: 70vh;
+    padding-right: 1rem;
     -webkit-overflow-scrolling: touch;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start; /* Alinear contenido al inicio */
-    align-items: center; /* Centrar contenido horizontalmente */
-    text-align: center; /* Centrar texto por defecto */
+    justify-content: flex-start;
+    align-items: stretch;
+    text-align: left;
+    scrollbar-width: thin;
+    scrollbar-color: var(--lc-border-subtle) transparent;
+}
+
+#context-panel::-webkit-scrollbar {
+    width: 4px;
+}
+
+#context-panel::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+#context-panel::-webkit-scrollbar-thumb {
+    background: var(--lc-border-subtle);
+    border-radius: 2px;
 }
 
 /* Panel de Acción (Derecho) */
@@ -102,9 +118,19 @@
     opacity: 0;
     transform: translateY(10px);
     animation: messageAppear 0.4s ease-out forwards;
-    margin-bottom: 1rem; /* Espacio entre mensajes */
-    width: 100%; /* Asegurar que ocupe todo el ancho para permitir text-align */
+    margin-bottom: 1.5rem; /* Mayor espacio entre mensajes */
+    width: 100%;
+    padding: 0.8rem 1rem;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.01);
 }
+
+/* Mensajes del asistente */
+.consultation-message:not(.user):not(.is-welcome) {
+    border-left: 3px solid var(--accent-yellow, #ffd700);
+    background: rgba(255, 215, 0, 0.03);
+}
+
 
 .consultation-message.is-welcome {
     /* align-self: center; REMOVIDO */
@@ -112,8 +138,8 @@
 }
 
 .consultation-message-content {
-    font-size: 0.95rem;
-    line-height: 1.6;
+    font-size: 1rem;
+    line-height: 1.7;
     color: var(--lc-primary-text);
     font-weight: 300;
 }
@@ -137,13 +163,31 @@
     max-width: 100%;
 }
 
+.consultation-message.user {
+    background: rgba(255, 255, 255, 0.02);
+    border-left: 3px solid var(--lc-border-subtle);
+    padding: 1rem 1.2rem;
+    margin: 1rem 0;
+    border-radius: 0 8px 8px 0;
+}
+
 .consultation-message.user .consultation-message-content {
-    font-size: 0.85rem; /* Más pequeño */
-    color: var(--lc-secondary-text); /* Gris */
-    text-align: left; /* No justificado */
-    font-style: normal; /* Quitar cursiva si la tenía */
-    padding-left: 0; /* Asegurar que no haya padding extra */
-    border-left: none; /* Asegurar que no haya borde extra */
+    font-size: 0.95rem; /* Tamaño más legible */
+    color: var(--lc-primary-text); /* Blanco para mejor contraste */
+    text-align: left;
+    font-style: italic; /* Cursiva para diferenciarlo */
+    font-weight: 400;
+}
+
+.consultation-message.user::before {
+    content: "Tu respuesta:";
+    display: block;
+    font-size: 0.75rem;
+    color: var(--lc-secondary-text);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 0.5rem;
+    font-style: normal;
 }
 
 .consultation-message-content strong {
@@ -166,14 +210,15 @@
     background: transparent;
     border: 1px solid var(--lc-border-subtle);
     color: var(--lc-secondary-text);
-    padding: 1rem 1.5rem;
+    padding: 1.2rem 1.5rem;
     text-align: left;
     cursor: pointer;
-    transition: all 0.2s ease;
-    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    font-size: 0.95rem;
     font-family: var(--lc-font-family);
     font-weight: 300;
-    line-height: 1.4;
+    line-height: 1.5;
+    border-radius: 6px;
 }
 
 .consultation-response-option:hover {
@@ -202,14 +247,15 @@
     background: transparent;
     border: 1px solid var(--lc-border-subtle);
     color: var(--lc-primary-text);
-    padding: 1rem 1.5rem;
-    font-size: 0.9rem;
+    padding: 1.2rem 1.5rem;
+    font-size: 0.95rem;
     font-family: var(--lc-font-family);
     font-weight: 300;
-    line-height: 1.4;
+    line-height: 1.6;
     resize: vertical;
-    min-height: 80px;
-    transition: border-color 0.2s ease;
+    min-height: 100px;
+    transition: border-color 0.3s ease;
+    border-radius: 6px;
 }
 
 .consultation-custom-input:focus {
@@ -248,13 +294,32 @@
 
 /* Indicador de "escribiendo" */
 .consultation-typing-indicator {
-    display: none; /* Ahora se gestiona dentro de action-panel */
+    display: none;
+    font-size: 0.9rem;
+    color: var(--lc-secondary-text);
+    font-style: italic;
+    padding: 1rem;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: 6px;
+    border: 1px solid var(--lc-border-subtle);
 }
 
 .consultation-typing-indicator.visible {
     display: block;
     opacity: 0;
     animation: fadeIn 0.3s ease-out forwards;
+}
+
+.consultation-typing-indicator::after {
+    content: '...';
+    animation: dots 1.5s infinite;
+}
+
+@keyframes dots {
+    0%, 20% { content: '.'; }
+    40% { content: '..'; }
+    60%, 100% { content: '...'; }
 }
 
 /* CTA Final */
@@ -481,8 +546,9 @@ textarea.form-input {
     
     .consultation-response-option {
         padding: 1.2rem 1rem;
-        font-size: 0.85rem;
+        font-size: 0.9rem;
         text-align: center;
+        margin-bottom: 0.5rem;
     }
     
     .trigger-message {
@@ -504,8 +570,9 @@ textarea.form-input {
     }
     
     .consultation-custom-input {
-        min-height: 100px;
+        min-height: 120px;
         padding: 1.2rem;
+        font-size: 0.9rem;
     }
     
     .consultation-final-cta {
@@ -536,8 +603,10 @@ textarea.form-input {
     }
     
     .consultation-response-option {
-        padding: 1rem 0.8rem;
-        font-size: 0.8rem;
+        padding: 1.1rem 0.8rem;
+        font-size: 0.85rem;
+        margin-bottom: 0.4rem;
+        line-height: 1.4;
     }
     
     .consultation-custom-input {
