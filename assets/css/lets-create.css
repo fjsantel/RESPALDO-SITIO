@@ -1,0 +1,413 @@
+
+/* ESTILOS PARA LA HERRAMIENTA DE CONSULTA 'LET'S CREATE' */
+
+:root {
+    --lc-primary-text: #ffffff;
+    --lc-secondary-text: #808080;
+    --lc-background-primary: #000000;
+    --lc-background-secondary: #0a0a0a;
+    --lc-border-subtle: rgba(255, 255, 255, 0.1);
+    --lc-hover-subtle: rgba(255, 255, 255, 0.05);
+    --lc-font-family: 'Montserrat', sans-serif;
+}
+
+/* Contenedor principal de la herramienta */
+.consultation-container {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1; /* Ocupa el espacio restante */
+    min-height: 0; /* Clave para que el overflow funcione en un hijo flex */
+}
+
+/* Sección del disparador inicial */
+.consultation-trigger-section {
+    text-align: center;
+    margin: auto; /* Centra vertical y horizontalmente */
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.consultation-trigger-section.hidden {
+    opacity: 0;
+    pointer-events: none;
+    transform: scale(0.95);
+}
+
+.trigger-message {
+    font-size: 1rem;
+    color: var(--lc-secondary-text);
+    font-weight: 300;
+    margin-bottom: 1.5rem;
+}
+
+.trigger-question {
+    font-size: 1.2rem;
+    color: var(--lc-primary-text);
+    font-weight: 400;
+    margin-bottom: 2rem;
+}
+
+.start-consultation-button {
+    background: transparent;
+    border: 1px solid var(--lc-border-subtle);
+    color: var(--lc-secondary-text);
+    padding: 1rem 2rem;
+    font-size: 0.9rem;
+    font-weight: 300;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: var(--lc-font-family);
+    text-transform: uppercase;
+}
+
+.start-consultation-button:hover {
+    background: var(--lc-hover-subtle);
+    border-color: var(--lc-primary-text);
+    color: var(--lc-primary-text);
+}
+
+/* Área de conversación */
+.consultation-conversation-area {
+    display: none; /* Oculto por defecto */
+    flex-grow: 1;
+    overflow-y: auto;
+    padding: 1rem;
+    margin-top: 1rem;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.5s ease;
+}
+
+.consultation-conversation-area.active {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Contenedor de mensajes */
+#consultationMessagesContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+/* Estilo de cada mensaje */
+.consultation-message {
+    opacity: 0;
+    transform: translateY(10px);
+    animation: messageAppear 0.4s ease-out forwards;
+}
+
+.consultation-message-content {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: var(--lc-primary-text);
+    font-weight: 300;
+}
+
+.consultation-message.user .consultation-message-content {
+    color: var(--lc-secondary-text);
+    font-style: italic;
+    padding-left: 1.5rem;
+    border-left: 1px solid var(--lc-border-subtle);
+    font-weight: 300;
+}
+
+.consultation-message-content p {
+    margin-bottom: 1rem;
+}
+
+.consultation-message-content p:last-child {
+    margin-bottom: 0;
+}
+
+.consultation-message-content strong {
+    color: var(--lc-primary-text);
+    font-weight: 700;
+}
+
+/* Opciones de respuesta */
+.consultation-response-options {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    margin-top: 1.5rem;
+    opacity: 0;
+    animation: optionsAppear 0.4s ease-out 0.2s forwards;
+}
+
+.consultation-response-option {
+    background: transparent;
+    border: 1px solid var(--lc-border-subtle);
+    color: var(--lc-secondary-text);
+    padding: 1rem 1.5rem;
+    text-align: left;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 0.9rem;
+    font-family: var(--lc-font-family);
+    font-weight: 300;
+    line-height: 1.4;
+}
+
+.consultation-response-option:hover {
+    background: var(--lc-hover-subtle);
+    border-color: var(--lc-primary-text);
+    color: var(--lc-primary-text);
+}
+
+/* Sección de input personalizado */
+.consultation-custom-input-section {
+    margin-top: 1.5rem;
+    opacity: 0;
+    animation: inputAppear 0.4s ease-out 0.3s forwards;
+}
+
+.consultation-input-container {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-end;
+}
+
+.consultation-custom-input {
+    flex: 1;
+    background: transparent;
+    border: 1px solid var(--lc-border-subtle);
+    color: var(--lc-primary-text);
+    padding: 1rem 1.5rem;
+    font-size: 0.9rem;
+    font-family: var(--lc-font-family);
+    font-weight: 300;
+    line-height: 1.4;
+    resize: vertical;
+    min-height: 80px;
+    transition: border-color 0.2s ease;
+}
+
+.consultation-custom-input:focus {
+    outline: none;
+    border-color: var(--lc-primary-text);
+}
+
+.consultation-custom-input::placeholder {
+    color: var(--lc-secondary-text);
+    font-weight: 300;
+}
+
+.consultation-send-btn {
+    background: transparent;
+    border: 1px solid var(--lc-border-subtle);
+    color: var(--lc-secondary-text);
+    padding: 1rem 2rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 0.9rem;
+    font-family: var(--lc-font-family);
+    font-weight: 300;
+    white-space: nowrap;
+}
+
+.consultation-send-btn:hover:not(:disabled) {
+    background: var(--lc-hover-subtle);
+    border-color: var(--lc-primary-text);
+    color: var(--lc-primary-text);
+}
+
+.consultation-send-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* Indicador de "escribiendo" */
+.consultation-typing-indicator {
+    display: none;
+    color: var(--lc-secondary-text);
+    font-size: 0.85rem;
+    font-weight: 300;
+    margin-top: 1rem;
+    font-style: italic;
+    padding: 0 1rem;
+}
+
+.consultation-typing-indicator.visible {
+    display: block;
+    opacity: 0;
+    animation: fadeIn 0.3s ease-out forwards;
+}
+
+/* CTA Final */
+.consultation-final-cta {
+    text-align: center;
+    padding: 2rem;
+    margin-top: 2rem;
+    display: none;
+}
+
+.consultation-final-cta.show {
+    display: block;
+    opacity: 0;
+    animation: finalCtaAppear 0.5s ease-out forwards;
+}
+
+.consultation-final-cta h3 {
+    font-size: 1.2rem;
+    font-weight: 400;
+    color: var(--lc-primary-text);
+    margin-bottom: 1rem;
+    font-family: var(--lc-font-family);
+}
+
+.consultation-final-cta p {
+    color: var(--lc-secondary-text);
+    margin-bottom: 1.5rem;
+    font-weight: 300;
+    line-height: 1.5;
+}
+
+.consultation-final-link {
+    display: inline-block;
+    color: var(--lc-secondary-text);
+    text-decoration: none;
+    border: 1px solid var(--lc-border-subtle);
+    padding: 0.8rem 2rem;
+    transition: all 0.2s ease;
+    font-size: 0.9rem;
+    font-weight: 300;
+    letter-spacing: 0.5px;
+    font-family: var(--lc-font-family);
+}
+
+.consultation-final-link:hover {
+    background: var(--lc-hover-subtle);
+    border-color: var(--lc-primary-text);
+    color: var(--lc-primary-text);
+}
+
+/* Animaciones */
+@keyframes messageAppear {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes optionsAppear {
+    from { opacity: 0; transform: translateY(15px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes inputAppear {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes finalCtaAppear {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Estilos para el formulario de contacto dinámico */
+.consultation-contact-form-section {
+    margin-top: 1.5rem;
+    padding: 1.5rem;
+    border: 1px solid var(--lc-border-subtle);
+    background: var(--lc-hover-subtle);
+    animation: inputAppear 0.5s ease-out;
+}
+
+.consultation-contact-form-section h3 {
+    font-size: 1.2rem;
+    font-weight: 400;
+    color: var(--lc-primary-text);
+    margin-bottom: 1rem;
+}
+
+.consultation-contact-form-section p {
+    color: var(--lc-secondary-text);
+    margin-bottom: 1.5rem;
+    font-weight: 300;
+    line-height: 1.5;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+.form-input {
+    width: 100%;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid var(--lc-border-subtle);
+    color: var(--lc-primary-text);
+    padding: 0.75rem 0;
+    font-size: 0.95rem;
+    font-family: var(--lc-font-family);
+    font-weight: 300;
+    transition: border-color 0.3s ease;
+}
+
+.form-input:focus {
+    outline: none;
+    border-bottom-color: var(--lc-primary-text);
+}
+
+.form-input::placeholder {
+    color: var(--lc-secondary-text);
+    opacity: 0.8;
+}
+
+textarea.form-input {
+    resize: vertical;
+    min-height: 80px;
+}
+
+.submit-button {
+    background: transparent;
+    border: 1px solid var(--lc-primary-text);
+    color: var(--lc-primary-text);
+    padding: 0.8rem 1.5rem;
+    font-size: 0.9rem;
+    font-weight: 400;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: var(--lc-font-family);
+    text-transform: uppercase;
+    margin-top: 1rem;
+}
+
+.submit-button:hover {
+    background: var(--lc-primary-text);
+    color: var(--lc-background-primary);
+}
+
+#form-status {
+    margin-top: 1rem;
+    font-weight: 300;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .consultation-input-container {
+        flex-direction: column;
+        gap: 0.8rem;
+    }
+    
+    .consultation-send-btn {
+        align-self: stretch;
+        text-align: center;
+    }
+}
+
+/* Estilo para la firma de autor */
+.consultation-credit {
+    font-size: 0.75rem;
+    color: var(--lc-secondary-text);
+    margin-top: 2rem;
+    text-align: center;
+    font-style: italic;
+    opacity: 0.7;
+}

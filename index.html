@@ -6,7 +6,7 @@
     <title>FRANCISCO SANTELICES - Contemporary Digital Artist & Multimedia Creator</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="assets/css/dynamic-gallery.css">
-    <link rel="stylesheet" href="assets/css/consultation-tool.css">
+    <link rel="stylesheet" href="assets/css/lets-create.css">
 </head>
 <body>
     <div id="custom-cursor"></div>
@@ -64,26 +64,20 @@
                 
                 <!-- CONSULTATION TOOL INTEGRATION -->
                 <div class="consultation-container">
-                    <!-- TRIGGER INICIAL CON TU TEXTO EXACTO -->
+                    <!-- El contenido se genera dinámicamente por lets-create.js -->
                     <div class="consultation-trigger-section">
                         <p class="trigger-message">Comienza aquí</p>
                         <p class="trigger-question">¿Cuál es tu idea?</p>
                         <button class="start-consultation-button" id="startConsultation">Iniciar Consulta Metodológica</button>
                     </div>
-
-                    <!-- ÁREA DE CONVERSACIÓN (INICIALMENTE OCULTA) -->
                     <div class="consultation-conversation-area" id="consultationConversationArea">
                         <div id="consultationMessagesContainer">
-                            <!-- Los mensajes se generarán dinámicamente -->
+                            <!-- Los mensajes aparecerán aquí -->
                         </div>
                     </div>
-
-                    <!-- TYPING INDICATOR -->
                     <div class="consultation-typing-indicator" id="consultationTypingIndicator">
                         Analizando tu respuesta...
                     </div>
-
-                    <!-- CTA FINAL -->
                     <div class="consultation-final-cta" id="consultationFinalCta">
                         <h3>Perfecto. Tengo una visión clara de tu proyecto.</h3>
                         <p>Conversemos sobre cómo materializar tu visión creativa.</p>
@@ -216,6 +210,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/TextPlugin.min.js"></script>
     <script src="new-portfolio.js"></script>
     <script src="assets/js/gallery-controller.js"></script>
-    <script src="assets/js/consultation-flow.js"></script>
+    <script src="assets/js/lets-create.js"></script>
 </body>
 </html>
