@@ -53,15 +53,30 @@ class ConsultationFlow {
             return;
         }
         if (this.chatContainer) {
-            this.chatContainer.classList.add('title-active'); // <--- ACTIVAR TÍTULO
+            this.chatContainer.classList.add('title-active');
         }
         this.triggerSection.classList.add('hidden');
         this.conversationArea.classList.add('active');
         
-        setTimeout(() => {
-            this.displayMessage(this.conversationTree.welcome.message, 'assistant');
-            setTimeout(() => this.displayOptions(this.conversationTree.welcome.options), 1000);
-        }, 300);
+        // Muestra los mensajes de bienvenida secuencialmente
+        this.displayMessagesSequentially(this.conversationTree.welcome.messages, () => {
+            this.displayOptions(this.conversationTree.welcome.options);
+        });
+    }
+
+    // Nueva función para mostrar mensajes uno por uno
+    displayMessagesSequentially(messages, onComplete) {
+        let index = 0;
+        const displayNext = () => {
+            if (index < messages.length) {
+                this.displayMessage(messages[index], 'assistant');
+                index++;
+                setTimeout(displayNext, 1200); // Pausa entre mensajes
+            } else if (onComplete) {
+                onComplete();
+            }
+        };
+        displayNext();
     }
 
     displayMessage(content, sender) {

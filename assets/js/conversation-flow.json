@@ -1,6 +1,10 @@
 {
     "welcome": {
-        "message": "Esto no es un chatbot.\n\nEs una herramienta orientada a ayudar a **integrar visiones creativas** para un producto bien acabado y de este modo entender cuáles son las **herramientas más idóneas**.\n\nPoner en palabras lo que quieres crear es fundamental para desarrollar cualquier proyecto exitoso.",
+        "messages": [
+            "Esto no es un chatbot.",
+            "Es una herramienta orientada a ayudar a **integrar visiones creativas** para un producto bien acabado y de este modo entender cuáles son las **herramientas más idóneas**.",
+            "Poner en palabras lo que quieres crear es fundamental para desarrollar cualquier proyecto exitoso."
+        ],
         "options": [
             { "text": "Tengo una visión clara que quiero materializar", "next": "clear_vision" },
             { "text": "Necesito resolver un desafío creativo específico", "next": "creative_challenge" },
