@@ -24,8 +24,11 @@
 /* Sección del disparador inicial */
 .consultation-trigger-section {
     text-align: center;
-    margin: auto; /* Centra vertical y horizontalmente */
+    /* margin: auto; REMOVIDO */
     transition: opacity 0.5s ease, transform 0.5s ease;
+    /* Asegurar que se alinee arriba si el padre es flex/grid */
+    align-self: flex-start; /* Añadido para alinear al inicio si el padre es flex */
+    width: 100%; /* Asegurar que ocupe todo el ancho para centrar el texto */
 }
 
 .consultation-trigger-section.hidden {
@@ -101,7 +104,7 @@
 }
 
 .consultation-message.is-welcome {
-    align-self: center; /* Centrar el bloque del mensaje dentro del panel */
+    /* align-self: center; REMOVIDO */
     text-align: center; /* Centrar el texto dentro del mensaje */
 }
 

@@ -911,16 +911,18 @@ section.animated-text-section {
     /* Chat section con menos padding */
     .chat-section {
         padding: 1.25rem;
-        height: 85vh; /* Altura fija para forzar el contexto de scroll */
-        min-height: auto; /* Quitar min-height que compite con height */
-        display: flex; /* Usar flex para centrar el contenedor */
+        height: 90vh; /* Altura fija para el viewport de la herramienta */
+        min-height: auto;
+        display: flex;
         flex-direction: column;
     }
     
     .chat-container {
-        height: 100%; /* Ocupar toda la altura del padre (chat-section) */
+        height: 100%; /* Ocupar toda la altura del padre */
         padding: 1.25rem;
-        width: 100%; /* Asegurar que ocupe todo el ancho */
+        width: 100%;
+        display: flex; /* Asegurar que sea flex para sus hijos */
+        flex-direction: column;
     }
     
     /* Grid adjustments optimizado */
@@ -1094,12 +1096,12 @@ section.animated-text-section {
     /* Chat section con mejor UX */
     .chat-section {
         padding: 1rem;
-        height: auto;
-        min-height: 60vh;
+        height: 90vh; /* Altura fija también para móviles más pequeños */
+        min-height: auto;
     }
     
     .chat-container {
-        height: 55vh;
+        height: 100%;
         padding: 1rem;
     }
     
