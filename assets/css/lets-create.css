@@ -13,10 +13,12 @@
 
 /* Contenedor principal de la herramienta */
 .consultation-container {
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1; /* Ocupa el espacio restante */
-    min-height: 0; /* Clave para que el overflow funcione en un hijo flex */
+    flex-grow: 1; /* Ocupa el espacio restante del .chat-container */
+    display: grid;
+    grid-template-columns: 3fr 2fr; /* 60% para contexto, 40% para acciones */
+    gap: 2rem; /* Espacio entre los paneles */
+    padding-top: 1.5rem;
+    min-height: 0; /* Necesario para que el scroll funcione en flexbox */
 }
 
 /* Sección del disparador inicial */
@@ -27,9 +29,7 @@
 }
 
 .consultation-trigger-section.hidden {
-    opacity: 0;
-    pointer-events: none;
-    transform: scale(0.95);
+    display: none;
 }
 
 .trigger-message {
@@ -66,30 +66,29 @@
     color: var(--lc-primary-text);
 }
 
-/* Área de conversación */
-.consultation-conversation-area {
-    display: none; /* Oculto por defecto */
-    flex-grow: 1;
-    overflow-y: auto; /* Habilitar scroll vertical */
-    padding: 1rem;
-    margin-top: 1rem;
-    opacity: 0;
-    transform: translateY(20px);
-    transition: all 0.5s ease;
-    -webkit-overflow-scrolling: touch; /* Scroll suave en iOS */
-}
-
-.consultation-conversation-area.active {
-    display: block;
-    opacity: 1;
-    transform: translateY(0);
-}
-
-/* Contenedor de mensajes */
-#consultationMessagesContainer {
+/* Panel de Contexto (Izquierdo) */
+#context-panel {
+    overflow-y: auto; /* Scroll solo en este panel si el contenido es largo */
+    padding-right: 1rem; /* Espacio para el scrollbar */
+    -webkit-overflow-scrolling: touch;
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    justify-content: flex-start; /* Alinear contenido al inicio */
+    align-items: flex-start; /* Alinear contenido a la izquierda */
+}
+
+/* Panel de Acción (Derecho) */
+#action-panel {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* Alinear contenido al inicio */
+    align-items: flex-start; /* Alinear contenido a la izquierda */
+    padding-left: 1rem; /* Espacio para el scrollbar */
+}
+
+/* Área de conversación (ahora dentro de #context-panel) */
+.consultation-conversation-area {
+    display: none; /* Ya no es necesario, los mensajes van directo a #context-panel */
 }
 
 /* Estilo de cada mensaje */
@@ -97,6 +96,13 @@
     opacity: 0;
     transform: translateY(10px);
     animation: messageAppear 0.4s ease-out forwards;
+    margin-bottom: 1rem; /* Espacio entre mensajes */
+    width: 100%; /* Asegurar que ocupe todo el ancho para permitir text-align */
+}
+
+.consultation-message.is-welcome {
+    align-self: center; /* Centrar el bloque del mensaje dentro del panel */
+    text-align: center; /* Centrar el texto dentro del mensaje */
 }
 
 .consultation-message-content {
@@ -106,20 +112,31 @@
     font-weight: 300;
 }
 
-.consultation-message.user .consultation-message-content {
-    color: var(--lc-secondary-text);
-    font-style: italic;
-    padding-left: 1.5rem;
-    border-left: 1px solid var(--lc-border-subtle);
-    font-weight: 300;
+.consultation-message-content strong {
+    color: var(--accent-yellow); /* Color de acento para destacar */
+    font-weight: 700; /* Asegurar negrita */
 }
 
 .consultation-message-content p {
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem; /* Reducir espacio entre párrafos dentro del mensaje */
 }
 
 .consultation-message-content p:last-child {
     margin-bottom: 0;
+}
+
+/* Default text alignment for messages (not welcome, not user) */
+.consultation-message:not(.is-welcome):not(.user) .consultation-message-content p {
+    text-align: justify; /* Justificar el resto de los mensajes del asistente */
+}
+
+.consultation-message.user .consultation-message-content {
+    font-size: 0.85rem; /* Más pequeño */
+    color: var(--lc-secondary-text); /* Gris */
+    text-align: left; /* No justificado */
+    font-style: normal; /* Quitar cursiva si la tenía */
+    padding-left: 0; /* Asegurar que no haya padding extra */
+    border-left: none; /* Asegurar que no haya borde extra */
 }
 
 .consultation-message-content strong {
@@ -132,9 +149,10 @@
     display: flex;
     flex-direction: column;
     gap: 0.8rem;
-    margin-top: 1.5rem;
+    margin-top: 0; /* Ajustar margen */
     opacity: 0;
     animation: optionsAppear 0.4s ease-out 0.2s forwards;
+    width: 100%; /* Ocupar todo el ancho del panel */
 }
 
 .consultation-response-option {
@@ -159,15 +177,17 @@
 
 /* Sección de input personalizado */
 .consultation-custom-input-section {
-    margin-top: 1.5rem;
+    margin-top: 0; /* Ajustar margen */
     opacity: 0;
     animation: inputAppear 0.4s ease-out 0.3s forwards;
+    width: 100%;
 }
 
 .consultation-input-container {
     display: flex;
-    gap: 1rem;
-    align-items: flex-end;
+    flex-direction: column;
+    gap: 0.8rem;
+    width: 100%;
 }
 
 .consultation-custom-input {
@@ -221,13 +241,7 @@
 
 /* Indicador de "escribiendo" */
 .consultation-typing-indicator {
-    display: none;
-    color: var(--lc-secondary-text);
-    font-size: 0.85rem;
-    font-weight: 300;
-    margin-top: 1rem;
-    font-style: italic;
-    padding: 0 1rem;
+    display: none; /* Ahora se gestiona dentro de action-panel */
 }
 
 .consultation-typing-indicator.visible {
@@ -312,11 +326,12 @@
 
 /* Estilos para el formulario de contacto dinámico */
 .consultation-contact-form-section {
-    margin-top: 1.5rem;
+    margin-top: 0; /* Ajustar margen */
     padding: 1.5rem;
     border: 1px solid var(--lc-border-subtle);
     background: var(--lc-hover-subtle);
     animation: inputAppear 0.5s ease-out;
+    width: 100%;
 }
 
 .consultation-contact-form-section h3 {

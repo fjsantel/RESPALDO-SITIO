@@ -1,4 +1,4 @@
-// HERRAMIENTA DE CONSULTA 'LET'S CREATE' - LÓGICA MODULAR (v3 con título activo y firma)
+// HERRAMIENTA DE CONSULTA 'LET'S CREATE' - LÓGICA MODULAR (v4 Paneles Divididos)
 class ConsultationFlow {
     constructor() {
         this.conversationTree = null;
@@ -15,24 +15,26 @@ class ConsultationFlow {
     async loadConversationFlow() {
         try {
             const response = await fetch('assets/js/conversation-flow.json');
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
+            if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
             this.conversationTree = await response.json();
         } catch (error) {
             console.error("Error loading conversation flow:", error);
-            this.messagesContainer.innerHTML = '<p class="consultation-message-content" style="color: #ff5555;">Error: No se pudo cargar la herramienta de consulta. Por favor, inténtalo de nuevo más tarde. <\/p>';
+            // Asegurarse de que consultationContainer exista antes de intentar modificarlo
+            const consultationContainer = document.querySelector('.consultation-container');
+            if (consultationContainer) {
+                consultationContainer.innerHTML = '<p class="consultation-message-content" style="color: #ff5555;">Error: No se pudo cargar la herramienta de consulta.</p>';
+            }
         }
     }
 
     initializeElements() {
-        this.chatContainer = document.querySelector('.chat-container'); // <--- Contenedor principal
+        this.chatContainer = document.querySelector('.chat-container');
+        this.consultationContainer = document.querySelector('.consultation-container');
         this.triggerSection = document.querySelector('.consultation-trigger-section');
         this.startButton = document.getElementById('startConsultation');
-        this.conversationArea = document.getElementById('consultationConversationArea');
-        this.messagesContainer = document.getElementById('consultationMessagesContainer');
-        this.typingIndicator = document.getElementById('consultationTypingIndicator');
-        this.finalCta = document.getElementById('consultationFinalCta');
+        // Los paneles se crearán dinámicamente en startConsultation
+        this.contextPanel = null;
+        this.actionPanel = null;
     }
 
     setupEventListeners() {
@@ -48,30 +50,34 @@ class ConsultationFlow {
     }
 
     startConsultation() {
-        if (!this.conversationTree) {
-            console.error("Conversation flow not loaded yet.");
-            return;
-        }
-        if (this.chatContainer) {
-            this.chatContainer.classList.add('title-active');
-        }
-        this.triggerSection.classList.add('hidden');
-        this.conversationArea.classList.add('active');
-        
-        // Muestra los mensajes de bienvenida secuencialmente
+        if (!this.conversationTree) return;
+
+        this.chatContainer.classList.add('title-active');
+        this.triggerSection.style.display = 'none'; // Ocultar el trigger
+
+        // Crear la estructura de paneles
+        this.consultationContainer.innerHTML = `
+            <div id="context-panel"></div>
+            <div id="action-panel"></div>
+        `;
+        this.contextPanel = this.consultationContainer.querySelector('#context-panel');
+        this.actionPanel = this.consultationContainer.querySelector('#action-panel');
+
+        // Iniciar la conversación secuencialmente
         this.displayMessagesSequentially(this.conversationTree.welcome.messages, () => {
             this.displayOptions(this.conversationTree.welcome.options);
         });
     }
 
-    // Nueva función para mostrar mensajes uno por uno
     displayMessagesSequentially(messages, onComplete) {
         let index = 0;
         const displayNext = () => {
             if (index < messages.length) {
-                this.displayMessage(messages[index], 'assistant');
+                // Añadir clase 'is-welcome' solo a los mensajes de bienvenida
+                const isWelcomeMessage = (index === 0 && this.currentStep === 'welcome');
+                this.displayMessage(messages[index], 'assistant', isWelcomeMessage);
                 index++;
-                setTimeout(displayNext, 1200); // Pausa entre mensajes
+                setTimeout(displayNext, 1800); // Pausa entre mensajes
             } else if (onComplete) {
                 onComplete();
             }
@@ -79,19 +85,20 @@ class ConsultationFlow {
         displayNext();
     }
 
-    displayMessage(content, sender) {
+    displayMessage(content, sender, isWelcome = false) {
         const messageDiv = document.createElement('div');
         messageDiv.className = `consultation-message ${sender}`;
-        const contentDiv = document.createElement('div');
-        contentDiv.className = 'consultation-message-content';
-        const formattedContent = content.replace(/\*\*(.*?)\*\*/g, '<strong>$1<\/strong>').replace(/\n\n/g, '<\/p><p>').replace(/\n/g, '<br>');
-        contentDiv.innerHTML = `<p>${formattedContent}<\/p>`;
-        messageDiv.appendChild(contentDiv);
-        this.messagesContainer.appendChild(messageDiv);
-        this.scrollToBottom();
+        if (isWelcome) {
+            messageDiv.classList.add('is-welcome');
+        }
+        const formattedContent = content.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>');
+        messageDiv.innerHTML = `<p>${formattedContent}</p>`;
+        this.contextPanel.appendChild(messageDiv);
+        this.contextPanel.scrollTop = this.contextPanel.scrollHeight; // Scroll al final del panel de contexto
     }
 
     displayOptions(options) {
+        this.actionPanel.innerHTML = ''; // Limpiar panel de acción
         const optionsDiv = document.createElement('div');
         optionsDiv.className = 'consultation-response-options';
         options.forEach(option => {
@@ -99,24 +106,19 @@ class ConsultationFlow {
             button.className = 'consultation-response-option';
             button.textContent = option.text;
             this.addCursorEvents(button);
-            button.addEventListener('click', () => {
-                this.selectOption(option);
-                optionsDiv.remove();
-            });
+            button.addEventListener('click', () => this.selectOption(option));
             optionsDiv.appendChild(button);
         });
-        this.messagesContainer.appendChild(optionsDiv);
-        this.scrollToBottom();
+        this.actionPanel.appendChild(optionsDiv);
     }
 
     displayInput() {
+        this.actionPanel.innerHTML = ''; // Limpiar panel de acción
         const inputDiv = document.createElement('div');
         inputDiv.className = 'consultation-custom-input-section';
         inputDiv.innerHTML = `
-            <div class="consultation-input-container">
-                <textarea class="consultation-custom-input" placeholder="Describe tu proyecto, visión o desafío..." rows="4"><\/textarea>
-                <button class="consultation-send-btn">Enviar<\/button>
-            <\/div>
+            <textarea class="consultation-custom-input" placeholder="Describe tu proyecto, visión o desafío..." rows="6"></textarea>
+            <button class="consultation-send-btn">Enviar</button>
         `;
         const textarea = inputDiv.querySelector('.consultation-custom-input');
         const sendButton = inputDiv.querySelector('.consultation-send-btn');
@@ -127,36 +129,29 @@ class ConsultationFlow {
             const text = textarea.value.trim();
             if (text) {
                 this.userResponses.push(`Descripción libre: ${text}`);
-                this.displayMessage(text, 'user');
-                inputDiv.remove();
+                this.displayMessage(`Tu descripción: "${text}"`, 'user');
                 this.processUserInput(text);
             }
         };
         sendButton.addEventListener('click', sendInput);
         textarea.addEventListener('keypress', e => {
-            if (e.key === 'Enter' && !e.shiftKey) {
-                e.preventDefault();
-                sendInput();
-            }
+            if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendInput(); }
         });
-        this.messagesContainer.appendChild(inputDiv);
+        this.actionPanel.appendChild(inputDiv);
         textarea.focus();
-        this.scrollToBottom();
     }
 
     selectOption(option) {
         this.userResponses.push(option.text);
-        this.displayMessage(option.text, 'user');
-        this.showTyping();
-        setTimeout(() => {
-            this.hideTyping();
-            this.processStep(option.next);
-        }, 1500);
+        this.displayMessage(`Tu elección: "${option.text}"`, 'user');
+        this.actionPanel.innerHTML = '<div class="typing-indicator visible">Analizando tu respuesta...</div>';
+        setTimeout(() => this.processStep(option.next), 1500);
     }
 
     processStep(stepKey) {
         const step = this.conversationTree[stepKey];
         if (!step) return;
+
         this.displayMessage(step.message, 'assistant');
         setTimeout(() => {
             if (step.final) {
@@ -170,42 +165,30 @@ class ConsultationFlow {
     }
 
     processUserInput(text) {
-        this.showTyping();
-        setTimeout(() => {
-            this.hideTyping();
-            this.processStep('analyze_description');
-        }, 1800);
+        this.actionPanel.innerHTML = '<div class="typing-indicator visible">Analizando tu respuesta...</div>';
+        setTimeout(() => this.processStep('analyze_description'), 1800);
     }
 
     displayContactForm() {
+        this.actionPanel.innerHTML = ''; // Limpiar panel de acción
         const formContainer = document.createElement('div');
         formContainer.className = 'consultation-contact-form-section';
         formContainer.innerHTML = `
-            <h3>Perfecto. Tengo una visión clara de tu proyecto.<\/h3>
-            <p>Conversemos sobre cómo materializar tu visión creativa.<\/p>
+            <h4>Perfecto.</h4>
+            <p>Para materializar tu visión, conversemos.</p>
             <form id="consultation-form" action="https://formspree.io/f/mwpqqyja" method="POST">
                 <input type="hidden" name="conversation_history" id="conversation-history-input">
-                <div class="form-group">
-                    <input type="text" name="name" placeholder="Nombre" required class="form-input">
-                <\/div>
-                <div class="form-group">
-                    <input type="email" name="_replyto" placeholder="Email" required class="form-input">
-                <\/div>
-                <div class="form-group">
-                    <textarea name="message" placeholder="Describe brevemente tu proyecto" required class="form-input"><\/textarea>
-                <\/div>
-                <button type="submit" class="submit-button">Enviar Mensaje<\/button>
-            <\/form>
-            <div id="form-status"><\/div>
+                <div class="form-group"><input type="text" name="name" placeholder="Nombre" required class="form-input"></div>
+                <div class="form-group"><input type="email" name="_replyto" placeholder="Email" required class="form-input"></div>
+                <div class="form-group"><textarea name="message" placeholder="Tu mensaje" required class="form-input"></textarea></div>
+                <button type="submit" class="submit-button">Enviar</button>
+            </form>
+            <div id="form-status"></div>
         `;
-        this.messagesContainer.appendChild(formContainer);
+        this.actionPanel.appendChild(formContainer);
         formContainer.querySelectorAll('.form-input, .submit-button').forEach(el => this.addCursorEvents(el));
-        this.scrollToBottom();
         const form = formContainer.querySelector('#consultation-form');
-        form.addEventListener('submit', e => {
-            e.preventDefault();
-            this.handleFormSubmit(form);
-        });
+        form.addEventListener('submit', e => { e.preventDefault(); this.handleFormSubmit(form); });
     }
 
     async handleFormSubmit(form) {
@@ -216,43 +199,18 @@ class ConsultationFlow {
         const status = form.querySelector('#form-status');
         try {
             const formData = new FormData(form);
-            const response = await fetch(form.action, {
-                method: 'POST',
-                body: formData,
-                headers: {
-                    'Accept': 'application/json'
-                }
-            });
+            const response = await fetch(form.action, { method: 'POST', body: formData, headers: { 'Accept': 'application/json' } });
             if (response.ok) {
-                // <--- AÑADIR FIRMA AQUÍ
-                form.innerHTML = '<p>¡Gracias por tu mensaje! Te contactaré pronto.<\/p><p class="consultation-credit">Herramienta desarrollada por Francisco Santelices Ariztía.<\/p>';
+                this.actionPanel.innerHTML = '<div class="form-success"><p>¡Gracias por tu mensaje! Te contactaré pronto.</p><p class="consultation-credit">Herramienta desarrollada por Francisco Santelices Ariztía.</p></div>';
             } else {
                 const data = await response.json();
-                status.innerHTML = data.errors ? data.errors.map(error => error.message).join(', ') : "Oops! Hubo un problema al enviar tu mensaje.";
+                status.innerHTML = data.errors ? data.errors.map(e => e.message).join(', ') : "Oops! Hubo un problema.";
                 status.style.color = 'red';
             }
         } catch (error) {
             status.innerHTML = "Oops! Hubo un problema de red.";
             status.style.color = 'red';
         }
-    }
-
-    showTyping() {
-        this.typingIndicator.classList.add('visible');
-        this.scrollToBottom();
-    }
-
-    hideTyping() {
-        this.typingIndicator.classList.remove('visible');
-    }
-
-    scrollToBottom() {
-        setTimeout(() => {
-            this.conversationArea.scrollTo({
-                top: this.conversationArea.scrollHeight,
-                behavior: 'smooth'
-            });
-        }, 100);
     }
 }
 

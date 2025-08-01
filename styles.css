@@ -322,7 +322,7 @@ section.animated-text-section {
     background-color: var(--dark-gray);
     display: flex;
     flex-direction: column;
-    padding: 30px;
+    padding: 20px;
 }
 
 .chat-title-container {
