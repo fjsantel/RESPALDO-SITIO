@@ -63,26 +63,52 @@
                 </div>
                 
                 <!-- CONSULTATION TOOL INTEGRATION -->
-                <div class="consultation-container">
-                    <!-- El contenido se genera dinámicamente por lets-create.js -->
-                    <div class="consultation-trigger-section">
-                        <p class="trigger-message">Comienza aquí</p>
-                        <p class="trigger-question">¿Cuál es tu idea?</p>
-                        <button class="start-consultation-button" id="startConsultation">Iniciar Consulta Metodológica</button>
-                    </div>
-                    <div class="consultation-conversation-area" id="consultationConversationArea">
-                        <div id="consultationMessagesContainer">
-                            <!-- Los mensajes aparecerán aquí -->
+                <div class="lets-create-container" id="letsCreateContainer">
+                    <!-- Estado Inicial -->
+                    <div id="initial-state-wrapper">
+                        <div class="text-block initial-intro">
+                            <p>Este es el punto de partida de nuestro proyecto.</p>
+                        </div>
+                        <div class="start-consultation-wrapper">
+                            <button class="start-consultation-button" id="startConsultationButton">Iniciar Consulta Metodológica</button>
                         </div>
                     </div>
-                    <div class="consultation-typing-indicator" id="consultationTypingIndicator">
-                        Analizando tu respuesta...
+
+                    <!-- Introducción de la Herramienta (oculto inicialmente) -->
+                    <div class="text-block tool-introduction" id="toolIntroduction" style="display: none;">
+                        <p class="intro-bold-line">Esta es una herramienta de consulta metodológica diseñada para estructurar y definir tu visión creativa.</p>
+                        <p class="intro-sub-line">A través de una serie de preguntas guiadas, podemos sentar las bases de tu proyecto, asegurando que cada aspecto sea considerado desde el principio.</p>
+                        <div class="continue-wrapper">
+                            <button class="start-consultation-button" id="continueButton">Continuar</button>
+                        </div>
                     </div>
-                    <div class="consultation-final-cta" id="consultationFinalCta">
-                        <h3>Perfecto. Tengo una visión clara de tu proyecto.</h3>
-                        <p>Conversemos sobre cómo materializar tu visión creativa.</p>
-                        <a href="mailto:francisco@creativecontent.cl" class="consultation-final-link">Iniciemos el Proyecto</a>
+
+                    <!-- Elementos interactivos (ocultos inicialmente) -->
+                    <div id="interactive-elements-wrapper" style="display: none;">
+                        <hr class="text-separator" id="textSeparator">
+                        <div class="text-block lets-create" id="tool-specific-text"></div>
+                        <div class="response-options" id="responseOptions"></div>
+                        <div class="user-input" id="userInputContainer">
+                            <textarea id="userInput" placeholder="Escribe aquí tu visión..."></textarea>
+                        </div>
+                        <div class="consultation-final-cta" id="consultationFinalCta" style="display: none;">
+                            <h3>Perfecto. Tengo una visión clara de tu proyecto.</h3>
+                            <p>Conversemos sobre cómo materializar tu visión creativa.</p>
+                            <a href="mailto:francisco@creativecontent.cl" class="consultation-final-link">Iniciemos el Proyecto</a>
+                        </div>
                     </div>
+
+                    <!-- Animación de Reposo -->
+                    <div class="idle-animation-cube" id="idleCube" style="display: none;"></div>
+
+                    <!-- Formulario oculto para Formspree -->
+                    <form id="formspree-form" action="https://formspree.io/f/mwpqqyja" method="POST" style="display: none;">
+                        <input type="hidden" name="context" id="form-context">
+                        <input type="hidden" name="purpose" id="form-purpose">
+                        <input type="hidden" name="format" id="form-format">
+                        <textarea name="vision" id="form-vision"></textarea>
+                        <textarea name="contact" id="form-contact"></textarea>
+                    </form>
                 </div>
             </div>
         </section>

@@ -1,640 +1,190 @@
+/* LET'S CREATE - NUEVO DISEÑO ESTRUCTURAL */
 
-/* ESTILOS PARA LA HERRAMIENTA DE CONSULTA 'LET'S CREATE' */
-
-:root {
-    --lc-primary-text: #ffffff;
-    --lc-secondary-text: #808080;
-    --lc-background-primary: #000000;
-    --lc-background-secondary: #0a0a0a;
-    --lc-border-subtle: rgba(255, 255, 255, 0.1);
-    --lc-hover-subtle: rgba(255, 255, 255, 0.05);
-    --lc-font-family: 'Montserrat', sans-serif;
-}
-
-/* Contenedor principal de la herramienta */
-.consultation-container {
-    flex-grow: 1; /* Ocupa el espacio restante del .chat-container */
-    display: grid;
-    grid-template-columns: 3fr 2fr; /* 60% para contexto, 40% para acciones */
-    gap: 2rem; /* Espacio entre los paneles */
-    padding: 1.5rem 1rem;
-    min-height: 0; /* Necesario para que el scroll funcione en flexbox */
-    max-width: 1200px;
+.lets-create-container {
+    width: 100%;
+    max-width: 800px;
     margin: 0 auto;
+    padding: 40px;
+    border: 1px solid var(--light-gray);
+    background-color: var(--dark-gray);
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    text-align: center; /* Centrar todo el texto dentro del contenedor */
 }
 
-/* Sección del disparador inicial */
-.consultation-trigger-section {
+.text-block {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: var(--text-secondary);
+    /* Se elimina text-align de aquí para que herede del padre */
+}
+
+.text-block.introduction {
     text-align: center;
-    /* margin: auto; REMOVIDO */
-    transition: opacity 0.5s ease, transform 0.5s ease;
-    /* Asegurar que se alinee arriba si el padre es flex/grid */
-    align-self: flex-start; /* Añadido para alinear al inicio si el padre es flex */
-    width: 100%; /* Asegurar que ocupe todo el ancho para centrar el texto */
+    font-style: italic;
 }
 
-.consultation-trigger-section.hidden {
-    display: none;
-}
-
-.trigger-message {
-    font-size: 1rem;
-    color: var(--lc-secondary-text);
-    font-weight: 300;
-    margin-bottom: 1.5rem;
-}
-
-.trigger-question {
-    font-size: 1.2rem;
-    color: var(--lc-primary-text);
-    font-weight: 400;
-    margin-bottom: 2rem;
+.start-consultation-wrapper {
+    text-align: center;
+    margin: 20px 0;
 }
 
 .start-consultation-button {
-    background: transparent;
-    border: 1px solid var(--lc-border-subtle);
-    color: var(--lc-secondary-text);
-    padding: 1rem 2rem;
-    font-size: 0.9rem;
-    font-weight: 300;
-    letter-spacing: 0.5px;
+    background-color: var(--accent-yellow);
+    color: var(--black);
+    border: none;
+    padding: 15px 30px;
+    font-size: 1rem;
+    font-weight: bold;
     cursor: pointer;
-    transition: all 0.3s ease;
-    font-family: var(--lc-font-family);
-    text-transform: uppercase;
+    transition: background-color 0.3s;
 }
 
 .start-consultation-button:hover {
-    background: var(--lc-hover-subtle);
-    border-color: var(--lc-primary-text);
-    color: var(--lc-primary-text);
+    background-color: #ffde59;
 }
 
-/* Panel de Contexto (Izquierdo) */
-#context-panel {
-    overflow-y: auto;
-    max-height: 70vh;
-    padding-right: 1rem;
-    -webkit-overflow-scrolling: touch;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: stretch;
-    text-align: left;
-    scrollbar-width: thin;
-    scrollbar-color: var(--lc-border-subtle) transparent;
+.text-separator {
+    border: 0;
+    height: 1px;
+    background-color: var(--light-gray);
+    margin: 0;
 }
 
-#context-panel::-webkit-scrollbar {
-    width: 4px;
+.response-options {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
 }
 
-#context-panel::-webkit-scrollbar-track {
-    background: transparent;
-}
-
-#context-panel::-webkit-scrollbar-thumb {
-    background: var(--lc-border-subtle);
-    border-radius: 2px;
-}
-
-/* Panel de Acción (Derecho) */
-#action-panel {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start; /* Alinear contenido al inicio */
-    align-items: center; /* Centrar contenido horizontalmente */
-    padding-left: 1rem; /* Espacio para el scrollbar */
-}
-
-/* Área de conversación (ahora dentro de #context-panel) */
-.consultation-conversation-area {
-    display: none; /* Ya no es necesario, los mensajes van directo a #context-panel */
-}
-
-/* Estilo de cada mensaje */
-.consultation-message {
-    opacity: 0;
-    transform: translateY(10px);
-    animation: messageAppear 0.4s ease-out forwards;
-    margin-bottom: 1.5rem; /* Mayor espacio entre mensajes */
-    width: 100%;
-    padding: 0.8rem 1rem;
-    border-radius: 8px;
-    background: rgba(255, 255, 255, 0.01);
-}
-
-/* Mensajes del asistente */
-.consultation-message:not(.user):not(.is-welcome) {
-    border-left: 3px solid var(--accent-yellow, #ffd700);
-    background: rgba(255, 215, 0, 0.03);
-}
-
-
-.consultation-message.is-welcome {
-    /* align-self: center; REMOVIDO */
-    text-align: center; /* Centrar el texto dentro del mensaje */
-}
-
-.consultation-message-content {
-    font-size: 1rem;
-    line-height: 1.7;
-    color: var(--lc-primary-text);
-    font-weight: 300;
-}
-
-.consultation-message-content strong {
-    color: var(--accent-yellow); /* Color de acento para destacar */
-    font-weight: 700; /* Asegurar negrita */
-}
-
-.consultation-message-content p {
-    margin-bottom: 0.5rem; /* Reducir espacio entre párrafos dentro del mensaje */
-}
-
-.consultation-message-content p:last-child {
-    margin-bottom: 0;
-}
-
-/* Default text alignment for messages (not welcome, not user) */
-.consultation-message:not(.is-welcome):not(.user) .consultation-message-content p {
-    text-align: left; /* Alinear a la izquierda para mejor legibilidad en móvil */
-    max-width: 100%;
-}
-
-.consultation-message.user {
-    background: rgba(255, 255, 255, 0.02);
-    border-left: 3px solid var(--lc-border-subtle);
-    padding: 1rem 1.2rem;
-    margin: 1rem 0;
-    border-radius: 0 8px 8px 0;
-}
-
-.consultation-message.user .consultation-message-content {
-    font-size: 0.95rem; /* Tamaño más legible */
-    color: var(--lc-primary-text); /* Blanco para mejor contraste */
-    text-align: left;
-    font-style: italic; /* Cursiva para diferenciarlo */
-    font-weight: 400;
-}
-
-.consultation-message.user::before {
-    content: "Tu respuesta:";
-    display: block;
-    font-size: 0.75rem;
-    color: var(--lc-secondary-text);
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    margin-bottom: 0.5rem;
-    font-style: normal;
-}
-
-.consultation-message-content strong {
-    color: var(--lc-primary-text);
-    font-weight: 700;
-}
-
-/* Opciones de respuesta */
-.consultation-response-options {
-    display: flex;
-    flex-direction: column;
-    gap: 0.8rem;
-    margin-top: 0; /* Ajustar margen */
-    opacity: 0;
-    animation: optionsAppear 0.4s ease-out 0.2s forwards;
-    width: 100%; /* Ocupar todo el ancho del panel */
-}
-
-.consultation-response-option {
-    background: transparent;
-    border: 1px solid var(--lc-border-subtle);
-    color: var(--lc-secondary-text);
-    padding: 1.2rem 1.5rem;
-    text-align: left;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    font-size: 0.95rem;
-    font-family: var(--lc-font-family);
-    font-weight: 300;
-    line-height: 1.5;
-    border-radius: 6px;
-}
-
-.consultation-response-option:hover {
-    background: var(--lc-hover-subtle);
-    border-color: var(--lc-primary-text);
-    color: var(--lc-primary-text);
-}
-
-/* Sección de input personalizado */
-.consultation-custom-input-section {
-    margin-top: 0; /* Ajustar margen */
-    opacity: 0;
-    animation: inputAppear 0.4s ease-out 0.3s forwards;
-    width: 100%;
-}
-
-.consultation-input-container {
-    display: flex;
-    flex-direction: column;
-    gap: 0.8rem;
-    width: 100%;
-}
-
-.consultation-custom-input {
-    flex: 1;
-    background: transparent;
-    border: 1px solid var(--lc-border-subtle);
-    color: var(--lc-primary-text);
-    padding: 1.2rem 1.5rem;
-    font-size: 0.95rem;
-    font-family: var(--lc-font-family);
-    font-weight: 300;
-    line-height: 1.6;
-    resize: vertical;
-    min-height: 100px;
-    transition: border-color 0.3s ease;
-    border-radius: 6px;
-}
-
-.consultation-custom-input:focus {
-    outline: none;
-    border-color: var(--lc-primary-text);
-}
-
-.consultation-custom-input::placeholder {
-    color: var(--lc-secondary-text);
-    font-weight: 300;
-}
-
-.consultation-send-btn {
-    background: transparent;
-    border: 1px solid var(--lc-border-subtle);
-    color: var(--lc-secondary-text);
-    padding: 1rem 2rem;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    font-size: 0.9rem;
-    font-family: var(--lc-font-family);
-    font-weight: 300;
-    white-space: nowrap;
-}
-
-.consultation-send-btn:hover:not(:disabled) {
-    background: var(--lc-hover-subtle);
-    border-color: var(--lc-primary-text);
-    color: var(--lc-primary-text);
-}
-
-.consultation-send-btn:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-}
-
-/* Indicador de "escribiendo" */
-.consultation-typing-indicator {
-    display: none;
-    font-size: 0.9rem;
-    color: var(--lc-secondary-text);
-    font-style: italic;
-    padding: 1rem;
+.option-btn {
+    background-color: var(--medium-gray);
+    border: 1px solid var(--light-gray);
+    color: var(--text-primary);
+    padding: 15px;
     text-align: center;
-    background: rgba(255, 255, 255, 0.02);
-    border-radius: 6px;
-    border: 1px solid var(--lc-border-subtle);
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s, border-color 0.3s;
 }
 
-.consultation-typing-indicator.visible {
-    display: block;
-    opacity: 0;
-    animation: fadeIn 0.3s ease-out forwards;
+.option-btn:hover, .option-btn.selected {
+    background-color: var(--accent-yellow);
+    border-color: var(--accent-yellow);
+    color: var(--black);
 }
 
-.consultation-typing-indicator::after {
-    content: '...';
-    animation: dots 1.5s infinite;
+.user-input {
+    display: flex;
 }
 
-@keyframes dots {
-    0%, 20% { content: '.'; }
-    40% { content: '..'; }
-    60%, 100% { content: '...'; }
+#userInput {
+    width: 100%;
+    min-height: 120px;
+    background-color: var(--black);
+    border: 1px solid var(--light-gray);
+    color: var(--text-primary);
+    padding: 15px;
+    font-family: var(--font-mono);
+    font-size: 1rem;
+    resize: vertical;
 }
 
-/* CTA Final */
+#userInput:focus {
+    outline: none;
+    border-color: var(--accent-yellow);
+}
+
 .consultation-final-cta {
     text-align: center;
-    padding: 2rem;
-    margin-top: 2rem;
-    display: none;
-}
-
-.consultation-final-cta.show {
-    display: block;
-    opacity: 0;
-    animation: finalCtaAppear 0.5s ease-out forwards;
+    display: none; /* Oculto por defecto */
 }
 
 .consultation-final-cta h3 {
-    font-size: 1.2rem;
-    font-weight: 400;
-    color: var(--lc-primary-text);
-    margin-bottom: 1rem;
-    font-family: var(--lc-font-family);
+    font-size: 1.5rem;
+    color: var(--text-primary);
+    margin-bottom: 15px;
 }
 
 .consultation-final-cta p {
-    color: var(--lc-secondary-text);
-    margin-bottom: 1.5rem;
-    font-weight: 300;
-    line-height: 1.5;
+    color: var(--text-secondary);
+    margin-bottom: 25px;
 }
 
 .consultation-final-link {
     display: inline-block;
-    color: var(--lc-secondary-text);
+    background-color: var(--accent-yellow);
+    color: var(--black);
+    padding: 12px 25px;
     text-decoration: none;
-    border: 1px solid var(--lc-border-subtle);
-    padding: 0.8rem 2rem;
-    transition: all 0.2s ease;
-    font-size: 0.9rem;
-    font-weight: 300;
-    letter-spacing: 0.5px;
-    font-family: var(--lc-font-family);
+    font-weight: bold;
+    transition: background-color 0.3s;
 }
 
 .consultation-final-link:hover {
-    background: var(--lc-hover-subtle);
-    border-color: var(--lc-primary-text);
-    color: var(--lc-primary-text);
+    background-color: #ffde59; /* Un amarillo más claro al pasar el mouse */
 }
 
-/* Animaciones */
-@keyframes messageAppear {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
+.text-block.tool-introduction p {
+    margin-bottom: 15px; /* Espacio entre las líneas de introducción */
 }
 
-@keyframes optionsAppear {
-    from { opacity: 0; transform: translateY(15px); }
-    to { opacity: 1; transform: translateY(0); }
+.intro-bold-line {
+    font-weight: bold;
+    color: var(--text-primary);
+    /* Se elimina white-space: nowrap para permitir el ajuste de línea */
+    font-size: clamp(1rem, 2.5vw, 1.2rem); /* Tamaño de fuente adaptable */
 }
 
-@keyframes inputAppear {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
+.intro-sub-line {
+    color: var(--text-secondary);
 }
 
-@keyframes finalCtaAppear {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
+.continue-wrapper {
+    margin-top: 20px;
 }
 
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
+/* --- Animación de Reposo --- */
+.idle-animation-cube {
+    width: 12px;
+    height: 12px;
+    background-color: white;
+    position: absolute;
+    bottom: 20px;
+    left: 20px; /* Posición inicial */
+    display: none; /* Oculto por defecto */
+    animation: slide-and-disappear 4s linear infinite;
 }
 
-/* Estilos para el formulario de contacto dinámico */
-.consultation-contact-form-section {
-    margin-top: 0; /* Ajustar margen */
-    padding: 1.5rem;
-    border: 1px solid var(--lc-border-subtle);
-    background: var(--lc-hover-subtle);
-    animation: inputAppear 0.5s ease-out;
-    width: 100%;
-}
-
-.consultation-contact-form-section h3 {
-    font-size: 1.2rem;
-    font-weight: 400;
-    color: var(--lc-primary-text);
-    margin-bottom: 1rem;
-}
-
-.consultation-contact-form-section p {
-    color: var(--lc-secondary-text);
-    margin-bottom: 1.5rem;
-    font-weight: 300;
-    line-height: 1.5;
-}
-
-.form-group {
-    margin-bottom: 1rem;
-}
-
-.form-input {
-    width: 100%;
-    background: transparent;
-    border: none;
-    border-bottom: 1px solid var(--lc-border-subtle);
-    color: var(--lc-primary-text);
-    padding: 0.75rem 0;
-    font-size: 0.95rem;
-    font-family: var(--lc-font-family);
-    font-weight: 300;
-    transition: border-color 0.3s ease;
-}
-
-.form-input:focus {
-    outline: none;
-    border-bottom-color: var(--lc-primary-text);
-}
-
-.form-input::placeholder {
-    color: var(--lc-secondary-text);
-    opacity: 0.8;
-}
-
-textarea.form-input {
-    resize: vertical;
-    min-height: 80px;
-}
-
-.submit-button {
-    background: transparent;
-    border: 1px solid var(--lc-primary-text);
-    color: var(--lc-primary-text);
-    padding: 0.8rem 1.5rem;
-    font-size: 0.9rem;
-    font-weight: 400;
-    letter-spacing: 0.5px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    font-family: var(--lc-font-family);
-    text-transform: uppercase;
-    margin-top: 1rem;
-}
-
-.submit-button:hover {
-    background: var(--lc-primary-text);
-    color: var(--lc-background-primary);
-}
-
-#form-status {
-    margin-top: 1rem;
-    font-weight: 300;
-}
-
-/* Responsive */
-@media (max-width: 1024px) {
-    .consultation-container {
-        grid-template-columns: 1fr 1fr;
-        gap: 1.5rem;
-        padding: 1.5rem 0.8rem;
+@keyframes slide-and-disappear {
+    0% {
+        left: 20px;
+        opacity: 1;
     }
-    
-    #context-panel {
-        padding-right: 0.8rem;
+    90% {
+        left: calc(100% - 32px); /* 20px de padding derecho + 12px de ancho del cubo */
+        opacity: 1;
     }
-    
-    #action-panel {
-        padding-left: 0.8rem;
-    }
-    
-    .consultation-response-option {
-        padding: 1rem 1.2rem;
-        font-size: 0.88rem;
-    }
-    
-    .consultation-custom-input {
-        padding: 1.1rem 1.2rem;
+    100% {
+        left: calc(100% - 32px);
+        opacity: 0;
     }
 }
 
-@media (max-width: 768px) {
-    .consultation-container {
-        grid-template-columns: 1fr;
-        gap: 1rem;
-        padding: 1rem 0.5rem;
-    }
-    
-    /* Panel de contexto en móvil */
-    #context-panel {
-        order: 1;
-        padding-right: 0;
-        margin-bottom: 1rem;
-    }
-    
-    /* Panel de acción en móvil */
-    #action-panel {
-        order: 2;
-        padding-left: 0;
-        position: sticky;
-        bottom: 0;
-        background: var(--lc-background-primary);
-        padding-top: 1rem;
-        margin-top: 1rem;
-        border-top: 1px solid var(--lc-border-subtle);
-    }
-    
-    .consultation-input-container {
-        flex-direction: column;
-        gap: 0.8rem;
-    }
-    
-    .consultation-send-btn {
-        align-self: stretch;
-        text-align: center;
-        padding: 1.2rem 2rem;
-    }
-    
-    .consultation-response-options {
-        gap: 0.6rem;
-    }
-    
-    .consultation-response-option {
-        padding: 1.2rem 1rem;
-        font-size: 0.9rem;
-        text-align: center;
-        margin-bottom: 0.5rem;
-    }
-    
-    .trigger-message {
-        font-size: 0.9rem;
-    }
-    
-    .trigger-question {
-        font-size: 1.1rem;
-        margin-bottom: 1.5rem;
-    }
-    
-    .start-consultation-button {
-        padding: 1.2rem 1.5rem;
-        font-size: 0.85rem;
-        width: 100%;
-        max-width: 300px;
-        margin: 0 auto;
-        display: block;
-    }
-    
-    .consultation-custom-input {
-        min-height: 120px;
-        padding: 1.2rem;
-        font-size: 0.9rem;
-    }
-    
-    .consultation-final-cta {
-        padding: 1.5rem;
-        margin-top: 1rem;
-    }
-    
-    .consultation-contact-form-section {
-        padding: 1rem;
-        margin-top: 1rem;
-    }
-    
-    .form-input {
-        padding: 1rem 0;
-        font-size: 0.9rem;
-    }
-    
-    .submit-button {
-        width: 100%;
-        padding: 1.2rem;
-        margin-top: 1.5rem;
-    }
+/* --- ESTADOS INICIALES Y TRANSICIONES --- */
+.lets-create-container > *:not(.introduction) {
+    display: none;
 }
 
-@media (max-width: 480px) {
-    .consultation-container {
-        padding: 0.5rem 0.25rem;
+/* --- RESPONSIVE DESIGN --- */
+@media screen and (max-width: 768px) {
+    .lets-create-container {
+        padding: 20px;
+        gap: 20px;
     }
-    
-    .consultation-response-option {
-        padding: 1.1rem 0.8rem;
-        font-size: 0.85rem;
-        margin-bottom: 0.4rem;
-        line-height: 1.4;
-    }
-    
-    .consultation-custom-input {
-        padding: 1rem;
-        font-size: 0.85rem;
-    }
-    
-    .consultation-send-btn {
-        padding: 1rem 1.5rem;
-        font-size: 0.85rem;
-    }
-    
-    .trigger-question {
-        font-size: 1rem;
-    }
-    
-    .start-consultation-button {
-        padding: 1rem 1.2rem;
-        font-size: 0.8rem;
-    }
-}
 
-/* Estilo para la firma de autor */
-.consultation-credit {
-    font-size: 0.75rem;
-    color: var(--lc-secondary-text);
-    margin-top: 2rem;
-    text-align: center;
-    font-style: italic;
-    opacity: 0.7;
+    .response-options {
+        grid-template-columns: 1fr; /* Apila los botones en móvil */
+    }
 }

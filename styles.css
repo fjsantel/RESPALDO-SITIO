@@ -306,23 +306,25 @@ section.animated-text-section {
 }
 
 .chat-section {
-    height: 100vh;
+    min-height: 100vh; /* Ocupa el 100% de la altura de la pantalla */
     background-color: var(--black);
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 40px;
+    padding: 40px; /* Margen interno reducido */
 }
 
 .chat-container {
     width: 100%;
     max-width: 800px;
-    height: 80vh;
+    /* Se elimina la altura fija para que se ajuste al contenido */
+    min-height: 400px; /* Asegura una altura mínima */
     border: 1px solid var(--light-gray);
     background-color: var(--dark-gray);
     display: flex;
     flex-direction: column;
     padding: 20px;
+    position: relative; /* Añadido para posicionar el cursor/temporizador */
 }
 
 .chat-title-container {
@@ -364,6 +366,11 @@ section.animated-text-section {
 }
 
 /* Active state for title animation */
+#chat-title-main.active {
+    color: #FFFFFF; /* Becomes white and bold */
+    font-weight: 700;
+}
+
 .chat-container.title-active #chat-title-main {
     color: #FFFFFF; /* Becomes white and bold */
     font-weight: 700;
