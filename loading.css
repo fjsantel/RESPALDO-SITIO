@@ -96,6 +96,7 @@ body.cursor-hover #custom-cursor {
     flex-direction: column;
     align-items: center;
     width: 100%;
+    max-width: 95vw; /* Usa ancho completo responsivo */
 }
 
 .main-title {
@@ -109,6 +110,8 @@ body.cursor-hover #custom-cursor {
     animation: fadeInUp 1.5s ease-out;
     white-space: nowrap; /* Mantiene en una línea */
     width: 100%;
+    overflow: visible; /* Permite que el texto se muestre completo */
+    text-align: center; /* Centrado responsivo */
 }
 
 .sub-title {
@@ -120,7 +123,9 @@ body.cursor-hover #custom-cursor {
     animation: fadeInUp 1.5s ease-out 0.3s both;
     white-space: nowrap; /* Mantiene en una línea */
     width: 100%;
-    margin-left: 9px; /* Desplazamiento hacia la derecha */
+    overflow: visible; /* Permite que el texto se muestre completo */
+    text-align: center; /* Centrado responsivo */
+    margin-left: clamp(4px, 0.5vw, 9px); /* Desplazamiento responsivo */
 }
 
 /* Botón de entrada */
@@ -215,13 +220,22 @@ body.cursor-hover #custom-cursor {
 @media screen and (max-width: 768px) {
     .loading-text {
         padding: 1.5rem;
-        max-width: 90vw; /* Usa viewport width */
+        max-width: 95vw; /* Usa viewport width completo */
+    }
+    
+    .text-lines-container {
+        max-width: 100vw; /* Ancho completo en móvil */
+    }
+    
+    .main-title, .sub-title {
+        overflow: visible;
+        text-overflow: visible;
     }
     
     .enter-button {
         font-size: clamp(0.9rem, 2.5vw, 1.1rem);
         padding: 0.8rem 2rem;
-        max-width: 90vw;
+        max-width: 95vw;
     }
     
     .enter-button-container {
@@ -232,13 +246,24 @@ body.cursor-hover #custom-cursor {
 @media screen and (max-width: 480px) {
     .loading-text {
         padding: 1rem;
-        max-width: 95vw;
+        max-width: 98vw; /* Casi ancho completo */
+    }
+    
+    .text-lines-container {
+        max-width: 100vw; /* Ancho completo en móvil pequeño */
+    }
+    
+    .main-title, .sub-title {
+        overflow: visible;
+        text-overflow: visible;
+        width: auto; /* Permite ancho automático */
+        min-width: 100%;
     }
     
     .enter-button {
         font-size: clamp(0.8rem, 2.2vw, 1rem);
         padding: 0.7rem 1.5rem;
-        max-width: 95vw;
+        max-width: 98vw;
     }
     
     .enter-button-container {
