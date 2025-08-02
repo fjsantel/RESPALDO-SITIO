@@ -281,41 +281,43 @@ section.seccion-video-principal {
     min-height: 1.2em;
 }
 
-/* Atmospheric Video Section */
+/* Seccion Video Insert */
 .seccion-video-insert {
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    aspect-ratio: 16 / 9;
     padding: 0;
-    margin: 0;
-    display: block;
-    overflow: hidden;
     position: relative;
+    overflow: hidden;
     background-color: var(--black);
     border: none;
+    margin: 0;
+    margin-top: 0;
+    margin-bottom: 0;
 }
 
 .atmospheric-video {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
     position: absolute;
     top: 0;
     left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center center;
     pointer-events: none;
 }
 
 /* Creative Video Section */
 .creative-video-section {
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    aspect-ratio: 16 / 9;
     padding: 0;
-    margin: 0;
-    display: block;
-    overflow: hidden;
     position: relative;
+    overflow: hidden;
     background-color: var(--black);
     border: none;
+    margin: 0;
+    margin-top: 0;
+    margin-bottom: 0;
 }
 
 .creative-video-container {
@@ -326,13 +328,13 @@ section.seccion-video-principal {
 }
 
 .creative-video {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
     position: absolute;
     top: 0;
     left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center center;
     pointer-events: none;
 }
 
@@ -1120,66 +1122,6 @@ section.seccion-video-principal {
         margin: 0;
     }
     
-    /* Atmospheric video section responsive */
-    .seccion-video-insert {
-        height: 35vh;
-        min-height: 15rem;
-        margin: 0 !important;
-        margin-bottom: 0 !important;
-        padding: 0 !important;
-        overflow: hidden;
-        display: block;
-        border: none;
-        background-color: var(--black);
-    }
-    
-    .atmospheric-video {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        object-fit: contain;
-        object-position: center center;
-        margin: 0;
-        padding: 0;
-    }
-    
-    /* Creative video section responsive */
-    .creative-video-section {
-        height: 35vh;
-        min-height: 15rem;
-        margin: 0 !important;
-        margin-top: 0 !important;
-        padding: 0 !important;
-        overflow: hidden;
-        display: block;
-        border: none;
-        background-color: var(--black);
-    }
-    
-    .creative-video-container {
-        width: 100%;
-        height: 100%;
-        position: relative;
-        overflow: hidden;
-        margin: 0;
-        padding: 0;
-        background-color: var(--black);
-    }
-    
-    .creative-video {
-        position: absolute;
-        top: -5px;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        object-fit: contain;
-        object-position: center center;
-        margin: 0;
-        padding: 0;
-    }
-    
     /* Mix 3D video section responsive */
     .mix-3d-video-section {
         height: 40vh;
@@ -1441,68 +1383,6 @@ section.seccion-video-principal {
     section.photography-grid {
         padding: 1.8rem 1rem;
         margin: 0;
-    }
-    
-    /* Atmospheric video section mobile responsive */
-    .seccion-video-insert {
-        height: 30vh;
-        min-height: 12rem;
-        margin: 0 !important;
-        margin-bottom: 0 !important;
-        padding: 0 !important;
-        overflow: hidden;
-        background-color: var(--black);
-        display: block;
-        border: none;
-    }
-    
-    .atmospheric-video {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        object-fit: contain;
-        object-position: center center;
-        background-color: var(--black);
-        margin: 0;
-        padding: 0;
-    }
-    
-    /* Creative video section mobile responsive */
-    .creative-video-section {
-        height: 35vh;
-        min-height: 15rem;
-        margin: 0 !important;
-        margin-top: 0 !important;
-        padding: 0 !important;
-        overflow: hidden;
-        background-color: var(--black);
-        display: block;
-        border: none;
-    }
-    
-    .creative-video-container {
-        width: 100%;
-        height: 100%;
-        position: relative;
-        overflow: hidden;
-        background-color: var(--black);
-        margin: 0;
-        padding: 0;
-    }
-    
-    .creative-video {
-        position: absolute;
-        top: -5px;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        object-fit: contain;
-        object-position: center center;
-        background-color: var(--black);
-        margin: 0;
-        padding: 0;
     }
     
     /* Mix 3D video section mobile responsive */
