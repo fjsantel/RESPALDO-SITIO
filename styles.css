@@ -34,6 +34,13 @@ body {
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    margin: 0;
+    padding: 0;
+}
+
+body, html {
+    margin: 0;
+    padding: 0;
 }
 
 #custom-cursor {
@@ -274,43 +281,41 @@ section.seccion-video-principal {
     min-height: 1.2em;
 }
 
-/* Seccion Video Insert */
+/* Atmospheric Video Section */
 .seccion-video-insert {
-    width: 100%; /* Ocupa todo el ancho disponible */
-    aspect-ratio: 16 / 9; /* Mismo aspect ratio que otros videos */
+    width: 100vw;
+    height: 100vh;
     padding: 0;
-    position: relative;
+    margin: 0;
+    display: block;
     overflow: hidden;
+    position: relative;
     background-color: var(--black);
     border: none;
-    margin: 0;
-    margin-top: 0;
-    margin-bottom: 0;
 }
 
 .atmospheric-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
     position: absolute;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    object-position: center center;
     pointer-events: none;
 }
 
 /* Creative Video Section */
 .creative-video-section {
-    width: 100%;
-    aspect-ratio: 16 / 9;
+    width: 100vw;
+    height: 100vh;
     padding: 0;
-    position: relative;
+    margin: 0;
+    display: block;
     overflow: hidden;
+    position: relative;
     background-color: var(--black);
     border: none;
-    margin: 0;
-    margin-top: 0;
-    margin-bottom: 0;
 }
 
 .creative-video-container {
@@ -321,13 +326,13 @@ section.seccion-video-principal {
 }
 
 .creative-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
     position: absolute;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    object-position: center center;
     pointer-events: none;
 }
 
@@ -1117,11 +1122,15 @@ section.seccion-video-principal {
     
     /* Atmospheric video section responsive */
     .seccion-video-insert {
-        height: 40vh;
-        min-height: 18rem;
-        margin: 0;
-        padding: 0;
+        height: 35vh;
+        min-height: 15rem;
+        margin: 0 !important;
+        margin-bottom: 0 !important;
+        padding: 0 !important;
         overflow: hidden;
+        display: block;
+        border: none;
+        background-color: var(--black);
     }
     
     .atmospheric-video {
@@ -1132,15 +1141,21 @@ section.seccion-video-principal {
         height: 100%;
         object-fit: contain;
         object-position: center center;
+        margin: 0;
+        padding: 0;
     }
     
     /* Creative video section responsive */
     .creative-video-section {
-        height: 40vh;
-        min-height: 18rem;
-        margin: 0;
-        padding: 0;
+        height: 35vh;
+        min-height: 15rem;
+        margin: 0 !important;
+        margin-top: 0 !important;
+        padding: 0 !important;
         overflow: hidden;
+        display: block;
+        border: none;
+        background-color: var(--black);
     }
     
     .creative-video-container {
@@ -1148,16 +1163,21 @@ section.seccion-video-principal {
         height: 100%;
         position: relative;
         overflow: hidden;
+        margin: 0;
+        padding: 0;
+        background-color: var(--black);
     }
     
     .creative-video {
         position: absolute;
-        top: 0;
+        top: -5px;
         left: 0;
         width: 100%;
         height: 100%;
         object-fit: contain;
         object-position: center center;
+        margin: 0;
+        padding: 0;
     }
     
     /* Mix 3D video section responsive */
@@ -1306,6 +1326,12 @@ section.seccion-video-principal {
         margin-left: 10.5px; /* 30% reduction from 15px - consistent with tablet */
     }
     
+    /* Let's Create section mobile responsive */
+    .seccion-lets-create {
+        min-height: 27vh;
+        padding: 1rem;
+    }
+    
     /* Chat section con mejor UX */
     .chat-section {
         padding: 1rem;
@@ -1419,12 +1445,15 @@ section.seccion-video-principal {
     
     /* Atmospheric video section mobile responsive */
     .seccion-video-insert {
-        height: 35vh;
-        min-height: 15rem;
-        margin: 0;
-        padding: 0;
+        height: 30vh;
+        min-height: 12rem;
+        margin: 0 !important;
+        margin-bottom: 0 !important;
+        padding: 0 !important;
         overflow: hidden;
         background-color: var(--black);
+        display: block;
+        border: none;
     }
     
     .atmospheric-video {
@@ -1436,16 +1465,21 @@ section.seccion-video-principal {
         object-fit: contain;
         object-position: center center;
         background-color: var(--black);
+        margin: 0;
+        padding: 0;
     }
     
     /* Creative video section mobile responsive */
     .creative-video-section {
         height: 35vh;
         min-height: 15rem;
-        margin: 0;
-        padding: 0;
+        margin: 0 !important;
+        margin-top: 0 !important;
+        padding: 0 !important;
         overflow: hidden;
         background-color: var(--black);
+        display: block;
+        border: none;
     }
     
     .creative-video-container {
@@ -1454,17 +1488,21 @@ section.seccion-video-principal {
         position: relative;
         overflow: hidden;
         background-color: var(--black);
+        margin: 0;
+        padding: 0;
     }
     
     .creative-video {
         position: absolute;
-        top: 0;
+        top: -5px;
         left: 0;
         width: 100%;
         height: 100%;
         object-fit: contain;
         object-position: center center;
         background-color: var(--black);
+        margin: 0;
+        padding: 0;
     }
     
     /* Mix 3D video section mobile responsive */
