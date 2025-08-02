@@ -55,6 +55,7 @@ body.cursor-hover #custom-cursor {
     height: 100%;
     object-fit: cover;
     object-position: center center;
+    transform: scale(0.98); /* Reducir escala en 2% */
 }
 
 /* Contenido principal */
