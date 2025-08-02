@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FRANCISCO SANTELICES - Contemporary Digital Artist & Multimedia Creator</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="assets/css/dynamic-gallery.css">
+    <link rel="stylesheet" href="assets/css/lets-create.css">
+</head>
+<body>
+    <div id="custom-cursor"></div>
+    <!-- Navigation Header -->
+    <header class="main-header">
+        <div class="logo-container">
+            <img src="assets/logo.png" alt="Francisco Santelices Logo" class="logo-image">
+            <div class="logo-text">
+                <span class="logo-main">FRANCISCO SANTELICES ARIZTÍA</span>
+                <span class="logo-sub">CREATIVE CONTENT</span>
+            </div>
+        </div>
+        <div id="menu-trigger">
+            <span class="menu-trigger-text">CLICK TO MENU</span>
+            <span class="menu-trigger-cursor"></span>
+        </div>
+    </header>
+
+    <nav class="main-navigation">
+        <button class="nav-btn active" data-section="audiovisual">Audiovisual</button>
+        <button class="nav-btn" data-section="bio">Bio</button>
+        <button class="nav-btn" data-section="photography">Photography</button>
+        <button class="nav-btn" data-section="design">Design</button>
+        <button class="nav-btn contact-btn" data-section="contact">Contact</button>
+    </nav>
+
+    <!-- Sections -->
+    <main>
+        <section class="seccion-video-principal" id="seccion-video-principal">
+            <div class="hero-video-container">
+        <video class="hero-video" autoplay loop muted playsinline>
+            <source src="assets/Reel 2024.mp4" type="video/mp4">
+            Tu navegador no soporta la etiqueta de video.
+        </video>
+    </div>
+            <div class="hero-overlay">
+                <!-- Text removed as per request -->
+            </div>
+        </section>
+
+        <section class="seccion-texto-animado" id="seccion-texto-animado">
+            <h1 id="typewriter"><span id="typewriter-text"></span><span class="typewriter-cursor"></span></h1>
+        </section>
+
+        <!-- Atmospheric Video Section -->
+        <section class="seccion-video-insert">
+            <video class="atmospheric-video" autoplay loop muted playsinline>
+                <source src="VIDEO ASSETS/fondo 1..mp4" type="video/mp4">
+                Tu navegador no soporta la etiqueta de video.
+            </video>
+        </section>
+
+        <!-- Creative Video Section -->
+        <section class="creative-video-section">
+            <div class="creative-video-container">
+                <video class="creative-video" autoplay loop muted playsinline>
+                    <source src="VIDEO ASSETS/CREATIVE VIDEO 1.mp4" type="video/mp4">
+                    Tu navegador no soporta la etiqueta de video.
+                </video>
+            </div>
+        </section>
+
+        <section class="seccion-lets-create" id="seccion-lets-create">
+            <div id="reset-animation-container">
+                <div class="reset-triangle-outline"></div>
+                <div class="reset-triangle-solid"></div>
+            </div>
+            <div class="chat-container">
+                <div class="chat-title-container">
+                    <h1 id="chat-title-main">LET'S CREATE</h1>
+                    <h2 id="chat-title-sub"></h2>
+                </div>
+                
+                <!-- CONSULTATION TOOL INTEGRATION -->
+                <div class="lets-create-container" id="letsCreateContainer">
+                    <!-- Estado Inicial -->
+                    <div id="initial-state-wrapper">
+                        <div class="text-block initial-intro">
+                            <p>Este es el punto de partida de nuestro proyecto.</p>
+                        </div>
+                        <div class="start-consultation-wrapper">
+                            <button class="start-consultation-button" id="startConsultationButton">Iniciar Consulta Metodológica</button>
+                        </div>
+                    </div>
+
+                    <!-- Introducción de la Herramienta (oculto inicialmente) -->
+                    <div class="text-block tool-introduction" id="toolIntroduction" style="display: none;">
+                        <p class="intro-bold-line">Esta es una herramienta de consulta metodológica diseñada para estructurar y definir tu visión creativa.</p>
+                        <p class="intro-sub-line">A través de una serie de preguntas guiadas, podemos sentar las bases de tu proyecto, asegurando que cada aspecto sea considerado desde el principio.</p>
+                        <div class="continue-wrapper">
+                            <button class="start-consultation-button" id="continueButton">Continuar</button>
+                        </div>
+                    </div>
+
+                    <!-- Elementos interactivos (ocultos inicialmente) -->
+                    <div id="interactive-elements-wrapper" style="display: none;">
+                        <hr class="text-separator" id="textSeparator">
+                        <div class="text-block lets-create" id="tool-specific-text"></div>
+                        <div class="response-options" id="responseOptions"></div>
+                        <div class="user-input" id="userInputContainer">
+                            <textarea id="userInput" placeholder="Escribe aquí tu visión..."></textarea>
+                        </div>
+                        <div class="consultation-final-cta" id="consultationFinalCta" style="display: none;">
+                            <h3>Perfecto. Tengo una visión clara de tu proyecto.</h3>
+                            <p>Conversemos sobre cómo materializar tu visión creativa.</p>
+                            <a href="mailto:francisco@creativecontent.cl" class="consultation-final-link">Iniciemos el Proyecto</a>
+                        </div>
+                    </div>
+
+                    <!-- Animación de Reposo -->
+                    <div class="idle-animation-cube" id="idleCube" style="display: none;"></div>
+
+                    <!-- Formulario oculto para Formspree -->
+                    <form id="formspree-form" action="https://formspree.io/f/mwpqqyja" method="POST" style="display: none;">
+                        <input type="hidden" name="context" id="form-context">
+                        <input type="hidden" name="purpose" id="form-purpose">
+                        <input type="hidden" name="format" id="form-format">
+                        <textarea name="vision" id="form-vision"></textarea>
+                        <textarea name="contact" id="form-contact"></textarea>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- Mix 3D Video Section -->
+        <section class="mix-3d-video-section">
+            <div class="mix-3d-video-container">
+                <video class="mix-3d-video" autoplay loop muted playsinline>
+                    <source src="VIDEO ASSETS/mix 3d.mp4" type="video/mp4">
+                    Tu navegador no soporta la etiqueta de video.
+                </video>
+            </div>
+        </section>
+
+        <section class="photography-grid" id="photography">
+            <div class="grid-container">
+                <div class="grid-item" style="background-image: url('https://images.unsplash.com/photo-1516035069371-29a1b244cc32?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80');"></div>
+                <div class="grid-item" style="background-image: url('https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80');"></div>
+                <div class="grid-item" style="background-image: url('https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80');"></div>
+                <div class="grid-item" style="background-image: url('https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80');"></div>
+            </div>
+        </section>
+
+        <section class="video-description-section" id="design">
+            <div class="video-desc-container">
+                <div class="video-side">
+                    <div class="video-click-blocker"></div>
+                    <iframe class="side-video" src="https://www.youtube.com/embed/IiQ-0QRDAgU?autoplay=1&mute=1&loop=1&playlist=IiQ-0QRDAgU&controls=0&showinfo=0&rel=0&modestbranding=1&iv_load_policy=3" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                </div>
+                <div class="description-side">
+                    <div class="desc-symbol">◆</div>
+                    <div class="desc-content">
+                        <h3>Motion Graphics & Animation</h3>
+                        <p class="justified-text">Specialized in creating dynamic visual content that combines technical precision with artistic expression.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- DYNAMIC GALLERY SECTION -->
+        <section class="dynamic-gallery-container" id="dynamic-gallery">
+            <!-- Color Palette Controller -->
+            <div class="color-palette-controller">
+                <div class="palette-options">
+                    <div class="palette-option active" data-palette="neon"></div>
+                    <div class="palette-option" data-palette="ocean"></div>
+                    <div class="palette-option" data-palette="sunset"></div>
+                    <div class="palette-option" data-palette="forest"></div>
+                    <div class="palette-option" data-palette="monochrome"></div>
+                </div>
+            </div>
+
+            <!-- Gallery Header -->
+            <div class="gallery-header">
+                <h2 class="gallery-title">PORTFOLIO DINÁMICO</h2>
+                <p class="gallery-subtitle">
+                    Explora mi trabajo a través de una experiencia visual interactiva. 
+                    Cambia los colores, filtra por categorías y sumérgete en cada proyecto.
+                </p>
+            </div>
+
+            <!-- Filter Controls -->
+            <div class="filter-controls">
+                <button class="filter-btn active" data-filter="all">Todos</button>
+                <button class="filter-btn" data-filter="motion">Motion Graphics</button>
+                <button class="filter-btn" data-filter="animation">Animación</button>
+                <button class="filter-btn" data-filter="commercial">Comercial</button>
+                <button class="filter-btn" data-filter="personal">Personal</button>
+            </div>
+
+            <!-- Media Grid -->
+            <div class="media-grid">
+                <!-- Media cards will be generated dynamically by JavaScript -->
+            </div>
+        </section>
+
+        <section class="contact-section" id="contact">
+            <div class="contact-container">
+                <div class="contact-content">
+                    <h2>Get in Touch</h2>
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <span class="contact-label">EMAIL:</span>
+                            <span class="contact-value">francisco@creativecontent.cl</span>
+                        </div>
+                        <div class="contact-item">
+                            <span class="contact-label">INSTAGRAM:</span>
+                            <span class="contact-value">@franciscosantelices</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="footer-content">
+            <div class="copyright">© 2025 FRANCISCO SANTELICES. All rights reserved.</div>
+            <div class="footer-links">
+                <a href="#" class="footer-link">[EN]</a>
+                <a href="#" class="footer-link">[ES]</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Video Modal -->
+    <div class="video-modal">
+        <div class="modal-content">
+            <button class="close-modal">×</button>
+            <button class="modal-navigation modal-prev">‹</button>
+            <button class="modal-navigation modal-next">›</button>
+            
+            <video class="modal-video" controls preload="metadata">
+                <source src="" type="video/mp4">
+                Tu navegador no soporta la reproducción de video.
+            </video>
+            
+            <div class="modal-info">
+                <h3 class="modal-title"></h3>
+                <p class="modal-description"></p>
+                <div class="modal-meta">
+                    <span class="media-year"></span>
+                    <span class="media-client"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/TextPlugin.min.js"></script>
+    <script src="new-portfolio.js"></script>
+    <script src="assets/js/gallery-controller.js"></script>
+    <script src="assets/js/lets-create.js"></script>
+</body>
+</html>

@@ -1,0 +1,258 @@
+/* LOADING PAGE - Francisco Santelices Ariztía */
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700;900&family=Roboto+Mono:wght@400;700&display=swap');
+
+:root {
+    --black: #050505; /* Color exacto del fondo del video */
+    --text-primary: #FFFFFF;
+    --accent-yellow: #f0b90c;
+    --font-primary: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    cursor: none !important;
+}
+
+body, html {
+    height: 100%;
+    overflow: hidden;
+    font-family: var(--font-primary);
+    background-color: var(--black);
+}
+
+#custom-cursor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: 9999;
+    width: 0;
+    height: 0;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-bottom: 14px solid var(--text-primary);
+    transition: all 0.3s ease-out;
+}
+
+body.cursor-hover #custom-cursor {
+    transform: scale(1.8);
+    border-bottom-color: var(--accent-yellow);
+}
+
+/* Video de fondo en la parte superior */
+.video-background {
+    width: 100%;
+    height: 60vh; /* Video ocupa 60% de la altura */
+    position: relative;
+    overflow: hidden;
+}
+
+.video-background video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
+}
+
+/* Contenido principal */
+.loading-content {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    color: var(--text-primary);
+    background-color: var(--black);
+}
+
+/* Sección negra para texto */
+.text-section {
+    flex: 1;
+    background-color: var(--black);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+}
+
+/* Textos principales */
+.loading-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 2rem;
+    max-width: 600px; /* Ancho máximo igual al botón */
+    margin: 0 auto;
+    width: 100%;
+}
+
+/* Contenedor para asegurar que ambas líneas tengan la misma longitud visual */
+.text-lines-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.main-title {
+    font-size: clamp(0.77rem, 1.76vw, 1.375rem); /* Tamaño aumentado 10% */
+    font-weight: 700; /* Montserrat Bold */
+    letter-spacing: clamp(0.22rem, 0.545vw, 0.425rem); /* Ajustado para alineación izquierda */
+    text-transform: uppercase;
+    margin-bottom: 0.165rem; /* Espaciado aumentado 10% */
+    color: var(--text-primary);
+    line-height: 1.1;
+    animation: fadeInUp 1.5s ease-out;
+    white-space: nowrap; /* Mantiene en una línea */
+    width: 100%;
+}
+
+.sub-title {
+    font-size: clamp(0.79rem, 1.8vw, 1.395rem); /* Agrandado 2px en escala */
+    font-weight: 400;
+    letter-spacing: clamp(0.72rem, 1.66vw, 1.19rem); /* Ajustado para alineación perfecta */
+    text-transform: uppercase;
+    color: var(--accent-yellow);
+    animation: fadeInUp 1.5s ease-out 0.3s both;
+    white-space: nowrap; /* Mantiene en una línea */
+    width: 100%;
+    margin-left: 9px; /* Desplazamiento hacia la derecha */
+}
+
+/* Botón de entrada */
+.enter-button-container {
+    padding: 2rem;
+    display: flex;
+    justify-content: center;
+    animation: fadeInUp 1.5s ease-out 0.6s both;
+}
+
+.enter-button {
+    background: transparent;
+    border: none;
+    color: var(--text-primary);
+    font-family: var(--font-primary);
+    font-size: 1.1rem;
+    font-weight: 300;
+    letter-spacing: 0.1rem;
+    text-transform: uppercase;
+    padding: 1rem 2.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    max-width: 600px;
+}
+
+#typewriter-button {
+    opacity: 0;
+}
+
+#cursor-button {
+    display: inline-block;
+    width: 0.7em;
+    height: 1em;
+    background-color: var(--text-primary);
+    margin-left: 0.2rem;
+    opacity: 0;
+    animation: blink 1s step-end infinite;
+}
+
+.enter-button:hover {
+    color: var(--accent-yellow);
+    transform: translateY(-2px);
+}
+
+.enter-button:active {
+    transform: translateY(0);
+}
+
+/* Animaciones */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes blink {
+    from, to { 
+        opacity: 1; 
+    }
+    50% { 
+        opacity: 0; 
+    }
+}
+
+@keyframes typewriter {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes typewriterReveal {
+    from {
+        width: 0;
+    }
+    to {
+        width: 100%;
+    }
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    .loading-text {
+        padding: 1.5rem;
+        max-width: 90vw; /* Usa viewport width */
+    }
+    
+    .enter-button {
+        font-size: clamp(0.9rem, 2.5vw, 1.1rem);
+        padding: 0.8rem 2rem;
+        max-width: 90vw;
+    }
+    
+    .enter-button-container {
+        padding: 1.5rem;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .loading-text {
+        padding: 1rem;
+        max-width: 95vw;
+    }
+    
+    .enter-button {
+        font-size: clamp(0.8rem, 2.2vw, 1rem);
+        padding: 0.7rem 1.5rem;
+        max-width: 95vw;
+    }
+    
+    .enter-button-container {
+        padding: 1rem;
+    }
+}
+
+/* Orientación landscape en móviles */
+@media screen and (max-height: 500px) and (orientation: landscape) {
+    .loading-text {
+        padding: 0.5rem;
+    }
+    
+    .enter-button-container {
+        padding: 0.5rem;
+    }
+}
