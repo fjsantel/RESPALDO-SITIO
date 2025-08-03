@@ -55,7 +55,7 @@ body.cursor-hover #custom-cursor {
     height: 100%;
     object-fit: cover;
     object-position: center center;
-    transform: scale(0.98); /* Reducir escala en 2% */
+    transform: scale(0.96); /* Reducir escala en 4% */
 }
 
 /* Contenido principal */
@@ -98,6 +98,21 @@ body.cursor-hover #custom-cursor {
     align-items: center;
     width: 100%;
     max-width: 95vw; /* Usa ancho completo responsivo */
+}
+
+.agency-title {
+    font-size: clamp(0.5rem, 1.2vw, 0.9rem);
+    font-weight: 300; /* Montserrat Light */
+    letter-spacing: clamp(0.15rem, 0.35vw, 0.25rem);
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+    color: var(--text-primary);
+    line-height: 1.1;
+    animation: fadeInUp 1.5s ease-out;
+    white-space: nowrap;
+    width: 100%;
+    overflow: visible;
+    text-align: center;
 }
 
 .main-title {
