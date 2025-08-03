@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FRANCISCO SANTELICES - Contemporary Digital Artist & Multimedia Creator</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" href="assets/Reel 2024.mp4" as="video" type="video/mp4">
+    <link rel="preload" href="assets/logo.png" as="image">
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="assets/css/dynamic-gallery.css">
     <link rel="stylesheet" href="assets/css/lets-create.css">
@@ -13,7 +17,7 @@
     <!-- Navigation Header -->
     <header class="main-header">
         <div class="logo-container">
-            <img src="assets/logo.png" alt="Francisco Santelices Logo" class="logo-image">
+            <img src="assets/logo.png" alt="Francisco Santelices Logo" class="logo-image" loading="eager" decoding="async">
             <div class="logo-text">
                 <span class="logo-main">FRANCISCO SANTELICES ARIZTÍA</span>
                 <span class="logo-sub">CREATIVE CONTENT</span>
@@ -37,7 +41,7 @@
     <main>
         <section class="seccion-video-principal" id="seccion-video-principal">
             <div class="hero-video-container">
-        <video class="hero-video" autoplay loop muted playsinline>
+        <video class="hero-video" autoplay loop muted playsinline preload="metadata">
             <source src="assets/Reel 2024.mp4" type="video/mp4">
             Tu navegador no soporta la etiqueta de video.
         </video>
