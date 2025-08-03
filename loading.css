@@ -56,7 +56,7 @@ body.cursor-hover #custom-cursor {
     height: 100%;
     object-fit: cover;
     object-position: center center;
-    transform: scale(0.96); /* Reducir escala en 4% */
+    transform: scale(0.86); /* Reducir escala en 14% */
     background-color: var(--black); /* Mismo color para márgenes del video */
 }
 
