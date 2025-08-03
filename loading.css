@@ -48,6 +48,7 @@ body.cursor-hover #custom-cursor {
     height: 60vh; /* Video ocupa 60% de la altura */
     position: relative;
     overflow: hidden;
+    background-color: #050505 !important; /* Forzar el mismo negro exacto */
 }
 
 .video-background video {
@@ -56,6 +57,7 @@ body.cursor-hover #custom-cursor {
     object-fit: cover;
     object-position: center center;
     transform: scale(0.96); /* Reducir escala en 4% */
+    background-color: var(--black); /* Mismo color para márgenes del video */
 }
 
 /* Contenido principal */
@@ -193,6 +195,59 @@ body.cursor-hover #custom-cursor {
     transform: translateY(0);
 }
 
+/* Video Loading Indicator */
+.video-loading-indicator {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    opacity: 1;
+    transition: opacity 0.5s ease;
+    z-index: 1000;
+}
+
+.video-loading-indicator.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.video-loading-indicator small {
+    color: var(--text-primary);
+    font-size: 0.7rem;
+    font-weight: 300;
+    letter-spacing: 0.05rem;
+    text-transform: uppercase;
+}
+
+.loading-dots {
+    display: flex;
+    gap: 4px;
+}
+
+.loading-dots span {
+    width: 4px;
+    height: 4px;
+    background-color: var(--accent-yellow);
+    border-radius: 50%;
+    opacity: 0.3;
+    animation: sequentialBlink 1.5s infinite ease-in-out;
+}
+
+.loading-dots span:nth-child(1) {
+    animation-delay: 0s;
+}
+
+.loading-dots span:nth-child(2) {
+    animation-delay: 0.3s;
+}
+
+.loading-dots span:nth-child(3) {
+    animation-delay: 0.6s;
+}
+
 /* Animaciones */
 @keyframes fadeInUp {
     from {
@@ -232,6 +287,15 @@ body.cursor-hover #custom-cursor {
     }
 }
 
+@keyframes sequentialBlink {
+    0%, 20% {
+        opacity: 1;
+    }
+    21%, 100% {
+        opacity: 0.3;
+    }
+}
+
 /* Responsive Design */
 @media screen and (max-width: 768px) {
     .loading-text {
@@ -256,6 +320,15 @@ body.cursor-hover #custom-cursor {
     
     .enter-button-container {
         padding: 1.5rem;
+    }
+    
+    .video-loading-indicator {
+        bottom: 15px;
+        right: 15px;
+    }
+    
+    .video-loading-indicator small {
+        font-size: 0.6rem;
     }
 }
 
@@ -284,6 +357,20 @@ body.cursor-hover #custom-cursor {
     
     .enter-button-container {
         padding: 1rem;
+    }
+    
+    .video-loading-indicator {
+        bottom: 10px;
+        right: 10px;
+    }
+    
+    .video-loading-indicator small {
+        font-size: 0.55rem;
+    }
+    
+    .loading-dots span {
+        width: 3px;
+        height: 3px;
     }
 }
 
