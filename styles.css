@@ -192,6 +192,7 @@ section {
 section.seccion-video-principal,
 section.animated-text-section,
 section.seccion-video-insert,
+section.youtube-video-section,
 section.creative-video-section,
 section.mix-3d-video-section,
 section.photography-grid {
@@ -1108,6 +1109,7 @@ section.seccion-video-principal {
     section.seccion-video-principal,
     section.animated-text-section,
     section.seccion-video-insert,
+    section.youtube-video-section,
     section.creative-video-section,
     section.mix-3d-video-section {
         padding-top: 0;
@@ -1146,6 +1148,12 @@ section.seccion-video-principal {
         height: 100%;
         object-fit: contain;
         object-position: center center;
+    }
+    
+    /* Video controls tablet positioning */
+    .video-controls {
+        bottom: 26%;
+        right: 18px;
     }
     
     /* Footer optimizado */
@@ -1371,6 +1379,7 @@ section.seccion-video-principal {
     section.seccion-video-principal,
     section.animated-text-section,
     section.seccion-video-insert,
+    section.youtube-video-section,
     section.creative-video-section,
     section.mix-3d-video-section {
         padding-top: 0;
@@ -1414,8 +1423,131 @@ section.seccion-video-principal {
         background-color: var(--black);
     }
     
+    /* YouTube video section mobile responsive */
+    .youtube-video-section {
+        height: 35vh;
+        min-height: 15rem;
+    }
+    
+    /* Video controls mobile positioning */
+    .video-controls {
+        bottom: 31%;
+        right: 15px;
+    }
+    
     /* Footer mobile */
     .main-footer {
         padding: 1.25rem 1rem;
     }
+}
+
+/* === YouTube Video Section === */
+.youtube-video-section {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    padding: 0;
+    position: relative;
+    overflow: hidden;
+    background-color: var(--black);
+    border: none;
+    margin: 0;
+    transform: translateY(-30%);
+}
+
+.youtube-video-container {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+.youtube-video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+    background-color: var(--black);
+}
+
+.video-controls {
+    position: absolute;
+    bottom: 20%;
+    right: 20px;
+    z-index: 15;
+}
+
+.sound-toggle-btn {
+    background: transparent;
+    border: none;
+    color: var(--text-secondary);
+    font-family: var(--font-mono);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 0;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: color 0.3s ease;
+}
+
+.sound-toggle-btn:hover {
+    color: var(--text-primary);
+}
+
+.sound-cursor {
+    width: 10px;
+    height: 10px;
+    background-color: var(--text-primary);
+    transition: transform 0.3s ease;
+}
+
+.sound-toggle-btn.sound-enabled .sound-cursor {
+    transform: translateX(8px);
+    background-color: var(--accent-yellow);
+    animation: blink 1s step-end infinite;
+}
+
+.sound-text-off,
+.sound-text-on {
+    display: none;
+    position: relative;
+    top: 0.6px;
+}
+
+.sound-toggle-btn .sound-text-off {
+    display: inline;
+}
+
+.sound-toggle-btn.sound-enabled .sound-text-off {
+    display: none;
+}
+
+.sound-toggle-btn.sound-enabled .sound-text-on {
+    display: inline;
+}
+
+/* Video Crop Overlays */
+.video-crop-top,
+.video-crop-bottom {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    background-color: var(--black);
+    z-index: 5;
+    pointer-events: none;
+}
+
+.video-crop-top {
+    top: -10px;
+    height: 30%;
+}
+
+.video-crop-bottom {
+    bottom: -10px;
+    height: 30%;
 }
