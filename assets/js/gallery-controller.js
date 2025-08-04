@@ -4,8 +4,8 @@ const mediaDatabase = [
         title: "Reel Audiovisual 2024",
         description: "Compilación de proyectos audiovisuales destacados del año 2024, incluyendo motion graphics, animaciones y contenido comercial.",
         category: "motion",
-        thumbnail: "assets/Reel 2024.mp4", // Usaremos el video como thumbnail
-        videoUrl: "assets/Reel 2024.mp4",
+        thumbnail: "assets/Reel%202024.mp4", // Usaremos el video como thumbnail
+        videoUrl: "assets/Reel%202024.mp4",
         tags: ["motion graphics", "reel", "commercial"],
         year: "2024",
         client: "Portfolio Personal"
@@ -15,8 +15,8 @@ const mediaDatabase = [
         title: "Animación Comercial AY1",
         description: "Proyecto de animación comercial con enfoque en branding y storytelling visual.",
         category: "commercial",
-        thumbnail: "VIDEO ASSETS/AY1.mp4",
-        videoUrl: "VIDEO ASSETS/AY1.mp4",
+        thumbnail: "VIDEO%20ASSETS/AY1.mp4",
+        videoUrl: "VIDEO%20ASSETS/AY1.mp4",
         tags: ["commercial", "branding", "animation"],
         year: "2025",
         client: "Cliente Comercial"
@@ -26,8 +26,8 @@ const mediaDatabase = [
         title: "Motion Graphics AY2",
         description: "Exploración de técnicas avanzadas de motion graphics y diseño en movimiento.",
         category: "motion",
-        thumbnail: "VIDEO ASSETS/AY2.mp4",
-        videoUrl: "VIDEO ASSETS/AY2.mp4",
+        thumbnail: "VIDEO%20ASSETS/AY2.mp4",
+        videoUrl: "VIDEO%20ASSETS/AY2.mp4",
         tags: ["motion graphics", "design", "2d"],
         year: "2025",
         client: "Proyecto Personal"
@@ -37,8 +37,8 @@ const mediaDatabase = [
         title: "Animación Creativa AY3",
         description: "Proyecto experimental de animación con técnicas mixtas y narrativa visual.",
         category: "animation",
-        thumbnail: "VIDEO ASSETS/AY3.mp4",
-        videoUrl: "VIDEO ASSETS/AY3.mp4",
+        thumbnail: "VIDEO%20ASSETS/AY3.mp4",
+        videoUrl: "VIDEO%20ASSETS/AY3.mp4",
         tags: ["animation", "experimental", "creative"],
         year: "2025",
         client: "Desarrollo Personal"
@@ -48,8 +48,8 @@ const mediaDatabase = [
         title: "Contenido Visual AY4",
         description: "Creación de contenido visual dinámico para plataformas digitales.",
         category: "personal",
-        thumbnail: "VIDEO ASSETS/AY4.mp4",
-        videoUrl: "VIDEO ASSETS/AY4.mp4",
+        thumbnail: "VIDEO%20ASSETS/AY4.mp4",
+        videoUrl: "VIDEO%20ASSETS/AY4.mp4",
         tags: ["digital content", "social media", "visual"],
         year: "2025",
         client: "Contenido Personal"
@@ -59,8 +59,8 @@ const mediaDatabase = [
         title: "Background Visual Fondo2",
         description: "Elemento visual de fondo diseñado para crear atmósferas envolventes.",
         category: "motion",
-        thumbnail: "VIDEO ASSETS/Fondo2.mp4",
-        videoUrl: "VIDEO ASSETS/Fondo2.mp4",
+        thumbnail: "VIDEO%20ASSETS/Fondo2.mp4",
+        videoUrl: "VIDEO%20ASSETS/Fondo2.mp4",
         tags: ["background", "atmosphere", "visual"],
         year: "2025",
         client: "Recurso Visual"
@@ -70,8 +70,8 @@ const mediaDatabase = [
         title: "Fondo Atmosférico 1",
         description: "Creación de ambiente visual inmersivo con efectos de partículas y movimiento sutil.",
         category: "personal",
-        thumbnail: "VIDEO ASSETS/fondo 1..mp4",
-        videoUrl: "VIDEO ASSETS/fondo 1..mp4",
+        thumbnail: "VIDEO%20ASSETS/fondo%201..mp4",
+        videoUrl: "VIDEO%20ASSETS/fondo%201..mp4",
         tags: ["background", "particles", "ambient"],
         year: "2025",
         client: "Desarrollo Creativo"
