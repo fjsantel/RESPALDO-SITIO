@@ -7,9 +7,11 @@ document.addEventListener('DOMContentLoaded', () => {
     new ScrollAnimator(); // Initialize our new animations
     new CustomCursor(); // Initialize the custom cursor
     new ChatbotManager(); // Initialize the chatbot
-    new YouTubeManager('video-slider'); // Initialize the YouTube section
+    new VideoPortfolioManager('video-slider'); // Initialize the Video Portfolio section
     // Initialize motion graphics sound control
     new MotionGraphicsSoundController();
+    // Initialize BFA video control
+    new BFAVideoController();
 });
 
 class NavigationManager {
@@ -320,6 +322,7 @@ class ChatbotManager {
         this.conversationState = 'START';
         this.warningTimer = null;
         this.resetTimer = null;
+        this.isDestroyed = false;
         this.init();
     }
 
@@ -357,8 +360,14 @@ class ChatbotManager {
     }
 
     clearTimers() {
-        clearTimeout(this.warningTimer);
-        clearTimeout(this.resetTimer);
+        if (this.warningTimer) {
+            clearTimeout(this.warningTimer);
+            this.warningTimer = null;
+        }
+        if (this.resetTimer) {
+            clearTimeout(this.resetTimer);
+            this.resetTimer = null;
+        }
     }
 
     updateSubTitle(newText) {
@@ -496,9 +505,21 @@ class ChatbotManager {
         this.chatHistory.appendChild(messageElement);
         this.chatHistory.scrollTop = this.chatHistory.scrollHeight;
     }
+
+    destroy() {
+        this.isDestroyed = true;
+        this.clearTimers();
+        
+        // Remove event listeners
+        if (this.input) {
+            this.input.removeEventListener('focus', this.handleFocus);
+            this.input.removeEventListener('blur', this.handleFocus);
+            this.input.removeEventListener('keydown', this.processInput);
+        }
+    }
 }
 
-class YouTubeManager {
+class VideoPortfolioManager {
     constructor(containerId) {
         this.container = document.getElementById(containerId);
         if (!this.container) return;
@@ -510,167 +531,80 @@ class YouTubeManager {
         this.videoTitleElement = this.container.querySelector('.video-title');
         this.videoDescriptionElement = this.container.querySelector('.video-description');
 
-        this.players = new Map(); // Map to store YT.Player objects by videoId
+        this.videos = []; // Array to store video elements
         this.currentSlideIndex = 0;
+        this.isMuted = true; // Global mute state for all videos
 
         this.init();
     }
 
     init() {
         this.setupEventListeners();
-        this.loadYouTubeAPI();
+        this.initializeVideos();
+        this.showSlide(this.currentSlideIndex);
     }
 
     setupEventListeners() {
         if (this.nextBtn) this.nextBtn.addEventListener('click', () => this.goToNextSlide());
         if (this.prevBtn) this.prevBtn.addEventListener('click', () => this.goToPreviousSlide());
-        if (this.soundBtn) this.soundBtn.addEventListener('click', () => this.toggleSound());
+        if (this.soundBtn) this.soundBtn.addEventListener('click', () => this.toggleGlobalSound());
     }
 
-    loadYouTubeAPI() {
-        if (!window.YT) {
-            const tag = document.createElement('script');
-            tag.src = "https://www.youtube.com/iframe_api";
-            const firstScriptTag = document.getElementsByTagName('script')[0];
-            firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-            window.onYouTubeIframeAPIReady = () => this.onYouTubeIframeAPIReady();
-        } else {
-            this.onYouTubeIframeAPIReady();
-        }
-    }
-
-    onYouTubeIframeAPIReady() {
+    initializeVideos() {
         this.slides.forEach((slide, index) => {
-            const videoId = slide.dataset.videoId;
-            const playerDiv = slide.querySelector('div[id^="player-"]'); // Select the div by ID starting with 'player-'
-            const playerId = playerDiv.id;
-
-            const player = new YT.Player(playerId, {
-                videoId: videoId,
-                playerVars: {
-                    autoplay: 0, // Start muted and paused
-                    mute: 1,
-                    controls: 0,
-                    showinfo: 0,
-                    rel: 0,
-                    modestbranding: 1,
-                    iv_load_policy: 3,
-                    loop: 1,
-                    playlist: videoId, // Required for looping
-                    cc_load_policy: 0, // Disable captions/subtitles by default
-                    playsinline: 1, // Play inline on iOS
-                    disablekb: 1, // Disable keyboard controls
-                    cc_lang_pref: '' // Set preferred caption language to empty to prevent loading
-                },
-                events: {
-                    'onReady': (event) => this.onPlayerReady(event, index),
-                    'onStateChange': (event) => this.onPlayerStateChange(event)
-                }
-            });
-            this.players.set(videoId, player);
-        });
-
-        // Initialize the Motion Graphics video
-        const motionGraphicsVideoId = 'IiQ-0QRDAgU';
-        const motionGraphicsPlayerDiv = document.getElementById('player-motion-graphics');
-        if (motionGraphicsPlayerDiv) {
-            const motionGraphicsPlayer = new YT.Player(motionGraphicsPlayerDiv.id, {
-                videoId: motionGraphicsVideoId,
-                playerVars: {
-                    autoplay: 1,
-                    mute: 1,
-                    controls: 0,
-                    showinfo: 0,
-                    rel: 0,
-                    modestbranding: 1,
-                    iv_load_policy: 3,
-                    loop: 1,
-                    playlist: motionGraphicsVideoId,
-                    playsinline: 1,
-                    disablekb: 1,
-                    cc_load_policy: 0,
-                    cc_lang_pref: ''
-                },
-                events: {
-                    'onReady': (event) => event.target.mute(),
-                    'onStateChange': (event) => {
-                        if (event.data === YT.PlayerState.PLAYING) {
-                            // Pause other videos when this one starts playing
-                            this.players.forEach(player => {
-                                if (player !== event.target && typeof player.pauseVideo === 'function') {
-                                    player.pauseVideo();
-                                }
-                            });
-                        }
+            const video = slide.querySelector('.portfolio-video');
+            if (video) {
+                this.videos[index] = video;
+                
+                // Set up video event listeners
+                video.addEventListener('loadeddata', () => {
+                    if (index === 0) {
+                        this.soundBtn.disabled = false;
+                        this.updateSoundButtonText();
                     }
-                }
-            });
-            this.players.set(motionGraphicsVideoId, motionGraphicsPlayer);
-        }
+                });
 
-        // Show the first slide and update text content after all players are initialized
-        this.showSlide(this.currentSlideIndex);
-    }
+                video.addEventListener('ended', () => {
+                    if (index === this.currentSlideIndex) {
+                        this.goToNextSlide();
+                    }
+                });
 
-    onPlayerReady(event, index) {
-        // Mute by default as per requirements
-        event.target.mute();
-
-        // Only enable the sound button once the first video is ready to play
-        if (index === 0) {
-            this.soundBtn.disabled = false;
-        }
-
-        // Autoplay the first video once it's ready
-        if (index === this.currentSlideIndex) {
-            event.target.playVideo();
-        }
-    }
-
-    onPlayerStateChange(event) {
-        // Pause other videos when one starts playing
-        if (event.data === YT.PlayerState.PLAYING) {
-            const currentPlayer = event.target;
-            this.players.forEach(player => {
-                if (player !== currentPlayer && typeof player.pauseVideo === 'function') {
-                    player.pauseVideo();
-                }
-            });
-        }
-
-        // Go to next slide when current video ends
-        if (event.data === YT.PlayerState.ENDED) {
-            this.goToNextSlide();
-        }
+                // Ensure video is muted initially
+                video.muted = this.isMuted;
+                video.volume = 0.7; // Set volume for when unmuted
+            }
+        });
     }
 
     showSlide(index) {
-        // Hide current slide
-        const currentSlideElement = this.slides[this.currentSlideIndex];
-        if (currentSlideElement) {
-            currentSlideElement.classList.remove('active');
-            const currentPlayer = this.players.get(currentSlideElement.dataset.videoId);
-            if (currentPlayer && typeof currentPlayer.pauseVideo === 'function') {
-                currentPlayer.pauseVideo();
-            }
+        // Pause current video
+        const currentVideo = this.videos[this.currentSlideIndex];
+        if (currentVideo) {
+            currentVideo.pause();
+            this.slides[this.currentSlideIndex].classList.remove('active');
         }
 
         // Update current slide index
         this.currentSlideIndex = index;
 
         // Show new slide
-        const newSlideElement = this.slides[this.currentSlideIndex];
-        newSlideElement.classList.add('active');
+        const newSlide = this.slides[this.currentSlideIndex];
+        const newVideo = this.videos[this.currentSlideIndex];
+        
+        newSlide.classList.add('active');
 
         // Update text content
-        this.videoTitleElement.textContent = newSlideElement.dataset.title;
-        this.videoDescriptionElement.textContent = newSlideElement.dataset.description;
+        this.videoTitleElement.textContent = newSlide.dataset.title;
+        this.videoDescriptionElement.textContent = newSlide.dataset.description;
 
-        // Play new video and update sound button state
-        const newPlayer = this.players.get(newSlideElement.dataset.videoId);
-        if (newPlayer && typeof newPlayer.playVideo === 'function') {
-            newPlayer.playVideo();
-            this.updateSoundButtonState(newPlayer);
+        // Play new video
+        if (newVideo) {
+            newVideo.currentTime = 0; // Reset to beginning
+            newVideo.muted = this.isMuted; // Apply current sound state
+            newVideo.play().catch(error => {
+                console.log('Video autoplay failed:', error);
+            });
         }
     }
 
@@ -684,28 +618,25 @@ class YouTubeManager {
         this.showSlide(prevIndex);
     }
 
-    toggleSound() {
-        const currentSlideElement = this.slides[this.currentSlideIndex];
-        const currentPlayer = this.players.get(currentSlideElement.dataset.videoId);
-
-        if (!currentPlayer || typeof currentPlayer.isMuted !== 'function') return;
-
-        if (currentPlayer.isMuted()) {
-            currentPlayer.unMute();
-        } else {
-            currentPlayer.mute();
-        }
-        this.updateSoundButtonState(currentPlayer);
+    toggleGlobalSound() {
+        this.isMuted = !this.isMuted;
+        
+        // Apply to all portfolio videos
+        this.videos.forEach(video => {
+            if (video) {
+                video.muted = this.isMuted;
+            }
+        });
+        
+        this.updateSoundButtonText();
     }
 
-    updateSoundButtonState(player) {
-        if (!player || typeof player.isMuted !== 'function') return;
-
-        if (player.isMuted()) {
+    updateSoundButtonText() {
+        if (this.isMuted) {
             this.soundBtn.textContent = 'ACTIVAR SONIDO';
             this.soundBtn.classList.remove('active');
         } else {
-            this.soundBtn.textContent = 'DESACTIVAR SONIDO';
+            this.soundBtn.textContent = 'ACTIVADO';
             this.soundBtn.classList.add('active');
         }
     }
@@ -714,13 +645,31 @@ class YouTubeManager {
 // Motion Graphics Sound Controller
 class MotionGraphicsSoundController {
     constructor() {
+        this.video = document.getElementById('motion-graphics-video');
         this.soundBtn = document.getElementById('motion-graphics-sound-btn');
-        this.iframe = document.getElementById('motion-graphics-iframe');
-        this.isMuted = true; // Start muted
+        this.isMuted = true;
         
-        if (this.soundBtn && this.iframe) {
+        // Make this controller globally accessible
+        window.motionGraphicsController = this;
+        
+        if (this.video) {
+            this.initializeVideo();
+        }
+        
+        if (this.soundBtn) {
             this.setupEventListener();
         }
+    }
+    
+    initializeVideo() {
+        // Ensure video starts muted
+        this.video.muted = true;
+        this.video.volume = 0.7; // Set volume for when unmuted
+        
+        // Ensure video plays
+        this.video.play().catch(error => {
+            console.log('Video autoplay failed:', error);
+        });
     }
     
     setupEventListener() {
@@ -728,24 +677,88 @@ class MotionGraphicsSoundController {
             this.toggleSound();
         });
     }
-    
+
     toggleSound() {
-        const currentSrc = this.iframe.src;
+        this.isMuted = !this.isMuted;
         
-        if (this.isMuted) {
-            // Unmute: change mute=1 to mute=0
-            const newSrc = currentSrc.replace('mute=1', 'mute=0');
-            this.iframe.src = newSrc;
-            this.soundBtn.classList.add('sound-enabled');
-            this.soundBtn.querySelector('.sound-text').textContent = 'DESACTIVAR SONIDO';
-            this.isMuted = false;
-        } else {
-            // Mute: change mute=0 to mute=1
-            const newSrc = currentSrc.replace('mute=0', 'mute=1');
-            this.iframe.src = newSrc;
-            this.soundBtn.classList.remove('sound-enabled');
-            this.soundBtn.querySelector('.sound-text').textContent = 'VER CON SONIDO';
-            this.isMuted = true;
+        if (!this.video) return;
+        
+        this.video.muted = this.isMuted;
+        this.updateButtonText();
+    }
+
+    updateButtonText() {
+        const soundText = this.soundBtn.querySelector('.sound-text');
+        if (soundText) {
+            if (this.isMuted) {
+                soundText.textContent = 'VER CON SONIDO';
+                this.soundBtn.classList.remove('sound-enabled');
+            } else {
+                soundText.textContent = 'DESACTIVAR SONIDO';
+                this.soundBtn.classList.add('sound-enabled');
+            }
+        }
+    }
+
+    setMuted(muted) {
+        this.isMuted = muted;
+        
+        if (!this.video) return;
+        
+        this.video.muted = muted;
+        this.updateButtonText();
+    }
+}
+
+// BFA Video Controller
+class BFAVideoController {
+    constructor() {
+        this.video = document.querySelector('.bfa-video');
+        this.soundBtn = document.getElementById('bfa-sound-btn');
+        this.isMuted = true;
+        
+        if (this.video && this.soundBtn) {
+            this.initializeVideo();
+            this.setupEventListener();
+        }
+    }
+    
+    initializeVideo() {
+        // Ensure video starts muted
+        this.video.muted = true;
+        this.video.volume = 0.7; // Set volume for when unmuted
+        
+        // Ensure video plays
+        this.video.play().catch(error => {
+            console.log('BFA video autoplay failed:', error);
+        });
+    }
+    
+    setupEventListener() {
+        this.soundBtn.addEventListener('click', () => {
+            this.toggleSound();
+        });
+    }
+
+    toggleSound() {
+        this.isMuted = !this.isMuted;
+        
+        if (!this.video) return;
+        
+        this.video.muted = this.isMuted;
+        this.updateButtonText();
+    }
+
+    updateButtonText() {
+        const soundText = this.soundBtn.querySelector('.sound-text');
+        if (soundText) {
+            if (this.isMuted) {
+                soundText.textContent = 'VER CON SONIDO';
+                this.soundBtn.classList.remove('sound-enabled');
+            } else {
+                soundText.textContent = 'DESACTIVAR SONIDO';
+                this.soundBtn.classList.add('sound-enabled');
+            }
         }
     }
 }

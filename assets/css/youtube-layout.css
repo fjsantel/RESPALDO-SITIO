@@ -18,7 +18,8 @@
 
 .video-slider-wrapper {
     width: 100%; /* Make it fill the 100vw parent */
-    /* Removed max-width and margin: auto from here */
+    max-width: none; /* Remove any max-width restriction */
+    margin: 0; /* Remove any auto margins */
 }
 
 .youtube-slider-container .slider-header {
@@ -39,15 +40,15 @@
     position: relative; /* Added for absolute positioning of iframe */
     overflow: hidden;
     background-color: var(--dark-gray); /* Use your site's dark gray */
-    height: 70vh; /* New: Give video slider a defined height */
     width: 100%; /* Explicitly set width to 100% */
+    height: 0; /* Set height to 0, padding-bottom will define height */
+    padding-bottom: 56.25%; /* 16:9 Aspect Ratio (height / width = 9 / 16 = 0.5625) */
 }
 
 .video-container {
     position: relative;
     width: 100%;
-    height: 100%; /* New: Make video container fill parent height */
-    /* Removed padding-bottom: 56.25%; */
+    height: 100%; /* Make video container fill parent height */
     overflow: hidden;
 }
 
@@ -57,7 +58,9 @@
     left: 0;
     width: 100%;
     height: 100%;
+    border: 0; /* Remove border */
     pointer-events: none; /* Allow mouse events to pass through to parent */
+    object-fit: cover; /* Ensure video fills container without black bars */
 }
 
 /* New/Modified slider-nav styles to be part of the flex container */

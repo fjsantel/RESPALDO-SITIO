@@ -589,13 +589,78 @@ section.seccion-video-principal {
     background: var(--black);
 }
 
-#motion-graphics-iframe {
+.motion-graphics-video {
     width: 100%;
     height: 100%;
+    object-fit: cover;
+    object-position: center center;
+    background-color: var(--black);
+}
+
+/* BFA 2025 Section */
+.bfa-video-section {
+    background: var(--black);
+    width: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+.bfa-video-container {
+    width: 100%;
+    position: relative;
+    background: var(--black);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.bfa-video {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    object-position: center center;
+    background-color: var(--black);
+}
+
+.bfa-controls {
     position: absolute;
-    top: 0;
-    left: 0;
+    bottom: 20%;
+    right: 20px;
+    z-index: 15;
+}
+
+.bfa-sound-btn {
+    background: transparent;
     border: none;
+    color: var(--text-secondary);
+    font-family: var(--font-mono);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 0;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: color 0.3s ease;
+}
+
+.bfa-sound-btn:hover {
+    color: var(--text-primary);
+}
+
+.bfa-sound-btn.sound-enabled .sound-text {
+    color: var(--text-primary);
+}
+
+.bfa-text-container {
+    width: 100%;
+    padding: 4rem;
+    background: var(--black);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
 }
 
 /* Motion Graphics Sound Control */
@@ -1653,14 +1718,65 @@ section.seccion-video-principal {
 .video-container {
     position: relative;
     width: 100%;
-    aspect-ratio: 16 / 9;
     overflow: hidden;
 }
 
-.video-container iframe {
+.video-container iframe,
+.video-container > div,
+.portfolio-video {
+    width: 100%;
+    height: auto;
+    border: none;
+    object-fit: contain;
+    object-position: center center;
+    background-color: var(--black);
+}
+
+.video-thumbnail {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
-    border: none;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: 1;
+    transition: opacity 0.3s ease;
+}
+
+.video-slide.active .video-thumbnail {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.loading-indicator {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    color: var(--text-primary);
+    font-family: var(--font-mono);
+    font-size: 14px;
+    z-index: 2;
+}
+
+.loading-spinner {
+    width: 30px;
+    height: 30px;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-top: 3px solid var(--accent-yellow);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }
 
 /* Hide YouTube branding elements */

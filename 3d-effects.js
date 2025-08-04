@@ -3,10 +3,13 @@
 
 class ThreeDEffects {
     constructor() {
+        this.isVisible = false;
+        this.animationId = null;
         this.init();
         this.setupFloatingParticles();
         this.setupHolographicEffects();
         this.setupParallax3D();
+        this.setupIntersectionObserver();
     }
 
     init() {
@@ -58,7 +61,8 @@ class ThreeDEffects {
     }
 
     setupFloatingParticles() {
-        const particleCount = window.innerWidth > 768 ? 50 : 25;
+        // Reduce particle count for better performance
+        const particleCount = window.innerWidth > 1200 ? 30 : window.innerWidth > 768 ? 20 : 15;
         
         for (let i = 0; i < particleCount; i++) {
             this.particles.push({
@@ -273,12 +277,44 @@ class ThreeDEffects {
         }
     }
 
+    setupIntersectionObserver() {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                this.isVisible = entry.isIntersecting;
+                if (!this.isVisible && this.animationId) {
+                    cancelAnimationFrame(this.animationId);
+                    this.animationId = null;
+                } else if (this.isVisible && !this.animationId) {
+                    this.startAnimation();
+                }
+            });
+        }, { threshold: 0.1 });
+        
+        observer.observe(this.canvas);
+    }
+
     startAnimation() {
+        if (this.animationId) return; // Prevent multiple animation loops
+        
         const animationLoop = () => {
-            this.animate();
-            requestAnimationFrame(animationLoop);
+            if (this.isVisible) {
+                this.animate();
+                this.animationId = requestAnimationFrame(animationLoop);
+            } else {
+                this.animationId = null;
+            }
         };
-        animationLoop();
+        this.animationId = requestAnimationFrame(animationLoop);
+    }
+
+    destroy() {
+        if (this.animationId) {
+            cancelAnimationFrame(this.animationId);
+            this.animationId = null;
+        }
+        if (this.canvas && this.canvas.parentNode) {
+            this.canvas.parentNode.removeChild(this.canvas);
+        }
     }
 }
 
