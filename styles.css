@@ -238,12 +238,12 @@ section.seccion-video-principal {
 
 .video-click-blocker {
     position: absolute;
-    top: 0;
+    top: 0; /* Revertido a la posición original */
     left: 0;
     width: 100%;
     height: 100%;
     z-index: 1;
-    background-color: transparent;
+    background-color: transparent; /* Eliminado el fondo rojo */
 }
 
 .hero-overlay {
@@ -566,52 +566,101 @@ section.seccion-video-principal {
     margin: 0;
 }
 
-/* Video Description Sections */
-.video-description-section {
+/* Motion Graphics Section */
+.motion-graphics-section {
     background: var(--black);
     width: 100%;
     padding: 0;
     margin: 0;
-    margin-top: 0;
 }
 
-/* Ensure no gap between mix-3d and video-description sections */
-.mix-3d-video-section + .video-description-section {
+/* Ensure no gap between mix-3d and motion-graphics sections */
+.mix-3d-video-section + .motion-graphics-section {
     margin-top: 0 !important;
     padding-top: 0 !important;
 }
 
-.video-description-section {
-    display: block;
-}
-
-.video-desc-container {
+/* Video Container */
+.motion-graphics-video-container {
     width: 100%;
-    margin: 0;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 0;
-    align-items: center;
-    min-height: 100vh;
-}
-
-.video-side {
+    aspect-ratio: 16 / 9;
     position: relative;
-    aspect-ratio: 16/9;
-    background: var(--light-gray);
     overflow: hidden;
-    border: none;
-    width: 100%;
+    background: var(--black);
 }
 
-.description-side {
+#motion-graphics-iframe {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border: none;
+}
+
+/* Motion Graphics Sound Control */
+.motion-graphics-controls {
+    position: absolute;
+    bottom: 20%;
+    right: 20px;
+    z-index: 15;
+}
+
+.motion-graphics-sound-btn {
+    background: transparent;
+    border: none;
+    color: var(--text-secondary);
+    font-family: var(--font-mono);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 0;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: color 0.3s ease;
+}
+
+.motion-graphics-sound-btn:hover {
+    color: var(--text-primary);
+}
+
+.motion-graphics-sound-btn .sound-cursor {
+    width: 10px;
+    height: 10px;
+    background-color: var(--text-primary);
+    transition: all 0.3s ease;
+}
+
+.motion-graphics-sound-btn.sound-enabled .sound-cursor {
+    transform: translateX(8px);
+    background-color: var(--accent-yellow);
+    animation: blink 1s step-end infinite;
+}
+
+.motion-graphics-sound-btn.sound-enabled .sound-text {
+    color: var(--text-primary);
+}
+
+.motion-graphics-sound-btn.sound-enabled .sound-text:after {
+    content: " ACTIVADO";
+}
+
+/* Text Container */
+.motion-graphics-text-container {
+    width: 100%;
     padding: 4rem;
     background: var(--black);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
 }
 
 .desc-symbol {
     font-size: 1.5rem;
-    color: var(--accent-blue);
+    color: var(--accent-yellow);
     margin-bottom: 20px;
 }
 
@@ -623,9 +672,6 @@ section.seccion-video-principal {
     letter-spacing: 4px;
     text-transform: uppercase;
     margin-bottom: 25px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
     transition: all 0.3s ease;
 }
 
@@ -1083,26 +1129,28 @@ section.seccion-video-principal {
         padding: 0;
     }
     
-    /* Video description section con mejor espaciado */
-    .video-desc-container {
-        grid-template-columns: 1fr;
-        gap: 0;
-        text-align: center;
-        min-height: auto;
+    /* Motion Graphics section responsive */
+    .motion-graphics-text-container {
+        padding: 2rem 1.25rem;
     }
     
-    .video-description-section {
-        margin-top: 0 !important;
-        padding-top: 0 !important;
-    }
-    
-    .description-side {
-        padding: 2rem 1rem;
-    }
-    
-    .video-side {
+    .motion-graphics-video-container {
         aspect-ratio: 16/9;
         width: 100%;
+    }
+    
+    .desc-content h3 {
+        font-size: clamp(0.9rem, 4vw, 1.2rem);
+        letter-spacing: 2px;
+        white-space: normal;
+        overflow: visible;
+        text-overflow: initial;
+    }
+    
+    /* Motion Graphics sound button tablet positioning */
+    .motion-graphics-controls {
+        bottom: 26%;
+        right: 18px;
     }
     
     .justified-text {
@@ -1112,18 +1160,6 @@ section.seccion-video-principal {
         -webkit-hyphens: auto;
         font-size: 1rem;
         line-height: 1.7;
-    }
-    
-    .desc-content h3 {
-        font-family: var(--font-primary);
-        font-weight: 700;
-        font-size: clamp(0.9rem, 4vw, 1.2rem);
-        color: var(--text-primary);
-        letter-spacing: 2px;
-        text-transform: uppercase;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
     }
     
     /* Bio section responsivo mejorado */
@@ -1453,11 +1489,33 @@ section.seccion-video-principal {
     section.seccion-video-insert,
     section.youtube-video-section,
     section.creative-video-section,
-    section.mix-3d-video-section {
+    section.mix-3d-video-section,
+    section.motion-graphics-section {
         padding-top: 0;
         padding-left: 0;
         padding-right: 0;
         margin: 0;
+    }
+    
+    /* Motion Graphics section mobile responsive */
+    .motion-graphics-text-container {
+        padding: 1.5rem 1rem;
+    }
+    
+    .motion-graphics-video-container {
+        aspect-ratio: 16/9;
+        width: 100%;
+    }
+    
+    .desc-content h3 {
+        font-size: clamp(1rem, 5vw, 1.3rem);
+        letter-spacing: 1px;
+    }
+    
+    /* Motion Graphics sound button mobile positioning */
+    .motion-graphics-controls {
+        bottom: 31%;
+        right: 15px;
     }
     
     /* Photography section mobile con padding adecuado */

@@ -147,20 +147,34 @@
             </div>
         </section>
 
-        <section class="video-description-section" id="design">
-            <div class="video-desc-container">
-                <div class="video-side">
-                    <div class="video-click-blocker"></div>
-                    <iframe class="side-video" src="https://www.youtube.com/embed/IiQ-0QRDAgU?autoplay=1&mute=1&loop=1&playlist=IiQ-0QRDAgU&controls=0&showinfo=0&rel=0&modestbranding=1&iv_load_policy=3" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        <section class="motion-graphics-section" id="design">
+            <!-- Video Container -->
+            <div class="motion-graphics-video-container">
+                <iframe 
+                    id="motion-graphics-iframe"
+                    src="https://www.youtube.com/embed/IiQ-0QRDAgU?autoplay=1&mute=1&loop=1&playlist=IiQ-0QRDAgU&controls=0&showinfo=0&rel=0&modestbranding=1&iv_load_policy=3&playsinline=1&enablejsapi=0"
+                    frameborder="0" 
+                    allow="autoplay; encrypted-media" 
+                    allowfullscreen>
+                </iframe>
+                
+                <!-- Sound Control -->
+                <div class="motion-graphics-controls">
+                    <button id="motion-graphics-sound-btn" class="motion-graphics-sound-btn">
+                        <span class="sound-text">VER CON SONIDO</span>
+                        <span class="sound-cursor"></span>
+                    </button>
                 </div>
-                <div class="description-side">
-                    <div class="desc-symbol">◆</div>
-                    <div class="desc-content">
-                        <h3>MOTION GRAPHICS & ANIMATION</h3>
-                        <p class="justified-text">Especializado en la creación de contenido visual dinámico que combina precisión técnica con expresión artística. Desarrollo proyectos de motion graphics que van desde identidades visuales animadas hasta piezas audiovisuales complejas, utilizando técnicas avanzadas de animación 2D y 3D.</p>
-                        <br>
-                        <p class="justified-text">Mi enfoque se centra en crear narrativas visuales que conecten emocionalmente con la audiencia, aplicando principios de diseño, timing y composición para generar experiencias audiovisuales memorables y efectivas.</p>
-                    </div>
+            </div>
+            
+            <!-- Text Container -->
+            <div class="motion-graphics-text-container">
+                <div class="desc-symbol">◆</div>
+                <div class="desc-content">
+                    <h3>MOTION GRAPHICS & ANIMATION</h3>
+                    <p class="justified-text">Especializado en la creación de contenido visual dinámico que combina precisión técnica con expresión artística. Desarrollo proyectos de motion graphics que van desde identidades visuales animadas hasta piezas audiovisuales complejas, utilizando técnicas avanzadas de animación 2D y 3D.</p>
+                    <br>
+                    <p class="justified-text">Mi enfoque se centra en crear narrativas visuales que conecten emocionalmente con la audiencia, aplicando principios de diseño, timing y composición para generar experiencias audiovisuales memorables y efectivas.</p>
                 </div>
             </div>
         </section>
@@ -275,6 +289,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/TextPlugin.min.js"></script>
+    <script src="https://www.youtube.com/iframe_api"></script>
     <script src="new-portfolio.js"></script>
     <script src="assets/js/lets-create.js"></script>
     

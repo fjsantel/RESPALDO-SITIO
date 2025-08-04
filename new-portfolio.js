@@ -8,6 +8,8 @@ document.addEventListener('DOMContentLoaded', () => {
     new CustomCursor(); // Initialize the custom cursor
     new ChatbotManager(); // Initialize the chatbot
     new YouTubeManager('video-slider'); // Initialize the YouTube section
+    // Initialize motion graphics sound control
+    new MotionGraphicsSoundController();
 });
 
 class NavigationManager {
@@ -568,6 +570,44 @@ class YouTubeManager {
             this.players.set(videoId, player);
         });
 
+        // Initialize the Motion Graphics video
+        const motionGraphicsVideoId = 'IiQ-0QRDAgU';
+        const motionGraphicsPlayerDiv = document.getElementById('player-motion-graphics');
+        if (motionGraphicsPlayerDiv) {
+            const motionGraphicsPlayer = new YT.Player(motionGraphicsPlayerDiv.id, {
+                videoId: motionGraphicsVideoId,
+                playerVars: {
+                    autoplay: 1,
+                    mute: 1,
+                    controls: 0,
+                    showinfo: 0,
+                    rel: 0,
+                    modestbranding: 1,
+                    iv_load_policy: 3,
+                    loop: 1,
+                    playlist: motionGraphicsVideoId,
+                    playsinline: 1,
+                    disablekb: 1,
+                    cc_load_policy: 0,
+                    cc_lang_pref: ''
+                },
+                events: {
+                    'onReady': (event) => event.target.mute(),
+                    'onStateChange': (event) => {
+                        if (event.data === YT.PlayerState.PLAYING) {
+                            // Pause other videos when this one starts playing
+                            this.players.forEach(player => {
+                                if (player !== event.target && typeof player.pauseVideo === 'function') {
+                                    player.pauseVideo();
+                                }
+                            });
+                        }
+                    }
+                }
+            });
+            this.players.set(motionGraphicsVideoId, motionGraphicsPlayer);
+        }
+
         // Show the first slide and update text content after all players are initialized
         this.showSlide(this.currentSlideIndex);
     }
@@ -670,3 +710,43 @@ class YouTubeManager {
         }
     }
 }
+
+// Motion Graphics Sound Controller
+class MotionGraphicsSoundController {
+    constructor() {
+        this.soundBtn = document.getElementById('motion-graphics-sound-btn');
+        this.iframe = document.getElementById('motion-graphics-iframe');
+        this.isMuted = true; // Start muted
+        
+        if (this.soundBtn && this.iframe) {
+            this.setupEventListener();
+        }
+    }
+    
+    setupEventListener() {
+        this.soundBtn.addEventListener('click', () => {
+            this.toggleSound();
+        });
+    }
+    
+    toggleSound() {
+        const currentSrc = this.iframe.src;
+        
+        if (this.isMuted) {
+            // Unmute: change mute=1 to mute=0
+            const newSrc = currentSrc.replace('mute=1', 'mute=0');
+            this.iframe.src = newSrc;
+            this.soundBtn.classList.add('sound-enabled');
+            this.soundBtn.querySelector('.sound-text').textContent = 'DESACTIVAR SONIDO';
+            this.isMuted = false;
+        } else {
+            // Mute: change mute=0 to mute=1
+            const newSrc = currentSrc.replace('mute=0', 'mute=1');
+            this.iframe.src = newSrc;
+            this.soundBtn.classList.remove('sound-enabled');
+            this.soundBtn.querySelector('.sound-text').textContent = 'VER CON SONIDO';
+            this.isMuted = true;
+        }
+    }
+}
+
