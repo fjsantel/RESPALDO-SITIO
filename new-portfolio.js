@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
     new ScrollAnimator(); // Initialize our new animations
     new CustomCursor(); // Initialize the custom cursor
     new ChatbotManager(); // Initialize the chatbot
+    new YouTubeVideoManager(); // Initialize YouTube video sound toggle
 });
 
 class NavigationManager {
@@ -203,7 +204,7 @@ class ScrollAnimator {
     }
 
     animateTypewriter() {
-        const words = ["CREATIVE CONTENT", "DESIGN", "ANIMATION", "PHOTOGRAPHY", "3D", "MUSIC", "WEB", "SOCIAL MEDIA", "ART"];
+        const words = ["CREATIVE CONTENT", "DESIGN", "ANIMATION", "PHOTOGRAPHY", "3D", "MUSIC", "WEB", "SOCIAL MEDIA", "ART", "DOCUMENTAL", "CORPORATIVO", "AUDIOVISUAL", "PRODUCCIÓN", "PUBLICIDAD"];
         const textElement = document.getElementById("typewriter-text");
         const typewriterElement = document.getElementById("typewriter");
         const cursorElement = document.querySelector(".typewriter-cursor");
@@ -459,3 +460,57 @@ class ChatbotManager {
         this.chatHistory.scrollTop = this.chatHistory.scrollHeight;
     }
 }
+
+// YouTube Video Sound Toggle Manager
+class YouTubeVideoManager {
+    constructor() {
+        this.soundToggle = document.getElementById('sound-toggle');
+        this.iframe = document.getElementById('youtube-iframe');
+        this.isMuted = true;
+        
+        if (this.soundToggle && this.iframe) {
+            this.init();
+        }
+    }
+    
+    init() {
+        this.soundToggle.addEventListener('click', () => {
+            this.toggleSound();
+        });
+        
+        // Wait for YouTube API to be ready
+        window.addEventListener('message', (event) => {
+            if (event.origin !== 'https://www.youtube.com') return;
+            
+            if (event.data && typeof event.data === 'string') {
+                try {
+                    const data = JSON.parse(event.data);
+                    if (data.event === 'video-progress') {
+                        // Video is playing
+                    }
+                } catch (e) {
+                    // Ignore parsing errors
+                }
+            }
+        });
+    }
+    
+    toggleSound() {
+        if (this.isMuted) {
+            // Unmute the video by replacing the iframe src
+            const currentSrc = this.iframe.src;
+            const newSrc = currentSrc.replace('mute=1', 'mute=0');
+            this.iframe.src = newSrc;
+            this.soundToggle.classList.add('sound-enabled');
+            this.isMuted = false;
+        } else {
+            // Mute the video
+            const currentSrc = this.iframe.src;
+            const newSrc = currentSrc.replace('mute=0', 'mute=1');
+            this.iframe.src = newSrc;
+            this.soundToggle.classList.remove('sound-enabled');
+            this.isMuted = true;
+        }
+    }
+}
+

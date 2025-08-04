@@ -1156,6 +1156,17 @@ section.seccion-video-principal {
         right: 18px;
     }
     
+    /* Video crop overlays tablet proportions */
+    .video-crop-top {
+        height: 32%;
+        top: -8px;
+    }
+    
+    .video-crop-bottom {
+        height: 32%;
+        bottom: -8px;
+    }
+    
     /* Footer optimizado */
     .main-footer {
         padding: 1.875rem 1.25rem;
@@ -1435,11 +1446,37 @@ section.seccion-video-principal {
         right: 15px;
     }
     
+    /* Video crop overlays mobile proportions */
+    .video-crop-top {
+        height: 34%;
+        top: 0px;
+    }
+    
+    .video-crop-bottom {
+        height: 40%;
+        bottom: -15px;
+    }
+    
     /* Footer mobile */
     .main-footer {
         padding: 1.25rem 1rem;
     }
 }
+
+/* Extra small mobile styles (375px and below) */
+@media screen and (max-width: 375px) {
+    /* Video crop overlays extra small mobile proportions */
+    .video-crop-top {
+        height: 34%;
+        top: 0px;
+    }
+    
+    .video-crop-bottom {
+        height: 42%;
+        bottom: -20px;
+    }
+}
+
 
 /* === YouTube Video Section === */
 .youtube-video-section {
