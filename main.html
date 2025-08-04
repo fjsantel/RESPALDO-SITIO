@@ -9,7 +9,6 @@
     <link rel="preload" href="assets/Reel%202024.mp4" as="video" type="video/mp4">
     <link rel="preload" href="assets/logo.png" as="image">
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="assets/css/dynamic-gallery.css">
     <link rel="stylesheet" href="assets/css/lets-create.css">
 </head>
 <body>
@@ -34,6 +33,7 @@
         <button class="nav-btn" data-section="bio">Bio</button>
         <button class="nav-btn" data-section="photography">Photography</button>
         <button class="nav-btn" data-section="design">Design</button>
+        <button class="nav-btn" data-section="lets-create">Cotiza tu Proyecto</button>
         <button class="nav-btn contact-btn" data-section="contact">Contact</button>
     </nav>
 
@@ -146,15 +146,6 @@
             </div>
         </section>
 
-        <section class="photography-grid" id="photography">
-            <div class="grid-container">
-                <div class="grid-item" style="background-image: url('https://images.unsplash.com/photo-1516035069371-29a1b244cc32?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80');"></div>
-                <div class="grid-item" style="background-image: url('https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80');"></div>
-                <div class="grid-item" style="background-image: url('https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80');"></div>
-                <div class="grid-item" style="background-image: url('https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80');"></div>
-            </div>
-        </section>
-
         <section class="video-description-section" id="design">
             <div class="video-desc-container">
                 <div class="video-side">
@@ -164,47 +155,84 @@
                 <div class="description-side">
                     <div class="desc-symbol">◆</div>
                     <div class="desc-content">
-                        <h3>Motion Graphics & Animation</h3>
-                        <p class="justified-text">Specialized in creating dynamic visual content that combines technical precision with artistic expression.</p>
+                        <h3>MOTION GRAPHICS & ANIMATION</h3>
+                        <p class="justified-text">Especializado en la creación de contenido visual dinámico que combina precisión técnica con expresión artística. Desarrollo proyectos de motion graphics que van desde identidades visuales animadas hasta piezas audiovisuales complejas, utilizando técnicas avanzadas de animación 2D y 3D.</p>
+                        <br>
+                        <p class="justified-text">Mi enfoque se centra en crear narrativas visuales que conecten emocionalmente con la audiencia, aplicando principios de diseño, timing y composición para generar experiencias audiovisuales memorables y efectivas.</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- DYNAMIC GALLERY SECTION -->
-        <section class="dynamic-gallery-container" id="dynamic-gallery">
-            <!-- Color Palette Controller -->
-            <div class="color-palette-controller">
-                <div class="palette-options">
-                    <div class="palette-option active" data-palette="neon"></div>
-                    <div class="palette-option" data-palette="ocean"></div>
-                    <div class="palette-option" data-palette="sunset"></div>
-                    <div class="palette-option" data-palette="forest"></div>
-                    <div class="palette-option" data-palette="monochrome"></div>
-                </div>
-            </div>
-
-            <!-- Gallery Header -->
-            <div class="gallery-header">
-                <h2 class="gallery-title">PORTFOLIO DINÁMICO</h2>
-                <p class="gallery-subtitle">
-                    Explora mi trabajo a través de una experiencia visual interactiva. 
-                    Cambia los colores, filtra por categorías y sumérgete en cada proyecto.
+        <!-- YOUTUBE VIDEO SLIDER SECTION -->
+        <section class="youtube-slider-container" id="youtube-slider">
+            <!-- Slider Header -->
+            <div class="slider-header">
+                <h2 class="slider-title">MI CANAL YOUTUBE</h2>
+                <p class="slider-subtitle">
+                    Explora mi contenido audiovisual más reciente en YouTube
                 </p>
             </div>
 
-            <!-- Filter Controls -->
-            <div class="filter-controls">
-                <button class="filter-btn active" data-filter="all">Todos</button>
-                <button class="filter-btn" data-filter="motion">Motion Graphics</button>
-                <button class="filter-btn" data-filter="animation">Animación</button>
-                <button class="filter-btn" data-filter="commercial">Comercial</button>
-                <button class="filter-btn" data-filter="personal">Personal</button>
-            </div>
+            <!-- Video Slider -->
+            <div class="video-slider-wrapper">
+                
+                <div class="video-slider" id="video-slider">
+                    <div class="video-slide active" data-video-id="kqRkiYIKBCU">
+                        <div class="video-container">
+                            <iframe 
+                                id="player-0"
+                                src="https://www.youtube.com/embed/kqRkiYIKBCU?autoplay=1&mute=1&rel=0&modestbranding=1&showinfo=0&controls=0&iv_load_policy=3&cc_load_policy=0&disablekb=1&playsinline=1&enablejsapi=1&loop=1&playlist=kqRkiYIKBCU&origin=https://franciscosantelices.com"
+                                frameborder="0" 
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                allowfullscreen>
+                            </iframe>
+                        </div>
+                        <div class="video-info">
+                            <h3 class="video-title">Una Historia para construir / Defensoras & Defensores de los derechos Humanos</h3>
+                            <p class="video-description">Proyecto Documental realizado para el Instituto Nacional de Derechos Humanos con el objetivo de potenciar el trabajo realizado con niños y niñas de enseñanza básica orientado a transmitir el rol y la importancia de los mismos en la sociedad y el día a día a través de conversaciones con premios nacionales de derechos humanos.</p>
+                        </div>
+                    </div>
 
-            <!-- Media Grid -->
-            <div class="media-grid">
-                <!-- Media cards will be generated dynamically by JavaScript -->
+                    <div class="video-slide" data-video-id="qsw5XT3mZXM">
+                        <div class="video-container">
+                            <iframe 
+                                id="player-1"
+                                src="https://www.youtube.com/embed/qsw5XT3mZXM?autoplay=1&mute=1&rel=0&modestbranding=1&showinfo=0&controls=0&iv_load_policy=3&cc_load_policy=0&disablekb=1&playsinline=1&enablejsapi=1&loop=1&playlist=qsw5XT3mZXM&origin=https://franciscosantelices.com"
+                                frameborder="0" 
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                allowfullscreen>
+                            </iframe>
+                        </div>
+                        <div class="video-info">
+                            <h3 class="video-title">LA CIUDAD NO DA MÁS - 3xi-</h3>
+                            <p class="video-description">Video Documental realizado para dar contexto al encuentro La ciudad no da más. Este documental aborda algunos elementos de la problemática habitacional y las diversas realidades que viven miles de chilenos en el proceso de encontrar una solución en materia de vivienda.</p>
+                        </div>
+                    </div>
+
+                    <div class="video-slide" data-video-id="GSVyVxrbJJw">
+                        <div class="video-container">
+                            <iframe 
+                                id="player-2"
+                                src="https://www.youtube.com/embed/GSVyVxrbJJw?autoplay=1&mute=1&rel=0&modestbranding=1&showinfo=0&controls=0&iv_load_policy=3&cc_load_policy=0&disablekb=1&playsinline=1&enablejsapi=1&loop=1&playlist=GSVyVxrbJJw&origin=https://franciscosantelices.com"
+                                frameborder="0" 
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                allowfullscreen>
+                            </iframe>
+                        </div>
+                        <div class="video-info">
+                            <h3 class="video-title">Skava</h3>
+                            <p class="video-description">Parte del contenido realizado para Skava, una empresa líder en ingeniería de obras subterráneas, túneles y soluciones tecnológicas aplicadas a proyectos de minería y construcción.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Slider Controls -->
+                <div class="slider-controls">
+                    <button class="slider-nav slider-prev" id="slider-prev-bottom">‹</button>
+                    <button class="sound-activation-btn" id="sound-activation-btn">ACTIVAR SONIDO</button>
+                    <button class="slider-nav slider-next" id="slider-next-bottom">›</button>
+                </div>
             </div>
         </section>
 
@@ -265,7 +293,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/TextPlugin.min.js"></script>
     <script src="new-portfolio.js"></script>
-    <script src="assets/js/gallery-controller.js"></script>
     <script src="assets/js/lets-create.js"></script>
+    <script src="https://www.youtube.com/iframe_api"></script>
 </body>
 </html>
