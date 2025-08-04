@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
     new ScrollAnimator(); // Initialize our new animations
     new CustomCursor(); // Initialize the custom cursor
     new ChatbotManager(); // Initialize the chatbot
-    new YouTubeSliderManager(); // Initialize YouTube slider
+    new YouTubeManager('video-slider'); // Initialize the YouTube section
 });
 
 class NavigationManager {
@@ -496,206 +496,177 @@ class ChatbotManager {
     }
 }
 
-// YouTubeVideoManager class removed to avoid conflicts
+class YouTubeManager {
+    constructor(containerId) {
+        this.container = document.getElementById(containerId);
+        if (!this.container) return;
 
-// === YouTube Player API Integration ===
-let players = []; // Array to hold player instances
-
-// This function creates an <iframe> (and YouTube player)
-// after the API code downloads.
-function onYouTubeIframeAPIReady() {
-    console.log('YouTube API is ready.');
-    
-    const iframes = document.querySelectorAll('.youtube-embed');
-    
-    iframes.forEach((iframe, index) => {
-        // Ensure the iframe has a unique ID
-        if (!iframe.id) {
-            iframe.id = `youtube-player-${index}`;
-        }
-        
-        players[index] = new YT.Player(iframe.id, {
-            events: {
-                'onReady': onPlayerReady,
-                'onStateChange': onPlayerStateChange
-            }
-        });
-    });
-}
-
-function onPlayerReady(event) {
-    console.log('Player is ready:', event.target.getIframe().id);
-    // Mute the video by default
-    event.target.mute();
-}
-
-function onPlayerStateChange(event) {
-    // Example: Autoplay next video when current one ends
-    if (event.data === YT.PlayerState.ENDED) {
-        console.log('Video ended, playing next...');
-        // Assuming a global slider instance `videoSlider`
-        if (window.videoSlider) {
-            window.videoSlider.nextSlide();
-        }
-    }
-}
-
-// Load the Iframe API code asynchronously.
-const tag = document.createElement('script');
-tag.src = "https://www.youtube.com/iframe_api";
-const firstScriptTag = document.getElementsByTagName('script')[0];
-firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
-
-// === YouTube Slider Manager - Working Version ===
-class YouTubeSliderManager {
-    constructor() {
-        this.currentSlide = 0;
-        this.slides = document.querySelectorAll('.video-slide');
+        this.slides = this.container.querySelectorAll('.video-slide');
         this.soundBtn = document.getElementById('sound-activation-btn');
         this.prevBtn = document.getElementById('slider-prev-bottom');
         this.nextBtn = document.getElementById('slider-next-bottom');
-        this.isSoundActive = false;
-        this.hasStarted = false;
-        
-        console.log('YouTubeSliderManager initialized');
-        console.log('Sound button found:', this.soundBtn);
-        
-        if (this.slides.length === 0) return;
-        
+        this.videoTitleElement = this.container.querySelector('.video-title');
+        this.videoDescriptionElement = this.container.querySelector('.video-description');
+
+        this.players = new Map(); // Map to store YT.Player objects by videoId
+        this.currentSlideIndex = 0;
+
         this.init();
     }
-    
+
     init() {
-        // Navigation buttons
-        this.prevBtn?.addEventListener('click', () => {
-            console.log('Previous clicked');
-            this.goToPrevious();
-        });
-        
-        this.nextBtn?.addEventListener('click', () => {
-            console.log('Next clicked');
-            this.goToNext();
-        });
-        
-        // Sound activation button
-        if (this.soundBtn) {
-            this.soundBtn.addEventListener('click', () => {
-                console.log('Sound button clicked');
-                this.toggleSound();
-            });
-            console.log('Sound button event listener added');
-        } else {
-            console.error('Sound button not found!');
-        }
-        
-        // Initialize first slide
-        this.showSlide(0);
-        
-        // Auto-start when section is visible
-        this.setupAutoStart();
+        this.setupEventListeners();
+        this.loadYouTubeAPI();
     }
-    
-    setupAutoStart() {
-        const youtubeSection = document.getElementById('youtube-slider');
-        if (!youtubeSection) return;
-        
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting && !this.hasStarted) {
-                    console.log('YouTube section visible, starting first video');
-                    this.startFirstVideo();
-                    this.hasStarted = true;
+
+    setupEventListeners() {
+        if (this.nextBtn) this.nextBtn.addEventListener('click', () => this.goToNextSlide());
+        if (this.prevBtn) this.prevBtn.addEventListener('click', () => this.goToPreviousSlide());
+        if (this.soundBtn) this.soundBtn.addEventListener('click', () => this.toggleSound());
+    }
+
+    loadYouTubeAPI() {
+        if (!window.YT) {
+            const tag = document.createElement('script');
+            tag.src = "https://www.youtube.com/iframe_api";
+            const firstScriptTag = document.getElementsByTagName('script')[0];
+            firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+            window.onYouTubeIframeAPIReady = () => this.onYouTubeIframeAPIReady();
+        } else {
+            this.onYouTubeIframeAPIReady();
+        }
+    }
+
+    onYouTubeIframeAPIReady() {
+        this.slides.forEach((slide, index) => {
+            const videoId = slide.dataset.videoId;
+            const playerDiv = slide.querySelector('div[id^="player-"]'); // Select the div by ID starting with 'player-'
+            const playerId = playerDiv.id;
+
+            const player = new YT.Player(playerId, {
+                videoId: videoId,
+                playerVars: {
+                    autoplay: 0, // Start muted and paused
+                    mute: 1,
+                    controls: 0,
+                    showinfo: 0,
+                    rel: 0,
+                    modestbranding: 1,
+                    iv_load_policy: 3,
+                    loop: 1,
+                    playlist: videoId, // Required for looping
+                    cc_load_policy: 0, // Disable captions/subtitles by default
+                    playsinline: 1, // Play inline on iOS
+                    disablekb: 1, // Disable keyboard controls
+                    cc_lang_pref: '' // Set preferred caption language to empty to prevent loading
+                },
+                events: {
+                    'onReady': (event) => this.onPlayerReady(event, index),
+                    'onStateChange': (event) => this.onPlayerStateChange(event)
                 }
             });
-        }, {
-            threshold: 0.5 // Start when 50% visible
+            this.players.set(videoId, player);
         });
-        
-        observer.observe(youtubeSection);
+
+        // Show the first slide and update text content after all players are initialized
+        this.showSlide(this.currentSlideIndex);
     }
-    
-    startFirstVideo() {
-        // Auto-reproduce the first video when arriving at section
-        const currentSlide = this.slides[this.currentSlide];
-        const iframe = currentSlide.querySelector('iframe');
-        
-        if (iframe) {
-            // Force start by refreshing iframe
-            const currentSrc = iframe.src;
-            iframe.src = currentSrc;
-            console.log('First video started');
+
+    onPlayerReady(event, index) {
+        // Mute by default as per requirements
+        event.target.mute();
+
+        // Only enable the sound button once the first video is ready to play
+        if (index === 0) {
+            this.soundBtn.disabled = false;
+        }
+
+        // Autoplay the first video once it's ready
+        if (index === this.currentSlideIndex) {
+            event.target.playVideo();
         }
     }
-    
+
+    onPlayerStateChange(event) {
+        // Pause other videos when one starts playing
+        if (event.data === YT.PlayerState.PLAYING) {
+            const currentPlayer = event.target;
+            this.players.forEach(player => {
+                if (player !== currentPlayer && typeof player.pauseVideo === 'function') {
+                    player.pauseVideo();
+                }
+            });
+        }
+
+        // Go to next slide when current video ends
+        if (event.data === YT.PlayerState.ENDED) {
+            this.goToNextSlide();
+        }
+    }
+
+    showSlide(index) {
+        // Hide current slide
+        const currentSlideElement = this.slides[this.currentSlideIndex];
+        if (currentSlideElement) {
+            currentSlideElement.classList.remove('active');
+            const currentPlayer = this.players.get(currentSlideElement.dataset.videoId);
+            if (currentPlayer && typeof currentPlayer.pauseVideo === 'function') {
+                currentPlayer.pauseVideo();
+            }
+        }
+
+        // Update current slide index
+        this.currentSlideIndex = index;
+
+        // Show new slide
+        const newSlideElement = this.slides[this.currentSlideIndex];
+        newSlideElement.classList.add('active');
+
+        // Update text content
+        this.videoTitleElement.textContent = newSlideElement.dataset.title;
+        this.videoDescriptionElement.textContent = newSlideElement.dataset.description;
+
+        // Play new video and update sound button state
+        const newPlayer = this.players.get(newSlideElement.dataset.videoId);
+        if (newPlayer && typeof newPlayer.playVideo === 'function') {
+            newPlayer.playVideo();
+            this.updateSoundButtonState(newPlayer);
+        }
+    }
+
+    goToNextSlide() {
+        const nextIndex = (this.currentSlideIndex + 1) % this.slides.length;
+        this.showSlide(nextIndex);
+    }
+
+    goToPreviousSlide() {
+        const prevIndex = (this.currentSlideIndex - 1 + this.slides.length) % this.slides.length;
+        this.showSlide(prevIndex);
+    }
+
     toggleSound() {
-        const player = players[this.currentSlide];
-        if (!player || typeof player.isMuted !== 'function') {
-            console.error('Player or isMuted function not available for slide:', this.currentSlide);
-            return;
+        const currentSlideElement = this.slides[this.currentSlideIndex];
+        const currentPlayer = this.players.get(currentSlideElement.dataset.videoId);
+
+        if (!currentPlayer || typeof currentPlayer.isMuted !== 'function') return;
+
+        if (currentPlayer.isMuted()) {
+            currentPlayer.unMute();
+        } else {
+            currentPlayer.mute();
         }
+        this.updateSoundButtonState(currentPlayer);
+    }
+
+    updateSoundButtonState(player) {
+        if (!player || typeof player.isMuted !== 'function') return;
 
         if (player.isMuted()) {
-            player.unMute();
-            this.soundBtn.textContent = 'DESACTIVAR SONIDO';
-            this.soundBtn.classList.add('active');
-            this.isSoundActive = true;
-        } else {
-            player.mute();
             this.soundBtn.textContent = 'ACTIVAR SONIDO';
             this.soundBtn.classList.remove('active');
-            this.isSoundActive = false;
+        } else {
+            this.soundBtn.textContent = 'DESACTIVAR SONIDO';
+            this.soundBtn.classList.add('active');
         }
-    }
-    
-    goToNext() {
-        this.stopCurrentVideo();
-        const next = (this.currentSlide + 1) % this.slides.length;
-        this.showSlide(next);
-        this.startCurrentVideo();
-    }
-    
-    goToPrevious() {
-        this.stopCurrentVideo();
-        const prev = (this.currentSlide - 1 + this.slides.length) % this.slides.length;
-        this.showSlide(prev);
-        this.startCurrentVideo();
-    }
-    
-    stopCurrentVideo() {
-        // Stop current video using API
-        const currentPlayer = players[this.currentSlide];
-        if (currentPlayer && typeof currentPlayer.pauseVideo === 'function') {
-            currentPlayer.pauseVideo();
-        }
-    }
-    
-    startCurrentVideo() {
-        // Start new video using API
-        const newPlayer = players[this.currentSlide];
-        if (newPlayer && typeof newPlayer.playVideo === 'function') {
-            newPlayer.mute(); // Always start muted
-            newPlayer.playVideo();
-        }
-        
-        // Reset sound to off
-        this.isSoundActive = false;
-        this.soundBtn.textContent = 'ACTIVAR SONIDO';
-        this.soundBtn.classList.remove('active');
-    }
-    
-    showSlide(index) {
-        // Hide all slides
-        this.slides.forEach(slide => {
-            slide.classList.remove('active');
-        });
-        
-        // Show current slide
-        if (this.slides[index]) {
-            this.slides[index].classList.add('active');
-        }
-        
-        this.currentSlide = index;
     }
 }
-

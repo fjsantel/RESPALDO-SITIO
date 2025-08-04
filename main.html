@@ -10,6 +10,7 @@
     <link rel="preload" href="assets/logo.png" as="image">
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="assets/css/lets-create.css">
+    <link rel="stylesheet" href="assets/css/youtube-layout.css">
 </head>
 <body>
     <div id="custom-cursor"></div>
@@ -180,13 +181,7 @@
                 <div class="video-slider" id="video-slider">
                     <div class="video-slide active" data-video-id="kqRkiYIKBCU">
                         <div class="video-container">
-                            <iframe 
-                                id="player-0"
-                                src="https://www.youtube.com/embed/kqRkiYIKBCU?autoplay=1&mute=1&rel=0&modestbranding=1&showinfo=0&controls=0&iv_load_policy=3&cc_load_policy=0&disablekb=1&playsinline=1&enablejsapi=1&loop=1&playlist=kqRkiYIKBCU&origin=https://franciscosantelices.com"
-                                frameborder="0" 
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                                allowfullscreen>
-                            </iframe>
+                            <div id="player-kqRkiYIKBCU"></div>
                         </div>
                         <div class="video-info">
                             <h3 class="video-title">Una Historia para construir / Defensoras & Defensores de los derechos Humanos</h3>
@@ -196,13 +191,7 @@
 
                     <div class="video-slide" data-video-id="qsw5XT3mZXM">
                         <div class="video-container">
-                            <iframe 
-                                id="player-1"
-                                src="https://www.youtube.com/embed/qsw5XT3mZXM?autoplay=1&mute=1&rel=0&modestbranding=1&showinfo=0&controls=0&iv_load_policy=3&cc_load_policy=0&disablekb=1&playsinline=1&enablejsapi=1&loop=1&playlist=qsw5XT3mZXM&origin=https://franciscosantelices.com"
-                                frameborder="0" 
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                                allowfullscreen>
-                            </iframe>
+                            <div id="player-qsw5XT3mZXM"></div>
                         </div>
                         <div class="video-info">
                             <h3 class="video-title">LA CIUDAD NO DA MÁS - 3xi-</h3>
@@ -212,13 +201,7 @@
 
                     <div class="video-slide" data-video-id="GSVyVxrbJJw">
                         <div class="video-container">
-                            <iframe 
-                                id="player-2"
-                                src="https://www.youtube.com/embed/GSVyVxrbJJw?autoplay=1&mute=1&rel=0&modestbranding=1&showinfo=0&controls=0&iv_load_policy=3&cc_load_policy=0&disablekb=1&playsinline=1&enablejsapi=1&loop=1&playlist=GSVyVxrbJJw&origin=https://franciscosantelices.com"
-                                frameborder="0" 
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                                allowfullscreen>
-                            </iframe>
+                            <div id="player-GSVyVxrbJJw"></div>
                         </div>
                         <div class="video-info">
                             <h3 class="video-title">Skava</h3>
@@ -230,7 +213,7 @@
                 <!-- Slider Controls -->
                 <div class="slider-controls">
                     <button class="slider-nav slider-prev" id="slider-prev-bottom">‹</button>
-                    <button class="sound-activation-btn" id="sound-activation-btn">ACTIVAR SONIDO</button>
+                    <button class="sound-activation-btn" id="sound-activation-btn" disabled>ACTIVAR SONIDO</button>
                     <button class="slider-nav slider-next" id="slider-next-bottom">›</button>
                 </div>
             </div>
@@ -294,6 +277,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/TextPlugin.min.js"></script>
     <script src="new-portfolio.js"></script>
     <script src="assets/js/lets-create.js"></script>
-    <script src="https://www.youtube.com/iframe_api"></script>
+    
 </body>
 </html>
