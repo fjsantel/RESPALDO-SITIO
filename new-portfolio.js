@@ -691,14 +691,13 @@ class MotionGraphicsSoundController {
     }
 
     updateButtonText() {
-        const soundText = this.soundBtn.querySelector('.sound-text');
-        if (soundText) {
+        if (this.soundBtn) {
             if (this.isMuted) {
-                soundText.textContent = 'VER CON SONIDO';
-                this.soundBtn.classList.remove('sound-enabled');
+                this.soundBtn.textContent = 'ACTIVAR SONIDO';
+                this.soundBtn.classList.remove('active');
             } else {
-                soundText.textContent = 'DESACTIVAR SONIDO';
-                this.soundBtn.classList.add('sound-enabled');
+                this.soundBtn.textContent = 'ACTIVADO';
+                this.soundBtn.classList.add('active');
             }
         }
     }
