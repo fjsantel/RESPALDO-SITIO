@@ -186,25 +186,30 @@
             </div>
 
             <!-- Video Slider -->
-            <div class="video-slider-wrapper">
+            <div class="video-slider-wrapper" style="background: #333; padding: 20px; text-align: center;">
+                <h3 style="color: white; margin-bottom: 20px;">TEST VIDEO - Should be visible</h3>
+                
                 <!-- Video 1 - YouTube Primary ONLY -->
-                <div class="video-container youtube-container active" data-index="0">
-                    <div class="youtube-video-wrapper">
+                <div class="video-container youtube-container active" data-index="0" style="display: block; width: 100%; max-width: 800px; margin: 0 auto; background: #000;">
+                    <div class="youtube-video-wrapper" style="position: relative; width: 100%; height: 0; padding-bottom: 56.25%;">
                         <iframe class="youtube-video" 
-                                src="https://www.youtube.com/embed/L-ejHvF0UJU?start=4&mute=1&autoplay=1&controls=1&modestbranding=1&rel=0" 
+                                src="https://www.youtube.com/embed/L-ejHvF0UJU?start=4&mute=0&autoplay=0&controls=1&modestbranding=1&rel=0" 
                                 frameborder="0" 
                                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
                                 allowfullscreen
-                                width="100%" 
-                                height="315">
+                                style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
                         </iframe>
                     </div>
                 </div>
                 
                 <!-- Combined Controls -->
-                <div class="combined-controls">
-                    <button class="sound-activation-btn" id="sound-activation-btn">ACTIVAR SONIDO</button>
+                <div class="combined-controls" style="margin-top: 20px;">
+                    <button class="sound-activation-btn" id="sound-activation-btn" style="background: #f0b90c; color: #000; border: none; padding: 10px 20px; cursor: pointer;">ACTIVAR SONIDO</button>
                 </div>
+                
+                <p style="color: white; margin-top: 20px; font-size: 14px;">
+                    Si no ves el video arriba, hay un problema con GitHub Pages o restricciones de YouTube.
+                </p>
             </div>
         </section>
 
@@ -292,69 +297,36 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/TextPlugin.min.js"></script>
-    <script src="https://www.youtube.com/iframe_api"></script>
-    <script src="new-portfolio.js"></script>
     <script src="assets/js/lets-create.js"></script>
     
-    <!-- Simple Video Portfolio JavaScript -->
+    <!-- Ultra Simple Test JavaScript -->
     <script>
-    // Simple Video Portfolio - Just one video test
-    class SimpleVideoPortfolio {
-        constructor() {
-            console.log('SimpleVideoPortfolio constructor called - ONE VIDEO TEST');
-            this.container = document.querySelector('#video-portfolio .video-container');
-            this.soundBtn = document.getElementById('sound-activation-btn');
-            this.isMuted = true;
-            console.log('Found container:', !!this.container);
-            console.log('Found sound button:', !!this.soundBtn);
-            this.init();
-        }
-        
-        init() {
-            if (this.soundBtn) {
-                this.soundBtn.addEventListener('click', () => this.toggleSound());
-            }
-            console.log('Simple portfolio initialized');
-        }
-        
-        toggleSound() {
-            this.isMuted = !this.isMuted;
-            console.log(`Sound toggled: ${this.isMuted ? 'muted' : 'unmuted'}`);
-            
-            if (this.container) {
-                const youtubeIframe = this.container.querySelector('.youtube-video');
-                if (youtubeIframe && youtubeIframe.tagName === 'IFRAME') {
-                    // Update iframe src to change mute parameter
-                    let currentSrc = youtubeIframe.src;
-                    const muteParam = this.isMuted ? 'mute=1' : 'mute=0';
-                    
-                    if (currentSrc.includes('mute=')) {
-                        youtubeIframe.src = currentSrc.replace(/mute=[01]/, muteParam);
-                    } else {
-                        youtubeIframe.src = currentSrc + (currentSrc.includes('?') ? '&' : '?') + muteParam;
-                    }
-                }
-            }
-            
-            // Update button text
-            if (this.soundBtn) {
-                if (this.isMuted) {
-                    this.soundBtn.textContent = 'ACTIVAR SONIDO';
-                    this.soundBtn.classList.remove('active');
-                } else {
-                    this.soundBtn.textContent = 'SONIDO ACTIVADO';
-                    this.soundBtn.classList.add('active');
-                }
-            }
-        }
-    }
+    console.log('ULTRA SIMPLE TEST - Page loaded');
     
-    // Simple initialization
     document.addEventListener('DOMContentLoaded', () => {
-        console.log('DOM loaded - initializing simple portfolio');
+        console.log('DOM loaded - setting up minimal test');
+        
+        const iframe = document.querySelector('.youtube-video');
+        const button = document.getElementById('sound-activation-btn');
+        
+        console.log('Found iframe:', !!iframe);
+        console.log('Found button:', !!button);
+        
+        if (iframe) {
+            console.log('Iframe src:', iframe.src);
+        }
+        
+        if (button) {
+            button.addEventListener('click', () => {
+                console.log('Button clicked');
+                button.textContent = button.textContent === 'ACTIVAR SONIDO' ? 'SONIDO ACTIVADO' : 'ACTIVAR SONIDO';
+            });
+        }
+        
+        // Just test that we can see the elements
         setTimeout(() => {
-            window.simpleVideoPortfolio = new SimpleVideoPortfolio();
-        }, 1000);
+            console.log('After 2 seconds - iframe still there:', !!document.querySelector('.youtube-video'));
+        }, 2000);
     });
     </script>
     
