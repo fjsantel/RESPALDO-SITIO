@@ -190,21 +190,36 @@
                 <!-- Video 1 - YouTube Primary -->
                 <div class="video-container youtube-container active" data-index="0">
                     <div class="youtube-video-wrapper">
-                        <div class="youtube-video"></div>
+                        <iframe class="youtube-video" 
+                                src="https://www.youtube.com/embed/L-ejHvF0UJU?start=4&mute=1&autoplay=1&controls=0&modestbranding=1&rel=0" 
+                                frameborder="0" 
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                allowfullscreen>
+                        </iframe>
                     </div>
                 </div>
                 
                 <!-- Video 2 - YouTube Historia para Construir -->
                 <div class="video-container youtube-container" data-index="1" style="display: none;">
                     <div class="youtube-video-wrapper">
-                        <div class="youtube-video"></div>
+                        <iframe class="youtube-video" 
+                                src="https://www.youtube.com/embed/qsw5XT3mZXM?start=6&mute=1&autoplay=0&controls=0&modestbranding=1&rel=0" 
+                                frameborder="0" 
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                allowfullscreen>
+                        </iframe>
                     </div>
                 </div>
                 
                 <!-- Video 3 - YouTube Nuevo -->
                 <div class="video-container youtube-container" data-index="2" style="display: none;">
                     <div class="youtube-video-wrapper">
-                        <div class="youtube-video"></div>
+                        <iframe class="youtube-video" 
+                                src="https://www.youtube.com/embed/Uu5IFm6I554?start=0&mute=1&autoplay=0&controls=0&modestbranding=1&rel=0" 
+                                frameborder="0" 
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                allowfullscreen>
+                        </iframe>
                     </div>
                 </div>
                 
@@ -227,7 +242,12 @@
                 <!-- Video 6 - YouTube -->
                 <div class="video-container youtube-container" data-index="5" style="display: none;">
                     <div class="youtube-video-wrapper">
-                        <div class="youtube-video"></div>
+                        <iframe class="youtube-video" 
+                                src="https://www.youtube.com/embed/kMdRuuU7tjk?start=10&mute=1&autoplay=0&controls=0&modestbranding=1&rel=0" 
+                                frameborder="0" 
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                allowfullscreen>
+                        </iframe>
                     </div>
                 </div>
                 
@@ -537,6 +557,7 @@
         }
         
         showVideo(index) {
+            console.log(`Showing video ${index}`);
             // Hide all containers
             this.containers.forEach((container, i) => {
                 if (i === index) {
@@ -551,31 +572,28 @@
                         video.play().catch(e => console.log('Video autoplay failed:', e));
                     }
                     
-                    // Handle YouTube video with API
-                    const youtubeContainer = container.querySelector('.youtube-video');
-                    if (youtubeContainer && (i === 0 || i === 1 || i === 2 || i === 5)) {
-                        // Check if this is a fallback iframe
-                        if (this.youtubePlayers[i] === 'fallback') {
-                            // Just make sure it's visible, iframe handles itself
-                            console.log(`Video ${i} using fallback iframe`);
-                        } else if (!this.youtubePlayers[i] || typeof this.youtubePlayers[i].getPlayerState !== 'function') {
-                            // Check if player exists and is ready, if not create it
-                            this.createSingleYoutubePlayer(i);
-                        } else {
-                            // Player exists, use it
-                            try {
-                                this.youtubePlayers[i].seekTo(i === 0 ? 4 : (i === 1 ? 6 : (i === 2 ? 0 : (i === 5 ? 10 : 0))));
-                                this.youtubePlayers[i].playVideo();
-                                if (this.isMuted) {
-                                    this.youtubePlayers[i].mute();
-                                } else {
-                                    this.youtubePlayers[i].unMute();
-                                }
-                            } catch (error) {
-                                console.log('YouTube player error, recreating:', error);
-                                this.createSingleYoutubePlayer(i);
-                            }
-                        }
+                    // Handle YouTube video - now with iframes already present
+                    const youtubeIframe = container.querySelector('.youtube-video');
+                    if (youtubeIframe && youtubeIframe.tagName === 'IFRAME') {
+                        console.log(`YouTube iframe found for video ${i}`);
+                        // Update iframe src to trigger reload with proper settings
+                        let baseUrl = youtubeIframe.src.split('?')[0];
+                        let params = [];
+                        
+                        // Add start time
+                        if (i === 0) params.push('start=4');
+                        else if (i === 1) params.push('start=6');
+                        else if (i === 2) params.push('start=0');
+                        else if (i === 5) params.push('start=10');
+                        
+                        // Add other params
+                        params.push(`mute=${this.isMuted ? 1 : 0}`);
+                        params.push('autoplay=1');
+                        params.push('controls=0');
+                        params.push('modestbranding=1');
+                        params.push('rel=0');
+                        
+                        youtubeIframe.src = baseUrl + '?' + params.join('&');
                     }
                 } else {
                     container.style.display = 'none';
@@ -585,13 +603,11 @@
                     const video = container.querySelector('.portfolio-video');
                     if (video) video.pause();
                     
-                    // Pause YouTube video with API
-                    if (this.youtubePlayers[i]) {
-                        try {
-                            this.youtubePlayers[i].pauseVideo();
-                        } catch (error) {
-                            console.log('Error pausing YouTube video:', error);
-                        }
+                    // Stop YouTube iframe by setting autoplay=0
+                    const youtubeIframe = container.querySelector('.youtube-video');
+                    if (youtubeIframe && youtubeIframe.tagName === 'IFRAME') {
+                        let currentSrc = youtubeIframe.src;
+                        youtubeIframe.src = currentSrc.replace('autoplay=1', 'autoplay=0');
                     }
                 }
             });
@@ -610,30 +626,26 @@
         
         toggleSound() {
             this.isMuted = !this.isMuted;
+            console.log(`Sound toggled: ${this.isMuted ? 'muted' : 'unmuted'}`);
             
             // Apply to all regular videos
             this.videos.forEach(video => {
                 video.muted = this.isMuted;
             });
             
-            // Apply to currently active YouTube video using API
-            if (this.youtubePlayers[this.currentIndex]) {
-                // Skip if this is a fallback iframe
-                if (this.youtubePlayers[this.currentIndex] === 'fallback') {
-                    console.log('Cannot control sound on fallback iframe');
-                } else {
-                    try {
-                        if (this.isMuted) {
-                            this.youtubePlayers[this.currentIndex].mute();
-                        } else {
-                            this.youtubePlayers[this.currentIndex].unMute();
-                        }
-                    } catch (error) {
-                        console.log('Error toggling YouTube sound:', error);
-                        // If there's an error, try to recreate the player
-                        if (this.currentIndex === 0 || this.currentIndex === 1 || this.currentIndex === 2 || this.currentIndex === 5) {
-                            this.createSingleYoutubePlayer(this.currentIndex);
-                        }
+            // Apply to currently active YouTube iframe
+            const activeContainer = this.containers[this.currentIndex];
+            if (activeContainer) {
+                const youtubeIframe = activeContainer.querySelector('.youtube-video');
+                if (youtubeIframe && youtubeIframe.tagName === 'IFRAME') {
+                    // Update iframe src to change mute parameter
+                    let currentSrc = youtubeIframe.src;
+                    const muteParam = this.isMuted ? 'mute=1' : 'mute=0';
+                    
+                    if (currentSrc.includes('mute=')) {
+                        youtubeIframe.src = currentSrc.replace(/mute=[01]/, muteParam);
+                    } else {
+                        youtubeIframe.src = currentSrc + (currentSrc.includes('?') ? '&' : '?') + muteParam;
                     }
                 }
             }
