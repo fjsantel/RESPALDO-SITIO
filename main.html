@@ -333,11 +333,15 @@
     // Clean Video Portfolio Manager
     class CleanVideoPortfolio {
         constructor() {
+            console.log('CleanVideoPortfolio constructor called');
             this.containers = document.querySelectorAll('#video-portfolio .video-container');
             this.videos = document.querySelectorAll('#video-portfolio .portfolio-video');
             this.prevBtn = document.getElementById('slider-prev-bottom');
             this.nextBtn = document.getElementById('slider-next-bottom');
             this.soundBtn = document.getElementById('sound-activation-btn');
+            console.log('Found containers:', this.containers.length);
+            console.log('Found videos:', this.videos.length);
+            console.log('Found buttons:', {prev: !!this.prevBtn, next: !!this.nextBtn, sound: !!this.soundBtn});
             this.currentIndex = 0;
             this.isMuted = true;
             this.youtubePlayers = {}; // Store YouTube player instances
@@ -374,11 +378,50 @@
         initYoutubePlayers() {
             // Wait for YouTube API to be ready
             if (typeof YT !== 'undefined' && YT.Player) {
+                console.log('YouTube API available, creating players');
                 this.createYoutubePlayers();
             } else {
-                // If API not ready, wait a bit and try again
-                setTimeout(() => this.initYoutubePlayers(), 1000);
+                console.log('YouTube API not ready, waiting...');
+                // If API not ready, wait a bit and try again, but with limit
+                if (!this.apiRetries) this.apiRetries = 0;
+                if (this.apiRetries < 5) {
+                    this.apiRetries++;
+                    setTimeout(() => this.initYoutubePlayers(), 1000);
+                } else {
+                    console.log('YouTube API failed to load, using fallback iframes');
+                    this.createFallbackIframes();
+                }
             }
+        }
+        
+        createFallbackIframes() {
+            // Create fallback iframes for all YouTube videos
+            [0, 1, 2, 5].forEach(index => {
+                const container = this.containers[index];
+                if (container) {
+                    const youtubeDiv = container.querySelector('.youtube-video');
+                    if (youtubeDiv) {
+                        let videoId, startSeconds = 0;
+                        if (index === 0) {
+                            videoId = 'L-ejHvF0UJU';
+                            startSeconds = 4;
+                        } else if (index === 1) {
+                            videoId = 'qsw5XT3mZXM';
+                            startSeconds = 6;
+                        } else if (index === 2) {
+                            videoId = 'Uu5IFm6I554';
+                            startSeconds = 0;
+                        } else if (index === 5) {
+                            videoId = 'kMdRuuU7tjk';
+                            startSeconds = 10;
+                        }
+                        
+                        if (videoId) {
+                            this.createFallbackIframe(index, videoId);
+                        }
+                    }
+                }
+            });
         }
         
         createYoutubePlayers() {
@@ -610,6 +653,7 @@
     
     // YouTube API ready callback
     function onYouTubeIframeAPIReady() {
+        console.log('YouTube API ready');
         if (document.readyState === 'loading') {
             document.addEventListener('DOMContentLoaded', initializePortfolio);
         } else {
@@ -618,6 +662,7 @@
     }
     
     function initializePortfolio() {
+        console.log('Initializing portfolio with YouTube API');
         setTimeout(() => {
             window.cleanVideoPortfolio = new CleanVideoPortfolio();
         }, 500);
@@ -625,11 +670,31 @@
     
     // Initialize without YouTube API if it takes too long
     document.addEventListener('DOMContentLoaded', () => {
+        console.log('DOM loaded, setting up portfolio initialization');
+        
+        // First attempt - wait for YouTube API
         setTimeout(() => {
             if (!window.cleanVideoPortfolio) {
+                console.log('First initialization attempt');
                 window.cleanVideoPortfolio = new CleanVideoPortfolio();
             }
-        }, 2000);
+        }, 1000);
+        
+        // Second attempt - fallback without YouTube API
+        setTimeout(() => {
+            if (!window.cleanVideoPortfolio) {
+                console.log('Fallback initialization without YouTube API');
+                window.cleanVideoPortfolio = new CleanVideoPortfolio();
+            }
+        }, 3000);
+        
+        // Final attempt - force initialization
+        setTimeout(() => {
+            if (!window.cleanVideoPortfolio) {
+                console.log('Force initialization');
+                window.cleanVideoPortfolio = new CleanVideoPortfolio();
+            }
+        }, 5000);
     });
     </script>
     
