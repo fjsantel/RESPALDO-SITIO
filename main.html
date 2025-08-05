@@ -194,6 +194,13 @@
                     </div>
                 </div>
                 
+                <!-- Video 2 - YouTube Historia para Construir -->
+                <div class="video-container youtube-container" data-index="1" style="display: none;">
+                    <div class="youtube-video-wrapper">
+                        <div class="youtube-video"></div>
+                    </div>
+                </div>
+                
                 <!-- Video 3 -->
                 <div class="video-container" data-index="2" style="display: none;">
                     <video class="portfolio-video" muted playsinline preload="metadata">
@@ -210,12 +217,6 @@
                     </video>
                 </div>
                 
-                <!-- Video 5 - YouTube Historia para Construir -->
-                <div class="video-container youtube-container" data-index="4" style="display: none;">
-                    <div class="youtube-video-wrapper">
-                        <div class="youtube-video"></div>
-                    </div>
-                </div>
                 
                 <!-- Combined Controls -->
                 <div class="combined-controls">
@@ -370,7 +371,7 @@
         createYoutubePlayers() {
             // Create YouTube players for each iframe
             this.containers.forEach((container, index) => {
-                if (index === 0 || index === 4) {
+                if (index === 0 || index === 1) {
                     this.createSingleYoutubePlayer(index);
                 }
             });
@@ -387,9 +388,9 @@
             let videoId, startSeconds = 0;
             if (index === 0) {
                 videoId = 'L-ejHvF0UJU';
-            } else if (index === 4) {
+            } else if (index === 1) {
                 videoId = 'qsw5XT3mZXM';
-                startSeconds = 0;
+                startSeconds = 6;
             }
             
             if (videoId && typeof YT !== 'undefined' && YT.Player) {
@@ -489,7 +490,7 @@
                     
                     // Handle YouTube video with API
                     const youtubeContainer = container.querySelector('.youtube-video');
-                    if (youtubeContainer && (i === 0 || i === 4)) {
+                    if (youtubeContainer && (i === 0 || i === 1)) {
                         // Check if this is a fallback iframe
                         if (this.youtubePlayers[i] === 'fallback') {
                             // Just make sure it's visible, iframe handles itself
@@ -500,7 +501,7 @@
                         } else {
                             // Player exists, use it
                             try {
-                                this.youtubePlayers[i].seekTo(i === 4 ? 0 : 0);
+                                this.youtubePlayers[i].seekTo(i === 1 ? 6 : 0);
                                 this.youtubePlayers[i].playVideo();
                                 if (this.isMuted) {
                                     this.youtubePlayers[i].mute();
@@ -567,7 +568,7 @@
                     } catch (error) {
                         console.log('Error toggling YouTube sound:', error);
                         // If there's an error, try to recreate the player
-                        if (this.currentIndex === 0 || this.currentIndex === 4) {
+                        if (this.currentIndex === 0 || this.currentIndex === 1) {
                             this.createSingleYoutubePlayer(this.currentIndex);
                         }
                     }
