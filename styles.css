@@ -625,6 +625,12 @@ section.seccion-video-principal {
     padding: 6px 12px !important;
     letter-spacing: 0.3px !important;
     border-radius: 0 !important;
+    width: auto !important;
+    height: auto !important;
+    white-space: normal !important;
+    overflow: visible !important;
+    text-overflow: initial !important;
+    line-height: 1.3 !important;
 }
 
 /* BFA 2025 Section */
@@ -632,7 +638,7 @@ section.seccion-video-principal {
     background: var(--black);
     width: 100%;
     padding: 0;
-    margin: 0;
+    margin: 80px 0 0 0;
 }
 
 .bfa-video-container {
@@ -1723,15 +1729,19 @@ section.seccion-video-principal {
 
 .video-slider-wrapper {
     position: relative;
-    max-width: 1200px;
-    margin: 0 auto;
+    width: 100%;
+    margin: 0;
+    padding: 0;
 }
 
 .video-slider {
     position: relative;
     overflow: hidden;
-    border-radius: 12px;
+    border-radius: 0;
     background-color: #1a1a1a;
+    width: 100%;
+    margin: 0;
+    padding: 0;
 }
 
 .video-slide {
@@ -1757,7 +1767,7 @@ section.seccion-video-principal {
     width: 100%;
     height: auto;
     border: none;
-    object-fit: contain;
+    object-fit: cover;
     object-position: center center;
     background-color: var(--black);
 }
@@ -1850,18 +1860,58 @@ section.seccion-video-principal {
     margin-top: 30px;
 }
 
+.combined-controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.combined-controls .slider-nav {
+    position: static;
+    transform: none;
+    left: auto;
+    right: auto;
+    top: auto;
+    width: 40px;
+    height: 40px;
+    font-size: 1.2rem;
+}
+
+.combined-controls .slider-nav:hover {
+    transform: translateY(-2px);
+}
+
+.video-portfolio-container {
+    padding-bottom: 60px;
+    padding-left: 0;
+    padding-right: 0;
+    margin-left: 0;
+    margin-right: 0;
+    width: 100%;
+}
+
 .sound-activation-btn {
     background: none;
     border: 2px solid var(--accent-yellow);
     color: var(--accent-yellow);
-    font-size: 14px;
+    font-size: 12px;
     font-weight: 700;
     cursor: pointer;
     transition: all 0.3s ease;
-    padding: 12px 20px;
+    padding: 10px 15px;
     border-radius: 4px;
     text-transform: uppercase;
     letter-spacing: 1px;
+    width: 160px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .sound-activation-btn:hover {
@@ -1952,7 +2002,7 @@ section.seccion-video-principal {
 }
 
 /* Mobile responsive for YouTube slider */
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 768px) and (min-width: 481px) {
     .youtube-slider-container {
         padding: 2rem 1rem;
     }
@@ -1978,17 +2028,132 @@ section.seccion-video-principal {
     .video-title {
         font-size: 1.2rem;
     }
+    
+    /* Combined controls responsive for tablet */
+    .combined-controls {
+        gap: 15px;
+        margin-top: 25px;
+    }
+    
+    .combined-controls .sound-activation-btn {
+        width: 140px;
+        height: 36px;
+        font-size: 10px;
+        padding: 8px 12px;
+    }
+    
+    .combined-controls .slider-nav {
+        width: 36px;
+        height: 36px;
+        font-size: 1.1rem;
+    }
+    
+    /* Video portfolio full width for tablet */
+    .video-portfolio-container {
+        padding: 0 !important;
+        margin: 0 !important;
+        width: 100vw !important;
+        max-width: none !important;
+        box-sizing: border-box !important;
+        position: relative !important;
+        left: 50% !important;
+        right: 50% !important;
+        margin-left: -50vw !important;
+        margin-right: -50vw !important;
+    }
+    
+    .video-slider-wrapper,
+    .video-slider,
+    .video-container {
+        width: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        max-width: none !important;
+        display: block !important;
+        overflow: visible !important;
+    }
+    
+    .video-slide {
+        display: block !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        position: relative !important;
+    }
+    
+    .video-slide.active {
+        display: block !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+    }
+    
+    .portfolio-video {
+        width: 100% !important;
+        height: auto !important;
+        object-fit: cover !important;
+        max-width: none !important;
+        display: block !important;
+        visibility: visible !important;
+        position: relative !important;
+        z-index: 1 !important;
+    }
+    
+    .video-slider-wrapper {
+        width: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        max-width: none !important;
+    }
+    
+    .video-slider {
+        width: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        border-radius: 0 !important;
+        max-width: none !important;
+    }
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 768px) and (min-width: 321px) {
     .slider-nav {
-        position: static;
-        transform: none;
-        margin: 1rem;
-        display: inline-block;
-        width: 45px;
-        height: 45px;
-        font-size: 1.2rem;
+        position: static !important;
+        transform: none !important;
+        margin: 0 !important;
+        display: inline-block !important;
+        width: 36px !important;
+        height: 36px !important;
+        font-size: 1.1rem !important;
+        left: auto !important;
+        right: auto !important;
+        top: auto !important;
+    }
+    
+    /* Combined controls for this range */
+    .combined-controls {
+        gap: 15px !important;
+        margin-top: 25px !important;
+    }
+    
+    .combined-controls .sound-activation-btn {
+        width: 140px !important;
+        height: 36px !important;
+        font-size: 10px !important;
+        padding: 8px 12px !important;
+    }
+    
+    .combined-controls .slider-nav {
+        width: 36px !important;
+        height: 36px !important;
+        font-size: 1.1rem !important;
+        position: static !important;
+        transform: none !important;
+        left: auto !important;
+        right: auto !important;
+        top: auto !important;
+    }
+    
+    /* Ensure BFA section spacing in mobile */
+    .bfa-video-section {
+        margin-top: 100px !important;
     }
     
     .slider-nav:hover {
@@ -2006,6 +2171,325 @@ section.seccion-video-principal {
     .indicator {
         width: 10px;
         height: 10px;
+    }
+    
+    /* Combined controls responsive for mobile */
+    .combined-controls {
+        gap: 10px;
+        margin-top: 20px;
+        padding: 0 10px;
+    }
+    
+    .combined-controls .sound-activation-btn {
+        width: 120px;
+        height: 32px;
+        font-size: 9px;
+        padding: 6px 10px;
+        letter-spacing: 0.5px;
+    }
+    
+    .combined-controls .slider-nav {
+        width: 32px;
+        height: 32px;
+        font-size: 1rem;
+    }
+    
+    /* Ensure no container limits width in mobile */
+    body, main {
+        padding: 0 !important;
+        margin: 0 !important;
+        width: 100% !important;
+        max-width: none !important;
+        overflow-x: hidden !important;
+    }
+    
+    /* Video portfolio full width for mobile */
+    .video-portfolio-container {
+        padding: 0 !important;
+        margin: 0 !important;
+        width: 100vw !important;
+        max-width: none !important;
+        box-sizing: border-box !important;
+        overflow: hidden !important;
+        position: relative !important;
+        left: 50% !important;
+        right: 50% !important;
+        margin-left: -50vw !important;
+        margin-right: -50vw !important;
+    }
+    
+    .video-slider-wrapper {
+        width: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        max-width: none !important;
+    }
+    
+    .video-slider {
+        width: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        border-radius: 0 !important;
+        max-width: none !important;
+    }
+    
+    .video-container {
+        width: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        max-width: none !important;
+        display: block !important;
+        overflow: visible !important;
+    }
+    
+    .video-slide {
+        display: block !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        position: relative !important;
+    }
+    
+    .video-slide.active {
+        display: block !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+    }
+    
+    .portfolio-video {
+        width: 100% !important;
+        height: auto !important;
+        object-fit: contain !important;
+        max-width: none !important;
+        display: block !important;
+        visibility: visible !important;
+        position: relative !important;
+        z-index: 1 !important;
+        aspect-ratio: 16/9 !important;
+    }
+    
+}
+
+
+/* Force video visibility on all mobile screens */
+@media screen and (max-width: 768px) {
+    .video-portfolio-container .video-slide {
+        display: block !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        min-height: 200px !important;
+    }
+    
+    .video-portfolio-container .portfolio-video {
+        width: 100% !important;
+        height: auto !important;
+        min-height: 200px !important;
+        display: block !important;
+        visibility: visible !important;
+        object-fit: cover !important;
+    }
+}
+
+/* Extra small screens (very narrow) */
+@media screen and (max-width: 320px) {
+    /* Ensure no container limits width in extra small mobile */
+    body, main {
+        padding: 0 !important;
+        margin: 0 !important;
+        width: 100% !important;
+        max-width: none !important;
+        overflow-x: hidden !important;
+    }
+    
+    .video-portfolio-container {
+        padding: 0 !important;
+        margin: 0 !important;
+        width: 100vw !important;
+        min-width: 100vw !important;
+        overflow-x: hidden !important;
+        display: block !important;
+        position: relative !important;
+        left: 50% !important;
+        right: 50% !important;
+        margin-left: -50vw !important;
+        margin-right: -50vw !important;
+    }
+    
+    .video-slider-wrapper,
+    .video-slider,
+    .video-container {
+        width: 100% !important;
+        min-width: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        display: block !important;
+        overflow: visible !important;
+    }
+    
+    .video-slide {
+        display: block !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        position: relative !important;
+    }
+    
+    .video-slide.active {
+        display: block !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+    }
+    
+    .portfolio-video {
+        width: 100% !important;
+        min-width: 100% !important;
+        height: auto !important;
+        object-fit: cover !important;
+        display: block !important;
+        visibility: visible !important;
+        position: relative !important;
+        z-index: 1 !important;
+    }
+    
+    /* Ensure BFA section spacing in extra small mobile */
+    .bfa-video-section {
+        margin-top: 120px !important;
+    }
+    
+}
+
+/* === VIDEO PORTFOLIO SECTION === */
+.video-portfolio-container {
+    background: var(--black);
+    padding: 60px 0;
+    width: 100%;
+}
+
+.video-slider-wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.video-container {
+    width: 100%;
+    background: var(--black);
+    margin-bottom: 20px;
+}
+
+.video-container:not(.active) {
+    display: none !important;
+}
+
+.portfolio-video {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: contain;
+    background: var(--black);
+    min-height: 200px;
+}
+
+.combined-controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.sound-activation-btn {
+    background: none;
+    border: 2px solid var(--accent-yellow);
+    color: var(--accent-yellow);
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    padding: 10px 15px;
+    border-radius: 4px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    width: 160px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sound-activation-btn:hover,
+.sound-activation-btn.active {
+    background: var(--accent-yellow);
+    color: var(--black);
+}
+
+.slider-nav {
+    background: transparent;
+    color: var(--text-primary);
+    border: 1px solid var(--text-secondary);
+    width: 40px;
+    height: 40px;
+    border-radius: 4px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.slider-nav:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+    border-color: var(--text-primary);
+    transform: translateY(-2px);
+}
+
+/* Mobile Styles - FULL WIDTH */
+@media screen and (max-width: 768px) {
+    .video-portfolio-container {
+        padding: 0 !important;
+        width: 100% !important;
+    }
+    
+    .video-slider-wrapper {
+        max-width: none !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        width: 100% !important;
+    }
+    
+    .video-container {
+        width: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+    
+    .portfolio-video {
+        width: 100% !important;
+        height: auto !important;
+        object-fit: contain !important;
+        min-height: 250px !important;
+    }
+    
+    .combined-controls {
+        gap: 15px;
+        margin: 30px auto;
+        padding: 0 20px;
+    }
+    
+    .sound-activation-btn {
+        width: 140px;
+        height: 36px;
+        font-size: 10px;
+        padding: 8px 12px;
+    }
+    
+    .slider-nav {
+        width: 36px;
+        height: 36px;
+        font-size: 1.1rem;
+    }
+    
+    .slider-header {
+        padding: 40px 20px 20px 20px;
     }
 }
 

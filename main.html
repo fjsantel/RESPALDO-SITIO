@@ -187,57 +187,34 @@
 
             <!-- Video Slider -->
             <div class="video-slider-wrapper">
-                
-                <div class="video-slider" id="video-slider">
-                    <div class="video-slide active" data-video-src="Canta_tu_sueno_3xi.mp4" data-title="Canta tu sueño - 3xi" data-description="Proyecto audiovisual desarrollado para 3XI, enfocado en la expresión artística y cultural, promoviendo el desarrollo social y creativo a través de contenido musical y visual.">
-                        <div class="video-container">
-                            <video class="portfolio-video" muted playsinline preload="metadata">
-                                <source src="Canta_tu_sueno_3xi.mp4" type="video/mp4">
-                                Tu navegador no soporta la reproducción de video.
-                            </video>
-                        </div>
-                        <div class="video-info">
-                            <h3 class="video-title">Canta tu sueño - 3xi</h3>
-                            <p class="video-description">Proyecto audiovisual desarrollado para 3XI, enfocado en la expresión artística y cultural, promoviendo el desarrollo social y creativo a través de contenido musical y visual.</p>
-                        </div>
-                    </div>
-
-
-                    <div class="video-slide" data-video-src="SKAVA.mp4" data-title="Skava" data-description="Contenido audiovisual realizado para Skava, empresa líder en ingeniería de obras subterráneas, túneles y soluciones tecnológicas aplicadas a proyectos de minería y construcción.">
-                        <div class="video-container">
-                            <video class="portfolio-video" muted playsinline preload="metadata">
-                                <source src="SKAVA.mp4" type="video/mp4">
-                                Tu navegador no soporta la reproducción de video.
-                            </video>
-                        </div>
-                        <div class="video-info">
-                            <h3 class="video-title">Skava</h3>
-                            <p class="video-description">Contenido audiovisual realizado para Skava, empresa líder en ingeniería de obras subterráneas, túneles y soluciones tecnológicas aplicadas a proyectos de minería y construcción.</p>
-                        </div>
-                    </div>
-
-                    <div class="video-slide" data-video-src="Encuentro_de_la_alianza_FONDO_ALQUIMIA.mp4" data-title="Encuentro de la alianza - Fondo Alquimia" data-description="Registro audiovisual del encuentro de la alianza desarrollado para Fondo Alquimia, proyecto enfocado en el desarrollo cultural y artístico colaborativo.">
-                        <div class="video-container">
-                            <video class="portfolio-video" muted playsinline preload="metadata">
-                                <source src="Encuentro_de_la_alianza_FONDO_ALQUIMIA.mp4" type="video/mp4">
-                                Tu navegador no soporta la reproducción de video.
-                            </video>
-                        </div>
-                        <div class="video-info">
-                            <h3 class="video-title">Encuentro de la alianza - Fondo Alquimia</h3>
-                            <p class="video-description">Registro audiovisual del encuentro de la alianza desarrollado para Fondo Alquimia, proyecto enfocado en el desarrollo cultural y artístico colaborativo.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Sound Control -->
-                <div class="sound-controls">
-                    <button class="sound-activation-btn" id="sound-activation-btn">ACTIVAR SONIDO</button>
+                <!-- Video 1 -->
+                <div class="video-container active" data-index="0">
+                    <video class="portfolio-video" muted playsinline preload="metadata" autoplay>
+                        <source src="Canta_tu_sueno_3xi.mp4" type="video/mp4">
+                        Tu navegador no soporta la reproducción de video.
+                    </video>
                 </div>
                 
-                <!-- Slider Navigation Controls -->
-                <div class="slider-controls">
+                <!-- Video 2 -->
+                <div class="video-container" data-index="1" style="display: none;">
+                    <video class="portfolio-video" muted playsinline preload="metadata">
+                        <source src="SKAVA.mp4" type="video/mp4">
+                        Tu navegador no soporta la reproducción de video.
+                    </video>
+                </div>
+                
+                <!-- Video 3 -->
+                <div class="video-container" data-index="2" style="display: none;">
+                    <video class="portfolio-video" muted playsinline preload="metadata">
+                        <source src="Encuentro_de_la_alianza_FONDO_ALQUIMIA.mp4" type="video/mp4">
+                        Tu navegador no soporta la reproducción de video.
+                    </video>
+                </div>
+                
+                <!-- Combined Controls -->
+                <div class="combined-controls">
                     <button class="slider-nav slider-prev" id="slider-prev-bottom">‹</button>
+                    <button class="sound-activation-btn" id="sound-activation-btn">ACTIVAR SONIDO</button>
                     <button class="slider-nav slider-next" id="slider-next-bottom">›</button>
                 </div>
             </div>
@@ -330,6 +307,106 @@
     <script src="https://www.youtube.com/iframe_api"></script>
     <script src="new-portfolio.js"></script>
     <script src="assets/js/lets-create.js"></script>
+    
+    <!-- Clean Video Portfolio JavaScript -->
+    <script>
+    // Clean Video Portfolio Manager
+    class CleanVideoPortfolio {
+        constructor() {
+            this.containers = document.querySelectorAll('#video-portfolio .video-container');
+            this.videos = document.querySelectorAll('#video-portfolio .portfolio-video');
+            this.prevBtn = document.getElementById('slider-prev-bottom');
+            this.nextBtn = document.getElementById('slider-next-bottom');
+            this.soundBtn = document.getElementById('sound-activation-btn');
+            this.currentIndex = 0;
+            this.isMuted = true;
+            this.init();
+        }
+        
+        init() {
+            // Remove any existing event listeners
+            if (this.prevBtn) {
+                this.prevBtn.removeEventListener('click', this.prevHandler);
+                this.prevHandler = () => this.goToPrevious();
+                this.prevBtn.addEventListener('click', this.prevHandler);
+            }
+            
+            if (this.nextBtn) {
+                this.nextBtn.removeEventListener('click', this.nextHandler);
+                this.nextHandler = () => this.goToNext();
+                this.nextBtn.addEventListener('click', this.nextHandler);
+            }
+            
+            if (this.soundBtn) {
+                this.soundBtn.removeEventListener('click', this.soundHandler);
+                this.soundHandler = () => this.toggleSound();
+                this.soundBtn.addEventListener('click', this.soundHandler);
+            }
+            
+            // Start first video
+            this.showVideo(0);
+        }
+        
+        showVideo(index) {
+            // Hide all containers
+            this.containers.forEach((container, i) => {
+                if (i === index) {
+                    container.style.display = 'block';
+                    container.classList.add('active');
+                    const video = container.querySelector('.portfolio-video');
+                    if (video) {
+                        video.currentTime = 0;
+                        video.muted = this.isMuted;
+                        video.play().catch(e => console.log('Video autoplay failed:', e));
+                    }
+                } else {
+                    container.style.display = 'none';
+                    container.classList.remove('active');
+                    const video = container.querySelector('.portfolio-video');
+                    if (video) video.pause();
+                }
+            });
+            this.currentIndex = index;
+        }
+        
+        goToNext() {
+            const nextIndex = (this.currentIndex + 1) % this.containers.length;
+            this.showVideo(nextIndex);
+        }
+        
+        goToPrevious() {
+            const prevIndex = (this.currentIndex - 1 + this.containers.length) % this.containers.length;
+            this.showVideo(prevIndex);
+        }
+        
+        toggleSound() {
+            this.isMuted = !this.isMuted;
+            
+            // Apply to all videos in our section only
+            this.videos.forEach(video => {
+                video.muted = this.isMuted;
+            });
+            
+            // Update button text
+            if (this.soundBtn) {
+                if (this.isMuted) {
+                    this.soundBtn.textContent = 'ACTIVAR SONIDO';
+                    this.soundBtn.classList.remove('active');
+                } else {
+                    this.soundBtn.textContent = 'SONIDO ACTIVADO';
+                    this.soundBtn.classList.add('active');
+                }
+            }
+        }
+    }
+    
+    // Initialize after a short delay to avoid conflicts
+    document.addEventListener('DOMContentLoaded', () => {
+        setTimeout(() => {
+            window.cleanVideoPortfolio = new CleanVideoPortfolio();
+        }, 500);
+    });
+    </script>
     
 </body>
 </html>
