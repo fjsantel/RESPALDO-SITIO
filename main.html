@@ -187,75 +187,23 @@
 
             <!-- Video Slider -->
             <div class="video-slider-wrapper">
-                <!-- Video 1 - YouTube Primary -->
+                <!-- Video 1 - YouTube Primary ONLY -->
                 <div class="video-container youtube-container active" data-index="0">
                     <div class="youtube-video-wrapper">
                         <iframe class="youtube-video" 
-                                src="https://www.youtube.com/embed/L-ejHvF0UJU?start=4&mute=1&autoplay=1&controls=0&modestbranding=1&rel=0" 
+                                src="https://www.youtube.com/embed/L-ejHvF0UJU?start=4&mute=1&autoplay=1&controls=1&modestbranding=1&rel=0" 
                                 frameborder="0" 
                                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                                allowfullscreen>
-                        </iframe>
-                    </div>
-                </div>
-                
-                <!-- Video 2 - YouTube Historia para Construir -->
-                <div class="video-container youtube-container" data-index="1" style="display: none;">
-                    <div class="youtube-video-wrapper">
-                        <iframe class="youtube-video" 
-                                src="https://www.youtube.com/embed/qsw5XT3mZXM?start=6&mute=1&autoplay=0&controls=0&modestbranding=1&rel=0" 
-                                frameborder="0" 
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                                allowfullscreen>
-                        </iframe>
-                    </div>
-                </div>
-                
-                <!-- Video 3 - YouTube Nuevo -->
-                <div class="video-container youtube-container" data-index="2" style="display: none;">
-                    <div class="youtube-video-wrapper">
-                        <iframe class="youtube-video" 
-                                src="https://www.youtube.com/embed/Uu5IFm6I554?start=0&mute=1&autoplay=0&controls=0&modestbranding=1&rel=0" 
-                                frameborder="0" 
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                                allowfullscreen>
-                        </iframe>
-                    </div>
-                </div>
-                
-                <!-- Video 4 -->
-                <div class="video-container" data-index="3" style="display: none;">
-                    <video class="portfolio-video" muted playsinline preload="metadata">
-                        <source src="Encuentro_de_la_alianza_FONDO_ALQUIMIA.mp4" type="video/mp4">
-                        Tu navegador no soporta la reproducción de video.
-                    </video>
-                </div>
-                
-                <!-- Video 5 -->
-                <div class="video-container" data-index="4" style="display: none;">
-                    <video class="portfolio-video" muted playsinline preload="metadata">
-                        <source src="SKAVA.mp4" type="video/mp4">
-                        Tu navegador no soporta la reproducción de video.
-                    </video>
-                </div>
-                
-                <!-- Video 6 - YouTube -->
-                <div class="video-container youtube-container" data-index="5" style="display: none;">
-                    <div class="youtube-video-wrapper">
-                        <iframe class="youtube-video" 
-                                src="https://www.youtube.com/embed/kMdRuuU7tjk?start=10&mute=1&autoplay=0&controls=0&modestbranding=1&rel=0" 
-                                frameborder="0" 
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                                allowfullscreen>
+                                allowfullscreen
+                                width="100%" 
+                                height="315">
                         </iframe>
                     </div>
                 </div>
                 
                 <!-- Combined Controls -->
                 <div class="combined-controls">
-                    <button class="slider-nav slider-prev" id="slider-prev-bottom">‹</button>
                     <button class="sound-activation-btn" id="sound-activation-btn">ACTIVAR SONIDO</button>
-                    <button class="slider-nav slider-next" id="slider-next-bottom">›</button>
                 </div>
             </div>
         </section>
@@ -348,295 +296,33 @@
     <script src="new-portfolio.js"></script>
     <script src="assets/js/lets-create.js"></script>
     
-    <!-- Clean Video Portfolio JavaScript -->
+    <!-- Simple Video Portfolio JavaScript -->
     <script>
-    // Clean Video Portfolio Manager
-    class CleanVideoPortfolio {
+    // Simple Video Portfolio - Just one video test
+    class SimpleVideoPortfolio {
         constructor() {
-            console.log('CleanVideoPortfolio constructor called');
-            this.containers = document.querySelectorAll('#video-portfolio .video-container');
-            this.videos = document.querySelectorAll('#video-portfolio .portfolio-video');
-            this.prevBtn = document.getElementById('slider-prev-bottom');
-            this.nextBtn = document.getElementById('slider-next-bottom');
+            console.log('SimpleVideoPortfolio constructor called - ONE VIDEO TEST');
+            this.container = document.querySelector('#video-portfolio .video-container');
             this.soundBtn = document.getElementById('sound-activation-btn');
-            console.log('Found containers:', this.containers.length);
-            console.log('Found videos:', this.videos.length);
-            console.log('Found buttons:', {prev: !!this.prevBtn, next: !!this.nextBtn, sound: !!this.soundBtn});
-            this.currentIndex = 0;
             this.isMuted = true;
-            this.youtubePlayers = {}; // Store YouTube player instances
+            console.log('Found container:', !!this.container);
+            console.log('Found sound button:', !!this.soundBtn);
             this.init();
         }
         
         init() {
-            // Remove any existing event listeners
-            if (this.prevBtn) {
-                this.prevBtn.removeEventListener('click', this.prevHandler);
-                this.prevHandler = () => this.goToPrevious();
-                this.prevBtn.addEventListener('click', this.prevHandler);
-            }
-            
-            if (this.nextBtn) {
-                this.nextBtn.removeEventListener('click', this.nextHandler);
-                this.nextHandler = () => this.goToNext();
-                this.nextBtn.addEventListener('click', this.nextHandler);
-            }
-            
             if (this.soundBtn) {
-                this.soundBtn.removeEventListener('click', this.soundHandler);
-                this.soundHandler = () => this.toggleSound();
-                this.soundBtn.addEventListener('click', this.soundHandler);
+                this.soundBtn.addEventListener('click', () => this.toggleSound());
             }
-            
-            // Initialize YouTube players
-            this.initYoutubePlayers();
-            
-            // Start first video
-            this.showVideo(0);
-        }
-        
-        initYoutubePlayers() {
-            // Wait for YouTube API to be ready
-            if (typeof YT !== 'undefined' && YT.Player) {
-                console.log('YouTube API available, creating players');
-                this.createYoutubePlayers();
-            } else {
-                console.log('YouTube API not ready, waiting...');
-                // If API not ready, wait a bit and try again, but with limit
-                if (!this.apiRetries) this.apiRetries = 0;
-                if (this.apiRetries < 5) {
-                    this.apiRetries++;
-                    setTimeout(() => this.initYoutubePlayers(), 1000);
-                } else {
-                    console.log('YouTube API failed to load, using fallback iframes');
-                    this.createFallbackIframes();
-                }
-            }
-        }
-        
-        createFallbackIframes() {
-            // Create fallback iframes for all YouTube videos
-            [0, 1, 2, 5].forEach(index => {
-                const container = this.containers[index];
-                if (container) {
-                    const youtubeDiv = container.querySelector('.youtube-video');
-                    if (youtubeDiv) {
-                        let videoId, startSeconds = 0;
-                        if (index === 0) {
-                            videoId = 'L-ejHvF0UJU';
-                            startSeconds = 4;
-                        } else if (index === 1) {
-                            videoId = 'qsw5XT3mZXM';
-                            startSeconds = 6;
-                        } else if (index === 2) {
-                            videoId = 'Uu5IFm6I554';
-                            startSeconds = 0;
-                        } else if (index === 5) {
-                            videoId = 'kMdRuuU7tjk';
-                            startSeconds = 10;
-                        }
-                        
-                        if (videoId) {
-                            this.createFallbackIframe(index, videoId);
-                        }
-                    }
-                }
-            });
-        }
-        
-        createYoutubePlayers() {
-            // Create YouTube players for each iframe
-            this.containers.forEach((container, index) => {
-                if (index === 0 || index === 1 || index === 2 || index === 5) {
-                    this.createSingleYoutubePlayer(index);
-                }
-            });
-        }
-        
-        createSingleYoutubePlayer(index) {
-            const container = this.containers[index];
-            const youtubeDiv = container.querySelector('.youtube-video');
-            if (!youtubeDiv) return;
-            
-            const playerId = `youtube-player-${index}`;
-            youtubeDiv.id = playerId;
-            
-            let videoId, startSeconds = 0;
-            if (index === 0) {
-                videoId = 'L-ejHvF0UJU';
-                startSeconds = 4;
-            } else if (index === 1) {
-                videoId = 'qsw5XT3mZXM';
-                startSeconds = 6;
-            } else if (index === 2) {
-                videoId = 'Uu5IFm6I554';
-                startSeconds = 0;
-            } else if (index === 5) {
-                videoId = 'kMdRuuU7tjk';
-                startSeconds = 10;
-            }
-            
-            if (videoId && typeof YT !== 'undefined' && YT.Player) {
-                // Clear existing player if any
-                if (this.youtubePlayers[index]) {
-                    try {
-                        this.youtubePlayers[index].destroy();
-                    } catch (e) {
-                        console.log('Error destroying previous player:', e);
-                    }
-                }
-                
-                this.youtubePlayers[index] = new YT.Player(playerId, {
-                    height: '100%',
-                    width: '100%',
-                    videoId: videoId,
-                    playerVars: {
-                        start: startSeconds,
-                        mute: this.isMuted ? 1 : 0,
-                        autoplay: index === this.currentIndex ? 1 : 0,
-                        controls: 0,
-                        modestbranding: 1,
-                        rel: 0,
-                        enablejsapi: 1
-                    },
-                    events: {
-                        'onReady': (event) => {
-                            console.log(`YouTube player ${index} ready`);
-                            // Player is ready, start playing if this is the current video
-                            if (index === this.currentIndex) {
-                                event.target.seekTo(startSeconds);
-                                event.target.playVideo();
-                                if (this.isMuted) {
-                                    event.target.mute();
-                                }
-                            }
-                        },
-                        'onError': (event) => {
-                            console.log(`YouTube player ${index} error:`, event.data);
-                            // Common error codes:
-                            // 2 – The request contains an invalid parameter value.
-                            // 5 – The requested content cannot be played in an HTML5 player.
-                            // 100 – The video requested was not found.
-                            // 101 – The owner of the requested video does not allow it to be played in embedded players.
-                            // 150 – This error is the same as 101. It's just a 101 error in disguise!
-                            
-                            // If player fails, try fallback iframe
-                            if (event.data === 101 || event.data === 150) {
-                                console.log(`Video ${index} cannot be embedded, trying fallback iframe`);
-                                this.createFallbackIframe(index, videoId);
-                            }
-                        },
-                        'onStateChange': (event) => {
-                            console.log(`YouTube player ${index} state changed:`, event.data);
-                        }
-                    }
-                });
-            }
-        }
-        
-        createFallbackIframe(index, videoId) {
-            const container = this.containers[index];
-            const youtubeDiv = container.querySelector('.youtube-video');
-            if (!youtubeDiv) return;
-            
-            // Clear the div and create a traditional iframe
-            youtubeDiv.innerHTML = '';
-            const iframe = document.createElement('iframe');
-            iframe.className = 'youtube-video';
-            iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=${this.isMuted ? 1 : 0}&controls=1&modestbranding=1&rel=0`;
-            iframe.width = '100%';
-            iframe.height = '100%';
-            iframe.frameBorder = '0';
-            iframe.allowFullscreen = true;
-            iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
-            
-            youtubeDiv.appendChild(iframe);
-            
-            // Mark this as fallback so we don't try to use API methods
-            this.youtubePlayers[index] = 'fallback';
-        }
-        
-        showVideo(index) {
-            console.log(`Showing video ${index}`);
-            // Hide all containers
-            this.containers.forEach((container, i) => {
-                if (i === index) {
-                    container.style.display = 'block';
-                    container.classList.add('active');
-                    
-                    // Handle regular video
-                    const video = container.querySelector('.portfolio-video');
-                    if (video) {
-                        video.currentTime = 0;
-                        video.muted = this.isMuted;
-                        video.play().catch(e => console.log('Video autoplay failed:', e));
-                    }
-                    
-                    // Handle YouTube video - now with iframes already present
-                    const youtubeIframe = container.querySelector('.youtube-video');
-                    if (youtubeIframe && youtubeIframe.tagName === 'IFRAME') {
-                        console.log(`YouTube iframe found for video ${i}`);
-                        // Update iframe src to trigger reload with proper settings
-                        let baseUrl = youtubeIframe.src.split('?')[0];
-                        let params = [];
-                        
-                        // Add start time
-                        if (i === 0) params.push('start=4');
-                        else if (i === 1) params.push('start=6');
-                        else if (i === 2) params.push('start=0');
-                        else if (i === 5) params.push('start=10');
-                        
-                        // Add other params
-                        params.push(`mute=${this.isMuted ? 1 : 0}`);
-                        params.push('autoplay=1');
-                        params.push('controls=0');
-                        params.push('modestbranding=1');
-                        params.push('rel=0');
-                        
-                        youtubeIframe.src = baseUrl + '?' + params.join('&');
-                    }
-                } else {
-                    container.style.display = 'none';
-                    container.classList.remove('active');
-                    
-                    // Pause regular video
-                    const video = container.querySelector('.portfolio-video');
-                    if (video) video.pause();
-                    
-                    // Stop YouTube iframe by setting autoplay=0
-                    const youtubeIframe = container.querySelector('.youtube-video');
-                    if (youtubeIframe && youtubeIframe.tagName === 'IFRAME') {
-                        let currentSrc = youtubeIframe.src;
-                        youtubeIframe.src = currentSrc.replace('autoplay=1', 'autoplay=0');
-                    }
-                }
-            });
-            this.currentIndex = index;
-        }
-        
-        goToNext() {
-            const nextIndex = (this.currentIndex + 1) % this.containers.length;
-            this.showVideo(nextIndex);
-        }
-        
-        goToPrevious() {
-            const prevIndex = (this.currentIndex - 1 + this.containers.length) % this.containers.length;
-            this.showVideo(prevIndex);
+            console.log('Simple portfolio initialized');
         }
         
         toggleSound() {
             this.isMuted = !this.isMuted;
             console.log(`Sound toggled: ${this.isMuted ? 'muted' : 'unmuted'}`);
             
-            // Apply to all regular videos
-            this.videos.forEach(video => {
-                video.muted = this.isMuted;
-            });
-            
-            // Apply to currently active YouTube iframe
-            const activeContainer = this.containers[this.currentIndex];
-            if (activeContainer) {
-                const youtubeIframe = activeContainer.querySelector('.youtube-video');
+            if (this.container) {
+                const youtubeIframe = this.container.querySelector('.youtube-video');
                 if (youtubeIframe && youtubeIframe.tagName === 'IFRAME') {
                     // Update iframe src to change mute parameter
                     let currentSrc = youtubeIframe.src;
@@ -663,50 +349,12 @@
         }
     }
     
-    // YouTube API ready callback
-    function onYouTubeIframeAPIReady() {
-        console.log('YouTube API ready');
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', initializePortfolio);
-        } else {
-            initializePortfolio();
-        }
-    }
-    
-    function initializePortfolio() {
-        console.log('Initializing portfolio with YouTube API');
-        setTimeout(() => {
-            window.cleanVideoPortfolio = new CleanVideoPortfolio();
-        }, 500);
-    }
-    
-    // Initialize without YouTube API if it takes too long
+    // Simple initialization
     document.addEventListener('DOMContentLoaded', () => {
-        console.log('DOM loaded, setting up portfolio initialization');
-        
-        // First attempt - wait for YouTube API
+        console.log('DOM loaded - initializing simple portfolio');
         setTimeout(() => {
-            if (!window.cleanVideoPortfolio) {
-                console.log('First initialization attempt');
-                window.cleanVideoPortfolio = new CleanVideoPortfolio();
-            }
+            window.simpleVideoPortfolio = new SimpleVideoPortfolio();
         }, 1000);
-        
-        // Second attempt - fallback without YouTube API
-        setTimeout(() => {
-            if (!window.cleanVideoPortfolio) {
-                console.log('Fallback initialization without YouTube API');
-                window.cleanVideoPortfolio = new CleanVideoPortfolio();
-            }
-        }, 3000);
-        
-        // Final attempt - force initialization
-        setTimeout(() => {
-            if (!window.cleanVideoPortfolio) {
-                console.log('Force initialization');
-                window.cleanVideoPortfolio = new CleanVideoPortfolio();
-            }
-        }, 5000);
     });
     </script>
     
