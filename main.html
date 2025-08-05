@@ -370,35 +370,65 @@
         createYoutubePlayers() {
             // Create YouTube players for each iframe
             this.containers.forEach((container, index) => {
-                const iframe = container.querySelector('.youtube-video');
-                if (iframe) {
-                    const playerId = `youtube-player-${index}`;
-                    iframe.id = playerId;
-                    
-                    let videoId, startSeconds = 0;
-                    if (index === 0) {
-                        videoId = 'L-ejHvF0UJU';
-                    } else if (index === 4) {
-                        videoId = 'qsw5XT3mZXM';
-                        startSeconds = 2;
-                    }
-                    
-                    if (videoId) {
-                        this.youtubePlayers[index] = new YT.Player(playerId, {
-                            videoId: videoId,
-                            playerVars: {
-                                start: startSeconds,
-                                mute: this.isMuted ? 1 : 0,
-                                autoplay: index === 0 ? 1 : 0,
-                                controls: 0,
-                                modestbranding: 1,
-                                rel: 0,
-                                enablejsapi: 1
-                            }
-                        });
-                    }
+                if (index === 0 || index === 4) {
+                    this.createSingleYoutubePlayer(index);
                 }
             });
+        }
+        
+        createSingleYoutubePlayer(index) {
+            const container = this.containers[index];
+            const youtubeDiv = container.querySelector('.youtube-video');
+            if (!youtubeDiv) return;
+            
+            const playerId = `youtube-player-${index}`;
+            youtubeDiv.id = playerId;
+            
+            let videoId, startSeconds = 0;
+            if (index === 0) {
+                videoId = 'L-ejHvF0UJU';
+            } else if (index === 4) {
+                videoId = 'qsw5XT3mZXM';
+                startSeconds = 2;
+            }
+            
+            if (videoId && typeof YT !== 'undefined' && YT.Player) {
+                // Clear existing player if any
+                if (this.youtubePlayers[index]) {
+                    try {
+                        this.youtubePlayers[index].destroy();
+                    } catch (e) {
+                        console.log('Error destroying previous player:', e);
+                    }
+                }
+                
+                this.youtubePlayers[index] = new YT.Player(playerId, {
+                    height: '100%',
+                    width: '100%',
+                    videoId: videoId,
+                    playerVars: {
+                        start: startSeconds,
+                        mute: this.isMuted ? 1 : 0,
+                        autoplay: index === this.currentIndex ? 1 : 0,
+                        controls: 0,
+                        modestbranding: 1,
+                        rel: 0,
+                        enablejsapi: 1
+                    },
+                    events: {
+                        'onReady': (event) => {
+                            // Player is ready, start playing if this is the current video
+                            if (index === this.currentIndex) {
+                                event.target.seekTo(startSeconds);
+                                event.target.playVideo();
+                                if (this.isMuted) {
+                                    event.target.mute();
+                                }
+                            }
+                        }
+                    }
+                });
+            }
         }
         
         showVideo(index) {
@@ -417,13 +447,25 @@
                     }
                     
                     // Handle YouTube video with API
-                    if (this.youtubePlayers[i]) {
-                        this.youtubePlayers[i].seekTo(i === 4 ? 2 : 0); // Start from beginning or 2s for second video
-                        this.youtubePlayers[i].playVideo();
-                        if (this.isMuted) {
-                            this.youtubePlayers[i].mute();
+                    const youtubeContainer = container.querySelector('.youtube-video');
+                    if (youtubeContainer && (i === 0 || i === 4)) {
+                        // Check if player exists and is ready, if not create it
+                        if (!this.youtubePlayers[i] || typeof this.youtubePlayers[i].getPlayerState !== 'function') {
+                            this.createSingleYoutubePlayer(i);
                         } else {
-                            this.youtubePlayers[i].unMute();
+                            // Player exists, use it
+                            try {
+                                this.youtubePlayers[i].seekTo(i === 4 ? 2 : 0);
+                                this.youtubePlayers[i].playVideo();
+                                if (this.isMuted) {
+                                    this.youtubePlayers[i].mute();
+                                } else {
+                                    this.youtubePlayers[i].unMute();
+                                }
+                            } catch (error) {
+                                console.log('YouTube player error, recreating:', error);
+                                this.createSingleYoutubePlayer(i);
+                            }
                         }
                     }
                 } else {
@@ -436,7 +478,11 @@
                     
                     // Pause YouTube video with API
                     if (this.youtubePlayers[i]) {
-                        this.youtubePlayers[i].pauseVideo();
+                        try {
+                            this.youtubePlayers[i].pauseVideo();
+                        } catch (error) {
+                            console.log('Error pausing YouTube video:', error);
+                        }
                     }
                 }
             });
@@ -463,10 +509,18 @@
             
             // Apply to currently active YouTube video using API
             if (this.youtubePlayers[this.currentIndex]) {
-                if (this.isMuted) {
-                    this.youtubePlayers[this.currentIndex].mute();
-                } else {
-                    this.youtubePlayers[this.currentIndex].unMute();
+                try {
+                    if (this.isMuted) {
+                        this.youtubePlayers[this.currentIndex].mute();
+                    } else {
+                        this.youtubePlayers[this.currentIndex].unMute();
+                    }
+                } catch (error) {
+                    console.log('Error toggling YouTube sound:', error);
+                    // If there's an error, try to recreate the player
+                    if (this.currentIndex === 0 || this.currentIndex === 4) {
+                        this.createSingleYoutubePlayer(this.currentIndex);
+                    }
                 }
             }
             
