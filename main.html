@@ -301,61 +301,14 @@
     <script src="new-portfolio.js"></script>
     <script src="assets/js/lets-create.js"></script>
     
-    <!-- Optimized Single Video JavaScript -->
+    <!-- Simple Direct Sound Control -->
     <script>
-    let player;
     let isMuted = true;
+    let currentTime = 5; // Track current playback time
     
-    // YouTube API ready callback
-    function onYouTubeIframeAPIReady() {
-        console.log('YouTube API ready - creating player');
-        
-        player = new YT.Player('youtube-player', {
-            height: '100%',
-            width: '100%',
-            videoId: 'L-ejHvF0UJU',
-            playerVars: {
-                'start': 5,
-                'autoplay': 1,
-                'loop': 1,
-                'playlist': 'L-ejHvF0UJU',
-                'controls': 0,
-                'modestbranding': 1,
-                'rel': 0,
-                'showinfo': 0,
-                'fs': 0,
-                'mute': 1
-            },
-            events: {
-                'onReady': function(event) {
-                    console.log('Player ready - starting video');
-                    event.target.seekTo(5);
-                    event.target.playVideo();
-                    // Small delay to ensure player is fully ready
-                    setTimeout(() => {
-                        console.log('Player fully ready for sound control');
-                    }, 500);
-                },
-                'onStateChange': function(event) {
-                    // Ensure loop works
-                    if (event.data === YT.PlayerState.ENDED) {
-                        event.target.seekTo(5);
-                        event.target.playVideo();
-                    }
-                }
-            }
-        });
-    }
-    
-    // Setup sound button
+    // Setup sound button with direct iframe manipulation
     document.addEventListener('DOMContentLoaded', () => {
-        console.log('DOM loaded - setting up sound control');
-        
-        // Give the iframe an ID for the API
-        const iframe = document.querySelector('.youtube-video');
-        if (iframe) {
-            iframe.id = 'youtube-player';
-        }
+        console.log('DOM loaded - setting up direct sound control');
         
         // Add hover effects for custom cursor
         const videoContainer = document.querySelector('.video-container');
@@ -369,46 +322,46 @@
         }
         
         const button = document.getElementById('sound-activation-btn');
-        if (button) {
-            // Remove any existing event listeners
-            button.replaceWith(button.cloneNode(true));
-            const newButton = document.getElementById('sound-activation-btn');
+        const iframe = document.querySelector('.youtube-video');
+        
+        if (button && iframe) {
+            console.log('Setting up direct sound control');
             
-            newButton.addEventListener('click', (e) => {
+            button.addEventListener('click', (e) => {
                 e.preventDefault();
                 e.stopPropagation();
-                console.log('Sound button clicked - custom handler');
+                console.log('Sound button clicked - direct method');
                 
-                if (player && typeof player.isMuted === 'function') {
-                    try {
-                        if (isMuted) {
-                            player.unMute();
-                            newButton.textContent = 'SONIDO ACTIVADO';
-                            newButton.style.background = '#4CAF50';
-                            isMuted = false;
-                            console.log('Video unmuted via API');
-                        } else {
-                            player.mute();
-                            newButton.textContent = 'ACTIVAR SONIDO';
-                            newButton.style.background = '#f0b90c';
-                            isMuted = true;
-                            console.log('Video muted via API');
-                        }
-                    } catch (error) {
-                        console.error('Error controlling sound:', error);
-                    }
+                // Toggle muted state
+                isMuted = !isMuted;
+                
+                // Get current iframe src
+                const currentSrc = iframe.src;
+                let newSrc;
+                
+                if (isMuted) {
+                    // Switch to muted
+                    newSrc = currentSrc.replace('mute=0', 'mute=1');
+                    button.textContent = 'ACTIVAR SONIDO';
+                    button.style.background = '#f0b90c';
+                    console.log('Video muted - iframe reloaded');
                 } else {
-                    console.log('Player not ready yet, waiting...');
-                    // Try again in a moment
-                    setTimeout(() => {
-                        if (player && typeof player.isMuted === 'function') {
-                            newButton.click();
-                        }
-                    }, 1000);
+                    // Switch to unmuted
+                    newSrc = currentSrc.replace('mute=1', 'mute=0');
+                    button.textContent = 'SONIDO ACTIVADO';
+                    button.style.background = '#4CAF50';
+                    console.log('Video unmuted - iframe reloaded');
                 }
+                
+                // Update iframe src to trigger reload with new sound setting
+                iframe.src = newSrc;
+                
+                console.log('New iframe src:', newSrc);
             });
             
-            console.log('Sound button handler attached');
+            console.log('Direct sound button handler attached');
+        } else {
+            console.log('Button or iframe not found');
         }
     });
     </script>
