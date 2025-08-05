@@ -190,12 +190,7 @@
                 <!-- Video 1 - YouTube Primary -->
                 <div class="video-container youtube-container active" data-index="0">
                     <div class="youtube-video-wrapper">
-                        <iframe class="youtube-video" 
-                                src="https://www.youtube.com/embed/L-ejHvF0UJU?enablejsapi=1&mute=1&autoplay=1&controls=0&modestbranding=1&rel=0" 
-                                frameborder="0" 
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                                allowfullscreen>
-                        </iframe>
+                        <div class="youtube-video"></div>
                     </div>
                 </div>
                 
@@ -218,12 +213,7 @@
                 <!-- Video 5 - YouTube Historia para Construir -->
                 <div class="video-container youtube-container" data-index="4" style="display: none;">
                     <div class="youtube-video-wrapper">
-                        <iframe class="youtube-video" 
-                                src="https://www.youtube.com/embed/qsw5XT3mZXM?enablejsapi=1&start=2&mute=1&autoplay=0&controls=0&modestbranding=1&rel=0" 
-                                frameborder="0" 
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                                allowfullscreen>
-                        </iframe>
+                        <div class="youtube-video"></div>
                     </div>
                 </div>
                 
@@ -336,6 +326,7 @@
             this.soundBtn = document.getElementById('sound-activation-btn');
             this.currentIndex = 0;
             this.isMuted = true;
+            this.youtubePlayers = {}; // Store YouTube player instances
             this.init();
         }
         
@@ -359,8 +350,55 @@
                 this.soundBtn.addEventListener('click', this.soundHandler);
             }
             
+            // Initialize YouTube players
+            this.initYoutubePlayers();
+            
             // Start first video
             this.showVideo(0);
+        }
+        
+        initYoutubePlayers() {
+            // Wait for YouTube API to be ready
+            if (typeof YT !== 'undefined' && YT.Player) {
+                this.createYoutubePlayers();
+            } else {
+                // If API not ready, wait a bit and try again
+                setTimeout(() => this.initYoutubePlayers(), 1000);
+            }
+        }
+        
+        createYoutubePlayers() {
+            // Create YouTube players for each iframe
+            this.containers.forEach((container, index) => {
+                const iframe = container.querySelector('.youtube-video');
+                if (iframe) {
+                    const playerId = `youtube-player-${index}`;
+                    iframe.id = playerId;
+                    
+                    let videoId, startSeconds = 0;
+                    if (index === 0) {
+                        videoId = 'L-ejHvF0UJU';
+                    } else if (index === 4) {
+                        videoId = 'qsw5XT3mZXM';
+                        startSeconds = 2;
+                    }
+                    
+                    if (videoId) {
+                        this.youtubePlayers[index] = new YT.Player(playerId, {
+                            videoId: videoId,
+                            playerVars: {
+                                start: startSeconds,
+                                mute: this.isMuted ? 1 : 0,
+                                autoplay: index === 0 ? 1 : 0,
+                                controls: 0,
+                                modestbranding: 1,
+                                rel: 0,
+                                enablejsapi: 1
+                            }
+                        });
+                    }
+                }
+            });
         }
         
         showVideo(index) {
@@ -378,20 +416,15 @@
                         video.play().catch(e => console.log('Video autoplay failed:', e));
                     }
                     
-                    // Handle YouTube video
-                    const youtubeVideo = container.querySelector('.youtube-video');
-                    if (youtubeVideo) {
-                        let baseUrl;
-                        // Determine which YouTube video based on index
-                        if (i === 0) {
-                            baseUrl = 'https://www.youtube.com/embed/L-ejHvF0UJU?enablejsapi=1';
-                        } else if (i === 4) {
-                            baseUrl = 'https://www.youtube.com/embed/qsw5XT3mZXM?enablejsapi=1&start=2';
+                    // Handle YouTube video with API
+                    if (this.youtubePlayers[i]) {
+                        this.youtubePlayers[i].seekTo(i === 4 ? 2 : 0); // Start from beginning or 2s for second video
+                        this.youtubePlayers[i].playVideo();
+                        if (this.isMuted) {
+                            this.youtubePlayers[i].mute();
+                        } else {
+                            this.youtubePlayers[i].unMute();
                         }
-                        
-                        const muteParam = this.isMuted ? '&mute=1' : '&mute=0';
-                        const autoplayParam = '&autoplay=1&controls=0&modestbranding=1&rel=0';
-                        youtubeVideo.src = baseUrl + muteParam + autoplayParam;
                     }
                 } else {
                     container.style.display = 'none';
@@ -401,22 +434,9 @@
                     const video = container.querySelector('.portfolio-video');
                     if (video) video.pause();
                     
-                    // Stop YouTube video
-                    const youtubeVideo = container.querySelector('.youtube-video');
-                    if (youtubeVideo) {
-                        let baseUrl;
-                        // Determine which YouTube video to stop based on index
-                        if (i === 0) {
-                            baseUrl = 'https://www.youtube.com/embed/L-ejHvF0UJU?enablejsapi=1';
-                        } else if (i === 4) {
-                            baseUrl = 'https://www.youtube.com/embed/qsw5XT3mZXM?enablejsapi=1&start=2';
-                        }
-                        
-                        if (baseUrl) {
-                            const muteParam = this.isMuted ? '&mute=1' : '&mute=0';
-                            const stopParam = '&autoplay=0&controls=0&modestbranding=1&rel=0';
-                            youtubeVideo.src = baseUrl + muteParam + stopParam;
-                        }
+                    // Pause YouTube video with API
+                    if (this.youtubePlayers[i]) {
+                        this.youtubePlayers[i].pauseVideo();
                     }
                 }
             });
@@ -436,29 +456,17 @@
         toggleSound() {
             this.isMuted = !this.isMuted;
             
-            // Apply to all videos in our section only
+            // Apply to all regular videos
             this.videos.forEach(video => {
                 video.muted = this.isMuted;
             });
             
-            // Update YouTube video if it's currently active
-            const activeContainer = this.containers[this.currentIndex];
-            if (activeContainer) {
-                const youtubeVideo = activeContainer.querySelector('.youtube-video');
-                if (youtubeVideo) {
-                    let baseUrl;
-                    // Determine which YouTube video based on current index
-                    if (this.currentIndex === 0) {
-                        baseUrl = 'https://www.youtube.com/embed/L-ejHvF0UJU?enablejsapi=1';
-                    } else if (this.currentIndex === 4) {
-                        baseUrl = 'https://www.youtube.com/embed/qsw5XT3mZXM?enablejsapi=1&start=2';
-                    }
-                    
-                    if (baseUrl) {
-                        const muteParam = this.isMuted ? '&mute=1' : '&mute=0';
-                        const autoplayParam = '&autoplay=1&controls=0&modestbranding=1&rel=0';
-                        youtubeVideo.src = baseUrl + muteParam + autoplayParam;
-                    }
+            // Apply to currently active YouTube video using API
+            if (this.youtubePlayers[this.currentIndex]) {
+                if (this.isMuted) {
+                    this.youtubePlayers[this.currentIndex].mute();
+                } else {
+                    this.youtubePlayers[this.currentIndex].unMute();
                 }
             }
             
@@ -475,11 +483,28 @@
         }
     }
     
-    // Initialize after a short delay to avoid conflicts
-    document.addEventListener('DOMContentLoaded', () => {
+    // YouTube API ready callback
+    function onYouTubeIframeAPIReady() {
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initializePortfolio);
+        } else {
+            initializePortfolio();
+        }
+    }
+    
+    function initializePortfolio() {
         setTimeout(() => {
             window.cleanVideoPortfolio = new CleanVideoPortfolio();
         }, 500);
+    }
+    
+    // Initialize without YouTube API if it takes too long
+    document.addEventListener('DOMContentLoaded', () => {
+        setTimeout(() => {
+            if (!window.cleanVideoPortfolio) {
+                window.cleanVideoPortfolio = new CleanVideoPortfolio();
+            }
+        }, 2000);
     });
     </script>
     
