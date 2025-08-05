@@ -639,7 +639,7 @@ class VideoPortfolioManager {
             this.soundBtn.textContent = 'ACTIVAR SONIDO';
             this.soundBtn.classList.remove('active');
         } else {
-            this.soundBtn.textContent = 'ACTIVADO';
+            this.soundBtn.textContent = 'SONIDO ACTIVADO';
             this.soundBtn.classList.add('active');
         }
     }
