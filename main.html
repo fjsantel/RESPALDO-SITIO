@@ -175,41 +175,23 @@
             </div>
         </section>
 
-        <!-- VIDEO PORTFOLIO SECTION - Updated for GitHub Pages -->
-        <section class="video-portfolio-container" id="video-portfolio">
-            <!-- Slider Header -->
-            <div class="slider-header">
-                <h2 class="slider-title">PORTFOLIO AUDIOVISUAL</h2>
-                <p class="slider-subtitle">
-                    Proyectos destacados de contenido audiovisual y documental
-                </p>
+        <!-- VIDEO BLOCK - Full Width Only -->
+        <section class="video-block" style="width: 100vw; margin: 0; padding: 0; background: #000;">
+            <div class="video-container youtube-container active" style="width: 100vw; height: 56.25vw; max-height: 100vh; position: relative; background: #000;">
+                <iframe id="youtube-player" class="youtube-video" 
+                        src="https://www.youtube.com/embed/L-ejHvF0UJU?start=5&mute=1&autoplay=1&loop=1&playlist=L-ejHvF0UJU&controls=0&modestbranding=1&rel=0&showinfo=0&fs=0&enablejsapi=1" 
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen
+                        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;">
+                </iframe>
             </div>
+        </section>
 
-            <!-- Video Slider -->
-            <div class="video-slider-wrapper" style="background: #333; padding: 20px; text-align: center;">
-                <h3 style="color: white; margin-bottom: 20px;">VIDEO OPTIMIZADO - Inicia en 5s, Loop, Sin reinicio</h3>
-                
-                <!-- Video 1 - YouTube Primary ONLY -->
-                <div class="video-container youtube-container active" data-index="0" style="display: block; width: 100%; max-width: 800px; margin: 0 auto; background: #000;">
-                    <div class="youtube-video-wrapper" style="position: relative; width: 100%; height: 0; padding-bottom: 56.25%;">
-                        <iframe class="youtube-video" 
-                                src="https://www.youtube.com/embed/L-ejHvF0UJU?start=5&mute=1&autoplay=1&loop=1&playlist=L-ejHvF0UJU&controls=0&modestbranding=1&rel=0&showinfo=0&fs=0" 
-                                frameborder="0" 
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                                allowfullscreen
-                                style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
-                        </iframe>
-                    </div>
-                </div>
-                
-                <!-- Combined Controls -->
-                <div class="combined-controls" style="margin-top: 20px;">
-                    <button class="sound-activation-btn" id="sound-activation-btn" style="background: #f0b90c; color: #000; border: none; padding: 10px 20px; cursor: pointer;">ACTIVAR SONIDO</button>
-                </div>
-                
-                <p style="color: white; margin-top: 20px; font-size: 14px;">
-                    Si no ves el video arriba, hay un problema con GitHub Pages o restricciones de YouTube.
-                </p>
+        <!-- CONTROLS BLOCK - Small Centered Container -->
+        <section class="controls-block" id="video-portfolio" style="background: #0D1117; padding: 20px; display: flex; justify-content: center;">
+            <div class="controls-container" style="background: #0D1117; padding: 15px 30px; border-radius: 8px; display: inline-block;">
+                <button class="sound-activation-btn" id="sound-activation-btn" style="background: #f0b90c; color: #000; border: none; padding: 15px 35px; cursor: pointer; border-radius: 4px; font-weight: 600; font-size: 14px; white-space: nowrap; min-width: fit-content; transition: all 0.3s ease;">ACTIVAR SONIDO</button>
             </div>
         </section>
 
@@ -297,40 +279,16 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/TextPlugin.min.js"></script>
-    <script src="https://www.youtube.com/iframe_api"></script>
     <script src="new-portfolio.js"></script>
     <script src="assets/js/lets-create.js"></script>
     
-    <!-- YouTube API Sound Control Without Restart -->
+    <!-- PostMessage Sound Control Without Restart -->
     <script>
-    let player;
     let isMuted = true;
     
-    // YouTube API ready callback
-    function onYouTubeIframeAPIReady() {
-        console.log('YouTube API ready');
-        initializePlayer();
-    }
-    
-    function initializePlayer() {
-        const iframe = document.querySelector('.youtube-video');
-        if (iframe) {
-            iframe.id = 'youtube-player-api';
-            
-            player = new YT.Player('youtube-player-api', {
-                events: {
-                    'onReady': function(event) {
-                        console.log('Player ready for sound control');
-                        // Player is ready, sound button can now work
-                    }
-                }
-            });
-        }
-    }
-    
-    // Setup sound button
+    // Setup postMessage sound control
     document.addEventListener('DOMContentLoaded', () => {
-        console.log('DOM loaded - setting up API sound control');
+        console.log('DOM loaded - setting up postMessage sound control');
         
         // Add hover effects for custom cursor
         const videoContainer = document.querySelector('.video-container');
@@ -344,52 +302,44 @@
         }
         
         const button = document.getElementById('sound-activation-btn');
+        const iframe = document.getElementById('youtube-player');
         
-        if (button) {
+        if (button && iframe) {
             button.addEventListener('click', (e) => {
                 e.preventDefault();
                 e.stopPropagation();
-                console.log('Sound button clicked');
+                console.log('Sound button clicked - using postMessage');
                 
-                // Wait for player to be ready
-                if (player && typeof player.isMuted === 'function') {
-                    try {
-                        if (isMuted) {
-                            player.unMute();
-                            button.textContent = 'SONIDO ACTIVADO';
-                            isMuted = false;
-                            console.log('Video unmuted without restart');
-                        } else {
-                            player.mute();
-                            button.textContent = 'ACTIVAR SONIDO';
-                            isMuted = true;
-                            console.log('Video muted without restart');
-                        }
-                    } catch (error) {
-                        console.error('Error controlling sound:', error);
+                try {
+                    if (isMuted) {
+                        // Send unmute command
+                        iframe.contentWindow.postMessage('{"event":"command","func":"unMute","args":""}', '*');
+                        button.textContent = 'SONIDO ACTIVADO';
+                        isMuted = false;
+                        console.log('Sent unmute command via postMessage');
+                    } else {
+                        // Send mute command
+                        iframe.contentWindow.postMessage('{"event":"command","func":"mute","args":""}', '*');
+                        button.textContent = 'ACTIVAR SONIDO';
+                        isMuted = true;
+                        console.log('Sent mute command via postMessage');
                     }
-                } else {
-                    console.log('Player not ready, trying to initialize...');
-                    // Try to initialize if not ready
-                    setTimeout(() => {
-                        if (typeof YT !== 'undefined' && YT.Player) {
-                            initializePlayer();
-                            setTimeout(() => {
-                                if (player) {
-                                    button.click();
-                                }
-                            }, 1000);
-                        }
-                    }, 500);
+                } catch (error) {
+                    console.error('PostMessage failed:', error);
+                    // Fallback: simple button text change
+                    if (isMuted) {
+                        button.textContent = 'SONIDO ACTIVADO';
+                        isMuted = false;
+                    } else {
+                        button.textContent = 'ACTIVAR SONIDO';
+                        isMuted = true;
+                    }
                 }
             });
             
-            console.log('API sound button handler attached');
-        }
-        
-        // Initialize player if API is already loaded
-        if (typeof YT !== 'undefined' && YT.Player) {
-            initializePlayer();
+            console.log('PostMessage sound button handler attached');
+        } else {
+            console.error('Could not find button or iframe elements');
         }
     });
     </script>
