@@ -291,18 +291,21 @@ class CustomCursor {
     }
 
     init() {
-        gsap.set(this.cursor, { autoAlpha: 0 });
+        // Use direct DOM manipulation for instant cursor movement
+        this.cursor.style.opacity = '0';
 
         window.addEventListener('mousemove', e => {
-            gsap.set(this.cursor, { x: e.clientX, y: e.clientY });
+            // Direct style manipulation for instant positioning
+            this.cursor.style.left = e.clientX + 'px';
+            this.cursor.style.top = e.clientY + 'px';
         });
 
         document.addEventListener('mouseenter', () => {
-            gsap.to(this.cursor, { duration: 0.2, autoAlpha: 1 });
+            this.cursor.style.opacity = '1';
         });
 
         document.addEventListener('mouseleave', () => {
-            gsap.to(this.cursor, { duration: 0.2, autoAlpha: 0 });
+            this.cursor.style.opacity = '0';
         });
 
         this.interactiveElements.forEach(el => {
