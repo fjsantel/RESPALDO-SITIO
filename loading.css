@@ -297,6 +297,19 @@ body.cursor-hover #custom-cursor {
 
 /* Responsive Design */
 @media screen and (max-width: 768px) {
+    .video-background {
+        width: 100%;
+        height: 60vh;
+    }
+    
+    .video-background video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center center;
+        transform: none; /* Asegurar que no hay escala en móvil */
+    }
+    
     .loading-text {
         padding: 1.5rem;
         max-width: 95vw; /* Usa viewport width completo */
@@ -332,6 +345,19 @@ body.cursor-hover #custom-cursor {
 }
 
 @media screen and (max-width: 480px) {
+    .video-background {
+        width: 100%;
+        height: 60vh;
+    }
+    
+    .video-background video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center center;
+        transform: none; /* Sin escalado en móviles pequeños */
+    }
+    
     .loading-text {
         padding: 1rem;
         max-width: 98vw; /* Casi ancho completo */
@@ -375,6 +401,19 @@ body.cursor-hover #custom-cursor {
 
 /* Orientación landscape en móviles */
 @media screen and (max-height: 500px) and (orientation: landscape) {
+    .video-background {
+        width: 100%;
+        height: 70vh; /* Más altura en landscape */
+    }
+    
+    .video-background video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center center;
+        transform: none; /* Sin escalado en landscape */
+    }
+    
     .loading-text {
         padding: 0.5rem;
     }
