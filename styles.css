@@ -588,6 +588,14 @@ section.seccion-video-principal {
     display: flex;
     justify-content: center;
     align-items: center;
+    margin: 0;
+    padding: 0;
+}
+
+/* Remove any spacing between consecutive video containers */
+.motion-graphics-video-container + .motion-graphics-video-container {
+    margin-top: 0;
+    padding-top: 0;
 }
 
 .motion-graphics-video {
@@ -596,6 +604,9 @@ section.seccion-video-principal {
     object-fit: contain;
     object-position: center center;
     background-color: var(--black);
+    margin: 0;
+    padding: 0;
+    display: block;
 }
 
 /* BFA 2025 Section */
