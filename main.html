@@ -175,11 +175,12 @@
             </div>
         </section>
 
-        <!-- VIDEO BLOCK - Full Width Only -->
+        <!-- VIDEO BLOCK - Single Dynamic Video -->
         <section class="video-block" style="width: 100vw; margin: 0; padding: 0; background: #000;">
             <div class="video-container youtube-container active" style="width: 100vw; height: 56.25vw; max-height: 100vh; position: relative; background: #000;">
-                <iframe id="youtube-player" class="youtube-video" 
-                        src="https://www.youtube.com/embed/L-ejHvF0UJU?start=5&mute=1&autoplay=1&loop=1&playlist=L-ejHvF0UJU&controls=0&modestbranding=1&rel=0&showinfo=0&fs=0&enablejsapi=1" 
+                <!-- Single iframe that changes src dynamically -->
+                <iframe id="youtube-player" class="youtube-video active" 
+                        src="https://www.youtube-nocookie.com/embed/L-ejHvF0UJU?start=5&mute=1&autoplay=1&loop=1&playlist=L-ejHvF0UJU&controls=0&modestbranding=1&rel=0&showinfo=0&fs=0&enablejsapi=1" 
                         frameborder="0" 
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
                         allowfullscreen
@@ -188,10 +189,19 @@
             </div>
         </section>
 
-        <!-- CONTROLS BLOCK - Small Centered Container -->
+        <!-- CONTROLS BLOCK - Navigation and Sound -->
         <section class="controls-block" id="video-portfolio" style="background: #0D1117; padding: 20px; display: flex; justify-content: center;">
-            <div class="controls-container" style="background: #0D1117; padding: 15px 30px; border-radius: 8px; display: inline-block;">
+            <div class="controls-container" style="background: #0D1117; padding: 15px 30px; border-radius: 8px; display: flex; align-items: center; gap: 20px;">
+                
+                <!-- Previous Button -->
+                <button class="nav-btn prev-btn" id="prev-btn" style="background: #333; color: #fff; border: none; padding: 8px 12px; cursor: pointer; border-radius: 4px; font-weight: 600; font-size: 12px; white-space: nowrap; transition: all 0.3s ease;">‹ ANTERIOR</button>
+                
+                <!-- Sound Control (Center) -->
                 <button class="sound-activation-btn" id="sound-activation-btn" style="background: #f0b90c; color: #000; border: none; padding: 15px 35px; cursor: pointer; border-radius: 4px; font-weight: 600; font-size: 14px; white-space: nowrap; min-width: fit-content; transition: all 0.3s ease;">ACTIVAR SONIDO</button>
+                
+                <!-- Next Button -->
+                <button class="nav-btn next-btn" id="next-btn" style="background: #333; color: #fff; border: none; padding: 8px 12px; cursor: pointer; border-radius: 4px; font-weight: 600; font-size: 12px; white-space: nowrap; transition: all 0.3s ease;">SIGUIENTE ›</button>
+                
             </div>
         </section>
 
@@ -282,13 +292,86 @@
     <script src="new-portfolio.js"></script>
     <script src="assets/js/lets-create.js"></script>
     
-    <!-- PostMessage Sound Control Without Restart -->
+    <!-- Single Dynamic Video Navigation and Sound Control -->
     <script>
+    let currentVideoIndex = 0;
     let isMuted = true;
+    const totalVideos = 3;
     
-    // Setup postMessage sound control
+    // Video URLs - only load one at a time
+    const videos = [
+        {
+            url: 'https://www.youtube-nocookie.com/embed/L-ejHvF0UJU?start=5&mute=1&autoplay=1&loop=1&playlist=L-ejHvF0UJU&controls=0&modestbranding=1&rel=0&showinfo=0&fs=0&enablejsapi=1'
+        },
+        {
+            url: 'https://www.youtube-nocookie.com/embed/qsw5XT3mZXM?start=10&mute=1&autoplay=1&loop=1&playlist=qsw5XT3mZXM&controls=0&modestbranding=1&rel=0&showinfo=0&fs=0&enablejsapi=1'
+        },
+        {
+            url: 'https://www.youtube-nocookie.com/embed/kMdRuuU7tjk?start=10&mute=1&autoplay=1&loop=1&playlist=kMdRuuU7tjk&controls=0&modestbranding=1&rel=0&showinfo=0&fs=0&enablejsapi=1'
+        }
+    ];
+
+    function switchToVideo(index) {
+        const iframe = document.getElementById('youtube-player');
+        if (!iframe) return;
+        
+        // Change iframe src to new video - this completely unloads the previous video
+        iframe.src = videos[index].url;
+        
+        // Update current index
+        currentVideoIndex = index;
+        
+        // Reset mute state for new video (always start muted)
+        isMuted = true;
+        document.getElementById('sound-activation-btn').textContent = 'ACTIVAR SONIDO';
+        
+        console.log(`Switched to video ${index + 1} - completely loaded new video, previous unloaded`);
+        
+        // Update navigation buttons
+        updateNavigationButtons();
+    }
+
+    function updateNavigationButtons() {
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
+        
+        if (prevBtn) {
+            prevBtn.style.opacity = currentVideoIndex === 0 ? '0.5' : '1';
+            prevBtn.disabled = currentVideoIndex === 0;
+        }
+        
+        if (nextBtn) {
+            nextBtn.style.opacity = currentVideoIndex === totalVideos - 1 ? '0.5' : '1';
+            nextBtn.disabled = currentVideoIndex === totalVideos - 1;
+        }
+    }
+
+    function controlSound() {
+        const iframe = document.getElementById('youtube-player');
+        if (!iframe) return;
+
+        try {
+            if (isMuted) {
+                // Send unmute command to current video
+                iframe.contentWindow.postMessage('{"event":"command","func":"unMute","args":""}', '*');
+                document.getElementById('sound-activation-btn').textContent = 'SONIDO ACTIVADO';
+                isMuted = false;
+                console.log('Sent unmute command to current video');
+            } else {
+                // Send mute command to current video
+                iframe.contentWindow.postMessage('{"event":"command","func":"mute","args":""}', '*');
+                document.getElementById('sound-activation-btn').textContent = 'ACTIVAR SONIDO';
+                isMuted = true;
+                console.log('Sent mute command to current video');
+            }
+        } catch (error) {
+            console.error('PostMessage failed:', error);
+        }
+    }
+    
+    // Setup controls
     document.addEventListener('DOMContentLoaded', () => {
-        console.log('DOM loaded - setting up postMessage sound control');
+        console.log('DOM loaded - setting up single dynamic video navigation');
         
         // Add hover effects for custom cursor
         const videoContainer = document.querySelector('.video-container');
@@ -301,46 +384,39 @@
             });
         }
         
-        const button = document.getElementById('sound-activation-btn');
-        const iframe = document.getElementById('youtube-player');
+        // Navigation buttons
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
+        const soundBtn = document.getElementById('sound-activation-btn');
         
-        if (button && iframe) {
-            button.addEventListener('click', (e) => {
-                e.preventDefault();
-                e.stopPropagation();
-                console.log('Sound button clicked - using postMessage');
-                
-                try {
-                    if (isMuted) {
-                        // Send unmute command
-                        iframe.contentWindow.postMessage('{"event":"command","func":"unMute","args":""}', '*');
-                        button.textContent = 'SONIDO ACTIVADO';
-                        isMuted = false;
-                        console.log('Sent unmute command via postMessage');
-                    } else {
-                        // Send mute command
-                        iframe.contentWindow.postMessage('{"event":"command","func":"mute","args":""}', '*');
-                        button.textContent = 'ACTIVAR SONIDO';
-                        isMuted = true;
-                        console.log('Sent mute command via postMessage');
-                    }
-                } catch (error) {
-                    console.error('PostMessage failed:', error);
-                    // Fallback: simple button text change
-                    if (isMuted) {
-                        button.textContent = 'SONIDO ACTIVADO';
-                        isMuted = false;
-                    } else {
-                        button.textContent = 'ACTIVAR SONIDO';
-                        isMuted = true;
-                    }
+        if (prevBtn) {
+            prevBtn.addEventListener('click', () => {
+                if (currentVideoIndex > 0) {
+                    switchToVideo(currentVideoIndex - 1);
                 }
             });
-            
-            console.log('PostMessage sound button handler attached');
-        } else {
-            console.error('Could not find button or iframe elements');
         }
+        
+        if (nextBtn) {
+            nextBtn.addEventListener('click', () => {
+                if (currentVideoIndex < totalVideos - 1) {
+                    switchToVideo(currentVideoIndex + 1);
+                }
+            });
+        }
+        
+        if (soundBtn) {
+            soundBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                controlSound();
+            });
+        }
+        
+        // Initialize navigation buttons for first video
+        updateNavigationButtons();
+        
+        console.log('Single dynamic video navigation setup complete');
     });
     </script>
     
