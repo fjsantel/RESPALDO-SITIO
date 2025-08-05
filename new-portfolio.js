@@ -10,7 +10,6 @@ document.addEventListener('DOMContentLoaded', () => {
     new VideoPortfolioManager('video-slider'); // Initialize the Video Portfolio section
     // Initialize motion graphics sound control
     new MotionGraphicsSoundController();
-    new MotionGraphicsSoundController2();
     // Initialize BFA video control
     new BFAVideoController();
 });
@@ -673,74 +672,6 @@ class MotionGraphicsSoundController {
         // Ensure video plays
         this.video.play().catch(error => {
             console.log('Video autoplay failed:', error);
-        });
-    }
-    
-    setupEventListener() {
-        this.soundBtn.addEventListener('click', () => {
-            this.toggleSound();
-        });
-    }
-
-    toggleSound() {
-        this.isMuted = !this.isMuted;
-        
-        if (!this.video) return;
-        
-        this.video.muted = this.isMuted;
-        this.updateButtonText();
-    }
-
-    updateButtonText() {
-        const soundText = this.soundBtn.querySelector('.sound-text');
-        if (soundText) {
-            if (this.isMuted) {
-                soundText.textContent = 'VER CON SONIDO';
-                this.soundBtn.classList.remove('sound-enabled');
-            } else {
-                soundText.textContent = 'DESACTIVAR SONIDO';
-                this.soundBtn.classList.add('sound-enabled');
-            }
-        }
-    }
-
-    setMuted(muted) {
-        this.isMuted = muted;
-        
-        if (!this.video) return;
-        
-        this.video.muted = muted;
-        this.updateButtonText();
-    }
-}
-
-// Motion Graphics Sound Controller 2 (for second video)
-class MotionGraphicsSoundController2 {
-    constructor() {
-        this.video = document.getElementById('motion-graphics-video-2');
-        this.soundBtn = document.getElementById('motion-graphics-sound-btn-2');
-        this.isMuted = true;
-        
-        // Make this controller globally accessible
-        window.motionGraphicsController2 = this;
-        
-        if (this.video) {
-            this.initializeVideo();
-        }
-        
-        if (this.soundBtn) {
-            this.setupEventListener();
-        }
-    }
-    
-    initializeVideo() {
-        // Ensure video starts muted
-        this.video.muted = true;
-        this.video.volume = 0.7; // Set volume for when unmuted
-        
-        // Ensure video plays
-        this.video.play().catch(error => {
-            console.log('Video 2 autoplay failed:', error);
         });
     }
     
