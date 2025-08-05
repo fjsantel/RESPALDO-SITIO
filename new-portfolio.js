@@ -294,7 +294,7 @@ class CustomCursor {
         gsap.set(this.cursor, { autoAlpha: 0 });
 
         window.addEventListener('mousemove', e => {
-            gsap.to(this.cursor, { duration: 0.1, x: e.clientX, y: e.clientY, ease: "power2.out" });
+            gsap.set(this.cursor, { x: e.clientX, y: e.clientY });
         });
 
         document.addEventListener('mouseenter', () => {
