@@ -187,28 +187,44 @@
 
             <!-- Video Slider -->
             <div class="video-slider-wrapper">
-                <!-- Video 1 -->
-                <div class="video-container active" data-index="0">
-                    <video class="portfolio-video" muted playsinline preload="metadata" autoplay>
-                        <source src="Canta_tu_sueno_3xi.mp4" type="video/mp4">
-                        Tu navegador no soporta la reproducción de video.
-                    </video>
+                <!-- Video 1 - YouTube Primary -->
+                <div class="video-container youtube-container active" data-index="0">
+                    <div class="youtube-video-wrapper">
+                        <iframe class="youtube-video" 
+                                src="https://www.youtube.com/embed/L-ejHvF0UJU?enablejsapi=1&mute=1&autoplay=1&controls=0&modestbranding=1&rel=0" 
+                                frameborder="0" 
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                allowfullscreen>
+                        </iframe>
+                    </div>
                 </div>
                 
-                <!-- Video 2 -->
-                <div class="video-container" data-index="1" style="display: none;">
+                <!-- Video 3 -->
+                <div class="video-container" data-index="2" style="display: none;">
                     <video class="portfolio-video" muted playsinline preload="metadata">
                         <source src="SKAVA.mp4" type="video/mp4">
                         Tu navegador no soporta la reproducción de video.
                     </video>
                 </div>
                 
-                <!-- Video 3 -->
-                <div class="video-container" data-index="2" style="display: none;">
+                <!-- Video 4 -->
+                <div class="video-container" data-index="3" style="display: none;">
                     <video class="portfolio-video" muted playsinline preload="metadata">
                         <source src="Encuentro_de_la_alianza_FONDO_ALQUIMIA.mp4" type="video/mp4">
                         Tu navegador no soporta la reproducción de video.
                     </video>
+                </div>
+                
+                <!-- Video 5 - YouTube Historia para Construir -->
+                <div class="video-container youtube-container" data-index="4" style="display: none;">
+                    <div class="youtube-video-wrapper">
+                        <iframe class="youtube-video" 
+                                src="https://www.youtube.com/embed/qsw5XT3mZXM?enablejsapi=1&start=2&mute=1&autoplay=0&controls=0&modestbranding=1&rel=0" 
+                                frameborder="0" 
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                allowfullscreen>
+                        </iframe>
+                    </div>
                 </div>
                 
                 <!-- Combined Controls -->
@@ -353,17 +369,55 @@
                 if (i === index) {
                     container.style.display = 'block';
                     container.classList.add('active');
+                    
+                    // Handle regular video
                     const video = container.querySelector('.portfolio-video');
                     if (video) {
                         video.currentTime = 0;
                         video.muted = this.isMuted;
                         video.play().catch(e => console.log('Video autoplay failed:', e));
                     }
+                    
+                    // Handle YouTube video
+                    const youtubeVideo = container.querySelector('.youtube-video');
+                    if (youtubeVideo) {
+                        let baseUrl;
+                        // Determine which YouTube video based on index
+                        if (i === 0) {
+                            baseUrl = 'https://www.youtube.com/embed/L-ejHvF0UJU?enablejsapi=1';
+                        } else if (i === 4) {
+                            baseUrl = 'https://www.youtube.com/embed/qsw5XT3mZXM?enablejsapi=1&start=2';
+                        }
+                        
+                        const muteParam = this.isMuted ? '&mute=1' : '&mute=0';
+                        const autoplayParam = '&autoplay=1&controls=0&modestbranding=1&rel=0';
+                        youtubeVideo.src = baseUrl + muteParam + autoplayParam;
+                    }
                 } else {
                     container.style.display = 'none';
                     container.classList.remove('active');
+                    
+                    // Pause regular video
                     const video = container.querySelector('.portfolio-video');
                     if (video) video.pause();
+                    
+                    // Stop YouTube video
+                    const youtubeVideo = container.querySelector('.youtube-video');
+                    if (youtubeVideo) {
+                        let baseUrl;
+                        // Determine which YouTube video to stop based on index
+                        if (i === 0) {
+                            baseUrl = 'https://www.youtube.com/embed/L-ejHvF0UJU?enablejsapi=1';
+                        } else if (i === 4) {
+                            baseUrl = 'https://www.youtube.com/embed/qsw5XT3mZXM?enablejsapi=1&start=2';
+                        }
+                        
+                        if (baseUrl) {
+                            const muteParam = this.isMuted ? '&mute=1' : '&mute=0';
+                            const stopParam = '&autoplay=0&controls=0&modestbranding=1&rel=0';
+                            youtubeVideo.src = baseUrl + muteParam + stopParam;
+                        }
+                    }
                 }
             });
             this.currentIndex = index;
@@ -386,6 +440,27 @@
             this.videos.forEach(video => {
                 video.muted = this.isMuted;
             });
+            
+            // Update YouTube video if it's currently active
+            const activeContainer = this.containers[this.currentIndex];
+            if (activeContainer) {
+                const youtubeVideo = activeContainer.querySelector('.youtube-video');
+                if (youtubeVideo) {
+                    let baseUrl;
+                    // Determine which YouTube video based on current index
+                    if (this.currentIndex === 0) {
+                        baseUrl = 'https://www.youtube.com/embed/L-ejHvF0UJU?enablejsapi=1';
+                    } else if (this.currentIndex === 4) {
+                        baseUrl = 'https://www.youtube.com/embed/qsw5XT3mZXM?enablejsapi=1&start=2';
+                    }
+                    
+                    if (baseUrl) {
+                        const muteParam = this.isMuted ? '&mute=1' : '&mute=0';
+                        const autoplayParam = '&autoplay=1&controls=0&modestbranding=1&rel=0';
+                        youtubeVideo.src = baseUrl + muteParam + autoplayParam;
+                    }
+                }
+            }
             
             // Update button text
             if (this.soundBtn) {
