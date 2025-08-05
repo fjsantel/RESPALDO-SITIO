@@ -54,12 +54,12 @@ body, html {
     border-left: 8px solid transparent;
     border-right: 8px solid transparent;
     border-bottom: 14px solid var(--text-primary);
-    transition: all 0.3s ease-out;
 }
 
 body.cursor-hover #custom-cursor {
     transform: scale(1.8);
     border-bottom-color: var(--accent-yellow);
+    transition: transform 0.2s ease-out, border-bottom-color 0.2s ease-out;
 }
 
 /* --- Universal Header & Menu --- */
