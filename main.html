@@ -211,7 +211,7 @@
                 <!-- Video 4 -->
                 <div class="video-container" data-index="3" style="display: none;">
                     <video class="portfolio-video" muted playsinline preload="metadata">
-                        <source src="SKAVA.mp4" type="video/mp4">
+                        <source src="Encuentro_de_la_alianza_FONDO_ALQUIMIA.mp4" type="video/mp4">
                         Tu navegador no soporta la reproducción de video.
                     </video>
                 </div>
@@ -219,11 +219,17 @@
                 <!-- Video 5 -->
                 <div class="video-container" data-index="4" style="display: none;">
                     <video class="portfolio-video" muted playsinline preload="metadata">
-                        <source src="Encuentro_de_la_alianza_FONDO_ALQUIMIA.mp4" type="video/mp4">
+                        <source src="SKAVA.mp4" type="video/mp4">
                         Tu navegador no soporta la reproducción de video.
                     </video>
                 </div>
                 
+                <!-- Video 6 - YouTube -->
+                <div class="video-container youtube-container" data-index="5" style="display: none;">
+                    <div class="youtube-video-wrapper">
+                        <div class="youtube-video"></div>
+                    </div>
+                </div>
                 
                 <!-- Combined Controls -->
                 <div class="combined-controls">
@@ -378,7 +384,7 @@
         createYoutubePlayers() {
             // Create YouTube players for each iframe
             this.containers.forEach((container, index) => {
-                if (index === 0 || index === 1 || index === 2) {
+                if (index === 0 || index === 1 || index === 2 || index === 5) {
                     this.createSingleYoutubePlayer(index);
                 }
             });
@@ -402,6 +408,9 @@
             } else if (index === 2) {
                 videoId = 'Uu5IFm6I554';
                 startSeconds = 0;
+            } else if (index === 5) {
+                videoId = 'QHr9hXzFhq4';
+                startSeconds = 10;
             }
             
             if (videoId && typeof YT !== 'undefined' && YT.Player) {
@@ -501,7 +510,7 @@
                     
                     // Handle YouTube video with API
                     const youtubeContainer = container.querySelector('.youtube-video');
-                    if (youtubeContainer && (i === 0 || i === 1 || i === 2)) {
+                    if (youtubeContainer && (i === 0 || i === 1 || i === 2 || i === 5)) {
                         // Check if this is a fallback iframe
                         if (this.youtubePlayers[i] === 'fallback') {
                             // Just make sure it's visible, iframe handles itself
@@ -512,7 +521,7 @@
                         } else {
                             // Player exists, use it
                             try {
-                                this.youtubePlayers[i].seekTo(i === 0 ? 4 : (i === 1 ? 6 : (i === 2 ? 0 : 0)));
+                                this.youtubePlayers[i].seekTo(i === 0 ? 4 : (i === 1 ? 6 : (i === 2 ? 0 : (i === 5 ? 10 : 0))));
                                 this.youtubePlayers[i].playVideo();
                                 if (this.isMuted) {
                                     this.youtubePlayers[i].mute();
@@ -579,7 +588,7 @@
                     } catch (error) {
                         console.log('Error toggling YouTube sound:', error);
                         // If there's an error, try to recreate the player
-                        if (this.currentIndex === 0 || this.currentIndex === 1 || this.currentIndex === 2) {
+                        if (this.currentIndex === 0 || this.currentIndex === 1 || this.currentIndex === 2 || this.currentIndex === 5) {
                             this.createSingleYoutubePlayer(this.currentIndex);
                         }
                     }
