@@ -331,6 +331,10 @@
                     console.log('Player ready - starting video');
                     event.target.seekTo(5);
                     event.target.playVideo();
+                    // Small delay to ensure player is fully ready
+                    setTimeout(() => {
+                        console.log('Player fully ready for sound control');
+                    }, 500);
                 },
                 'onStateChange': function(event) {
                     // Ensure loop works
@@ -366,27 +370,45 @@
         
         const button = document.getElementById('sound-activation-btn');
         if (button) {
-            button.addEventListener('click', () => {
-                console.log('Sound button clicked');
+            // Remove any existing event listeners
+            button.replaceWith(button.cloneNode(true));
+            const newButton = document.getElementById('sound-activation-btn');
+            
+            newButton.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                console.log('Sound button clicked - custom handler');
                 
                 if (player && typeof player.isMuted === 'function') {
-                    if (isMuted) {
-                        player.unMute();
-                        button.textContent = 'SONIDO ACTIVADO';
-                        button.style.background = '#4CAF50';
-                        isMuted = false;
-                        console.log('Video unmuted');
-                    } else {
-                        player.mute();
-                        button.textContent = 'ACTIVAR SONIDO';
-                        button.style.background = '#f0b90c';
-                        isMuted = true;
-                        console.log('Video muted');
+                    try {
+                        if (isMuted) {
+                            player.unMute();
+                            newButton.textContent = 'SONIDO ACTIVADO';
+                            newButton.style.background = '#4CAF50';
+                            isMuted = false;
+                            console.log('Video unmuted via API');
+                        } else {
+                            player.mute();
+                            newButton.textContent = 'ACTIVAR SONIDO';
+                            newButton.style.background = '#f0b90c';
+                            isMuted = true;
+                            console.log('Video muted via API');
+                        }
+                    } catch (error) {
+                        console.error('Error controlling sound:', error);
                     }
                 } else {
-                    console.log('Player not ready yet');
+                    console.log('Player not ready yet, waiting...');
+                    // Try again in a moment
+                    setTimeout(() => {
+                        if (player && typeof player.isMuted === 'function') {
+                            newButton.click();
+                        }
+                    }, 1000);
                 }
             });
+            
+            console.log('Sound button handler attached');
         }
     });
     </script>
