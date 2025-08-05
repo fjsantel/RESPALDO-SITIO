@@ -624,7 +624,7 @@ section.seccion-video-principal {
     font-size: 10px !important;
     padding: 6px 12px !important;
     letter-spacing: 0.3px !important;
-    border-radius: 3px !important;
+    border-radius: 0 !important;
 }
 
 /* BFA 2025 Section */
