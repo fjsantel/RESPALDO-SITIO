@@ -301,14 +301,36 @@
     <script src="new-portfolio.js"></script>
     <script src="assets/js/lets-create.js"></script>
     
-    <!-- Simple Direct Sound Control -->
+    <!-- YouTube API Sound Control Without Restart -->
     <script>
+    let player;
     let isMuted = true;
-    let currentTime = 5; // Track current playback time
     
-    // Setup sound button with direct iframe manipulation
+    // YouTube API ready callback
+    function onYouTubeIframeAPIReady() {
+        console.log('YouTube API ready');
+        initializePlayer();
+    }
+    
+    function initializePlayer() {
+        const iframe = document.querySelector('.youtube-video');
+        if (iframe) {
+            iframe.id = 'youtube-player-api';
+            
+            player = new YT.Player('youtube-player-api', {
+                events: {
+                    'onReady': function(event) {
+                        console.log('Player ready for sound control');
+                        // Player is ready, sound button can now work
+                    }
+                }
+            });
+        }
+    }
+    
+    // Setup sound button
     document.addEventListener('DOMContentLoaded', () => {
-        console.log('DOM loaded - setting up direct sound control');
+        console.log('DOM loaded - setting up API sound control');
         
         // Add hover effects for custom cursor
         const videoContainer = document.querySelector('.video-container');
@@ -322,46 +344,52 @@
         }
         
         const button = document.getElementById('sound-activation-btn');
-        const iframe = document.querySelector('.youtube-video');
         
-        if (button && iframe) {
-            console.log('Setting up direct sound control');
-            
+        if (button) {
             button.addEventListener('click', (e) => {
                 e.preventDefault();
                 e.stopPropagation();
-                console.log('Sound button clicked - direct method');
+                console.log('Sound button clicked');
                 
-                // Toggle muted state
-                isMuted = !isMuted;
-                
-                // Get current iframe src
-                const currentSrc = iframe.src;
-                let newSrc;
-                
-                if (isMuted) {
-                    // Switch to muted
-                    newSrc = currentSrc.replace('mute=0', 'mute=1');
-                    button.textContent = 'ACTIVAR SONIDO';
-                    button.style.background = '#f0b90c';
-                    console.log('Video muted - iframe reloaded');
+                // Wait for player to be ready
+                if (player && typeof player.isMuted === 'function') {
+                    try {
+                        if (isMuted) {
+                            player.unMute();
+                            button.textContent = 'SONIDO ACTIVADO';
+                            isMuted = false;
+                            console.log('Video unmuted without restart');
+                        } else {
+                            player.mute();
+                            button.textContent = 'ACTIVAR SONIDO';
+                            isMuted = true;
+                            console.log('Video muted without restart');
+                        }
+                    } catch (error) {
+                        console.error('Error controlling sound:', error);
+                    }
                 } else {
-                    // Switch to unmuted
-                    newSrc = currentSrc.replace('mute=1', 'mute=0');
-                    button.textContent = 'SONIDO ACTIVADO';
-                    button.style.background = '#4CAF50';
-                    console.log('Video unmuted - iframe reloaded');
+                    console.log('Player not ready, trying to initialize...');
+                    // Try to initialize if not ready
+                    setTimeout(() => {
+                        if (typeof YT !== 'undefined' && YT.Player) {
+                            initializePlayer();
+                            setTimeout(() => {
+                                if (player) {
+                                    button.click();
+                                }
+                            }, 1000);
+                        }
+                    }, 500);
                 }
-                
-                // Update iframe src to trigger reload with new sound setting
-                iframe.src = newSrc;
-                
-                console.log('New iframe src:', newSrc);
             });
             
-            console.log('Direct sound button handler attached');
-        } else {
-            console.log('Button or iframe not found');
+            console.log('API sound button handler attached');
+        }
+        
+        // Initialize player if API is already loaded
+        if (typeof YT !== 'undefined' && YT.Player) {
+            initializePlayer();
         }
     });
     </script>
