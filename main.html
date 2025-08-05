@@ -298,6 +298,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/TextPlugin.min.js"></script>
     <script src="https://www.youtube.com/iframe_api"></script>
+    <script src="new-portfolio.js"></script>
     <script src="assets/js/lets-create.js"></script>
     
     <!-- Optimized Single Video JavaScript -->
@@ -350,6 +351,17 @@
         const iframe = document.querySelector('.youtube-video');
         if (iframe) {
             iframe.id = 'youtube-player';
+        }
+        
+        // Add hover effects for custom cursor
+        const videoContainer = document.querySelector('.video-container');
+        if (videoContainer) {
+            videoContainer.addEventListener('mouseenter', () => {
+                document.body.classList.add('cursor-hover');
+            });
+            videoContainer.addEventListener('mouseleave', () => {
+                document.body.classList.remove('cursor-hover');
+            });
         }
         
         const button = document.getElementById('sound-activation-btn');
