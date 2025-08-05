@@ -609,6 +609,13 @@ section.seccion-video-principal {
     display: block;
 }
 
+/* Motion Graphics Sound Button - Smaller Size */
+.motion-graphics-sound-small {
+    font-size: 12px !important;
+    padding: 8px 16px !important;
+    letter-spacing: 0.5px !important;
+}
+
 /* BFA 2025 Section */
 .bfa-video-section {
     background: var(--black);

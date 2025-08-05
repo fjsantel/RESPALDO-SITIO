@@ -693,7 +693,7 @@ class MotionGraphicsSoundController {
     updateButtonText() {
         if (this.soundBtn) {
             if (this.isMuted) {
-                this.soundBtn.textContent = 'ACTIVAR SONIDO';
+                this.soundBtn.textContent = 'ESCUCHAR MÚSICA ORIGINAL';
                 this.soundBtn.classList.remove('active');
             } else {
                 this.soundBtn.textContent = 'ACTIVADO';
