@@ -389,7 +389,7 @@
                 videoId = 'L-ejHvF0UJU';
             } else if (index === 4) {
                 videoId = 'qsw5XT3mZXM';
-                startSeconds = 2;
+                startSeconds = 0;
             }
             
             if (videoId && typeof YT !== 'undefined' && YT.Player) {
@@ -417,6 +417,7 @@
                     },
                     events: {
                         'onReady': (event) => {
+                            console.log(`YouTube player ${index} ready`);
                             // Player is ready, start playing if this is the current video
                             if (index === this.currentIndex) {
                                 event.target.seekTo(startSeconds);
@@ -425,10 +426,50 @@
                                     event.target.mute();
                                 }
                             }
+                        },
+                        'onError': (event) => {
+                            console.log(`YouTube player ${index} error:`, event.data);
+                            // Common error codes:
+                            // 2 – The request contains an invalid parameter value.
+                            // 5 – The requested content cannot be played in an HTML5 player.
+                            // 100 – The video requested was not found.
+                            // 101 – The owner of the requested video does not allow it to be played in embedded players.
+                            // 150 – This error is the same as 101. It's just a 101 error in disguise!
+                            
+                            // If player fails, try fallback iframe
+                            if (event.data === 101 || event.data === 150) {
+                                console.log(`Video ${index} cannot be embedded, trying fallback iframe`);
+                                this.createFallbackIframe(index, videoId);
+                            }
+                        },
+                        'onStateChange': (event) => {
+                            console.log(`YouTube player ${index} state changed:`, event.data);
                         }
                     }
                 });
             }
+        }
+        
+        createFallbackIframe(index, videoId) {
+            const container = this.containers[index];
+            const youtubeDiv = container.querySelector('.youtube-video');
+            if (!youtubeDiv) return;
+            
+            // Clear the div and create a traditional iframe
+            youtubeDiv.innerHTML = '';
+            const iframe = document.createElement('iframe');
+            iframe.className = 'youtube-video';
+            iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=${this.isMuted ? 1 : 0}&controls=1&modestbranding=1&rel=0`;
+            iframe.width = '100%';
+            iframe.height = '100%';
+            iframe.frameBorder = '0';
+            iframe.allowFullscreen = true;
+            iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+            
+            youtubeDiv.appendChild(iframe);
+            
+            // Mark this as fallback so we don't try to use API methods
+            this.youtubePlayers[index] = 'fallback';
         }
         
         showVideo(index) {
@@ -449,13 +490,17 @@
                     // Handle YouTube video with API
                     const youtubeContainer = container.querySelector('.youtube-video');
                     if (youtubeContainer && (i === 0 || i === 4)) {
-                        // Check if player exists and is ready, if not create it
-                        if (!this.youtubePlayers[i] || typeof this.youtubePlayers[i].getPlayerState !== 'function') {
+                        // Check if this is a fallback iframe
+                        if (this.youtubePlayers[i] === 'fallback') {
+                            // Just make sure it's visible, iframe handles itself
+                            console.log(`Video ${i} using fallback iframe`);
+                        } else if (!this.youtubePlayers[i] || typeof this.youtubePlayers[i].getPlayerState !== 'function') {
+                            // Check if player exists and is ready, if not create it
                             this.createSingleYoutubePlayer(i);
                         } else {
                             // Player exists, use it
                             try {
-                                this.youtubePlayers[i].seekTo(i === 4 ? 2 : 0);
+                                this.youtubePlayers[i].seekTo(i === 4 ? 0 : 0);
                                 this.youtubePlayers[i].playVideo();
                                 if (this.isMuted) {
                                     this.youtubePlayers[i].mute();
@@ -509,17 +554,22 @@
             
             // Apply to currently active YouTube video using API
             if (this.youtubePlayers[this.currentIndex]) {
-                try {
-                    if (this.isMuted) {
-                        this.youtubePlayers[this.currentIndex].mute();
-                    } else {
-                        this.youtubePlayers[this.currentIndex].unMute();
-                    }
-                } catch (error) {
-                    console.log('Error toggling YouTube sound:', error);
-                    // If there's an error, try to recreate the player
-                    if (this.currentIndex === 0 || this.currentIndex === 4) {
-                        this.createSingleYoutubePlayer(this.currentIndex);
+                // Skip if this is a fallback iframe
+                if (this.youtubePlayers[this.currentIndex] === 'fallback') {
+                    console.log('Cannot control sound on fallback iframe');
+                } else {
+                    try {
+                        if (this.isMuted) {
+                            this.youtubePlayers[this.currentIndex].mute();
+                        } else {
+                            this.youtubePlayers[this.currentIndex].unMute();
+                        }
+                    } catch (error) {
+                        console.log('Error toggling YouTube sound:', error);
+                        // If there's an error, try to recreate the player
+                        if (this.currentIndex === 0 || this.currentIndex === 4) {
+                            this.createSingleYoutubePlayer(this.currentIndex);
+                        }
                     }
                 }
             }
