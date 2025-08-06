@@ -27,16 +27,24 @@ const VIDEO_CONFIG = [
         index: 1,
         videoId: 'qsw5XT3mZXM',
         url: 'https://www.youtube-nocookie.com/embed/qsw5XT3mZXM?start=10&mute=1&autoplay=1&loop=1&playlist=qsw5XT3mZXM&controls=0&modestbranding=1&rel=0&showinfo=0&fs=0&enablejsapi=1',
-        title: 'VIDEO 2',
-        description: 'Una producción creativa enfocada en la experimentación visual y sonora que explora nuevas formas de comunicación digital. Esta pieza audiovisual integra elementos de diseño gráfico avanzado con técnicas de composición multicapa para generar un impacto estético y conceptual profundo.'
+        title: 'LA CIUDAD NO DA MÁS',
+        description: 'Este documental aborda algunos elementos de la problemática habitacional y las diversas realidades que viven miles de chilenos en el proceso de encontrar una solución en materia de vivienda.'
     },
     {
         // VIDEO 2 - TERCER VIDEO
         index: 2,
         videoId: 'kMdRuuU7tjk', 
         url: 'https://www.youtube-nocookie.com/embed/kMdRuuU7tjk?start=10&mute=1&autoplay=1&loop=1&playlist=kMdRuuU7tjk&controls=0&modestbranding=1&rel=0&showinfo=0&fs=0&enablejsapi=1',
-        title: 'VIDEO 3',
-        description: 'Trabajo multidisciplinario que fusiona storytelling visual con elementos de motion design contemporáneo. La propuesta explora temas de identidad digital a través de un lenguaje visual innovador que combina técnicas tradicionales de animación con procesos de creación digital experimental.'
+        title: 'PROMO CANTA TU SUEÑO',
+        description: 'Un emotivo viaje que une música, sueños y comunidad. "Canta Tu Sueño" es una propuesta de 3xi que inspira a las personas a imaginar un futuro mejor, a través del poder de la colaboración, la esperanza y la creatividad.'
+    },
+    {
+        // VIDEO 3 - CUARTO VIDEO
+        index: 3,
+        videoId: 'NUEVO_ID_AQUI', // Reemplazar con el ID real del video
+        url: 'https://www.youtube-nocookie.com/embed/NUEVO_ID_AQUI?start=5&mute=1&autoplay=1&loop=1&playlist=NUEVO_ID_AQUI&controls=0&modestbranding=1&rel=0&showinfo=0&fs=0&enablejsapi=1',
+        title: 'ENCUENTRO DE LA ALIANZA',
+        description: 'Fondo de mujeres feminista, que trabaja por los derechos humanos de mujeres, niñas y diversidades sexuales y de género. Movilizando recursos en apoyo a organizaciones territoriales y redes activistas, que desarrollan su que hacer en territorio chileno.'
     }
     
     // PARA AGREGAR MÁS VIDEOS, COPIA ESTE FORMATO:
