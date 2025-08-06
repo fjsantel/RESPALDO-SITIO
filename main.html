@@ -6,8 +6,20 @@
     <title>FRANCISCO SANTELICES - Contemporary Digital Artist & Multimedia Creator</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://www.youtube.com">
+    <link rel="preconnect" href="https://i.ytimg.com">
+    <link rel="preconnect" href="https://s.ytimg.com">
+    <link rel="dns-prefetch" href="https://www.youtube.com">
+    <link rel="dns-prefetch" href="https://i.ytimg.com">
+    <link rel="dns-prefetch" href="https://s.ytimg.com">
     <link rel="preload" href="assets/Reel 2024.mp4" as="video" type="video/mp4">
     <link rel="preload" href="assets/logo.png" as="image">
+    <link rel="preload" href="https://i.ytimg.com/vi/L-ejHvF0UJU/maxresdefault.jpg" as="image">
+    <link rel="preload" href="https://i.ytimg.com/vi/qsw5XT3mZXM/maxresdefault.jpg" as="image">
+    <link rel="preload" href="https://i.ytimg.com/vi/kMdRuuU7tjk/maxresdefault.jpg" as="image">
+    <link rel="preload" href="https://i.ytimg.com/vi/39l9JNGMdnI/maxresdefault.jpg" as="image">
+    <link rel="preload" href="https://i.ytimg.com/vi/Uu5IFm6I554/maxresdefault.jpg" as="image">
+    <link rel="preload" href="https://i.ytimg.com/vi/kqRkiYIKBCU/maxresdefault.jpg" as="image">
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="assets/css/lets-create.css">
     <link rel="stylesheet" href="assets/css/youtube-layout.css">
@@ -391,8 +403,8 @@
             }
         });
     }, {
-        rootMargin: '100px', // Start loading 100px before entering viewport
-        threshold: 0.1 // Trigger when 10% of video is visible
+        rootMargin: '300px', // Start loading 300px before entering viewport
+        threshold: 0.05 // Trigger when 5% of video is visible
     });
 
     // Initialize lazy loading observers
@@ -466,7 +478,30 @@
             
             // Update navigation buttons
             updateNavigationButtons();
+            
+            // Preload next video for faster switching
+            preloadNextVideo(index);
         }, 100);
+    }
+    
+    function preloadNextVideo(currentIndex) {
+        const nextIndex = currentIndex + 1;
+        if (nextIndex < totalVideos && nextIndex >= 0) {
+            // Create a hidden iframe to preload the next video
+            const preloadIframe = document.createElement('iframe');
+            preloadIframe.style.display = 'none';
+            preloadIframe.src = videos[nextIndex].url.replace('autoplay=1', 'autoplay=0');
+            document.body.appendChild(preloadIframe);
+            
+            // Remove after 5 seconds to free memory
+            setTimeout(() => {
+                if (preloadIframe.parentNode) {
+                    preloadIframe.parentNode.removeChild(preloadIframe);
+                }
+            }, 5000);
+            
+            console.log(`Preloaded next video: ${videos[nextIndex].title}`);
+        }
     }
 
     function updateNavigationButtons() {
