@@ -2340,7 +2340,7 @@ section.seccion-video-principal {
 .video-title {
     font-family: var(--font-primary);
     font-weight: 700;
-    font-size: 16px;
+    font-size: 12px; /* Same as description */
     color: #FFFFFF;
     margin: 0;
     text-transform: uppercase;
@@ -2390,14 +2390,14 @@ section.seccion-video-principal {
     }
     
     .video-title {
-        font-size: 14px;
+        font-size: 11px; /* Same as description */
         letter-spacing: 0.8px;
         line-height: 1.4;
         padding-right: 15px; /* Symmetric padding */
     }
     
     .video-title .subtitle {
-        font-size: 0.75em; /* 75% of 14px = 10.5px */
+        font-size: 0.75em; /* 75% of 11px = 8.25px */
         margin-top: 3px;
     }
     
@@ -2421,7 +2421,7 @@ section.seccion-video-principal {
     }
     
     .video-title {
-        font-size: 5px !important;
+        font-size: 8px !important; /* Same as description */
         letter-spacing: 0px; /* No spacing to fit in one line */
         padding-right: 10px; /* Symmetric padding */
         line-height: 1.1;
@@ -2432,7 +2432,7 @@ section.seccion-video-principal {
     }
     
     .video-title .subtitle {
-        font-size: 0.75em !important; /* 75% of 5px = 3.75px */
+        font-size: 0.75em !important; /* 75% of 8px = 6px */
         margin-top: 1px;
         text-align: left !important; /* Force left align */
     }
@@ -2463,7 +2463,7 @@ section.seccion-video-principal {
     }
     
     .video-title {
-        font-size: 4px !important;
+        font-size: 7px !important; /* Same as description */
         letter-spacing: 0px; /* No spacing for very small screens */
         padding-right: 8px; /* Symmetric padding */
         white-space: normal;
@@ -2475,7 +2475,7 @@ section.seccion-video-principal {
     }
     
     .video-title .subtitle {
-        font-size: 0.75em !important; /* 75% of 4px = 3px */
+        font-size: 0.75em !important; /* 75% of 7px = 5.25px */
         margin-top: 1px;
         text-align: left !important; /* Force left align */
     }
