@@ -192,7 +192,7 @@
             <div class="video-container youtube-container active" style="width: 100vw; height: 56.25vw; max-height: 100vh; position: relative; background: #000;">
                 <!-- Single iframe that changes src dynamically -->
                 <iframe id="youtube-player" class="youtube-video active" 
-                        data-src="https://www.youtube.com/embed/L-ejHvF0UJU?enablejsapi=1&autoplay=1&mute=1&loop=1&playlist=L-ejHvF0UJU&controls=0&modestbranding=1&rel=0&showinfo=0&fs=0&iv_load_policy=3&disablekb=1&start=5" 
+                        src="https://www.youtube.com/embed/L-ejHvF0UJU?enablejsapi=1&autoplay=1&mute=1&loop=1&playlist=L-ejHvF0UJU&controls=0&modestbranding=1&rel=0&showinfo=0&fs=0&iv_load_policy=3&disablekb=1&start=5" 
                         frameborder="0" 
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
                         allowfullscreen
@@ -268,13 +268,12 @@
         <section class="indh-video-section">
             <div class="indh-video-container">
                 <iframe class="indh-video" 
-                        data-src="https://www.youtube.com/embed/kqRkiYIKBCU?enablejsapi=1&autoplay=1&mute=1&loop=1&playlist=kqRkiYIKBCU&controls=0&modestbranding=1&rel=0&showinfo=0&fs=0&iv_load_policy=3&disablekb=1" 
+                        src="https://www.youtube.com/embed/kqRkiYIKBCU?enablejsapi=1&autoplay=1&mute=1&loop=1&playlist=kqRkiYIKBCU&controls=0&modestbranding=1&rel=0&showinfo=0&fs=0&iv_load_policy=3&disablekb=1" 
                         frameborder="0" 
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
                         allowfullscreen
                         referrerpolicy="strict-origin-when-cross-origin"
                         style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; background: #000;">
-                        Loading video...
                 </iframe>
             </div>
             
@@ -369,68 +368,25 @@
     const videos = VIDEO_CONFIG;
     const totalVideos = TOTAL_VIDEOS;
 
-    // Intersection Observer for video lazy loading
-    const videoObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            const container = entry.target;
-            const iframe = container.querySelector('iframe');
-            
-            if (!iframe) return;
-            
-            if (entry.isIntersecting) {
-                // Video section is visible - load it if not already loaded
-                const dataSrc = iframe.getAttribute('data-src');
-                if (dataSrc && !iframe.src) {
-                    console.log('Loading video:', dataSrc);
-                    console.log('Container:', container.className);
-                    console.log('Iframe class:', iframe.className);
-                    iframe.src = dataSrc;
-                    const videoId = iframe.id || iframe.className || 'unknown';
-                    loadedVideos.add(videoId);
-                    console.log('Video loaded successfully:', videoId);
-                }
-            } else {
-                // Video section is not visible - unload to save bandwidth
-                if (iframe.src && !iframe.classList.contains('keep-loaded')) {
-                    console.log('Unloading video to save bandwidth:', iframe.src);
-                    iframe.src = '';
-                    // Remove from loaded set unless it's the main slider
-                    const videoId = iframe.id || iframe.className || 'unknown';
-                    if (iframe.id !== 'youtube-player') {
-                        loadedVideos.delete(videoId);
-                    }
-                }
-            }
-        });
-    }, {
-        rootMargin: '300px', // Start loading 300px before entering viewport
-        threshold: 0.05 // Trigger when 5% of video is visible
-    });
+    // Note: Lazy loading disabled - all videos load immediately for better performance
 
-    // Initialize lazy loading observers
-    function initializeLazyLoading() {
-        // Observe all video sections
-        const allVideoContainers = document.querySelectorAll('.youtube-container, .indh-video-container, .bfa-video-container');
-        console.log(`Found ${allVideoContainers.length} video containers to observe`);
+    // Initialize all videos immediately (no lazy loading)
+    function initializeAllVideos() {
+        console.log('Loading all YouTube videos immediately for better performance');
         
-        allVideoContainers.forEach((container, index) => {
-            const iframe = container.querySelector('iframe');
-            if (iframe) {
-                console.log(`Observing container ${index + 1}:`, container.className, 'with iframe:', iframe.id || iframe.className);
-                videoObserver.observe(container);
-            }
+        // All videos are already loaded via src attribute in HTML
+        // Mark main video as loaded
+        loadedVideos.add('youtube-player');
+        
+        // Mark other videos as loaded
+        const allIframes = document.querySelectorAll('iframe[src*="youtube.com"]');
+        allIframes.forEach((iframe, index) => {
+            const videoId = iframe.id || iframe.className || `video-${index}`;
+            loadedVideos.add(videoId);
+            console.log(`Video loaded: ${videoId}`);
         });
         
-        // Load the first video immediately (main slider)
-        const mainVideoContainer = document.querySelector('.youtube-container');
-        if (mainVideoContainer) {
-            const mainIframe = mainVideoContainer.querySelector('#youtube-player');
-            if (mainIframe && mainIframe.getAttribute('data-src')) {
-                console.log('Loading main video immediately');
-                mainIframe.src = mainIframe.getAttribute('data-src');
-                loadedVideos.add('youtube-player');
-            }
-        }
+        console.log(`Total videos loaded immediately: ${allIframes.length}`);
     }
 
     // Function to update video description
@@ -593,8 +549,8 @@
             });
         }
         
-        // Initialize lazy loading system
-        initializeLazyLoading();
+        // Initialize all videos immediately
+        initializeAllVideos();
         
         // Initialize navigation buttons for first video
         updateNavigationButtons();
