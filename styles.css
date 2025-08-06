@@ -206,6 +206,8 @@ section.seccion-video-insert,
 section.youtube-video-section,
 section.creative-video-section,
 section.mix-3d-video-section,
+section.motion-graphics-section,
+section.bfa-video-section,
 section.photography-grid {
     border-bottom: none;
     padding: 0;
@@ -365,20 +367,26 @@ section.seccion-video-principal {
 
 .mix-3d-video-container {
     width: 100%;
-    height: 100%;
+    height: auto;
     position: relative;
     overflow: hidden;
+    margin: 0;
+    padding: 0;
+    display: block;
 }
 
 .mix-3d-video {
-    position: absolute;
+    position: relative;
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
+    height: auto;
     object-fit: contain;
     object-position: center center;
     pointer-events: none;
+    margin: 0;
+    padding: 0;
+    display: block;
 }
 
 .typewriter-cursor {
@@ -659,6 +667,8 @@ section.seccion-video-principal {
     display: flex;
     justify-content: center;
     align-items: center;
+    margin: 0;
+    padding: 0;
 }
 
 .bfa-video {
@@ -667,6 +677,9 @@ section.seccion-video-principal {
     object-fit: contain;
     object-position: center center;
     background-color: var(--black);
+    display: block;
+    margin: 0;
+    padding: 0;
 }
 
 /* BFA controls styles removed - now uses same style as YouTube section */
@@ -696,12 +709,25 @@ section.seccion-video-principal {
 .bfa-title-section h3 {
     font-family: var(--font-primary);
     font-weight: 700;
-    font-size: clamp(var(--text-lg), 2.5vw, var(--text-2xl));
-    color: var(--text-primary);
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    line-height: 1.3;
+    font-size: 12px;
+    color: #FFFFFF;
     margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    white-space: normal;
+    line-height: 1.4;
+    text-align: left;
+    overflow: hidden;
+}
+
+.bfa-title-section h3 .subtitle {
+    display: block;
+    font-size: 0.75em;
+    font-weight: 400;
+    letter-spacing: 0.5px;
+    color: #FFFFFF;
+    text-transform: uppercase;
+    margin-top: 2px;
 }
 
 .bfa-description-section {
@@ -770,7 +796,7 @@ section.seccion-video-principal {
 /* Text Container */
 .motion-graphics-text-container {
     width: 100%;
-    padding: 4rem;
+    padding: 2rem 4rem 4rem 4rem;
     background: var(--black);
     display: flex;
     flex-direction: column;
@@ -1145,6 +1171,14 @@ section.seccion-video-principal {
         padding: 15px 0;
     }
     
+    /* Video sections sin padding en tablet */
+    section.mix-3d-video-section,
+    section.motion-graphics-section,
+    section.bfa-video-section {
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+    
     /* Header adjustments con tipografía mejorada */
     .main-header {
         padding: 0.75rem 1.25rem;
@@ -1260,13 +1294,20 @@ section.seccion-video-principal {
     }
     
     /* Motion Graphics section responsive */
+    .motion-graphics-section {
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+    
     .motion-graphics-text-container {
-        padding: 2rem 1.25rem;
+        padding: 0.5rem 1.25rem 2rem 1.25rem;
     }
     
     .motion-graphics-video-container {
         aspect-ratio: 16/9;
         width: 100%;
+        margin: 0 !important;
+        padding: 0 !important;
     }
     
     .desc-content h3 {
@@ -1362,19 +1403,25 @@ section.seccion-video-principal {
     
     .mix-3d-video-container {
         width: 100%;
-        height: 100%;
+        height: auto;
         position: relative;
         overflow: hidden;
+        margin: 0 !important;
+        padding: 0 !important;
+        display: block;
     }
     
     .mix-3d-video {
-        position: absolute;
+        position: relative;
         top: 0;
         left: 0;
         width: 100%;
-        height: 100%;
+        height: auto;
         object-fit: contain;
         object-position: center center;
+        margin: 0 !important;
+        padding: 0 !important;
+        display: block;
     }
     
     /* Video controls tablet positioning */
@@ -1417,6 +1464,14 @@ section.seccion-video-principal {
         grid-template-columns: 1fr 1fr;
         gap: 20px;
         padding: 10px 0;
+    }
+    
+    /* Video sections sin padding en móvil */
+    section.mix-3d-video-section,
+    section.motion-graphics-section,
+    section.bfa-video-section {
+        padding: 0 !important;
+        margin: 0 !important;
     }
     
     /* Header con mejor legibilidad */
@@ -1631,16 +1686,20 @@ section.seccion-video-principal {
     section.youtube-video-section,
     section.creative-video-section,
     section.mix-3d-video-section,
-    section.motion-graphics-section {
-        padding-top: 0;
-        padding-left: 0;
-        padding-right: 0;
-        margin: 0;
+    section.motion-graphics-section,
+    section.bfa-video-section {
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+    
+    .motion-graphics-video-container {
+        margin: 0 !important;
+        padding: 0 !important;
     }
     
     /* Motion Graphics section mobile responsive */
     .motion-graphics-text-container {
-        padding: 1.5rem 1rem;
+        padding: 0.25rem 1rem 1.5rem 1rem;
     }
     
     .motion-graphics-video-container {
@@ -1683,21 +1742,27 @@ section.seccion-video-principal {
     
     .mix-3d-video-container {
         width: 100%;
-        height: 100%;
+        height: auto;
         position: relative;
         overflow: hidden;
         background-color: var(--black);
+        margin: 0 !important;
+        padding: 0 !important;
+        display: block;
     }
     
     .mix-3d-video {
-        position: absolute;
+        position: relative;
         top: 0;
         left: 0;
         width: 100%;
-        height: 100%;
+        height: auto;
         object-fit: contain;
         object-position: center center;
         background-color: var(--black);
+        margin: 0 !important;
+        padding: 0 !important;
+        display: block;
     }
     
     /* YouTube video section mobile responsive */
@@ -2199,7 +2264,8 @@ section.seccion-video-principal {
     
     /* Ensure BFA section spacing in mobile */
     .bfa-video-section {
-        margin-top: 100px !important;
+        margin: 0 !important;
+        padding: 0 !important;
     }
     
     .slider-nav:hover {
@@ -2493,6 +2559,14 @@ section.seccion-video-principal {
 
 /* Extra small screens (very narrow) */
 @media screen and (max-width: 320px) {
+    /* Video sections sin padding en pantallas extra pequeñas */
+    section.mix-3d-video-section,
+    section.motion-graphics-section,
+    section.bfa-video-section {
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+    
     .prev-btn, .next-btn {
         font-size: 10px !important;
         padding: 4px 6px !important;
@@ -2593,7 +2667,8 @@ section.seccion-video-principal {
     
     /* Ensure BFA section spacing in extra small mobile */
     .bfa-video-section {
-        margin-top: 120px !important;
+        margin: 0 !important;
+        padding: 0 !important;
     }
     
 }
