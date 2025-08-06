@@ -12,6 +12,17 @@
     --accent-yellow: #f0b90c;
     --font-primary: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     --font-mono: 'Roboto Mono', monospace;
+    
+    /* Typography Scale - Based on 1.25 ratio (Perfect Fifth) */
+    --text-xs: 0.75rem;    /* 12px */
+    --text-sm: 0.875rem;   /* 14px */
+    --text-base: 1rem;     /* 16px */
+    --text-lg: 1.125rem;   /* 18px */
+    --text-xl: 1.25rem;    /* 20px */
+    --text-2xl: 1.5rem;    /* 24px */
+    --text-3xl: 1.875rem;  /* 30px */
+    --text-4xl: 2.25rem;   /* 36px */
+    --text-5xl: 3rem;      /* 48px */
 }
 
 * {
@@ -638,7 +649,7 @@ section.seccion-video-principal {
     background: var(--black);
     width: 100%;
     padding: 0;
-    margin: 80px 0 0 0;
+    margin: 0;
 }
 
 .bfa-video-container {
@@ -661,12 +672,49 @@ section.seccion-video-principal {
 /* BFA controls styles removed - now uses same style as YouTube section */
 
 .bfa-text-container {
+    background: #0D1117;
+    padding: 0 60px 40px 60px;
     width: 100%;
-    padding: 4rem;
-    background: #0D1117; /* Match YouTube section background */
+}
+
+.bfa-text-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: flex-start;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px 0;
+    background: transparent;
+}
+
+.bfa-title-section {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+}
+
+.bfa-title-section h3 {
+    font-family: var(--font-primary);
+    font-weight: 700;
+    font-size: clamp(var(--text-lg), 2.5vw, var(--text-2xl));
+    color: var(--text-primary);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    line-height: 1.3;
+    margin: 0;
+}
+
+.bfa-description-section {
+    display: flex;
+    flex-direction: column;
+}
+
+.bfa-description-section p {
+    font-size: clamp(var(--text-xs), 2vw, var(--text-base));
+    line-height: 1.6;
+    color: var(--text-secondary);
+    margin: 0 0 1rem 0;
+    text-align: left;
 }
 
 /* Motion Graphics Sound Control */
@@ -747,11 +795,11 @@ section.seccion-video-principal {
 }
 
 .justified-text {
-    text-align: left; /* Matches video description text alignment */
+    text-align: left;
     text-justify: inter-word;
-    font-size: 12px; /* Matches video description text size */
-    line-height: 1.6; /* Matches video description line height */
-    color: #8B949E; /* Matches video description text color */
+    font-size: clamp(var(--text-xs), 2vw, var(--text-base));
+    line-height: 1.6;
+    color: var(--text-secondary);
     hyphens: auto;
     -webkit-hyphens: auto;
     -moz-hyphens: auto;
@@ -765,7 +813,7 @@ section.seccion-video-principal {
 }
 
 .contact-content h2 {
-    font-size: 2.5rem;
+    font-size: clamp(var(--text-3xl), 4vw, var(--text-5xl));
     font-weight: 700;
     letter-spacing: 2px;
     margin-bottom: 60px;
@@ -852,7 +900,7 @@ section.seccion-video-principal {
 }
 
 .bio-header h1 {
-    font-size: 3rem;
+    font-size: clamp(var(--text-4xl), 5vw, var(--text-5xl));
     font-weight: 300;
     letter-spacing: 3px;
     margin-bottom: 15px;
@@ -861,7 +909,7 @@ section.seccion-video-principal {
 }
 
 .bio-header h2 {
-    font-size: 1.1rem;
+    font-size: clamp(var(--text-sm), 2vw, var(--text-lg));
     font-weight: 400;
     letter-spacing: 1px;
     color: var(--text-secondary);
@@ -1086,6 +1134,17 @@ section.seccion-video-principal {
 
 /* Tablet styles (768px and below) */
 @media screen and (max-width: 768px) {
+    /* BFA section responsive */
+    .bfa-text-container {
+        padding: 0 40px 30px 40px;
+    }
+    
+    .bfa-text-layout {
+        gap: 30px;
+        grid-template-columns: 1fr 1fr;
+        padding: 15px 0;
+    }
+    
     /* Header adjustments con tipografía mejorada */
     .main-header {
         padding: 0.75rem 1.25rem;
@@ -1349,6 +1408,17 @@ section.seccion-video-principal {
 
 /* Mobile styles (480px and below) */
 @media screen and (max-width: 480px) {
+    /* BFA section mobile responsive */
+    .bfa-text-container {
+        padding: 0 20px 20px 20px;
+    }
+    
+    .bfa-text-layout {
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+        padding: 10px 0;
+    }
+    
     /* Header con mejor legibilidad */
     .main-header {
         padding: 0.25rem 1rem;
