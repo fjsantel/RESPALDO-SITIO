@@ -23,26 +23,6 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="assets/css/lets-create.css">
     <link rel="stylesheet" href="assets/css/youtube-layout.css">
-    <style>
-        /* YouTube Video Loader Animation */
-        @keyframes sequentialBlink {
-            0%, 20% {
-                opacity: 1;
-            }
-            21%, 100% {
-                opacity: 0.3;
-            }
-        }
-        
-        .youtube-video-loading-indicator {
-            transition: opacity 0.3s ease;
-        }
-        
-        .youtube-video-loading-indicator.hidden {
-            opacity: 0;
-            pointer-events: none;
-        }
-    </style>
 </head>
 <body>
     <div id="custom-cursor"></div>
@@ -210,19 +190,9 @@
         <!-- VIDEO BLOCK - Single Dynamic Video -->
         <section class="video-block" style="width: 100vw; margin: 0; padding: 0; background: #000;">
             <div class="video-container youtube-container active" style="width: 100vw; height: 56.25vw; max-height: 100vh; position: relative; background: #000;">
-                <!-- Video Loading Indicator -->
-                <div class="youtube-video-loading-indicator" id="youtube-video-loading" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); display: flex; flex-direction: column; align-items: center; gap: 15px; z-index: 10; pointer-events: none;">
-                    <div class="youtube-loading-dots" style="display: flex; gap: 8px;">
-                        <span style="width: 8px; height: 8px; background-color: #f0b90c; border-radius: 50%; opacity: 0.3; animation: sequentialBlink 1.5s infinite ease-in-out;"></span>
-                        <span style="width: 8px; height: 8px; background-color: #f0b90c; border-radius: 50%; opacity: 0.3; animation: sequentialBlink 1.5s infinite ease-in-out; animation-delay: 0.3s;"></span>
-                        <span style="width: 8px; height: 8px; background-color: #f0b90c; border-radius: 50%; opacity: 0.3; animation: sequentialBlink 1.5s infinite ease-in-out; animation-delay: 0.6s;"></span>
-                    </div>
-                    <small style="color: #FFFFFF; font-size: 0.8rem; font-weight: 300; letter-spacing: 0.05rem; text-transform: uppercase;">Cargando video...</small>
-                </div>
-                
                 <!-- Single iframe that changes src dynamically -->
                 <iframe id="youtube-player" class="youtube-video active" 
-                        data-src="https://www.youtube.com/embed/L-ejHvF0UJU?enablejsapi=1&autoplay=1&mute=1&loop=1&playlist=L-ejHvF0UJU&controls=0&modestbranding=1&rel=0&showinfo=0&fs=0&iv_load_policy=3&disablekb=1" 
+                        data-src="https://www.youtube.com/embed/L-ejHvF0UJU?enablejsapi=1&autoplay=1&mute=1&loop=1&playlist=L-ejHvF0UJU&controls=0&modestbranding=1&rel=0&showinfo=0&fs=0&iv_load_policy=3&disablekb=1&start=5" 
                         frameborder="0" 
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
                         allowfullscreen
@@ -457,14 +427,8 @@
             const mainIframe = mainVideoContainer.querySelector('#youtube-player');
             if (mainIframe && mainIframe.getAttribute('data-src')) {
                 console.log('Loading main video immediately');
-                showVideoLoader(); // Show loader for first video
                 mainIframe.src = mainIframe.getAttribute('data-src');
                 loadedVideos.add('youtube-player');
-                
-                // Hide loader after first video loads
-                setTimeout(() => {
-                    hideVideoLoader();
-                }, 3000);
             }
         }
     }
@@ -482,11 +446,7 @@
     
     function switchToVideo(index) {
         const iframe = document.getElementById('youtube-player');
-        const loader = document.getElementById('youtube-video-loading');
         if (!iframe) return;
-        
-        // Show loader while switching
-        showVideoLoader();
         
         // Pause current video before switching
         try {
@@ -519,30 +479,9 @@
             // Update navigation buttons
             updateNavigationButtons();
             
-            // Hide loader after video starts loading
-            setTimeout(() => {
-                hideVideoLoader();
-            }, 2000);
-            
             // Preload next video for faster switching
             preloadNextVideo(index);
         }, 100);
-    }
-    
-    function showVideoLoader() {
-        const loader = document.getElementById('youtube-video-loading');
-        if (loader) {
-            loader.style.display = 'flex';
-            console.log('Showing video loader');
-        }
-    }
-    
-    function hideVideoLoader() {
-        const loader = document.getElementById('youtube-video-loading');
-        if (loader) {
-            loader.style.display = 'none';
-            console.log('Hiding video loader');
-        }
     }
     
     function preloadNextVideo(currentIndex) {

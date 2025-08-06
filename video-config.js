@@ -15,18 +15,18 @@
 
 const VIDEO_CONFIG = [
     {
-        // VIDEO 0 - PRIMER VIDEO
+        // VIDEO 0 - PRIMER VIDEO (Alto Atacama - inicia en segundo 5)
         index: 0,
         videoId: 'L-ejHvF0UJU',
-        url: 'https://www.youtube.com/embed/L-ejHvF0UJU?enablejsapi=1&autoplay=1&mute=1&loop=1&playlist=L-ejHvF0UJU&controls=0&modestbranding=1&rel=0&showinfo=0&fs=0&iv_load_policy=3&disablekb=1',
+        url: 'https://www.youtube.com/embed/L-ejHvF0UJU?enablejsapi=1&autoplay=1&mute=1&loop=1&playlist=L-ejHvF0UJU&controls=0&modestbranding=1&rel=0&showinfo=0&fs=0&iv_load_policy=3&disablekb=1&start=5',
         title: 'NAYARA ALTO ATACAMA<br><span class="subtitle">Leading Hotels of The World</span>',
         description: 'Ubicado en el corazón del impresionante desierto de Atacama, el Nayara Alto Atacama Hotel ofrece una experiencia única de lujo y conexión con la naturaleza. Rodeado de paisajes sobrecogedores y un entorno de pura serenidad, este hotel es el destino ideal para los amantes de la aventura y la relajación. #hotel #atacama #chile #sanpedrodeatacama'
     },
     {
-        // VIDEO 1 - SEGUNDO VIDEO  
+        // VIDEO 1 - SEGUNDO VIDEO (La Ciudad No Da Más - inicia en segundo 11)
         index: 1,
         videoId: 'qsw5XT3mZXM',
-        url: 'https://www.youtube.com/embed/qsw5XT3mZXM?enablejsapi=1&autoplay=1&mute=1&loop=1&playlist=qsw5XT3mZXM&controls=0&modestbranding=1&rel=0&showinfo=0&fs=0&iv_load_policy=3&disablekb=1',
+        url: 'https://www.youtube.com/embed/qsw5XT3mZXM?enablejsapi=1&autoplay=1&mute=1&loop=1&playlist=qsw5XT3mZXM&controls=0&modestbranding=1&rel=0&showinfo=0&fs=0&iv_load_policy=3&disablekb=1&start=11',
         title: 'LA CIUDAD NO DA MÁS',
         description: 'Este documental aborda algunos elementos de la problemática habitacional y las diversas realidades que viven miles de chilenos en el proceso de encontrar una solución en materia de vivienda.'
     },
