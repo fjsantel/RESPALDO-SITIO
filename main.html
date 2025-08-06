@@ -180,12 +180,12 @@
             <div class="video-container youtube-container active" style="width: 100vw; height: 56.25vw; max-height: 100vh; position: relative; background: #000;">
                 <!-- Single iframe that changes src dynamically -->
                 <iframe id="youtube-player" class="youtube-video active" 
-                        src="https://www.youtube.com/embed/L-ejHvF0UJU?enablejsapi=1&autoplay=1&mute=1&loop=1&playlist=L-ejHvF0UJU&controls=0&modestbranding=1&rel=0&showinfo=0&fs=0&iv_load_policy=3&disablekb=1" 
+                        data-src="https://www.youtube.com/embed/L-ejHvF0UJU?enablejsapi=1&autoplay=1&mute=1&loop=1&playlist=L-ejHvF0UJU&controls=0&modestbranding=1&rel=0&showinfo=0&fs=0&iv_load_policy=3&disablekb=1" 
                         frameborder="0" 
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
                         allowfullscreen
                         referrerpolicy="strict-origin-when-cross-origin"
-                        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;">
+                        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; background: #000;">
                 </iframe>
             </div>
         </section>
@@ -256,12 +256,12 @@
         <section class="indh-video-section">
             <div class="indh-video-container">
                 <iframe class="indh-video" 
-                        src="https://www.youtube.com/embed/kqRkiYIKBCU?enablejsapi=1&autoplay=1&mute=1&loop=1&playlist=kqRkiYIKBCU&controls=0&modestbranding=1&rel=0&showinfo=0&fs=0&iv_load_policy=3&disablekb=1" 
+                        data-src="https://www.youtube.com/embed/kqRkiYIKBCU?enablejsapi=1&autoplay=1&mute=1&loop=1&playlist=kqRkiYIKBCU&controls=0&modestbranding=1&rel=0&showinfo=0&fs=0&iv_load_policy=3&disablekb=1" 
                         frameborder="0" 
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
                         allowfullscreen
                         referrerpolicy="strict-origin-when-cross-origin"
-                        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;">
+                        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; background: #000;">
                 </iframe>
             </div>
             
@@ -345,14 +345,68 @@
     <script src="new-portfolio.js"></script>
     <script src="assets/js/lets-create.js"></script>
     
-    <!-- Single Dynamic Video Navigation and Sound Control -->
+    <!-- Video Lazy Loading with Intersection Observer -->
     <script>
+    // Video lazy loading system to save bandwidth
     let currentVideoIndex = 0;
     let isMuted = true;
+    let loadedVideos = new Set(); // Track which videos are loaded
     
     // Use video configuration from video-config.js
     const videos = VIDEO_CONFIG;
     const totalVideos = TOTAL_VIDEOS;
+
+    // Intersection Observer for video lazy loading
+    const videoObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            const iframe = entry.target;
+            
+            if (entry.isIntersecting) {
+                // Video section is visible - load it if not already loaded
+                const dataSrc = iframe.getAttribute('data-src');
+                if (dataSrc && !iframe.src) {
+                    console.log('Loading video:', dataSrc);
+                    iframe.src = dataSrc;
+                    loadedVideos.add(iframe.id || iframe.className);
+                }
+            } else {
+                // Video section is not visible - unload to save bandwidth
+                if (iframe.src && !iframe.classList.contains('keep-loaded')) {
+                    console.log('Unloading video to save bandwidth:', iframe.src);
+                    iframe.src = '';
+                    // Remove from loaded set unless it's the main slider
+                    if (iframe.id !== 'youtube-player') {
+                        loadedVideos.delete(iframe.id || iframe.className);
+                    }
+                }
+            }
+        });
+    }, {
+        rootMargin: '100px', // Start loading 100px before entering viewport
+        threshold: 0.1 // Trigger when 10% of video is visible
+    });
+
+    // Initialize lazy loading observers
+    function initializeLazyLoading() {
+        // Observe all video sections
+        const allVideoContainers = document.querySelectorAll('.youtube-container, .indh-video-container, .bfa-video-container');
+        allVideoContainers.forEach(container => {
+            const iframe = container.querySelector('iframe');
+            if (iframe) {
+                videoObserver.observe(container);
+            }
+        });
+        
+        // Load the first video immediately (main slider)
+        const mainVideoContainer = document.querySelector('.youtube-container');
+        if (mainVideoContainer) {
+            const mainIframe = mainVideoContainer.querySelector('#youtube-player');
+            if (mainIframe && mainIframe.getAttribute('data-src')) {
+                mainIframe.src = mainIframe.getAttribute('data-src');
+                loadedVideos.add('youtube-player');
+            }
+        }
+    }
 
     // Function to update video description
     function updateVideoDescription(index) {
@@ -371,16 +425,19 @@
         
         // Pause current video before switching
         try {
-            iframe.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
-            console.log('Paused current video before switching');
+            if (iframe.src) {
+                iframe.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
+                console.log('Paused current video before switching');
+            }
         } catch (error) {
             console.log('Could not pause current video:', error);
         }
         
         // Small delay to ensure pause command is processed
         setTimeout(() => {
-            // Change iframe src to new video - this completely unloads the previous video
+            // Load new video URL - this completely unloads the previous video
             iframe.src = videos[index].url;
+            loadedVideos.add('youtube-player');
             
             // Update current index
             currentVideoIndex = index;
@@ -392,7 +449,7 @@
             isMuted = true;
             document.getElementById('sound-activation-btn').textContent = 'ACTIVAR SONIDO';
             
-            console.log(`Switched to video ${index + 1} - ${videos[index].title} - autoplay with loop enabled`);
+            console.log(`Switched to video ${index + 1} - ${videos[index].title} - lazy loaded and autoplay enabled`);
             
             // Update navigation buttons
             updateNavigationButtons();
@@ -487,6 +544,9 @@
                 controlSound();
             });
         }
+        
+        // Initialize lazy loading system
+        initializeLazyLoading();
         
         // Initialize navigation buttons for first video
         updateNavigationButtons();
