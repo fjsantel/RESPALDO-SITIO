@@ -752,15 +752,10 @@ class BFAVideoController {
     }
 
     updateButtonText() {
-        const soundText = this.soundBtn.querySelector('.sound-text');
-        if (soundText) {
-            if (this.isMuted) {
-                soundText.textContent = 'VER CON SONIDO';
-                this.soundBtn.classList.remove('sound-enabled');
-            } else {
-                soundText.textContent = 'DESACTIVAR SONIDO';
-                this.soundBtn.classList.add('sound-enabled');
-            }
+        if (this.isMuted) {
+            this.soundBtn.textContent = 'ACTIVAR SONIDO';
+        } else {
+            this.soundBtn.textContent = 'SONIDO ACTIVADO';
         }
     }
 }
