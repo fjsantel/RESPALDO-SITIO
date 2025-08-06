@@ -2289,8 +2289,41 @@ section.seccion-video-principal {
     }
 }
 
+/* Navigation buttons responsive styles for all screen sizes */
+.prev-btn, .next-btn {
+    font-size: 10px !important;
+    padding: 6px 8px !important;
+    letter-spacing: 0.5px !important;
+    min-width: auto !important;
+    white-space: nowrap !important;
+}
+
+/* Tablet styles for navigation buttons */
+@media screen and (max-width: 768px) {
+    .prev-btn, .next-btn {
+        font-size: 9px !important;
+        padding: 5px 7px !important;
+        letter-spacing: 0.3px !important;
+    }
+}
+
+/* Mobile styles for navigation buttons */
+@media screen and (max-width: 480px) {
+    .prev-btn, .next-btn {
+        font-size: 8px !important;
+        padding: 4px 6px !important;
+        letter-spacing: 0.2px !important;
+    }
+}
+
 /* Extra small screens (very narrow) */
 @media screen and (max-width: 320px) {
+    .prev-btn, .next-btn {
+        font-size: 7px !important;
+        padding: 3px 5px !important;
+        letter-spacing: 0.1px !important;
+    }
+    
     /* Ensure no container limits width in extra small mobile */
     body, main {
         padding: 0 !important;
@@ -2386,6 +2419,24 @@ section.seccion-video-principal {
     object-fit: contain;
     background: var(--black);
     min-height: 200px;
+}
+
+.youtube-video-wrapper {
+    width: 100%;
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 aspect ratio */
+    height: 0;
+    background: var(--black);
+}
+
+.youtube-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+    background: var(--black);
 }
 
 .combined-controls {
