@@ -41,8 +41,8 @@ const VIDEO_CONFIG = [
     {
         // VIDEO 3 - CUARTO VIDEO
         index: 3,
-        videoId: 'NUEVO_ID_AQUI', // Reemplazar con el ID real del video
-        url: 'https://www.youtube-nocookie.com/embed/NUEVO_ID_AQUI?start=5&mute=1&autoplay=1&loop=1&playlist=NUEVO_ID_AQUI&controls=0&modestbranding=1&rel=0&showinfo=0&fs=0&enablejsapi=1',
+        videoId: '39l9JNGMdnI',
+        url: 'https://www.youtube-nocookie.com/embed/39l9JNGMdnI?start=5&mute=1&autoplay=1&loop=1&playlist=39l9JNGMdnI&controls=0&modestbranding=1&rel=0&showinfo=0&fs=0&enablejsapi=1',
         title: 'ENCUENTRO DE LA ALIANZA',
         description: 'Fondo de mujeres feminista, que trabaja por los derechos humanos de mujeres, niñas y diversidades sexuales y de género. Movilizando recursos en apoyo a organizaciones territoriales y redes activistas, que desarrollan su que hacer en territorio chileno.'
     }
