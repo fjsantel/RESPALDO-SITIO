@@ -2291,37 +2291,39 @@ section.seccion-video-principal {
 
 /* Navigation buttons responsive styles for all screen sizes */
 .prev-btn, .next-btn {
-    font-size: 10px !important;
-    padding: 6px 8px !important;
-    letter-spacing: 0.5px !important;
+    font-size: 16px !important;
+    padding: 8px 12px !important;
+    letter-spacing: 0 !important;
     min-width: auto !important;
     white-space: nowrap !important;
+    width: auto !important;
+    height: auto !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
 }
 
 /* Tablet styles for navigation buttons */
 @media screen and (max-width: 768px) {
     .prev-btn, .next-btn {
-        font-size: 9px !important;
-        padding: 5px 7px !important;
-        letter-spacing: 0.3px !important;
+        font-size: 14px !important;
+        padding: 6px 10px !important;
     }
 }
 
 /* Mobile styles for navigation buttons */
 @media screen and (max-width: 480px) {
     .prev-btn, .next-btn {
-        font-size: 8px !important;
-        padding: 4px 6px !important;
-        letter-spacing: 0.2px !important;
+        font-size: 12px !important;
+        padding: 5px 8px !important;
     }
 }
 
 /* Extra small screens (very narrow) */
 @media screen and (max-width: 320px) {
     .prev-btn, .next-btn {
-        font-size: 7px !important;
-        padding: 3px 5px !important;
-        letter-spacing: 0.1px !important;
+        font-size: 10px !important;
+        padding: 4px 6px !important;
     }
     
     /* Ensure no container limits width in extra small mobile */
