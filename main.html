@@ -180,7 +180,7 @@
             <div class="video-container youtube-container active" style="width: 100vw; height: 56.25vw; max-height: 100vh; position: relative; background: #000;">
                 <!-- Single iframe that changes src dynamically -->
                 <iframe id="youtube-player" class="youtube-video active" 
-                        src="https://www.youtube.com/embed/L-ejHvF0UJU?enablejsapi=1&autoplay=1&mute=1&controls=1&rel=0&modestbranding=1" 
+                        src="https://www.youtube.com/embed/L-ejHvF0UJU?enablejsapi=1&autoplay=1&mute=1&loop=1&playlist=L-ejHvF0UJU&controls=1&rel=0&modestbranding=1" 
                         frameborder="0" 
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
                         allowfullscreen
@@ -256,7 +256,7 @@
         <section class="indh-video-section">
             <div class="indh-video-container">
                 <iframe class="indh-video" 
-                        src="https://www.youtube.com/embed/kqRkiYIKBCU?enablejsapi=1&autoplay=1&mute=1&controls=1&rel=0&modestbranding=1" 
+                        src="https://www.youtube.com/embed/kqRkiYIKBCU?enablejsapi=1&autoplay=1&mute=1&loop=1&playlist=kqRkiYIKBCU&controls=1&rel=0&modestbranding=1" 
                         frameborder="0" 
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
                         allowfullscreen
@@ -369,23 +369,34 @@
         const iframe = document.getElementById('youtube-player');
         if (!iframe) return;
         
-        // Change iframe src to new video - this completely unloads the previous video
-        iframe.src = videos[index].url;
+        // Pause current video before switching
+        try {
+            iframe.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
+            console.log('Paused current video before switching');
+        } catch (error) {
+            console.log('Could not pause current video:', error);
+        }
         
-        // Update current index
-        currentVideoIndex = index;
-        
-        // Update video description
-        updateVideoDescription(index);
-        
-        // Reset mute state for new video (always start muted)
-        isMuted = true;
-        document.getElementById('sound-activation-btn').textContent = 'ACTIVAR SONIDO';
-        
-        console.log(`Switched to video ${index + 1} - ${videos[index].title} - completely loaded new video, previous unloaded`);
-        
-        // Update navigation buttons
-        updateNavigationButtons();
+        // Small delay to ensure pause command is processed
+        setTimeout(() => {
+            // Change iframe src to new video - this completely unloads the previous video
+            iframe.src = videos[index].url;
+            
+            // Update current index
+            currentVideoIndex = index;
+            
+            // Update video description
+            updateVideoDescription(index);
+            
+            // Reset mute state for new video (always start muted)
+            isMuted = true;
+            document.getElementById('sound-activation-btn').textContent = 'ACTIVAR SONIDO';
+            
+            console.log(`Switched to video ${index + 1} - ${videos[index].title} - autoplay with loop enabled`);
+            
+            // Update navigation buttons
+            updateNavigationButtons();
+        }, 100);
     }
 
     function updateNavigationButtons() {
