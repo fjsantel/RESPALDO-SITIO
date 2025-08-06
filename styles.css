@@ -2319,11 +2319,122 @@ section.seccion-video-principal {
     }
 }
 
+/* Video Description Container Styles */
+.video-description-section {
+    background: #0D1117;
+    padding: 0 60px 40px 60px;
+    width: 100%;
+}
+
+.video-description-grid {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 30px;
+    align-items: flex-start;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0;
+    background: transparent;
+}
+
+.video-title {
+    font-family: var(--font-primary);
+    font-weight: 700;
+    font-size: 16px;
+    color: #FFFFFF;
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    white-space: nowrap;
+    padding-right: 10px;
+}
+
+.video-description-text {
+    font-family: var(--font-primary);
+    font-weight: 400;
+    font-size: 14px;
+    color: #8B949E;
+    margin: 0;
+    line-height: 1.7;
+    text-align: justify;
+    text-justify: inter-word;
+    hyphens: auto;
+    -webkit-hyphens: auto;
+    -moz-hyphens: auto;
+}
+
+/* Tablet styles for video description */
+@media screen and (max-width: 768px) {
+    .video-description-section {
+        padding: 0 40px 30px 40px;
+    }
+    
+    .video-description-grid {
+        gap: 20px;
+    }
+    
+    .video-title {
+        font-size: 14px;
+        letter-spacing: 0.5px;
+    }
+    
+    .video-description-text {
+        font-size: 13px;
+        line-height: 1.6;
+    }
+}
+
+/* Mobile styles for video description */
+@media screen and (max-width: 480px) {
+    .video-description-section {
+        padding: 0 20px 25px 20px;
+    }
+    
+    .video-description-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+        text-align: left;
+    }
+    
+    .video-title {
+        font-size: 12px;
+        letter-spacing: 0.3px;
+        padding-right: 0;
+        white-space: normal;
+    }
+    
+    .video-description-text {
+        font-size: 12px;
+        line-height: 1.5;
+    }
+}
+
 /* Extra small screens (very narrow) */
 @media screen and (max-width: 320px) {
     .prev-btn, .next-btn {
         font-size: 10px !important;
         padding: 4px 6px !important;
+    }
+    
+    .video-description-section {
+        padding: 0 15px 20px 15px;
+    }
+    
+    .video-description-grid {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+    
+    .video-title {
+        font-size: 11px;
+        letter-spacing: 0.2px;
+        padding-right: 0;
+        white-space: normal;
+    }
+    
+    .video-description-text {
+        font-size: 11px;
+        line-height: 1.4;
     }
     
     /* Ensure no container limits width in extra small mobile */
