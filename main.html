@@ -262,6 +262,7 @@
                         allowfullscreen
                         referrerpolicy="strict-origin-when-cross-origin"
                         style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; background: #000;">
+                        Loading video...
                 </iframe>
             </div>
             
@@ -369,9 +370,12 @@
                 const dataSrc = iframe.getAttribute('data-src');
                 if (dataSrc && !iframe.src) {
                     console.log('Loading video:', dataSrc);
+                    console.log('Container:', container.className);
+                    console.log('Iframe class:', iframe.className);
                     iframe.src = dataSrc;
                     const videoId = iframe.id || iframe.className || 'unknown';
                     loadedVideos.add(videoId);
+                    console.log('Video loaded successfully:', videoId);
                 }
             } else {
                 // Video section is not visible - unload to save bandwidth
