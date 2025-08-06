@@ -18,7 +18,7 @@ const VIDEO_CONFIG = [
         // VIDEO 0 - PRIMER VIDEO
         index: 0,
         videoId: 'L-ejHvF0UJU',
-        url: 'https://www.youtube.com/embed/L-ejHvF0UJU?enablejsapi=1&autoplay=1&mute=1&loop=1&playlist=L-ejHvF0UJU&controls=1&rel=0&modestbranding=1',
+        url: 'https://www.youtube.com/embed/L-ejHvF0UJU?enablejsapi=1&autoplay=1&mute=1&loop=1&playlist=L-ejHvF0UJU&controls=0&modestbranding=1&rel=0&showinfo=0&fs=0&iv_load_policy=3&disablekb=1',
         title: 'NAYARA ALTO ATACAMA<br><span class="subtitle">Leading Hotels of The World</span>',
         description: 'Ubicado en el corazón del impresionante desierto de Atacama, el Nayara Alto Atacama Hotel ofrece una experiencia única de lujo y conexión con la naturaleza. Rodeado de paisajes sobrecogedores y un entorno de pura serenidad, este hotel es el destino ideal para los amantes de la aventura y la relajación. #hotel #atacama #chile #sanpedrodeatacama'
     },
@@ -26,7 +26,7 @@ const VIDEO_CONFIG = [
         // VIDEO 1 - SEGUNDO VIDEO  
         index: 1,
         videoId: 'qsw5XT3mZXM',
-        url: 'https://www.youtube.com/embed/qsw5XT3mZXM?enablejsapi=1&autoplay=1&mute=1&loop=1&playlist=qsw5XT3mZXM&controls=1&rel=0&modestbranding=1',
+        url: 'https://www.youtube.com/embed/qsw5XT3mZXM?enablejsapi=1&autoplay=1&mute=1&loop=1&playlist=qsw5XT3mZXM&controls=0&modestbranding=1&rel=0&showinfo=0&fs=0&iv_load_policy=3&disablekb=1',
         title: 'LA CIUDAD NO DA MÁS',
         description: 'Este documental aborda algunos elementos de la problemática habitacional y las diversas realidades que viven miles de chilenos en el proceso de encontrar una solución en materia de vivienda.'
     },
@@ -34,7 +34,7 @@ const VIDEO_CONFIG = [
         // VIDEO 2 - TERCER VIDEO
         index: 2,
         videoId: 'kMdRuuU7tjk', 
-        url: 'https://www.youtube.com/embed/kMdRuuU7tjk?enablejsapi=1&autoplay=1&mute=1&loop=1&playlist=kMdRuuU7tjk&controls=1&rel=0&modestbranding=1',
+        url: 'https://www.youtube.com/embed/kMdRuuU7tjk?enablejsapi=1&autoplay=1&mute=1&loop=1&playlist=kMdRuuU7tjk&controls=0&modestbranding=1&rel=0&showinfo=0&fs=0&iv_load_policy=3&disablekb=1',
         title: 'CANTA TU SUEÑO',
         description: 'Un emotivo viaje que une música, sueños y comunidad. "Canta Tu Sueño" es una propuesta de 3xi que inspira a las personas a imaginar un futuro mejor, a través del poder de la colaboración, la esperanza y la creatividad.'
     },
@@ -42,7 +42,7 @@ const VIDEO_CONFIG = [
         // VIDEO 3 - CUARTO VIDEO
         index: 3,
         videoId: '39l9JNGMdnI',
-        url: 'https://www.youtube.com/embed/39l9JNGMdnI?enablejsapi=1&autoplay=1&mute=1&loop=1&playlist=39l9JNGMdnI&controls=1&rel=0&modestbranding=1',
+        url: 'https://www.youtube.com/embed/39l9JNGMdnI?enablejsapi=1&autoplay=1&mute=1&loop=1&playlist=39l9JNGMdnI&controls=0&modestbranding=1&rel=0&showinfo=0&fs=0&iv_load_policy=3&disablekb=1',
         title: 'ENCUENTRO DE LA ALIANZA',
         description: 'Fondo de mujeres feminista, que trabaja por los derechos humanos de mujeres, niñas y diversidades sexuales y de género. Movilizando recursos en apoyo a organizaciones territoriales y redes activistas, que desarrollan su que hacer en territorio chileno.'
     },
@@ -50,7 +50,7 @@ const VIDEO_CONFIG = [
         // VIDEO 4 - QUINTO VIDEO
         index: 4,
         videoId: 'Uu5IFm6I554',
-        url: 'https://www.youtube.com/embed/Uu5IFm6I554?enablejsapi=1&autoplay=1&mute=1&loop=1&playlist=Uu5IFm6I554&controls=1&rel=0&modestbranding=1',
+        url: 'https://www.youtube.com/embed/Uu5IFm6I554?enablejsapi=1&autoplay=1&mute=1&loop=1&playlist=Uu5IFm6I554&controls=0&modestbranding=1&rel=0&showinfo=0&fs=0&iv_load_policy=3&disablekb=1',
         title: 'ENCUENTRO 3XI SALUD<br><span class="subtitle">Porque a Todos nos Duele</span>',
         description: 'Cerca de 300 personas se reunieron para conversar de salud, conocer experiencias, biografías, saberes, dolores y sueños en una diversidad amplia. Organizaciones de la sociedad civil, trabajadores, servicios privados y otros actores participaron en mesas de conversación para pensar un futuro.'
     }
