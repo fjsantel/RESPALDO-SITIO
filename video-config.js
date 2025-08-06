@@ -19,7 +19,7 @@ const VIDEO_CONFIG = [
         index: 0,
         videoId: 'L-ejHvF0UJU',
         url: 'https://www.youtube-nocookie.com/embed/L-ejHvF0UJU?start=5&mute=1&autoplay=1&loop=1&playlist=L-ejHvF0UJU&controls=0&modestbranding=1&rel=0&showinfo=0&fs=0&enablejsapi=1',
-        title: 'Nayara Alto Atacama | Leading Hotels of The World',
+        title: 'NAYARA ALTO ATACAMA<br><span class="subtitle">Leading Hotels of The World</span>',
         description: 'Ubicado en el corazón del impresionante desierto de Atacama, el Nayara Alto Atacama Hotel ofrece una experiencia única de lujo y conexión con la naturaleza. Rodeado de paisajes sobrecogedores y un entorno de pura serenidad, este hotel es el destino ideal para los amantes de la aventura y la relajación. #hotel #atacama #chile #sanpedrodeatacama'
     },
     {

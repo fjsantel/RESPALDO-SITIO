@@ -211,7 +211,7 @@
                 
                 <!-- Video Title (Left) -->
                 <h3 class="video-title" id="current-video-title">
-                    Nayara Alto Atacama | Leading Hotels of The World
+                    NAYARA ALTO ATACAMA<br><span class="subtitle">Leading Hotels of The World</span>
                 </h3>
                 
                 <!-- Video Description (Right) -->
@@ -325,7 +325,7 @@
         const descriptionElement = document.getElementById('current-video-description');
         
         if (titleElement && descriptionElement && videos[index]) {
-            titleElement.textContent = videos[index].title;
+            titleElement.innerHTML = videos[index].title; // Use innerHTML for HTML content
             descriptionElement.textContent = videos[index].description;
         }
     }
