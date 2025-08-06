@@ -180,7 +180,7 @@
             <div class="video-container youtube-container active" style="width: 100vw; height: 56.25vw; max-height: 100vh; position: relative; background: #000;">
                 <!-- Single iframe that changes src dynamically -->
                 <iframe id="youtube-player" class="youtube-video active" 
-                        src="https://www.youtube.com/embed/L-ejHvF0UJU?enablejsapi=1&controls=1&rel=0&modestbranding=1" 
+                        src="https://www.youtube.com/embed/L-ejHvF0UJU?enablejsapi=1&autoplay=1&mute=1&controls=1&rel=0&modestbranding=1" 
                         frameborder="0" 
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
                         allowfullscreen
@@ -247,6 +247,39 @@
                     </div>
                     <div class="bfa-description-section">
                         <p>Video introductorio desarrollado para BFA2025, conferencia internacional que reúne a 23 Cámaras de Comercio Americanas de 28 países de Latinoamérica y el Caribe. Esta producción audiovisual destaca la importancia del comercio e inversión entre Estados Unidos y la región, promoviendo el libre comercio, mercados libres y libre empresa.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- INDH DERECHOS HUMANOS STANDALONE SECTION -->
+        <section class="indh-video-section">
+            <div class="indh-video-container">
+                <iframe class="indh-video" 
+                        src="https://www.youtube.com/embed/kqRkiYIKBCU?enablejsapi=1&autoplay=1&mute=1&controls=1&rel=0&modestbranding=1" 
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                        allowfullscreen
+                        referrerpolicy="strict-origin-when-cross-origin"
+                        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;">
+                </iframe>
+            </div>
+            
+            <!-- INDH Sound Control (moved outside video, same style as YouTube section) -->
+            <div class="indh-controls-below" style="background: #0D1117; padding: 20px; display: flex; justify-content: center;">
+                <div class="indh-controls-container" style="background: #0D1117; padding: 15px 30px; border-radius: 8px; display: flex; align-items: center; gap: 20px;">
+                    <button id="indh-sound-btn" class="sound-activation-btn" style="background: #f0b90c; color: #000; border: none; padding: 15px 35px; cursor: pointer; border-radius: 4px; font-weight: 600; font-size: 14px; white-space: nowrap; min-width: fit-content; transition: all 0.3s ease;">ACTIVAR SONIDO</button>
+                </div>
+            </div>
+            
+            <!-- INDH Text Container -->
+            <div class="indh-text-container">
+                <div class="indh-text-layout">
+                    <div class="indh-title-section">
+                        <h3>UNA HISTORIA PARA CONSTRUIR<br><span class="subtitle">Defensoras & Defensores de los Derechos Humanos</span></h3>
+                    </div>
+                    <div class="indh-description-section">
+                        <p>Documental realizado para el Instituto Nacional de Derechos Humanos con el objetivo de potenciar el trabajo realizado con niños y niñas de enseñanza básica orientado a transmitir el rol y la importancia de los mismos en la sociedad y el día a día a través de conversaciones con premios nacionales de derechos humanos.</p>
                     </div>
                 </div>
             </div>
@@ -390,6 +423,13 @@
             }
         } catch (error) {
             console.error('PostMessage failed:', error);
+            // Fallback: try to reload iframe with updated mute parameter
+            const currentUrl = iframe.src;
+            if (isMuted) {
+                iframe.src = currentUrl.replace('mute=1', 'mute=0');
+            } else {
+                iframe.src = currentUrl.replace('mute=0', 'mute=1');
+            }
         }
     }
     
@@ -442,6 +482,30 @@
         
         // Initialize video description for first video
         updateVideoDescription(0);
+        
+        // Initialize INDH video sound control
+        const indhSoundBtn = document.getElementById('indh-sound-btn');
+        if (indhSoundBtn) {
+            let indhMuted = true;
+            indhSoundBtn.addEventListener('click', () => {
+                const indhIframe = document.querySelector('.indh-video');
+                if (!indhIframe) return;
+                
+                try {
+                    if (indhMuted) {
+                        indhIframe.contentWindow.postMessage('{"event":"command","func":"unMute","args":""}', '*');
+                        indhSoundBtn.textContent = 'SONIDO ACTIVADO';
+                        indhMuted = false;
+                    } else {
+                        indhIframe.contentWindow.postMessage('{"event":"command","func":"mute","args":""}', '*');
+                        indhSoundBtn.textContent = 'ACTIVAR SONIDO';
+                        indhMuted = true;
+                    }
+                } catch (error) {
+                    console.error('INDH postMessage failed:', error);
+                }
+            });
+        }
         
         console.log('Single dynamic video navigation setup complete');
     });

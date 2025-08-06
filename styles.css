@@ -208,6 +208,7 @@ section.creative-video-section,
 section.mix-3d-video-section,
 section.motion-graphics-section,
 section.bfa-video-section,
+section.indh-video-section,
 section.photography-grid {
     border-bottom: none;
     padding: 0;
@@ -653,14 +654,14 @@ section.seccion-video-principal {
 }
 
 /* BFA 2025 Section */
-.bfa-video-section {
+.bfa-video-section, .indh-video-section {
     background: var(--black);
     width: 100%;
     padding: 0;
     margin: 0;
 }
 
-.bfa-video-container {
+.bfa-video-container, .indh-video-container {
     width: 100%;
     position: relative;
     background: var(--black);
@@ -669,6 +670,7 @@ section.seccion-video-principal {
     align-items: center;
     margin: 0;
     padding: 0;
+    aspect-ratio: 16/9;
 }
 
 .bfa-video {
@@ -684,13 +686,13 @@ section.seccion-video-principal {
 
 /* BFA controls styles removed - now uses same style as YouTube section */
 
-.bfa-text-container {
+.bfa-text-container, .indh-text-container {
     background: #0D1117;
     padding: 0 60px 40px 60px;
     width: 100%;
 }
 
-.bfa-text-layout {
+.bfa-text-layout, .indh-text-layout {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 40px;
@@ -701,12 +703,12 @@ section.seccion-video-principal {
     background: transparent;
 }
 
-.bfa-title-section {
+.bfa-title-section, .indh-title-section {
     display: flex;
     flex-direction: column;
 }
 
-.bfa-title-section h3 {
+.bfa-title-section h3, .indh-title-section h3 {
     font-family: var(--font-primary);
     font-weight: 700;
     font-size: 12px;
@@ -720,7 +722,7 @@ section.seccion-video-principal {
     overflow: hidden;
 }
 
-.bfa-title-section h3 .subtitle {
+.bfa-title-section h3 .subtitle, .indh-title-section h3 .subtitle {
     display: block;
     font-size: 0.75em;
     font-weight: 400;
@@ -730,12 +732,12 @@ section.seccion-video-principal {
     margin-top: 2px;
 }
 
-.bfa-description-section {
+.bfa-description-section, .indh-description-section {
     display: flex;
     flex-direction: column;
 }
 
-.bfa-description-section p {
+.bfa-description-section p, .indh-description-section p {
     font-size: clamp(var(--text-xs), 2vw, var(--text-base));
     line-height: 1.6;
     color: var(--text-secondary);
@@ -1161,11 +1163,11 @@ section.seccion-video-principal {
 /* Tablet styles (768px and below) */
 @media screen and (max-width: 768px) {
     /* BFA section responsive */
-    .bfa-text-container {
+    .bfa-text-container, .indh-text-container {
         padding: 0 40px 30px 40px;
     }
     
-    .bfa-text-layout {
+    .bfa-text-layout, .indh-text-layout {
         gap: 30px;
         grid-template-columns: 1fr 1fr;
         padding: 15px 0;
@@ -1174,7 +1176,8 @@ section.seccion-video-principal {
     /* Video sections sin padding en tablet */
     section.mix-3d-video-section,
     section.motion-graphics-section,
-    section.bfa-video-section {
+    section.bfa-video-section,
+    section.indh-video-section {
         padding: 0 !important;
         margin: 0 !important;
     }
@@ -1456,11 +1459,11 @@ section.seccion-video-principal {
 /* Mobile styles (480px and below) */
 @media screen and (max-width: 480px) {
     /* BFA section mobile responsive */
-    .bfa-text-container {
+    .bfa-text-container, .indh-text-container {
         padding: 0 20px 20px 20px;
     }
     
-    .bfa-text-layout {
+    .bfa-text-layout, .indh-text-layout {
         grid-template-columns: 1fr 1fr;
         gap: 20px;
         padding: 10px 0;
@@ -1469,7 +1472,8 @@ section.seccion-video-principal {
     /* Video sections sin padding en móvil */
     section.mix-3d-video-section,
     section.motion-graphics-section,
-    section.bfa-video-section {
+    section.bfa-video-section,
+    section.indh-video-section {
         padding: 0 !important;
         margin: 0 !important;
     }
@@ -1687,7 +1691,8 @@ section.seccion-video-principal {
     section.creative-video-section,
     section.mix-3d-video-section,
     section.motion-graphics-section,
-    section.bfa-video-section {
+    section.bfa-video-section,
+    section.indh-video-section {
         padding: 0 !important;
         margin: 0 !important;
     }
@@ -2562,7 +2567,8 @@ section.seccion-video-principal {
     /* Video sections sin padding en pantallas extra pequeñas */
     section.mix-3d-video-section,
     section.motion-graphics-section,
-    section.bfa-video-section {
+    section.bfa-video-section,
+    section.indh-video-section {
         padding: 0 !important;
         margin: 0 !important;
     }
