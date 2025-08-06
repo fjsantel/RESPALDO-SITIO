@@ -35,7 +35,7 @@ const VIDEO_CONFIG = [
         index: 2,
         videoId: 'kMdRuuU7tjk', 
         url: 'https://www.youtube-nocookie.com/embed/kMdRuuU7tjk?start=10&mute=1&autoplay=1&loop=1&playlist=kMdRuuU7tjk&controls=0&modestbranding=1&rel=0&showinfo=0&fs=0&enablejsapi=1',
-        title: 'PROMO CANTA TU SUEÑO',
+        title: 'CANTA TU SUEÑO',
         description: 'Un emotivo viaje que une música, sueños y comunidad. "Canta Tu Sueño" es una propuesta de 3xi que inspira a las personas a imaginar un futuro mejor, a través del poder de la colaboración, la esperanza y la creatividad.'
     },
     {
@@ -45,6 +45,14 @@ const VIDEO_CONFIG = [
         url: 'https://www.youtube-nocookie.com/embed/39l9JNGMdnI?start=5&mute=1&autoplay=1&loop=1&playlist=39l9JNGMdnI&controls=0&modestbranding=1&rel=0&showinfo=0&fs=0&enablejsapi=1',
         title: 'ENCUENTRO DE LA ALIANZA',
         description: 'Fondo de mujeres feminista, que trabaja por los derechos humanos de mujeres, niñas y diversidades sexuales y de género. Movilizando recursos en apoyo a organizaciones territoriales y redes activistas, que desarrollan su que hacer en territorio chileno.'
+    },
+    {
+        // VIDEO 4 - QUINTO VIDEO
+        index: 4,
+        videoId: 'Uu5IFm6I554',
+        url: 'https://www.youtube-nocookie.com/embed/Uu5IFm6I554?start=5&mute=1&autoplay=1&loop=1&playlist=Uu5IFm6I554&controls=0&modestbranding=1&rel=0&showinfo=0&fs=0&enablejsapi=1',
+        title: 'ENCUENTRO 3XI SALUD<br><span class="subtitle">Porque a Todos nos Duele</span>',
+        description: 'Cerca de 300 personas se reunieron para conversar de salud, conocer experiencias, biografías, saberes, dolores y sueños en una diversidad amplia. Organizaciones de la sociedad civil, trabajadores, servicios privados y otros actores participaron en mesas de conversación para pensar un futuro.'
     }
     
     // PARA AGREGAR MÁS VIDEOS, COPIA ESTE FORMATO:
