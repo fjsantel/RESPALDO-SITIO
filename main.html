@@ -359,7 +359,10 @@
     // Intersection Observer for video lazy loading
     const videoObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
-            const iframe = entry.target;
+            const container = entry.target;
+            const iframe = container.querySelector('iframe');
+            
+            if (!iframe) return;
             
             if (entry.isIntersecting) {
                 // Video section is visible - load it if not already loaded
@@ -367,7 +370,8 @@
                 if (dataSrc && !iframe.src) {
                     console.log('Loading video:', dataSrc);
                     iframe.src = dataSrc;
-                    loadedVideos.add(iframe.id || iframe.className);
+                    const videoId = iframe.id || iframe.className || 'unknown';
+                    loadedVideos.add(videoId);
                 }
             } else {
                 // Video section is not visible - unload to save bandwidth
@@ -375,8 +379,9 @@
                     console.log('Unloading video to save bandwidth:', iframe.src);
                     iframe.src = '';
                     // Remove from loaded set unless it's the main slider
+                    const videoId = iframe.id || iframe.className || 'unknown';
                     if (iframe.id !== 'youtube-player') {
-                        loadedVideos.delete(iframe.id || iframe.className);
+                        loadedVideos.delete(videoId);
                     }
                 }
             }
@@ -390,9 +395,12 @@
     function initializeLazyLoading() {
         // Observe all video sections
         const allVideoContainers = document.querySelectorAll('.youtube-container, .indh-video-container, .bfa-video-container');
-        allVideoContainers.forEach(container => {
+        console.log(`Found ${allVideoContainers.length} video containers to observe`);
+        
+        allVideoContainers.forEach((container, index) => {
             const iframe = container.querySelector('iframe');
             if (iframe) {
+                console.log(`Observing container ${index + 1}:`, container.className, 'with iframe:', iframe.id || iframe.className);
                 videoObserver.observe(container);
             }
         });
@@ -402,6 +410,7 @@
         if (mainVideoContainer) {
             const mainIframe = mainVideoContainer.querySelector('#youtube-player');
             if (mainIframe && mainIframe.getAttribute('data-src')) {
+                console.log('Loading main video immediately');
                 mainIframe.src = mainIframe.getAttribute('data-src');
                 loadedVideos.add('youtube-player');
             }
