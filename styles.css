@@ -871,7 +871,7 @@ section.seccion-video-principal {
 /* Text Container */
 .motion-graphics-text-container {
     width: 100%;
-    padding: 2rem 4rem 4rem 4rem;
+    padding: 0.5rem 4rem 4rem 4rem;
     background: var(--black);
     display: flex;
     flex-direction: column;
@@ -896,7 +896,7 @@ section.seccion-video-principal {
 }
 
 .justified-text {
-    text-align: left;
+    text-align: justify;
     text-justify: inter-word;
     font-size: clamp(var(--text-xs), 2vw, var(--text-base));
     line-height: 1.6;
@@ -1377,7 +1377,7 @@ section.seccion-video-principal {
     }
     
     .motion-graphics-text-container {
-        padding: 0.5rem 1.25rem 2rem 1.25rem;
+        padding: 0.25rem 1.25rem 2rem 1.25rem;
     }
     
     .motion-graphics-video-container {
@@ -1402,7 +1402,7 @@ section.seccion-video-principal {
     }
     
     .justified-text {
-        text-align: left; /* Matches video description */
+        text-align: justify; /* Rectangular justification */
         text-justify: inter-word;
         hyphens: auto;
         -webkit-hyphens: auto;
@@ -1778,7 +1778,7 @@ section.seccion-video-principal {
     
     /* Motion Graphics section mobile responsive */
     .motion-graphics-text-container {
-        padding: 0.25rem 1rem 1.5rem 1rem;
+        padding: 0.125rem 1rem 1.5rem 1rem;
     }
     
     .motion-graphics-video-container {
@@ -1794,7 +1794,7 @@ section.seccion-video-principal {
     .justified-text {
         font-size: 8px; /* Matches video description mobile size */
         line-height: 1.3; /* Matches video description mobile line height */
-        text-align: left; /* Matches video description */
+        text-align: justify; /* Rectangular justification */
     }
     
     /* Motion Graphics sound button mobile positioning */
