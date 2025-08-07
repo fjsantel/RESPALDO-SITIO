@@ -317,10 +317,43 @@
             <div class="artistas-yungay-text-container">
                 <div class="artistas-yungay-text-layout">
                     <div class="artistas-yungay-title-section">
-                        <h3>FESTIVAL PUERTAS ABIERTAS<br><span class="subtitle">Artistas Yungay</span></h3>
+                        <h3>ARTISTAS YUNGAY<br><span class="subtitle">Festival Puertas Abiertas</span></h3>
                     </div>
                     <div class="artistas-yungay-description-section">
                         <p>A lo largo de distintas versiones del Festival Puertas Abiertas, he desarrollado piezas audiovisuales, identidades gráficas y logotipos. Este video que resume algunas de las piezas visuales. Música original compuesta para proyecto.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- LOS MUROS DE CHILE STANDALONE SECTION -->
+        <section class="muros-chile-video-section">
+            <div class="muros-chile-video-container">
+                <iframe class="muros-chile-video" 
+                        src="https://www.youtube.com/embed/kiLsYLelXVI?enablejsapi=1&autoplay=1&mute=1&loop=1&playlist=kiLsYLelXVI&controls=0&modestbranding=1&rel=0&showinfo=0&fs=0&iv_load_policy=3&disablekb=1" 
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                        allowfullscreen
+                        referrerpolicy="strict-origin-when-cross-origin"
+                        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; background: #000;">
+                </iframe>
+            </div>
+            
+            <!-- Muros Chile Sound Control -->
+            <div class="muros-chile-controls-below" style="background: #0D1117; padding: 20px; display: flex; justify-content: center;">
+                <div class="muros-chile-controls-container" style="background: #0D1117; padding: 15px 30px; border-radius: 8px; display: flex; align-items: center; gap: 20px;">
+                    <button id="muros-chile-sound-btn" class="sound-activation-btn" style="background: #f0b90c; color: #000; border: none; padding: 15px 35px; cursor: pointer; border-radius: 4px; font-weight: 600; font-size: 14px; white-space: nowrap; min-width: fit-content; transition: all 0.3s ease;">ACTIVAR SONIDO</button>
+                </div>
+            </div>
+            
+            <!-- Muros Chile Text Container -->
+            <div class="muros-chile-text-container">
+                <div class="muros-chile-text-layout">
+                    <div class="muros-chile-title-section">
+                        <h3>LOS MUROS DE CHILE<br><span class="subtitle">Exposición Louis Von Adelsheim</span></h3>
+                    </div>
+                    <div class="muros-chile-description-section">
+                        <p>Registro del trabajo realizado para la Exposición los Muros de Chile del artista Louis Von Adelsheim en la que junto al artista desarrollé el registro, piezas audiovisuales, gráficas, artísticas y efectos visuales. Realizada entre el 6 de abril y el 24 de Junio de 2018 en el Museo de Arte Contemporáneo de Quinta Normal en Santiago de Chile.</p>
                     </div>
                 </div>
             </div>
@@ -660,6 +693,30 @@
                     }
                 } catch (error) {
                     console.error('Ruta San Pedro postMessage failed:', error);
+                }
+            });
+        }
+        
+        // Initialize Muros Chile video sound control
+        const muroChileSoundBtn = document.getElementById('muros-chile-sound-btn');
+        if (muroChileSoundBtn) {
+            let muroChileMuted = true;
+            muroChileSoundBtn.addEventListener('click', () => {
+                const muroChileIframe = document.querySelector('.muros-chile-video');
+                if (!muroChileIframe) return;
+                
+                try {
+                    if (muroChileMuted) {
+                        muroChileIframe.contentWindow.postMessage('{"event":"command","func":"unMute","args":""}', '*');
+                        muroChileSoundBtn.textContent = 'SONIDO ACTIVADO';
+                        muroChileMuted = false;
+                    } else {
+                        muroChileIframe.contentWindow.postMessage('{"event":"command","func":"mute","args":""}', '*');
+                        muroChileSoundBtn.textContent = 'ACTIVAR SONIDO';
+                        muroChileMuted = true;
+                    }
+                } catch (error) {
+                    console.error('Muros Chile postMessage failed:', error);
                 }
             });
         }
