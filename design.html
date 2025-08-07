@@ -18,26 +18,84 @@
             font-family: 'Montserrat', sans-serif;
         }
 
-        .design-header {
+        /* Franja de título */
+        .franja-titulo {
             padding: 2rem 0;
-            text-align: center;
             border-bottom: 1px solid #333;
             margin-bottom: 3rem;
         }
 
-        .design-title {
-            font-size: clamp(1.5rem, 4vw, 2.5rem);
-            font-weight: 700;
-            letter-spacing: 0.2rem;
-            text-transform: uppercase;
-            margin-bottom: 1rem;
+        .franja-titulo-content {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 3rem;
+            align-items: start;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
         }
 
-        .design-subtitle {
-            font-size: clamp(0.9rem, 2vw, 1.2rem);
-            font-weight: 400;
-            color: #f0b90c;
+        .franja-titulo-section {
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .franja-titulo-main {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 700;
             letter-spacing: 0.1rem;
+            text-transform: uppercase;
+            margin: 0;
+            line-height: 0.9;
+            color: #FFFFFF;
+        }
+
+        .franja-descripcion-section {
+            display: flex;
+            align-items: center;
+        }
+
+        .franja-descripcion {
+            font-size: clamp(0.95rem, 1.8vw, 1.1rem);
+            line-height: 1.6;
+            margin: 0;
+            color: #CCCCCC;
+            text-align: justify;
+            font-weight: 400;
+        }
+
+        .compra-button {
+            background: #333333;
+            color: #FFFFFF;
+            border: 2px solid #666666;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: clamp(0.9rem, 1.5vw, 1rem);
+            text-transform: uppercase;
+            letter-spacing: 0.1rem;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+            min-width: 180px;
+            margin-top: 1rem;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .compra-button:hover {
+            background: #f0b90c;
+            color: #050505;
+            border-color: #f0b90c;
+            transform: none;
+        }
+
+        .compra-button:active {
+            background: #d4a00a;
+            border-color: #d4a00a;
+            transform: none;
         }
 
         .gallery-container {
@@ -96,31 +154,31 @@
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
         }
 
-        .back-button {
-            position: fixed;
-            top: 2rem;
-            left: 2rem;
-            background: rgba(240, 185, 12, 0.9);
-            color: #050505;
-            border: none;
-            padding: 0.8rem 1.5rem;
-            border-radius: 25px;
-            font-weight: 600;
-            font-size: 0.9rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            z-index: 1000;
-            text-decoration: none;
-            display: inline-block;
-        }
-
-        .back-button:hover {
-            background: #f0b90c;
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(240, 185, 12, 0.3);
+        /* Content spacing for default header */
+        .design-content {
+            padding-top: 120px;
         }
 
         /* Responsive adjustments */
+        @media (max-width: 968px) {
+            .franja-titulo-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                text-align: center;
+            }
+            
+            .franja-titulo-main {
+                font-size: clamp(1.8rem, 6vw, 2.8rem);
+                text-align: center;
+            }
+            
+            .franja-descripcion {
+                text-align: center;
+                font-size: clamp(0.9rem, 2vw, 1rem);
+            }
+            
+        }
+
         @media (max-width: 768px) {
             .gallery-grid {
                 grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
@@ -131,15 +189,18 @@
                 padding: 0 1rem;
             }
             
-            .design-header {
+            .franja-titulo {
                 margin-bottom: 2rem;
+                padding: 1.5rem 0;
             }
             
-            .back-button {
-                top: 1rem;
-                left: 1rem;
-                padding: 0.6rem 1.2rem;
-                font-size: 0.8rem;
+            .franja-titulo-content {
+                padding: 0 1rem;
+                gap: 1.5rem;
+            }
+            
+            .design-content {
+                padding-top: 110px;
             }
         }
 
@@ -148,26 +209,55 @@
                 grid-template-columns: 1fr;
                 gap: 1rem;
             }
+            
+            .design-content {
+                padding-top: 100px;
+            }
         }
     </style>
 </head>
 <body class="design-page">
-    <a href="main.html" class="back-button">← VOLVER</a>
-    
-    <div class="design-header">
-        <h1 class="design-title">Diseño</h1>
-        <h2 class="design-subtitle">La mecánica de la imagen</h2>
-    </div>
+    <div id="custom-cursor"></div>
 
-    <div class="gallery-container">
-        <div class="gallery-grid" id="gallery-grid">
-            <!-- Images will be loaded here by JavaScript -->
+    <!-- Header simplificado igual al de Bio pero sin CV -->
+    <header class="main-header">
+        <div class="logo-container">
+            <a href="index.html" style="text-decoration: none; display: flex; align-items: center; gap: 15px;">
+                <img src="assets/logo.png" alt="Francisco Santelices Logo" class="logo-image" loading="eager" decoding="async">
+                <div class="logo-text">
+                    <span class="logo-main">FRANCISCO SANTELICES ARIZTÍA</span>
+                    <span class="logo-sub">CREATIVE CONTENT</span>
+                </div>
+            </a>
+        </div>
+        <div class="header-actions">
+            <a href="main.html" class="menu-trigger-text" style="text-decoration: none;">VOLVER</a>
+        </div>
+    </header>
+
+    <div class="design-content">
+        <div class="franja-titulo">
+            <div class="franja-titulo-content">
+                <div class="franja-titulo-section">
+                    <h1 class="franja-titulo-main">LA MECÁNICA DE LA IMAGEN</h1>
+                </div>
+                <div class="franja-descripcion-section">
+                    <p class="franja-descripcion">La Mecánica de la Imagen es una obra de diseño gráfico de Francisco Santelices Ariztía que convierte la impresión en un diálogo visual entre la geometría y los valores del color. A través de composiciones cuidadosamente calibradas, cada póster invita a reflexionar sobre la relación entre el espacio y el individuo. Esta exploración simbólica busca interrogar la percepción del entorno y desafiar al espectador a interpretar su propia experiencia dentro de un espacio visualmente estructurado.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="gallery-container">
+            <div class="gallery-grid" id="gallery-grid">
+                <!-- Images will be loaded here by JavaScript -->
+            </div>
         </div>
     </div>
 
     <script>
         // Image gallery data
         const images = [
+            "LOGO POSTER UP.jpg",
             "La mecánica de la imágen 000000FFFFFF.jpeg",
             "La mecánica de la imágen 017A3801A650 V2.jpeg",
             "La mecánica de la imágen 017A3801A650.jpeg",
@@ -286,12 +376,173 @@
                 
                 galleryItem.appendChild(img);
                 galleryItem.appendChild(colorPalette);
+                
+                // Add buttons for specific images and positions
+                let compraButton = null;
+                
+                if (imageName.includes('EFB1C0E27690.jpeg')) {
+                    // Button for "La mecánica de la imágen EFB1C0E27690.jpeg" (Poster UP #3)
+                    compraButton = document.createElement('a');
+                    compraButton.href = 'https://www.uprint.cl/product-page/colecci%C3%B3n-poster-up-n%C2%BA3';
+                    compraButton.target = '_blank';
+                    compraButton.className = 'compra-button';
+                    compraButton.textContent = 'COMPRA AQUÍ';
+                } else if (imageName.includes('E27690EFB1C0.jpeg')) {
+                    // Button for "La mecánica de la imágen E27690EFB1C0.jpeg" (Poster UP #5)
+                    compraButton = document.createElement('a');
+                    compraButton.href = 'https://www.uprint.cl/product-page/colecci%C3%B3n-poster-up-n%C2%BA5';
+                    compraButton.target = '_blank';
+                    compraButton.className = 'compra-button';
+                    compraButton.textContent = 'COMPRA AQUÍ';
+                } else if (imageName.includes('E27690920108')) {
+                    // Button for "La mecánica de la imágen E27690920108.jpeg" (Email contact)
+                    compraButton = document.createElement('a');
+                    compraButton.href = 'mailto:franciscosantelicesariztia@gmail.com?subject=Solicitud%20de%20copias%20-%20La%20mec%C3%A1nica%20de%20la%20imagen';
+                    compraButton.className = 'compra-button';
+                    compraButton.textContent = 'SOLICITAR COPIAS';
+                } else if (imageName.includes('DF534E090935')) {
+                    // Button for "La mecánica de la imágen DF534E090935.jpeg" (Email contact)
+                    compraButton = document.createElement('a');
+                    compraButton.href = 'mailto:franciscosantelicesariztia@gmail.com?subject=Solicitud%20de%20copias%20-%20La%20mec%C3%A1nica%20de%20la%20imagen';
+                    compraButton.className = 'compra-button';
+                    compraButton.textContent = 'SOLICITAR COPIAS';
+                } else if (imageName.includes('BCA133E27690')) {
+                    // Button for "La mecánica de la imágen BCA133E27690.jpeg" (Poster UP #4)
+                    compraButton = document.createElement('a');
+                    compraButton.href = 'https://www.uprint.cl/product-page/colecci%C3%B3n-poster-up-n%C2%BA4';
+                    compraButton.target = '_blank';
+                    compraButton.className = 'compra-button';
+                    compraButton.textContent = 'COMPRA AQUÍ';
+                } else if (imageName.includes('9ECEC2EFB1C0')) {
+                    // Button for "La mecánica de la imágen 9ECEC2EFB1C0.jpeg" (Poster UP #11)
+                    compraButton = document.createElement('a');
+                    compraButton.href = 'https://www.uprint.cl/product-page/colecci%C3%B3n-poster-up-n%C2%BA11';
+                    compraButton.target = '_blank';
+                    compraButton.className = 'compra-button';
+                    compraButton.textContent = 'COMPRA AQUÍ';
+                } else if (imageName.includes('1e1f41fd336')) {
+                    // Button for "La mecánica de la imágen 1e1f41fd336.jpeg" (Poster UP #13)
+                    compraButton = document.createElement('a');
+                    compraButton.href = 'https://www.uprint.cl/product-page/colecci%C3%B3n-poster-up-n%C2%BA13';
+                    compraButton.target = '_blank';
+                    compraButton.className = 'compra-button';
+                    compraButton.textContent = 'COMPRA AQUÍ';
+                } else if (imageName.includes('1A43BFFF88AA')) {
+                    // Button for "La mecánica de la imágen 1A43BFFF88AA.jpeg" (Poster UP #14)
+                    compraButton = document.createElement('a');
+                    compraButton.href = 'https://www.uprint.cl/product-page/colecci%C3%B3n-poster-up-n%C2%BA14';
+                    compraButton.target = '_blank';
+                    compraButton.className = 'compra-button';
+                    compraButton.textContent = 'COMPRA AQUÍ';
+                } else if (imageName.includes('192557E13732')) {
+                    // Button for "La mecánica de la imágen 192557E13732.jpeg" (Poster UP #7)
+                    compraButton = document.createElement('a');
+                    compraButton.href = 'https://www.uprint.cl/product-page/colecci%C3%B3n-poster-up-n%C2%BA7';
+                    compraButton.target = '_blank';
+                    compraButton.className = 'compra-button';
+                    compraButton.textContent = 'COMPRA AQUÍ';
+                } else if (imageName.includes('161515F2D336')) {
+                    // Button for "La mecánica de la imágen 161515F2D336.jpeg" (Poster UP #16)
+                    compraButton = document.createElement('a');
+                    compraButton.href = 'https://www.uprint.cl/product-page/colecci%C3%B3n-poster-up-n%C2%BA16';
+                    compraButton.target = '_blank';
+                    compraButton.className = 'compra-button';
+                    compraButton.textContent = 'COMPRA AQUÍ';
+                } else if (imageName.includes('161515E13732')) {
+                    // Button for "La mecánica de la imágen 161515E13732.jpeg" (Poster UP #8)
+                    compraButton = document.createElement('a');
+                    compraButton.href = 'https://www.uprint.cl/product-page/colecci%C3%B3n-poster-up-n%C2%BA8';
+                    compraButton.target = '_blank';
+                    compraButton.className = 'compra-button';
+                    compraButton.textContent = 'COMPRA AQUÍ';
+                } else if (imageName.includes('12349801A650')) {
+                    // Button for "La mecánica de la imágen 12349801A650.jpeg" (Poster UP #6)
+                    compraButton = document.createElement('a');
+                    compraButton.href = 'https://www.uprint.cl/product-page/colecci%C3%B3n-poster-up-n%C2%BA6';
+                    compraButton.target = '_blank';
+                    compraButton.className = 'compra-button';
+                    compraButton.textContent = 'COMPRA AQUÍ';
+                } else if (imageName.includes('0A247100072C')) {
+                    // Button for "La mecánica de la imágen 0A247100072C.jpeg" (Poster UP #15)
+                    compraButton = document.createElement('a');
+                    compraButton.href = 'https://www.uprint.cl/product-page/colecci%C3%B3n-poster-up-n%C2%BA15';
+                    compraButton.target = '_blank';
+                    compraButton.className = 'compra-button';
+                    compraButton.textContent = 'COMPRA AQUÍ';
+                } else if (imageName.includes('061651E27690')) {
+                    // Button for "La mecánica de la imágen 061651E27690.jpeg" (Poster UP #9)
+                    compraButton = document.createElement('a');
+                    compraButton.href = 'https://www.uprint.cl/product-page/colecci%C3%B3n-poster-up-n%C2%BA9';
+                    compraButton.target = '_blank';
+                    compraButton.className = 'compra-button';
+                    compraButton.textContent = 'COMPRA AQUÍ';
+                } else if (imageName.includes('017A3801A650') && !imageName.includes('V2')) {
+                    // Button for "La mecánica de la imágen 017A3801A650.jpeg" (Poster UP #10)
+                    compraButton = document.createElement('a');
+                    compraButton.href = 'https://www.uprint.cl/product-page/colecci%C3%B3n-poster-up-n%C2%BA10';
+                    compraButton.target = '_blank';
+                    compraButton.className = 'compra-button';
+                    compraButton.textContent = 'COMPRA AQUÍ';
+                } else if (imageName.includes('017A3801A650 V2')) {
+                    // Button for "La mecánica de la imágen 017A3801A650 V2.jpeg" (Email contact)
+                    compraButton = document.createElement('a');
+                    compraButton.href = 'mailto:franciscosantelicesariztia@gmail.com?subject=Solicitud%20de%20copias%20-%20La%20mec%C3%A1nica%20de%20la%20imagen';
+                    compraButton.className = 'compra-button';
+                    compraButton.textContent = 'SOLICITAR COPIAS';
+                } else if (imageName.includes('000000FFFFFF')) {
+                    // Button for "La mecánica de la imágen 000000FFFFFF.jpeg" (Poster UP #12)
+                    compraButton = document.createElement('a');
+                    compraButton.href = 'https://www.uprint.cl/product-page/colecci%C3%B3n-poster-up-n%C2%BA12';
+                    compraButton.target = '_blank';
+                    compraButton.className = 'compra-button';
+                    compraButton.textContent = 'COMPRA AQUÍ';
+                } else if (index === images.length - 2) {
+                    // Button under penultimate image (Poster UP #1)
+                    compraButton = document.createElement('a');
+                    compraButton.href = 'https://www.uprint.cl/product-page/colecci%C3%B3n-poster-up';
+                    compraButton.target = '_blank';
+                    compraButton.className = 'compra-button';
+                    compraButton.textContent = 'COMPRA AQUÍ';
+                } else if (index === images.length - 1) {
+                    // Button under last image (Poster UP #2)
+                    compraButton = document.createElement('a');
+                    compraButton.href = 'https://www.uprint.cl/product-page/colecci%C3%B3n-poster-up-n%C2%BA2';
+                    compraButton.target = '_blank';
+                    compraButton.className = 'compra-button';
+                    compraButton.textContent = 'COMPRA AQUÍ';
+                }
+                
+                if (compraButton) {
+                    galleryItem.appendChild(compraButton);
+                }
+                
                 galleryGrid.appendChild(galleryItem);
             });
         }
 
         // Initialize gallery when page loads
         document.addEventListener('DOMContentLoaded', loadGallery);
+
+        // Custom cursor functionality (from bio.html)
+        const cursor = document.getElementById('custom-cursor');
+        
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        });
+
+        // Hover effects
+        const hoverElements = document.querySelectorAll('.gallery-item, a, button');
+        
+        hoverElements.forEach(element => {
+            element.addEventListener('mouseenter', () => {
+                document.body.classList.add('cursor-hover');
+            });
+            
+            element.addEventListener('mouseleave', () => {
+                document.body.classList.remove('cursor-hover');
+            });
+        });
     </script>
 </body>
 </html>
