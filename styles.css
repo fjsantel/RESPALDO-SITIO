@@ -2507,6 +2507,40 @@ section.seccion-video-principal {
     }
 }
 
+/* Fix para orden correcto en móvil */
+main {
+    display: flex;
+    flex-direction: column;
+}
+
+.bfa-video-section {
+    order: 1;
+}
+
+.indh-video-section {
+    order: 2;
+}
+
+.ruta-sanpedro-video-section {
+    order: 3;
+}
+
+.artistas-yungay-video-section {
+    order: 4;
+}
+
+.motion-graphics-section {
+    order: 5;
+}
+
+.mix-3d-video-section {
+    order: 6;
+}
+
+.contact-section {
+    order: 7;
+}
+
 /* Mobile styles for navigation buttons */
 /* Navigation hint message styles */
 .navigation-hint {
