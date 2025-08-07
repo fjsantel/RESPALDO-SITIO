@@ -56,6 +56,12 @@ class NavigationManager {
             return;
         }
 
+        // Handle Design section - navigate to design page
+        if (clickedBtn.dataset.section === 'design') {
+            window.location.href = 'design.html';
+            return;
+        }
+
         // Handle Let's Create section - scroll to center "LET'S CREATE" title
         if (clickedBtn.dataset.section === 'lets-create') {
             this.navBtns.forEach(btn => btn.classList.remove('active'));

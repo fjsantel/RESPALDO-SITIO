@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Francisco Santelices Ariztía - Diseño - La mecánica de la imagen">
+    <title>Diseño - Francisco Santelices Ariztía</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Design page specific styles */
+        .design-page {
+            background-color: #050505;
+            color: #FFFFFF;
+            min-height: 100vh;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .design-header {
+            padding: 2rem 0;
+            text-align: center;
+            border-bottom: 1px solid #333;
+            margin-bottom: 3rem;
+        }
+
+        .design-title {
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
+            font-weight: 700;
+            letter-spacing: 0.2rem;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+
+        .design-subtitle {
+            font-size: clamp(0.9rem, 2vw, 1.2rem);
+            font-weight: 400;
+            color: #f0b90c;
+            letter-spacing: 0.1rem;
+        }
+
+        .gallery-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            background-color: #111;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(240, 185, 12, 0.2);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+            transition: transform 0.3s ease;
+            display: block;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .color-palette {
+            position: absolute;
+            bottom: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 0.4rem;
+            justify-content: center;
+        }
+
+        .color-square {
+            width: 16px;
+            height: 16px;
+            border-radius: 2px;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .back-button {
+            position: fixed;
+            top: 2rem;
+            left: 2rem;
+            background: rgba(240, 185, 12, 0.9);
+            color: #050505;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 1000;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .back-button:hover {
+            background: #f0b90c;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(240, 185, 12, 0.3);
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                gap: 1.5rem;
+            }
+            
+            .gallery-container {
+                padding: 0 1rem;
+            }
+            
+            .design-header {
+                margin-bottom: 2rem;
+            }
+            
+            .back-button {
+                top: 1rem;
+                left: 1rem;
+                padding: 0.6rem 1.2rem;
+                font-size: 0.8rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .gallery-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body class="design-page">
+    <a href="main.html" class="back-button">← VOLVER</a>
+    
+    <div class="design-header">
+        <h1 class="design-title">Diseño</h1>
+        <h2 class="design-subtitle">La mecánica de la imagen</h2>
+    </div>
+
+    <div class="gallery-container">
+        <div class="gallery-grid" id="gallery-grid">
+            <!-- Images will be loaded here by JavaScript -->
+        </div>
+    </div>
+
+    <script>
+        // Image gallery data
+        const images = [
+            "La mecánica de la imágen 000000FFFFFF.jpeg",
+            "La mecánica de la imágen 017A3801A650 V2.jpeg",
+            "La mecánica de la imágen 017A3801A650.jpeg",
+            "La mecánica de la imágen 061651E27690.jpeg",
+            "La mecánica de la imágen 0A247100072C.jpeg",
+            "La mecánica de la imágen 12349801A650.jpeg",
+            "La mecánica de la imágen 161515E13732.jpeg",
+            "La mecánica de la imágen 161515F2D336.jpeg",
+            "La mecánica de la imágen 192557E13732.jpeg",
+            "La mecánica de la imágen 1A43BFFF88AA.jpeg",
+            "La mecánica de la imágen 1e1f41fd336.jpeg",
+            "La mecánica de la imágen 9ECEC2EFB1C0.jpeg",
+            "La mecánica de la imágen BCA133E27690.jpeg",
+            "La mecánica de la imágen DF534E090935.jpeg",
+            "La mecánica de la imágen E27690920108.jpeg",
+            "La mecánica de la imágen E27690EFB1C0.jpeg",
+            "La mecánica de la imágen EFB1C0E27690.jpeg",
+            "La mecánica de la imágen F2D336225EF2.jpeg",
+            "La mecánica de la imágen0A2471F2D336.jpeg"
+        ];
+
+        // Extract dominant colors from image
+        function extractColorsFromImage(img) {
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+            
+            // Set canvas size
+            canvas.width = img.naturalWidth;
+            canvas.height = img.naturalHeight;
+            
+            // Draw image to canvas
+            ctx.drawImage(img, 0, 0);
+            
+            try {
+                // Get image data
+                const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+                const data = imageData.data;
+                
+                // Sample colors from the image (every 10th pixel for performance)
+                const colorMap = {};
+                for (let i = 0; i < data.length; i += 40) { // Sample fewer pixels
+                    const r = data[i];
+                    const g = data[i + 1];
+                    const b = data[i + 2];
+                    const alpha = data[i + 3];
+                    
+                    // Skip transparent or very light/dark pixels
+                    if (alpha < 128 || (r + g + b) < 50 || (r + g + b) > 650) continue;
+                    
+                    // Quantize colors to reduce similar shades
+                    const quantizedR = Math.round(r / 32) * 32;
+                    const quantizedG = Math.round(g / 32) * 32;
+                    const quantizedB = Math.round(b / 32) * 32;
+                    
+                    const colorKey = `${quantizedR},${quantizedG},${quantizedB}`;
+                    colorMap[colorKey] = (colorMap[colorKey] || 0) + 1;
+                }
+                
+                // Sort colors by frequency and get top 3
+                const sortedColors = Object.entries(colorMap)
+                    .sort((a, b) => b[1] - a[1])
+                    .slice(0, 3)
+                    .map(([color, count]) => {
+                        const [r, g, b] = color.split(',').map(Number);
+                        return `rgb(${r}, ${g}, ${b})`;
+                    });
+                
+                return sortedColors;
+            } catch (error) {
+                console.log('Could not extract colors from image:', error);
+                // Fallback colors
+                return ['#333333', '#666666', '#999999'];
+            }
+        }
+
+        // Generate gallery items
+        function loadGallery() {
+            const galleryGrid = document.getElementById('gallery-grid');
+            
+            images.forEach((imageName, index) => {
+                const galleryItem = document.createElement('div');
+                galleryItem.className = 'gallery-item';
+                
+                const img = document.createElement('img');
+                img.src = `Diseño/La mecanica de la imagen/${imageName}`;
+                img.alt = 'La mecánica de la imagen';
+                img.loading = 'lazy';
+                
+                // Create color palette container
+                const colorPalette = document.createElement('div');
+                colorPalette.className = 'color-palette';
+                
+                // Extract colors when image loads
+                img.onload = function() {
+                    const colors = extractColorsFromImage(this);
+                    
+                    // Create color squares
+                    colors.forEach(color => {
+                        const colorSquare = document.createElement('div');
+                        colorSquare.className = 'color-square';
+                        colorSquare.style.backgroundColor = color;
+                        colorPalette.appendChild(colorSquare);
+                    });
+                };
+                
+                // Add fallback colors in case extraction fails
+                img.onerror = function() {
+                    const fallbackColors = ['#2c2c2c', '#5a5a5a', '#8a8a8a'];
+                    fallbackColors.forEach(color => {
+                        const colorSquare = document.createElement('div');
+                        colorSquare.className = 'color-square';
+                        colorSquare.style.backgroundColor = color;
+                        colorPalette.appendChild(colorSquare);
+                    });
+                };
+                
+                galleryItem.appendChild(img);
+                galleryItem.appendChild(colorPalette);
+                galleryGrid.appendChild(galleryItem);
+            });
+        }
+
+        // Initialize gallery when page loads
+        document.addEventListener('DOMContentLoaded', loadGallery);
+    </script>
+</body>
+</html>
