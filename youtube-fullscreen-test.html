@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube Videos Sin Barras Negras - Test</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #000;
+            color: white;
+        }
+
+        /* Solución principal para eliminar barras negras */
+        .video-container {
+            position: relative;
+            width: 100%;
+            height: 400px; /* Altura fija para demo, puedes usar vh o aspect-ratio */
+            overflow: hidden;
+            background: #000;
+        }
+
+        .video-container iframe.youtube-video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            /* Escalamos para asegurar que cubra todo el contenedor sin barras negras */
+            width: 100%;
+            height: 56.25vw; /* 16:9 aspect ratio */
+            min-width: 177.78vh; /* Para pantallas altas */
+            min-height: 100%;
+            transform: translate(-50%, -50%);
+            border: none;
+        }
+
+        /* Versión alternativa usando object-fit (más moderna) */
+        .video-container-modern {
+            position: relative;
+            width: 100%;
+            height: 400px;
+            overflow: hidden;
+            background: #000;
+        }
+
+        .video-container-modern iframe.youtube-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+            /* Truco: escalar ligeramente para eliminar barras */
+            transform: scale(1.1);
+            transform-origin: center;
+        }
+
+        /* Para pantallas muy pequeñas */
+        @media (max-width: 768px) {
+            .video-container iframe.youtube-video {
+                width: 120%;
+                height: 120%;
+                min-width: unset;
+                min-height: unset;
+            }
+
+            .video-container-modern iframe.youtube-video {
+                transform: scale(1.15);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .video-container iframe.youtube-video {
+                width: 130%;
+                height: 130%;
+            }
+
+            .video-container-modern iframe.youtube-video {
+                transform: scale(1.2);
+            }
+        }
+
+        /* Estilos para la demo */
+        .demo-section {
+            margin: 20px 0;
+            padding: 20px;
+        }
+
+        .demo-section h2 {
+            margin-bottom: 10px;
+            color: #f0b90c;
+        }
+
+        .demo-section p {
+            margin-bottom: 15px;
+            color: #ccc;
+        }
+
+        /* Contenedor para comparación lado a lado */
+        .comparison {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        @media (max-width: 768px) {
+            .comparison {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="demo-section">
+        <h1>Test: YouTube Videos Sin Barras Negras</h1>
+        <p>Comparación entre video normal vs video sin barras negras</p>
+    </div>
+
+    <div class="comparison">
+        <div>
+            <h2>Video Normal (con barras negras)</h2>
+            <div style="position: relative; width: 100%; height: 400px; background: #000;">
+                <iframe
+                    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;"
+                    src="https://www.youtube.com/embed/DZLDqYBr2hE?autoplay=1&mute=1&loop=1&playlist=DZLDqYBr2hE&controls=0&modestbranding=1&rel=0&showinfo=0&fs=0&iv_load_policy=3&disablekb=1"
+                    frameborder="0"
+                    allow="autoplay; encrypted-media"
+                    allowfullscreen>
+                </iframe>
+            </div>
+        </div>
+
+        <div>
+            <h2>Video Sin Barras Negras (Método 1)</h2>
+            <div class="video-container">
+                <iframe
+                    class="youtube-video"
+                    src="https://www.youtube.com/embed/DZLDqYBr2hE?autoplay=1&mute=1&loop=1&playlist=DZLDqYBr2hE&controls=0&modestbranding=1&rel=0&showinfo=0&fs=0&iv_load_policy=3&disablekb=1"
+                    frameborder="0"
+                    allow="autoplay; encrypted-media"
+                    allowfullscreen>
+                </iframe>
+            </div>
+        </div>
+    </div>
+
+    <div class="demo-section">
+        <h2>Método 2: Escala con Transform (más simple)</h2>
+        <div class="video-container-modern">
+            <iframe
+                class="youtube-video"
+                src="https://www.youtube.com/embed/DZLDqYBr2hE?autoplay=1&mute=1&loop=1&playlist=DZLDqYBr2hE&controls=0&modestbranding=1&rel=0&showinfo=0&fs=0&iv_load_policy=3&disablekb=1"
+                frameborder="0"
+                allow="autoplay; encrypted-media"
+                allowfullscreen>
+            </iframe>
+        </div>
+    </div>
+
+    <div class="demo-section">
+        <h2>Solución CSS Para Tu Sitio Web</h2>
+        <pre style="background: #1a1a1a; padding: 20px; border-radius: 8px; overflow-x: auto; color: #f8f8f2;">
+<code>/* Método 1: Cálculo preciso basado en aspect-ratio */
+.video-container {
+    position: relative;
+    width: 100%;
+    height: 400px; /* o usa aspect-ratio: 16/9; */
+    overflow: hidden;
+    background: #000;
+}
+
+.video-container iframe.youtube-video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 56.25vw;
+    min-width: 177.78vh;
+    min-height: 100%;
+    transform: translate(-50%, -50%);
+    border: none;
+}
+
+/* Método 2: Transform scale (más simple) */
+.video-container-simple {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16/9; /* Moderna y limpia */
+    overflow: hidden;
+    background: #000;
+}
+
+.video-container-simple iframe.youtube-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+    transform: scale(1.1); /* Ajusta según necesites */
+    transform-origin: center;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .video-container iframe.youtube-video {
+        width: 120%;
+        height: 120%;
+        min-width: unset;
+        min-height: unset;
+    }
+    
+    .video-container-simple iframe.youtube-video {
+        transform: scale(1.15);
+    }
+}</code></pre>
+    </div>
+
+    <div class="demo-section">
+        <h2>Recomendación</h2>
+        <p><strong>Método 2 (transform: scale)</strong> es más simple y funciona mejor en todos los dispositivos. Solo ajusta el valor de scale según qué tanto recorte necesites:</p>
+        <ul style="color: #ccc; margin-left: 20px;">
+            <li><code>scale(1.1)</code> - Recorte mínimo</li>
+            <li><code>scale(1.15)</code> - Recorte moderado</li>  
+            <li><code>scale(1.2)</code> - Recorte máximo (elimina casi todas las barras)</li>
+        </ul>
+    </div>
+</body>
+</html>

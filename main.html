@@ -164,19 +164,22 @@
         </section>
 
         <!-- CONTROLS BLOCK - Navigation and Sound -->
-        <section class="controls-block" id="video-portfolio" style="background: #0D1117; padding: 20px; display: flex; justify-content: center;">
+        <section class="controls-block" id="video-portfolio" style="background: #0D1117; padding: 20px; display: flex; flex-direction: column; align-items: center;">
             <div class="controls-container" style="background: #0D1117; padding: 15px 30px; border-radius: 8px; display: flex; align-items: center; gap: 20px;">
                 
                 <!-- Previous Button -->
-                <button class="nav-btn prev-btn" id="prev-btn" style="background: #333; color: #fff; border: none; padding: 8px 12px; cursor: pointer; border-radius: 4px; font-weight: 600; font-size: 12px; white-space: nowrap; transition: all 0.3s ease;">‹</button>
+                <button class="nav-btn prev-btn" id="prev-btn" style="background: #333; color: #fff; border: none; padding: 12px 18px; cursor: pointer; border-radius: 4px; font-weight: 600; font-size: 16px; white-space: nowrap; transition: all 0.3s ease;">‹</button>
                 
                 <!-- Sound Control (Center) -->
                 <button class="sound-activation-btn" id="sound-activation-btn" style="background: #f0b90c; color: #000; border: none; padding: 15px 35px; cursor: pointer; border-radius: 4px; font-weight: 600; font-size: 14px; white-space: nowrap; min-width: fit-content; transition: all 0.3s ease;">ACTIVAR SONIDO</button>
                 
                 <!-- Next Button -->
-                <button class="nav-btn next-btn" id="next-btn" style="background: #333; color: #fff; border: none; padding: 8px 12px; cursor: pointer; border-radius: 4px; font-weight: 600; font-size: 12px; white-space: nowrap; transition: all 0.3s ease;">›</button>
+                <button class="nav-btn next-btn" id="next-btn" style="background: #333; color: #fff; border: none; padding: 12px 18px; cursor: pointer; border-radius: 4px; font-weight: 600; font-size: 16px; white-space: nowrap; transition: all 0.3s ease;">›</button>
                 
             </div>
+            
+            <!-- Navigation Hint Message -->
+            <p class="navigation-hint" style="color: #8B949E; font-size: 11px; margin-top: 8px; text-align: center; font-family: var(--font-primary); font-weight: 400; letter-spacing: 0.5px;">Desplázate con las flechas para ver más videos</p>
         </section>
 
         <!-- VIDEO DESCRIPTION CONTAINER -->
@@ -253,6 +256,39 @@
                     </div>
                     <div class="indh-description-section">
                         <p>Documental realizado para el Instituto Nacional de Derechos Humanos con el objetivo de potenciar el trabajo realizado con niños y niñas de enseñanza básica orientado a transmitir el rol y la importancia de los mismos en la sociedad y el día a día a través de conversaciones con premios nacionales de derechos humanos.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- LA RUTA DE SAN PEDRO STANDALONE SECTION -->
+        <section class="ruta-sanpedro-video-section">
+            <div class="ruta-sanpedro-video-container">
+                <iframe class="ruta-sanpedro-video" 
+                        src="https://www.youtube.com/embed/DZLDqYBr2hE?enablejsapi=1&autoplay=1&mute=1&loop=1&playlist=DZLDqYBr2hE&controls=0&modestbranding=1&rel=0&showinfo=0&fs=0&iv_load_policy=3&disablekb=1" 
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                        allowfullscreen
+                        referrerpolicy="strict-origin-when-cross-origin"
+                        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; background: #000;">
+                </iframe>
+            </div>
+            
+            <!-- Ruta San Pedro Sound Control -->
+            <div class="ruta-sanpedro-controls-below" style="background: #0D1117; padding: 20px; display: flex; justify-content: center;">
+                <div class="ruta-sanpedro-controls-container" style="background: #0D1117; padding: 15px 30px; border-radius: 8px; display: flex; align-items: center; gap: 20px;">
+                    <button id="ruta-sanpedro-sound-btn" class="sound-activation-btn" style="background: #f0b90c; color: #000; border: none; padding: 15px 35px; cursor: pointer; border-radius: 4px; font-weight: 600; font-size: 14px; white-space: nowrap; min-width: fit-content; transition: all 0.3s ease;">ACTIVAR SONIDO</button>
+                </div>
+            </div>
+            
+            <!-- Ruta San Pedro Text Container -->
+            <div class="ruta-sanpedro-text-container">
+                <div class="ruta-sanpedro-text-layout">
+                    <div class="ruta-sanpedro-title-section">
+                        <h3>LA RUTA DE SAN PEDRO<br><span class="subtitle">Explorando los Paisajes del Desierto más Árido del Mundo</span></h3>
+                    </div>
+                    <div class="ruta-sanpedro-description-section">
+                        <p>San Pedro de Atacama, ubicado en la Región de Antofagasta a 1.600 km al norte de Santiago, es un oasis en el corazón del desierto más árido del mundo. Las siguientes imágenes presentan una exploración de sus paisajes únicos: el Valle de la Luna, el Valle de Marte, el Valle del Arcoíris, la Laguna Miñiques, los Géiseres del Tatio y varias reservas nacionales. Dirigido, musicalizado, filmado y postproducido por Francisco Santelices Ariztía.</p>
                     </div>
                 </div>
             </div>
@@ -640,6 +676,30 @@
                     }
                 } catch (error) {
                     console.error('Artistas Yungay postMessage failed:', error);
+                }
+            });
+        }
+        
+        // Initialize Ruta San Pedro video sound control
+        const rutaSanPedroSoundBtn = document.getElementById('ruta-sanpedro-sound-btn');
+        if (rutaSanPedroSoundBtn) {
+            let rutaSanPedroMuted = true;
+            rutaSanPedroSoundBtn.addEventListener('click', () => {
+                const rutaSanPedroIframe = document.querySelector('.ruta-sanpedro-video');
+                if (!rutaSanPedroIframe) return;
+                
+                try {
+                    if (rutaSanPedroMuted) {
+                        rutaSanPedroIframe.contentWindow.postMessage('{"event":"command","func":"unMute","args":""}', '*');
+                        rutaSanPedroSoundBtn.textContent = 'SONIDO ACTIVADO';
+                        rutaSanPedroMuted = false;
+                    } else {
+                        rutaSanPedroIframe.contentWindow.postMessage('{"event":"command","func":"mute","args":""}', '*');
+                        rutaSanPedroSoundBtn.textContent = 'ACTIVAR SONIDO';
+                        rutaSanPedroMuted = true;
+                    }
+                } catch (error) {
+                    console.error('Ruta San Pedro postMessage failed:', error);
                 }
             });
         }

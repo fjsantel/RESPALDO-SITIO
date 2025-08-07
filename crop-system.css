@@ -1,0 +1,231 @@
+/* ==============================================
+   SISTEMA DE CROP REUTILIZABLE v1.0
+   Sistema para crear barras visuales de recorte
+   ============================================== */
+
+/* Variables CSS para fácil personalización */
+:root {
+  --crop-color: #000;          /* Color por defecto de las barras */
+  --crop-height: 30px;         /* Altura por defecto de las barras */
+  --crop-z-index: 10;          /* Z-index para flotar sobre contenido */
+}
+
+/* ==============================================
+   CLASE BASE CROP
+   ============================================== */
+
+.crop {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: var(--crop-height);
+  background-color: var(--crop-color);
+  z-index: var(--crop-z-index);
+  pointer-events: none; /* No interfiere con interacciones */
+  transition: transform 0.3s ease; /* Suaviza movimientos */
+}
+
+/* ==============================================
+   MODIFICADORES DE POSICIÓN
+   ============================================== */
+
+.crop-top {
+  top: 0;
+}
+
+.crop-bottom {
+  bottom: 0;
+}
+
+/* ==============================================
+   SISTEMA DE MOVIMIENTO VERTICAL
+   Valores de 1px a 50px y porcentajes comunes
+   ============================================== */
+
+/* Movimiento hacia arriba (pixeles) */
+.move-up-1  { transform: translateY(-1px); }
+.move-up-2  { transform: translateY(-2px); }
+.move-up-3  { transform: translateY(-3px); }
+.move-up-5  { transform: translateY(-5px); }
+.move-up-8  { transform: translateY(-8px); }
+.move-up-10 { transform: translateY(-10px); }
+.move-up-15 { transform: translateY(-15px); }
+.move-up-20 { transform: translateY(-20px); }
+.move-up-25 { transform: translateY(-25px); }
+.move-up-30 { transform: translateY(-30px); }
+.move-up-40 { transform: translateY(-40px); }
+.move-up-50 { transform: translateY(-50px); }
+
+/* Movimiento hacia abajo (pixeles) */
+.move-down-1  { transform: translateY(1px); }
+.move-down-2  { transform: translateY(2px); }
+.move-down-3  { transform: translateY(3px); }
+.move-down-5  { transform: translateY(5px); }
+.move-down-8  { transform: translateY(8px); }
+.move-down-10 { transform: translateY(10px); }
+.move-down-15 { transform: translateY(15px); }
+.move-down-20 { transform: translateY(20px); }
+.move-down-25 { transform: translateY(25px); }
+.move-down-30 { transform: translateY(30px); }
+.move-down-40 { transform: translateY(40px); }
+.move-down-50 { transform: translateY(50px); }
+
+/* Movimiento en porcentajes */
+.move-up-5p   { transform: translateY(-5%); }
+.move-up-10p  { transform: translateY(-10%); }
+.move-up-15p  { transform: translateY(-15%); }
+.move-up-20p  { transform: translateY(-20%); }
+.move-up-25p  { transform: translateY(-25%); }
+
+.move-down-5p  { transform: translateY(5%); }
+.move-down-10p { transform: translateY(10%); }
+.move-down-15p { transform: translateY(15%); }
+.move-down-20p { transform: translateY(20%); }
+.move-down-25p { transform: translateY(25%); }
+
+/* ==============================================
+   EXTENSIÓN FUTURA: SISTEMA HORIZONTAL
+   ============================================== */
+
+.crop-left {
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: auto;
+  width: var(--crop-height); /* Reutiliza variable de altura */
+  height: auto;
+}
+
+.crop-right {
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: auto;
+  width: var(--crop-height);
+  height: auto;
+}
+
+/* Movimiento horizontal (para futuro uso) */
+.move-left-5   { transform: translateX(-5px); }
+.move-left-10  { transform: translateX(-10px); }
+.move-left-15  { transform: translateX(-15px); }
+.move-left-20  { transform: translateX(-20px); }
+
+.move-right-5  { transform: translateX(5px); }
+.move-right-10 { transform: translateX(10px); }
+.move-right-15 { transform: translateX(15px); }
+.move-right-20 { transform: translateX(20px); }
+
+/* ==============================================
+   CLASES UTILITARIAS DE COLOR
+   ============================================== */
+
+.crop-black   { --crop-color: #000; }
+.crop-white   { --crop-color: #fff; }
+.crop-gray    { --crop-color: #666; }
+.crop-dark    { --crop-color: #0D1117; } /* Color de tu sitio */
+
+/* ==============================================
+   CLASES UTILITARIAS DE ALTURA
+   ============================================== */
+
+.crop-thin     { --crop-height: 15px; }
+.crop-medium   { --crop-height: 30px; }
+.crop-thick    { --crop-height: 45px; }
+.crop-extra    { --crop-height: 60px; }
+
+/* Alturas específicas */
+.crop-h-10  { --crop-height: 10px; }
+.crop-h-20  { --crop-height: 20px; }
+.crop-h-25  { --crop-height: 25px; }
+.crop-h-35  { --crop-height: 35px; }
+.crop-h-40  { --crop-height: 40px; }
+.crop-h-50  { --crop-height: 50px; }
+
+/* ==============================================
+   RESPONSIVE: AJUSTES AUTOMÁTICOS
+   ============================================== */
+
+@media (max-width: 768px) {
+  .crop {
+    --crop-height: 25px; /* Barras más pequeñas en tablet */
+  }
+}
+
+@media (max-width: 480px) {
+  .crop {
+    --crop-height: 20px; /* Barras más pequeñas en móvil */
+  }
+}
+
+/* ==============================================
+   CONTENEDOR HELPER
+   Para facilitar la implementación
+   ============================================== */
+
+.crop-container {
+  position: relative;
+  overflow: hidden; /* Importante para que las barras no se salgan */
+}
+
+/* ==============================================
+   ANIMACIONES OPCIONALES
+   ============================================== */
+
+.crop-fade-in {
+  opacity: 0;
+  animation: cropFadeIn 0.5s ease forwards;
+}
+
+@keyframes cropFadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+.crop-slide-in-top {
+  transform: translateY(-100%);
+  animation: cropSlideInTop 0.5s ease forwards;
+}
+
+.crop-slide-in-bottom {
+  transform: translateY(100%);
+  animation: cropSlideInBottom 0.5s ease forwards;
+}
+
+@keyframes cropSlideInTop {
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes cropSlideInBottom {
+  to {
+    transform: translateY(0);
+  }
+}
+
+/* ==============================================
+   DEBUG HELPER (opcional)
+   Añade un borde para visualizar las barras durante desarrollo
+   ============================================== */
+
+.crop-debug {
+  border: 2px dashed #ff0000 !important;
+  opacity: 0.8 !important;
+  pointer-events: all !important;
+}
+
+.crop-debug::after {
+  content: 'CROP';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #ff0000;
+  font-size: 10px;
+  font-weight: bold;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 2px 4px;
+  border-radius: 2px;
+}

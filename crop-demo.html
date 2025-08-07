@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Crop - Demostración</title>
+    <link rel="stylesheet" href="crop-system.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #000;
+            color: white;
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        .demo-section {
+            margin: 40px 0;
+            padding: 20px;
+            border: 1px solid #333;
+            border-radius: 8px;
+        }
+
+        .demo-section h2 {
+            color: #f0b90c;
+            margin-bottom: 15px;
+        }
+
+        .demo-section h3 {
+            color: #ccc;
+            margin: 20px 0 10px 0;
+            font-size: 16px;
+        }
+
+        .example-container {
+            background: #111;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 15px 0;
+            position: relative;
+        }
+
+        /* Estilos para simular videos */
+        .fake-video {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(45deg, #333 25%, #555 25%, #555 50%, #333 50%, #333 75%, #555 75%, #555);
+            background-size: 20px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            border-radius: 4px;
+        }
+
+        .code-example {
+            background: #1a1a1a;
+            padding: 15px;
+            border-radius: 6px;
+            margin: 10px 0;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+        }
+
+        .code-example code {
+            color: #f8f8f2;
+        }
+
+        .highlight {
+            color: #f0b90c;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>🎬 Sistema de Crop - Demostración Completa</h1>
+    
+    <!-- EJEMPLO 1: Uso básico -->
+    <div class="demo-section">
+        <h2>1. Uso Básico - Video con Crop</h2>
+        <p>Barras negras que simulan ocultar las franjas de YouTube:</p>
+        
+        <div class="example-container">
+            <div class="crop-container">
+                <div class="fake-video">
+                    SIMULACIÓN VIDEO YOUTUBE<br>
+                    <small>(con barras negras arriba y abajo)</small>
+                </div>
+                <!-- Barras de crop -->
+                <div class="crop crop-top"></div>
+                <div class="crop crop-bottom"></div>
+            </div>
+        </div>
+
+        <div class="code-example">
+            <code>
+&lt;div class="crop-container"&gt;<br>
+&nbsp;&nbsp;&lt;iframe src="youtube-video..."&gt;&lt;/iframe&gt;<br>
+&nbsp;&nbsp;&lt;div class="<span class="highlight">crop crop-top</span>"&gt;&lt;/div&gt;<br>
+&nbsp;&nbsp;&lt;div class="<span class="highlight">crop crop-bottom</span>"&gt;&lt;/div&gt;<br>
+&lt;/div&gt;
+            </code>
+        </div>
+    </div>
+
+    <!-- EJEMPLO 2: Con movimiento -->
+    <div class="demo-section">
+        <h2>2. Con Movimiento Personalizado</h2>
+        <p>Barras ajustadas para diferentes posiciones:</p>
+        
+        <div class="example-container">
+            <div class="crop-container">
+                <div class="fake-video">
+                    VIDEO CON CROP AJUSTADO<br>
+                    <small>Barra superior: +10px abajo</small><br>
+                    <small>Barra inferior: +15px arriba</small>
+                </div>
+                <!-- Barras con movimiento -->
+                <div class="crop crop-top move-down-10"></div>
+                <div class="crop crop-bottom move-up-15"></div>
+            </div>
+        </div>
+
+        <div class="code-example">
+            <code>
+&lt;div class="crop crop-top <span class="highlight">move-down-10</span>"&gt;&lt;/div&gt;<br>
+&lt;div class="crop crop-bottom <span class="highlight">move-up-15</span>"&gt;&lt;/div&gt;
+            </code>
+        </div>
+    </div>
+
+    <!-- EJEMPLO 3: Diferentes colores -->
+    <div class="demo-section">
+        <h2>3. Diferentes Colores y Alturas</h2>
+        
+        <h3>Crop con color personalizado:</h3>
+        <div class="example-container">
+            <div class="crop-container">
+                <div class="fake-video" style="background: white; color: black;">
+                    VIDEO CON FONDO BLANCO
+                </div>
+                <div class="crop crop-top crop-white"></div>
+                <div class="crop crop-bottom crop-white"></div>
+            </div>
+        </div>
+
+        <h3>Crop más grueso:</h3>
+        <div class="example-container">
+            <div class="crop-container">
+                <div class="fake-video">
+                    VIDEO CON CROP GRUESO
+                </div>
+                <div class="crop crop-top crop-thick"></div>
+                <div class="crop crop-bottom crop-thick"></div>
+            </div>
+        </div>
+
+        <div class="code-example">
+            <code>
+&lt;!-- Color personalizado --&gt;<br>
+&lt;div class="crop crop-top <span class="highlight">crop-white</span>"&gt;&lt;/div&gt;<br>
+<br>
+&lt;!-- Grosor personalizado --&gt;<br>
+&lt;div class="crop crop-top <span class="highlight">crop-thick</span>"&gt;&lt;/div&gt;
+            </code>
+        </div>
+    </div>
+
+    <!-- EJEMPLO 4: Responsive -->
+    <div class="demo-section">
+        <h2>4. Comportamiento Responsive</h2>
+        <p>Las barras se ajustan automáticamente en móviles. <strong>Redimensiona la ventana para ver el efecto.</strong></p>
+        
+        <div class="example-container">
+            <div class="crop-container">
+                <div class="fake-video">
+                    VIDEO RESPONSIVE<br>
+                    <small>Las barras cambian de altura según el dispositivo</small>
+                </div>
+                <div class="crop crop-top crop-debug"></div>
+                <div class="crop crop-bottom crop-debug"></div>
+            </div>
+        </div>
+
+        <div class="code-example">
+            <code>
+&lt;!-- Modo debug para ver las barras --&gt;<br>
+&lt;div class="crop crop-top <span class="highlight">crop-debug</span>"&gt;&lt;/div&gt;<br>
+&lt;div class="crop crop-bottom <span class="highlight">crop-debug</span>"&gt;&lt;/div&gt;
+            </code>
+        </div>
+    </div>
+
+    <!-- EJEMPLO 5: Uso con YouTube real -->
+    <div class="demo-section">
+        <h2>5. Implementación con YouTube Real</h2>
+        <p>Ejemplo práctico con un iframe de YouTube:</p>
+        
+        <div class="example-container">
+            <div class="crop-container" style="aspect-ratio: 16/9;">
+                <iframe 
+                    style="width: 100%; height: 100%; border: none;"
+                    src="https://www.youtube.com/embed/DZLDqYBr2hE?autoplay=0&mute=1&loop=1&playlist=DZLDqYBr2hE&controls=0&modestbranding=1&rel=0&showinfo=0&fs=0&iv_load_policy=3&disablekb=1"
+                    frameborder="0"
+                    allow="autoplay; encrypted-media"
+                    allowfullscreen>
+                </iframe>
+                <!-- Crop sutil -->
+                <div class="crop crop-top crop-thin"></div>
+                <div class="crop crop-bottom crop-thin"></div>
+            </div>
+        </div>
+
+        <div class="code-example">
+            <code>
+&lt;div class="<span class="highlight">crop-container</span>" style="aspect-ratio: 16/9;"&gt;<br>
+&nbsp;&nbsp;&lt;iframe src="youtube-video..." style="width: 100%; height: 100%;"&gt;&lt;/iframe&gt;<br>
+&nbsp;&nbsp;&lt;div class="crop crop-top <span class="highlight">crop-thin</span>"&gt;&lt;/div&gt;<br>
+&nbsp;&nbsp;&lt;div class="crop crop-bottom <span class="highlight">crop-thin</span>"&gt;&lt;/div&gt;<br>
+&lt;/div&gt;
+            </code>
+        </div>
+    </div>
+
+    <!-- GUÍA DE REFERENCIA -->
+    <div class="demo-section">
+        <h2>📚 Guía de Referencia Rápida</h2>
+        
+        <h3>Clases Base:</h3>
+        <div class="code-example">
+            <code>
+<span class="highlight">.crop</span>           → Clase base obligatoria<br>
+<span class="highlight">.crop-top</span>       → Barra superior<br>
+<span class="highlight">.crop-bottom</span>    → Barra inferior<br>
+<span class="highlight">.crop-container</span> → Contenedor helper (recomendado)
+            </code>
+        </div>
+
+        <h3>Movimiento (píxeles):</h3>
+        <div class="code-example">
+            <code>
+<span class="highlight">.move-up-[1-50]</span>   → Mover hacia arriba (ej: move-up-10)<br>
+<span class="highlight">.move-down-[1-50]</span> → Mover hacia abajo (ej: move-down-15)
+            </code>
+        </div>
+
+        <h3>Movimiento (porcentajes):</h3>
+        <div class="code-example">
+            <code>
+<span class="highlight">.move-up-[5-25]p</span>   → Mover hacia arriba % (ej: move-up-10p)<br>
+<span class="highlight">.move-down-[5-25]p</span> → Mover hacia abajo % (ej: move-down-20p)
+            </code>
+        </div>
+
+        <h3>Colores:</h3>
+        <div class="code-example">
+            <code>
+<span class="highlight">.crop-black</span>  → Negro (#000) - por defecto<br>
+<span class="highlight">.crop-white</span>  → Blanco (#fff)<br>
+<span class="highlight">.crop-gray</span>   → Gris (#666)<br>
+<span class="highlight">.crop-dark</span>   → Gris oscuro (#0D1117)
+            </code>
+        </div>
+
+        <h3>Alturas:</h3>
+        <div class="code-example">
+            <code>
+<span class="highlight">.crop-thin</span>     → 15px<br>
+<span class="highlight">.crop-medium</span>   → 30px (por defecto)<br>
+<span class="highlight">.crop-thick</span>    → 45px<br>
+<span class="highlight">.crop-extra</span>    → 60px<br>
+<span class="highlight">.crop-h-[10-50]</span> → Altura específica (ej: crop-h-25)
+            </code>
+        </div>
+
+        <h3>Utilidades:</h3>
+        <div class="code-example">
+            <code>
+<span class="highlight">.crop-debug</span>    → Modo debug (muestra bordes rojos)<br>
+<span class="highlight">.crop-fade-in</span>  → Animación de aparición<br>
+<span class="highlight">.crop-slide-in-top</span>    → Animación deslizante desde arriba<br>
+<span class="highlight">.crop-slide-in-bottom</span> → Animación deslizante desde abajo
+            </code>
+        </div>
+    </div>
+
+    <!-- PERSONALIZACIÓN AVANZADA -->
+    <div class="demo-section">
+        <h2>🎨 Personalización con Variables CSS</h2>
+        <p>Puedes personalizar globalmente usando variables CSS:</p>
+        
+        <div class="code-example">
+            <code>
+<span style="color: #66d9ef;">:root</span> {<br>
+&nbsp;&nbsp;<span style="color: #f92672;">--crop-color:</span> <span style="color: #a6e22e;">#ff0000</span>;    <span style="color: #75715e;">/* Color personalizado */</span><br>
+&nbsp;&nbsp;<span style="color: #f92672;">--crop-height:</span> <span style="color: #a6e22e;">40px</span>;      <span style="color: #75715e;">/* Altura personalizada */</span><br>
+&nbsp;&nbsp;<span style="color: #f92672;">--crop-z-index:</span> <span style="color: #a6e22e;">20</span>;       <span style="color: #75715e;">/* Z-index personalizado */</span><br>
+}<br>
+<br>
+<span style="color: #75715e;">/* O personalizar instancias específicas: */</span><br>
+<span style="color: #66d9ef;">.mi-video-especial</span> {<br>
+&nbsp;&nbsp;<span style="color: #f92672;">--crop-color:</span> <span style="color: #a6e22e;">#0D1117</span>;<br>
+&nbsp;&nbsp;<span style="color: #f92672;">--crop-height:</span> <span style="color: #a6e22e;">35px</span>;<br>
+}
+            </code>
+        </div>
+    </div>
+
+    <div style="text-align: center; margin: 40px 0; color: #666;">
+        <p>🎬 Sistema de Crop v1.0 - Listo para producción</p>
+    </div>
+</body>
+</html>

@@ -1,0 +1,129 @@
+<!-- ==============================================
+     PLANTILLA ESTÁNDAR PARA CONTENEDORES DE VIDEO
+     Copia y pega esta estructura para nuevos videos
+     ============================================== -->
+
+<!-- EJEMPLO DE USO COMPLETO -->
+<section class="video-section-standard">
+    <!-- Contenedor del video -->
+    <div class="video-container-standard">
+        <iframe class="video-iframe-standard" 
+                src="https://www.youtube.com/embed/VIDEO_ID?enablejsapi=1&autoplay=1&mute=1&loop=1&playlist=VIDEO_ID&controls=0&modestbranding=1&rel=0&showinfo=0&fs=0&iv_load_policy=3&disablekb=1" 
+                frameborder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                allowfullscreen
+                referrerpolicy="strict-origin-when-cross-origin">
+        </iframe>
+    </div>
+    
+    <!-- Controles de sonido -->
+    <div class="video-controls-standard">
+        <div class="video-controls-container-standard">
+            <button id="nuevo-video-sound-btn" class="video-sound-btn-standard">ACTIVAR SONIDO</button>
+        </div>
+    </div>
+    
+    <!-- Contenedor de texto -->
+    <div class="video-text-container-standard">
+        <div class="video-text-layout-standard">
+            <!-- Columna izquierda: Título -->
+            <div class="video-title-section-standard">
+                <h3>TÍTULO DEL VIDEO<br><span class="subtitle">Subtítulo del Video</span></h3>
+            </div>
+            
+            <!-- Columna derecha: Descripción -->
+            <div class="video-description-section-standard">
+                <p>Descripción del video aquí. El texto será automáticamente justificado y tendrá los tamaños correctos en todos los dispositivos. Mantiene la tipografía consistente con el resto del sitio.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ==============================================
+     JAVASCRIPT PARA CONTROL DE SONIDO
+     Agregar al final del archivo main.html
+     ============================================== -->
+<script>
+// Inicializar control de sonido para nuevo video
+const nuevoVideoSoundBtn = document.getElementById('nuevo-video-sound-btn');
+if (nuevoVideoSoundBtn) {
+    let nuevoVideoMuted = true;
+    nuevoVideoSoundBtn.addEventListener('click', () => {
+        const nuevoVideoIframe = document.querySelector('.video-iframe-standard'); // O selector específico
+        if (!nuevoVideoIframe) return;
+        
+        try {
+            if (nuevoVideoMuted) {
+                nuevoVideoIframe.contentWindow.postMessage('{"event":"command","func":"unMute","args":""}', '*');
+                nuevoVideoSoundBtn.textContent = 'SONIDO ACTIVADO';
+                nuevoVideoMuted = false;
+            } else {
+                nuevoVideoIframe.contentWindow.postMessage('{"event":"command","func":"mute","args":""}', '*');
+                nuevoVideoSoundBtn.textContent = 'ACTIVAR SONIDO';
+                nuevoVideoMuted = true;
+            }
+        } catch (error) {
+            console.error('Nuevo Video postMessage failed:', error);
+        }
+    });
+}
+</script>
+
+<!-- ==============================================
+     PERSONALIZACIÓN OPCIONAL
+     ============================================== -->
+
+<!-- Si necesitas un color diferente para los controles -->
+<style>
+.mi-video-custom .video-controls-standard {
+    background: #tu-color-aqui;
+}
+</style>
+
+<!-- Si necesitas crop (barras de recorte) -->
+<div class="video-container-standard crop-container">
+    <iframe class="video-iframe-standard" src="..."></iframe>
+    
+    <!-- Barras de crop -->
+    <div class="crop crop-top crop-controls move-down-5"></div>
+    <div class="crop crop-bottom crop-controls move-up-8"></div>
+</div>
+
+<!-- ==============================================
+     TAMAÑOS AUTOMÁTICOS POR DISPOSITIVO
+     ============================================== -->
+
+Desktop (>768px):
+- Títulos: 12px
+- Subtítulos: 9px (75% de 12px)
+- Descripciones: 12px
+
+Tablet (≤768px):
+- Títulos: 11px
+- Subtítulos: 8.25px (75% de 11px)
+- Descripciones: 11px
+
+Mobile (≤480px):
+- Títulos: 8px
+- Subtítulos: 6px (75% de 8px)
+- Descripciones: 8px
+
+Extra Small (≤320px):
+- Títulos: 7px
+- Subtítulos: 5.25px (75% de 7px)
+- Descripciones: 7px
+
+<!-- ==============================================
+     CLASES DISPONIBLES
+     ============================================== -->
+
+.video-section-standard              → Contenedor principal de la sección
+.video-container-standard            → Contenedor del iframe (con aspect-ratio 16:9)
+.video-iframe-standard               → Iframe del video (posicionamiento absoluto)
+.video-controls-standard             → Contenedor de controles de sonido
+.video-controls-container-standard   → Contenedor interno de controles
+.video-sound-btn-standard            → Botón de activar sonido
+.video-text-container-standard       → Contenedor de texto
+.video-text-layout-standard          → Grid 2 columnas para título/descripción
+.video-title-section-standard        → Sección del título (columna izquierda)
+.video-description-section-standard  → Sección de descripción (columna derecha)

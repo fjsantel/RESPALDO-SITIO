@@ -655,14 +655,15 @@ section.seccion-video-principal {
 }
 
 /* BFA 2025 Section */
-.bfa-video-section, .indh-video-section, .artistas-yungay-video-section {
+.bfa-video-section, .indh-video-section, .artistas-yungay-video-section, .ruta-sanpedro-video-section {
     background: var(--black);
     width: 100%;
     padding: 0;
     margin: 0;
+    margin-top: 0;
 }
 
-.bfa-video-container, .indh-video-container, .artistas-yungay-video-container {
+.bfa-video-container, .indh-video-container, .artistas-yungay-video-container, .ruta-sanpedro-video-container {
     width: 100%;
     position: relative;
     background: var(--black);
@@ -680,20 +681,20 @@ section.seccion-video-principal {
     object-fit: contain;
     object-position: center center;
     background-color: var(--black);
-    display: block;
     margin: 0;
     padding: 0;
+    display: block;
 }
 
 /* BFA controls styles removed - now uses same style as YouTube section */
 
-.bfa-text-container, .indh-text-container, .artistas-yungay-text-container {
+.bfa-text-container, .indh-text-container, .artistas-yungay-text-container, .ruta-sanpedro-text-container {
     background: #0D1117;
     padding: 0 60px 40px 60px;
     width: 100%;
 }
 
-.bfa-text-layout, .indh-text-layout, .artistas-yungay-text-layout {
+.bfa-text-layout, .indh-text-layout, .artistas-yungay-text-layout, .ruta-sanpedro-text-layout {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 40px;
@@ -704,12 +705,12 @@ section.seccion-video-principal {
     background: transparent;
 }
 
-.bfa-title-section, .indh-title-section, .artistas-yungay-title-section {
+.bfa-title-section, .indh-title-section, .artistas-yungay-title-section, .ruta-sanpedro-title-section {
     display: flex;
     flex-direction: column;
 }
 
-.bfa-title-section h3, .indh-title-section h3, .artistas-yungay-title-section h3 {
+.bfa-title-section h3, .indh-title-section h3, .artistas-yungay-title-section h3, .ruta-sanpedro-title-section h3 {
     font-family: var(--font-primary);
     font-weight: 700;
     font-size: 12px;
@@ -723,7 +724,7 @@ section.seccion-video-principal {
     overflow: hidden;
 }
 
-.bfa-title-section h3 .subtitle, .indh-title-section h3 .subtitle, .artistas-yungay-title-section h3 .subtitle {
+.bfa-title-section h3 .subtitle, .indh-title-section h3 .subtitle, .artistas-yungay-title-section h3 .subtitle, .ruta-sanpedro-title-section h3 .subtitle {
     display: block;
     font-size: 0.75em;
     font-weight: 400;
@@ -733,12 +734,12 @@ section.seccion-video-principal {
     margin-top: 2px;
 }
 
-.bfa-description-section, .indh-description-section, .artistas-yungay-description-section {
+.bfa-description-section, .indh-description-section, .artistas-yungay-description-section, .ruta-sanpedro-description-section {
     display: flex;
     flex-direction: column;
 }
 
-.bfa-description-section p, .indh-description-section p, .artistas-yungay-description-section p {
+.bfa-description-section p, .indh-description-section p, .artistas-yungay-description-section p, .ruta-sanpedro-description-section p {
     font-family: var(--font-primary);
     font-weight: 400;
     font-size: 12px; /* Same as video-description-text */
@@ -750,18 +751,18 @@ section.seccion-video-principal {
 
 /* Responsive styles to match video-description text sizes */
 @media (max-width: 1024px) {
-    .bfa-title-section h3, .indh-title-section h3, .artistas-yungay-title-section h3 {
+    .bfa-title-section h3, .indh-title-section h3, .artistas-yungay-title-section h3, .ruta-sanpedro-title-section h3 {
         font-size: 11px; /* Same as video-title */
         letter-spacing: 0.8px;
         line-height: 1.4;
     }
     
-    .bfa-title-section h3 .subtitle, .indh-title-section h3 .subtitle, .artistas-yungay-title-section h3 .subtitle {
+    .bfa-title-section h3 .subtitle, .indh-title-section h3 .subtitle, .artistas-yungay-title-section h3 .subtitle, .ruta-sanpedro-title-section h3 .subtitle {
         font-size: 0.75em; /* 75% of 11px = 8.25px */
         margin-top: 3px;
     }
     
-    .bfa-description-section p, .indh-description-section p, .artistas-yungay-description-section p {
+    .bfa-description-section p, .indh-description-section p, .artistas-yungay-description-section p, .ruta-sanpedro-description-section p {
         font-size: 11px; /* Same as video-description-text */
         line-height: 1.5;
         text-align: justify;
@@ -769,7 +770,7 @@ section.seccion-video-principal {
 }
 
 @media (max-width: 480px) {
-    .bfa-title-section h3, .indh-title-section h3, .artistas-yungay-title-section h3 {
+    .bfa-title-section h3, .indh-title-section h3, .artistas-yungay-title-section h3, .ruta-sanpedro-title-section h3 {
         font-size: 8px !important; /* Same as video-title */
         letter-spacing: 0px;
         line-height: 1.1;
@@ -779,13 +780,13 @@ section.seccion-video-principal {
         text-align: left !important;
     }
     
-    .bfa-title-section h3 .subtitle, .indh-title-section h3 .subtitle, .artistas-yungay-title-section h3 .subtitle {
+    .bfa-title-section h3 .subtitle, .indh-title-section h3 .subtitle, .artistas-yungay-title-section h3 .subtitle, .ruta-sanpedro-title-section h3 .subtitle {
         font-size: 0.75em !important; /* 75% of 8px = 6px */
         margin-top: 1px;
         text-align: left !important;
     }
     
-    .bfa-description-section p, .indh-description-section p, .artistas-yungay-description-section p {
+    .bfa-description-section p, .indh-description-section p, .artistas-yungay-description-section p, .ruta-sanpedro-description-section p {
         font-size: 8px !important; /* Same as video-description-text */
         line-height: 1.3;
         color: #8B949E;
@@ -794,7 +795,7 @@ section.seccion-video-principal {
 }
 
 @media (max-width: 320px) {
-    .bfa-title-section h3, .indh-title-section h3, .artistas-yungay-title-section h3 {
+    .bfa-title-section h3, .indh-title-section h3, .artistas-yungay-title-section h3, .ruta-sanpedro-title-section h3 {
         font-size: 7px !important; /* Same as video-title */
         letter-spacing: 0px;
         line-height: 1.1;
@@ -804,13 +805,13 @@ section.seccion-video-principal {
         text-align: left !important;
     }
     
-    .bfa-title-section h3 .subtitle, .indh-title-section h3 .subtitle, .artistas-yungay-title-section h3 .subtitle {
+    .bfa-title-section h3 .subtitle, .indh-title-section h3 .subtitle, .artistas-yungay-title-section h3 .subtitle, .ruta-sanpedro-title-section h3 .subtitle {
         font-size: 0.75em !important; /* 75% of 7px = 5.25px */
         margin-top: 1px;
         text-align: left !important;
     }
     
-    .bfa-description-section p, .indh-description-section p, .artistas-yungay-description-section p {
+    .bfa-description-section p, .indh-description-section p, .artistas-yungay-description-section p, .ruta-sanpedro-description-section p {
         font-size: 7px !important; /* Same as video-description-text */
         line-height: 1.2;
         color: #8B949E;
@@ -871,11 +872,12 @@ section.seccion-video-principal {
 /* Text Container */
 .motion-graphics-text-container {
     width: 100%;
-    padding: 0.5rem 4rem 4rem 4rem;
+    padding: 1rem 4rem 2rem 4rem;
     background: var(--black);
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
+    text-align: center;
 }
 
 .desc-symbol {
@@ -1236,11 +1238,11 @@ section.seccion-video-principal {
 /* Tablet styles (768px and below) */
 @media screen and (max-width: 768px) {
     /* BFA section responsive */
-    .bfa-text-container, .indh-text-container, .artistas-yungay-text-container {
+    .bfa-text-container, .indh-text-container, .artistas-yungay-text-container, .ruta-sanpedro-text-container {
         padding: 0 40px 30px 40px;
     }
     
-    .bfa-text-layout, .indh-text-layout, .artistas-yungay-text-layout {
+    .bfa-text-layout, .indh-text-layout, .artistas-yungay-text-layout, .ruta-sanpedro-text-layout {
         gap: 30px;
         grid-template-columns: 1fr 1fr;
         padding: 15px 0;
@@ -1251,7 +1253,8 @@ section.seccion-video-principal {
     section.motion-graphics-section,
     section.bfa-video-section,
     section.indh-video-section,
-    section.artistas-yungay-video-section {
+    section.artistas-yungay-video-section,
+    section.ruta-sanpedro-video-section {
         padding: 0 !important;
         margin: 0 !important;
     }
@@ -1377,7 +1380,8 @@ section.seccion-video-principal {
     }
     
     .motion-graphics-text-container {
-        padding: 0.25rem 1.25rem 2rem 1.25rem;
+        padding: 0.75rem 1.25rem 1.5rem 1.25rem;
+        text-align: center;
     }
     
     .motion-graphics-video-container {
@@ -1532,11 +1536,11 @@ section.seccion-video-principal {
 /* Mobile styles (480px and below) */
 @media screen and (max-width: 480px) {
     /* BFA section mobile responsive */
-    .bfa-text-container, .indh-text-container, .artistas-yungay-text-container {
+    .bfa-text-container, .indh-text-container, .artistas-yungay-text-container, .ruta-sanpedro-text-container {
         padding: 0 20px 20px 20px;
     }
     
-    .bfa-text-layout, .indh-text-layout, .artistas-yungay-text-layout {
+    .bfa-text-layout, .indh-text-layout, .artistas-yungay-text-layout, .ruta-sanpedro-text-layout {
         grid-template-columns: 1fr 1fr;
         gap: 20px;
         padding: 10px 0;
@@ -1547,7 +1551,8 @@ section.seccion-video-principal {
     section.motion-graphics-section,
     section.bfa-video-section,
     section.indh-video-section,
-    section.artistas-yungay-video-section {
+    section.artistas-yungay-video-section,
+    section.ruta-sanpedro-video-section {
         padding: 0 !important;
         margin: 0 !important;
     }
@@ -1778,7 +1783,8 @@ section.seccion-video-principal {
     
     /* Motion Graphics section mobile responsive */
     .motion-graphics-text-container {
-        padding: 0.125rem 1rem 1.5rem 1rem;
+        padding: 0.5rem 1rem 1rem 1rem;
+        text-align: center;
     }
     
     .motion-graphics-video-container {
@@ -2502,18 +2508,49 @@ section.seccion-video-principal {
 }
 
 /* Mobile styles for navigation buttons */
+/* Navigation hint message styles */
+.navigation-hint {
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+}
+
+.navigation-hint:hover {
+    opacity: 1;
+}
+
+@media screen and (max-width: 768px) {
+    .navigation-hint {
+        font-size: 10px !important;
+        margin-top: 6px;
+    }
+}
+
 @media screen and (max-width: 480px) {
     .prev-btn, .next-btn {
-        font-size: 12px !important;
-        padding: 5px 8px !important;
+        font-size: 14px !important;
+        padding: 10px 15px !important;
+    }
+    
+    .navigation-hint {
+        font-size: 9px !important;
+        margin-top: 5px;
+        letter-spacing: 0.3px;
+    }
+}
+
+@media screen and (max-width: 320px) {
+    .navigation-hint {
+        font-size: 8px !important;
+        margin-top: 4px;
     }
 }
 
 /* Video Description Container Styles */
 .video-description-section {
     background: #0D1117;
-    padding: 0 60px 40px 60px;
+    padding: 0 60px 0 60px;
     width: 100%;
+    margin-bottom: 0;
 }
 
 .video-description-grid {
@@ -2521,9 +2558,11 @@ section.seccion-video-principal {
     grid-template-columns: 1fr 1fr; /* Two equal halves */
     gap: 40px; /* Increased for elegance */
     align-items: flex-start;
+    margin-bottom: 0;
+    padding-bottom: 40px;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 20px 0; /* Symmetric vertical padding */
+    padding-top: 20px; /* Only top padding */
     background: transparent;
 }
 
@@ -2635,13 +2674,349 @@ section.seccion-video-principal {
     }
 }
 
+/* ==============================================
+   SISTEMA DE CROP REUTILIZABLE v1.0
+   Sistema para crear barras visuales de recorte
+   ============================================== */
+
+/* Variables CSS para fácil personalización */
+:root {
+  --crop-color: #0D1117;          /* Color por defecto (fondo de controles) */
+  --crop-height: 30px;            /* Altura por defecto de las barras */
+  --crop-z-index: 10;             /* Z-index para flotar sobre contenido */
+}
+
+/* Clase base crop */
+.crop {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: var(--crop-height);
+  background-color: var(--crop-color);
+  z-index: var(--crop-z-index);
+  pointer-events: none; /* No interfiere con interacciones */
+  transition: transform 0.3s ease; /* Suaviza movimientos */
+}
+
+/* Modificadores de posición */
+.crop-top {
+  top: 0;
+}
+
+.crop-bottom {
+  bottom: 0;
+}
+
+/* Sistema de movimiento vertical */
+.move-up-1  { transform: translateY(-1px); }
+.move-up-2  { transform: translateY(-2px); }
+.move-up-3  { transform: translateY(-3px); }
+.move-up-5  { transform: translateY(-5px); }
+.move-up-8  { transform: translateY(-8px); }
+.move-up-10 { transform: translateY(-10px); }
+.move-up-15 { transform: translateY(-15px); }
+.move-up-20 { transform: translateY(-20px); }
+.move-up-25 { transform: translateY(-25px); }
+.move-up-30 { transform: translateY(-30px); }
+
+.move-down-1  { transform: translateY(1px); }
+.move-down-2  { transform: translateY(2px); }
+.move-down-3  { transform: translateY(3px); }
+.move-down-5  { transform: translateY(5px); }
+.move-down-8  { transform: translateY(8px); }
+.move-down-10 { transform: translateY(10px); }
+.move-down-15 { transform: translateY(15px); }
+.move-down-20 { transform: translateY(20px); }
+.move-down-25 { transform: translateY(25px); }
+.move-down-30 { transform: translateY(30px); }
+
+/* Clases utilitarias de altura */
+.crop-thin     { --crop-height: 15px; }
+.crop-medium   { --crop-height: 30px; }
+.crop-thick    { --crop-height: 45px; }
+
+/* Clases utilitarias de color */
+.crop-controls { --crop-color: #0D1117; } /* Color de fondo de controles */
+.crop-black    { --crop-color: #000; }
+.crop-dark     { --crop-color: #0D1117; }
+
+/* Contenedor helper */
+.crop-container {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .crop {
+    --crop-height: 25px;
+  }
+}
+
+@media (max-width: 480px) {
+  .crop {
+    --crop-height: 20px;
+  }
+}
+
+/* ==============================================
+   SISTEMA ESTÁNDAR PARA CONTENEDORES DE VIDEO
+   Clases reutilizables para futuros videos
+   ============================================== */
+
+/* Contenedor principal de sección de video */
+.video-section-standard {
+    background: var(--black);
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    margin-top: 0;
+}
+
+/* Contenedor del iframe/video */
+.video-container-standard {
+    width: 100%;
+    position: relative;
+    background: var(--black);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    aspect-ratio: 16/9;
+}
+
+/* Iframe del video */
+.video-iframe-standard {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+    background: var(--black);
+}
+
+/* Controles de sonido estándar */
+.video-controls-standard {
+    background: #0D1117;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.video-controls-container-standard {
+    background: #0D1117;
+    padding: 15px 30px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.video-sound-btn-standard {
+    background: #f0b90c;
+    color: #000;
+    border: none;
+    padding: 15px 35px;
+    cursor: pointer;
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 14px;
+    white-space: nowrap;
+    min-width: fit-content;
+    transition: all 0.3s ease;
+}
+
+/* Contenedor de texto estándar */
+.video-text-container-standard {
+    background: #0D1117;
+    padding: 0 60px 40px 60px;
+    width: 100%;
+}
+
+/* Layout de texto estándar (grid 2 columnas) */
+.video-text-layout-standard {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: flex-start;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px 0;
+    background: transparent;
+}
+
+/* Sección de título estándar */
+.video-title-section-standard {
+    display: flex;
+    flex-direction: column;
+}
+
+.video-title-section-standard h3 {
+    font-family: var(--font-primary);
+    font-weight: 700;
+    font-size: 12px;
+    color: #FFFFFF;
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    white-space: normal;
+    line-height: 1.4;
+    text-align: left;
+    overflow: hidden;
+}
+
+.video-title-section-standard h3 .subtitle {
+    display: block;
+    font-size: 0.75em;
+    font-weight: 400;
+    letter-spacing: 0.5px;
+    color: #FFFFFF;
+    text-transform: none;
+    margin-top: 4px;
+    font-family: var(--font-primary);
+}
+
+/* Sección de descripción estándar */
+.video-description-section-standard {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+.video-description-section-standard p {
+    font-family: var(--font-primary);
+    font-weight: 400;
+    font-size: 12px;
+    color: #8B949E;
+    margin: 0;
+    line-height: 1.6;
+    text-align: justify;
+    text-justify: inter-word;
+    hyphens: auto;
+    word-wrap: break-word;
+}
+
+/* ==============================================
+   RESPONSIVE PARA CLASES ESTÁNDAR
+   ============================================== */
+
+/* Tablet */
+@media screen and (max-width: 768px) {
+    .video-text-container-standard {
+        padding: 0 40px 30px 40px;
+    }
+    
+    .video-text-layout-standard {
+        gap: 30px;
+        grid-template-columns: 1fr 1fr;
+        padding: 15px 0;
+    }
+    
+    .video-title-section-standard h3 {
+        font-size: 11px;
+        letter-spacing: 0.8px;
+        line-height: 1.4;
+    }
+    
+    .video-title-section-standard h3 .subtitle {
+        font-size: 0.75em;
+        margin-top: 3px;
+    }
+    
+    .video-description-section-standard p {
+        font-size: 11px;
+        line-height: 1.5;
+        text-align: justify;
+    }
+    
+    .video-section-standard {
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+    .video-text-container-standard {
+        padding: 0 20px 20px 20px;
+    }
+    
+    .video-text-layout-standard {
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+        padding: 10px 0;
+    }
+    
+    .video-title-section-standard h3 {
+        font-size: 8px !important;
+        letter-spacing: 0px;
+        line-height: 1.1;
+        font-weight: 700;
+        color: #FFFFFF;
+        text-transform: uppercase;
+        text-align: left !important;
+    }
+    
+    .video-title-section-standard h3 .subtitle {
+        font-size: 0.75em !important;
+        margin-top: 1px;
+        text-align: left !important;
+    }
+    
+    .video-description-section-standard p {
+        font-size: 8px !important;
+        line-height: 1.3;
+        color: #8B949E;
+        text-align: justify;
+    }
+    
+    .video-section-standard {
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+}
+
+/* Extra Small */
+@media (max-width: 320px) {
+    .video-title-section-standard h3 {
+        font-size: 7px !important;
+        letter-spacing: 0px;
+        line-height: 1.1;
+        font-weight: 700;
+        color: #FFFFFF;
+        text-transform: uppercase;
+        text-align: left !important;
+    }
+    
+    .video-title-section-standard h3 .subtitle {
+        font-size: 0.75em !important;
+        margin-top: 1px;
+        text-align: left !important;
+    }
+    
+    .video-description-section-standard p {
+        font-size: 7px !important;
+        line-height: 1.2;
+        color: #8B949E;
+        text-align: justify;
+    }
+    
+    .video-section-standard {
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+}
+
 /* Extra small screens (very narrow) */
 @media screen and (max-width: 320px) {
     /* Video sections sin padding en pantallas extra pequeñas */
     section.mix-3d-video-section,
     section.motion-graphics-section,
     section.bfa-video-section,
-    section.indh-video-section {
+    section.indh-video-section,
+    section.ruta-sanpedro-video-section {
         padding: 0 !important;
         margin: 0 !important;
     }
