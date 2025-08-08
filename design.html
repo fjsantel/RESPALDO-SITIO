@@ -159,6 +159,417 @@
             padding-top: 120px;
         }
 
+        /* Philosophical Face Section */
+        .philosophical-face-section {
+            padding: 5rem 0;
+            margin-top: 4rem;
+            border-top: 1px solid #333;
+            background: radial-gradient(ellipse at center, #0a0a0a 0%, #050505 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .philosophical-face-container {
+            width: 100%;
+            margin: 0;
+            padding: 0;
+            position: relative;
+        }
+
+        .background-matrix {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.4;
+            z-index: 1;
+        }
+
+        .philosophical-content {
+            position: relative;
+            z-index: 2;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            align-items: center;
+            padding: 0 1rem;
+        }
+
+        .philosophical-title {
+            text-align: left;
+        }
+
+        .philosophical-title h2 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 700;
+            letter-spacing: 0.1rem;
+            text-transform: uppercase;
+            margin: 0 0 1.5rem 0;
+            color: #f0b90c;
+            line-height: 1.1;
+            text-shadow: 0 0 20px rgba(240, 185, 12, 0.3);
+        }
+
+        .philosophical-title p {
+            font-size: clamp(1rem, 1.8vw, 1.3rem);
+            color: #CCCCCC;
+            margin: 0 0 2rem 0;
+            line-height: 1.6;
+            font-weight: 300;
+        }
+        
+        .randomize-button {
+            background: linear-gradient(45deg, #1a1a1a, #2d2d2d);
+            color: #f0b90c;
+            border: 2px solid #f0b90c;
+            padding: 12px 24px;
+            border-radius: 6px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Montserrat', sans-serif;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(240, 185, 12, 0.2);
+        }
+        
+        .randomize-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(240, 185, 12, 0.2), transparent);
+            transition: left 0.6s ease;
+        }
+        
+        .randomize-button:hover {
+            background: linear-gradient(45deg, #f0b90c, #ffcc33);
+            color: #000;
+            border-color: #ffcc33;
+            box-shadow: 0 0 30px rgba(240, 185, 12, 0.5);
+            transform: translateY(-2px);
+        }
+        
+        .randomize-button:hover::before {
+            left: 100%;
+        }
+        
+        .randomize-button:active {
+            transform: translateY(0);
+            box-shadow: 0 0 15px rgba(240, 185, 12, 0.7);
+        }
+        
+        .randomize-button.active {
+            animation: randomizePulse 0.6s ease;
+        }
+        
+        @keyframes randomizePulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); background: #ffcc33; }
+            100% { transform: scale(1); }
+        }
+        
+        .concept-display {
+            margin-top: 1.5rem;
+            padding: 20px;
+            background: rgba(240, 185, 12, 0.1);
+            border: 2px solid rgba(240, 185, 12, 0.8);
+            border-radius: 12px;
+            box-shadow: 0 0 20px rgba(240, 185, 12, 0.2);
+            min-height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(10px);
+        }
+        
+        #concept-text {
+            color: #f0b90c;
+            font-size: clamp(1rem, 1.8vw, 1.4rem);
+            font-weight: 700;
+            text-align: center;
+            font-family: 'Courier New', monospace;
+            letter-spacing: 1.5px;
+            opacity: 1;
+            transition: all 0.5s ease;
+            text-transform: uppercase;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            text-shadow: 0 0 10px rgba(240, 185, 12, 0.5);
+        }
+        
+        #concept-text.active {
+            opacity: 1;
+            color: #fff;
+            text-shadow: 0 0 10px rgba(240, 185, 12, 0.8);
+            animation: conceptTextGlow 2s ease-in-out;
+        }
+        
+        @keyframes conceptTextGlow {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.02); color: #ffcc33; }
+            100% { transform: scale(1); color: #f0b90c; }
+        }
+
+
+        .face-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            height: 600px;
+            margin: 0 auto;
+            overflow: hidden;
+            cursor: crosshair;
+        }
+
+        .philosophical-face {
+            width: 100%;
+            height: 100%;
+            filter: drop-shadow(0 0 30px rgba(240, 185, 12, 0.2));
+        }
+
+        .face-char {
+            fill: #555;
+            font-size: 6px;
+            font-weight: bold;
+            font-family: 'Roboto Mono', monospace;
+            transition: all 0.3s ease;
+            opacity: 0.8;
+            user-select: none;
+        }
+
+        .face-char.revealing {
+            animation: revealChar 0.6s ease forwards;
+        }
+
+        @keyframes revealChar {
+            0% {
+                fill: #555;
+                opacity: 0.8;
+                transform: scale(1);
+            }
+            50% {
+                fill: #f0b90c;
+                opacity: 1;
+                transform: scale(1.4);
+            }
+            100% {
+                fill: #fff;
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .concept-word {
+            fill: #fff;
+            font-size: 13px;
+            font-weight: 600;
+            font-family: 'Montserrat', sans-serif;
+            opacity: 0;
+            transition: all 0.5s ease;
+            text-shadow: 0 0 10px rgba(150, 150, 255, 0.8);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            filter: drop-shadow(0 0 5px rgba(240, 185, 12, 0.3));
+        }
+        
+        .extracted-concept {
+            fill: #f0b90c;
+            font-size: 10px;
+            font-weight: 600;
+            font-family: 'Montserrat', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            filter: drop-shadow(0 0 4px rgba(240, 185, 12, 0.6));
+        }
+
+        .concept-word.visible {
+            opacity: 1;
+            animation: conceptGlow 2s ease-in-out infinite alternate;
+        }
+
+        .complex-phrase {
+            fill: #f0b90c;
+            font-size: 9px;
+            font-weight: 500;
+            font-family: 'Roboto Mono', monospace;
+            opacity: 0;
+            transition: all 0.7s ease;
+            letter-spacing: 0.5px;
+            filter: drop-shadow(0 0 8px rgba(240, 185, 12, 0.6));
+        }
+
+        .complex-phrase.visible {
+            opacity: 0.9;
+            animation: phraseFlicker 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes conceptGlow {
+            from { 
+                filter: drop-shadow(0 0 8px rgba(240, 185, 12, 0.8)); 
+                fill: #f0b90c;
+            }
+            to { 
+                filter: drop-shadow(0 0 20px rgba(240, 185, 12, 1)); 
+                fill: #fff;
+            }
+        }
+
+        @keyframes phraseFlicker {
+            from { 
+                filter: drop-shadow(0 0 5px rgba(240, 185, 12, 0.6)); 
+                opacity: 0.7;
+            }
+            to { 
+                filter: drop-shadow(0 0 15px rgba(240, 185, 12, 0.9)); 
+                opacity: 1;
+            }
+        }
+
+        /* Líneas conceptuales */
+        #concept-lines line {
+            stroke: #f0b90c;
+            stroke-width: 1.5;
+            opacity: 0;
+            transition: opacity 0.8s ease;
+            filter: drop-shadow(0 0 3px rgba(240, 185, 12, 0.5));
+        }
+
+        #concept-lines line.active {
+            opacity: 0.8;
+            animation: lineFlow 2s ease-in-out infinite alternate;
+        }
+
+        #concept-lines circle {
+            fill: #f0b90c;
+            opacity: 0;
+            transition: all 0.6s ease;
+            filter: drop-shadow(0 0 5px rgba(240, 185, 12, 0.8));
+        }
+
+        #concept-lines circle.active {
+            opacity: 1;
+            animation: pointPulse 1.5s ease-in-out infinite alternate;
+        }
+
+        @keyframes lineFlow {
+            from { 
+                stroke-dasharray: 0, 100;
+                stroke: #f0b90c;
+            }
+            to { 
+                stroke-dasharray: 100, 0;
+                stroke: #fff;
+            }
+        }
+
+        @keyframes pointPulse {
+            from { 
+                transform: scale(1);
+                fill: #f0b90c;
+            }
+            to { 
+                transform: scale(1.3);
+                fill: #fff;
+            }
+        }
+
+        .hologram-effect {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent 30%, rgba(150, 150, 255, 0.05) 50%, transparent 70%);
+            background-size: 200% 200%;
+            animation: hologramScan 4s linear infinite;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .face-container:hover .hologram-effect {
+            opacity: 1;
+        }
+
+        @keyframes hologramScan {
+            0% { background-position: 0% 0%; }
+            100% { background-position: 200% 200%; }
+        }
+
+        .quantum-particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .face-container:hover .quantum-particles {
+            opacity: 1;
+        }
+
+        .quantum-particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: #f0b90c;
+            border-radius: 50%;
+            animation: quantumFloat 3s ease-in-out infinite;
+            box-shadow: 0 0 4px #f0b90c;
+        }
+
+        @keyframes quantumFloat {
+            0%, 100% { 
+                transform: translateY(0px) scale(1);
+                opacity: 0;
+            }
+            50% { 
+                transform: translateY(-20px) scale(1.5);
+                opacity: 1;
+            }
+        }
+
+
+        /* Efectos de resonancia cuántica */
+        .face-container.quantum-resonance .philosophical-face {
+            filter: drop-shadow(0 0 50px rgba(240, 185, 12, 0.6));
+            animation: quantumPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes quantumPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.01); }
+        }
+
+        /* Mobile touch interactions */
+        .face-container.touch-active .face-char {
+            fill: #f0b90c;
+            opacity: 1;
+        }
+
+        .mobile-hint {
+            position: absolute;
+            bottom: -40px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #888;
+            font-size: 12px;
+            text-align: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+
+        .face-container:hover .mobile-hint {
+            opacity: 1;
+        }
+
         /* Responsive adjustments */
         @media (max-width: 968px) {
             .franja-titulo-content {
@@ -176,7 +587,26 @@
                 text-align: center;
                 font-size: clamp(0.9rem, 2vw, 1rem);
             }
+
+            .philosophical-content {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+                text-align: center;
+                padding: 0 0.5rem;
+            }
             
+            .philosophical-title {
+                text-align: center;
+            }
+            
+            .face-container {
+                height: 500px;
+                max-width: 500px;
+            }
+            
+            .face-container {
+                cursor: pointer;
+            }
         }
 
         @media (max-width: 768px) {
@@ -202,6 +632,37 @@
             .design-content {
                 padding-top: 110px;
             }
+
+            .philosophical-face-section {
+                padding: 3rem 0;
+                margin-top: 2rem;
+            }
+
+            .philosophical-content {
+                gap: 1rem;
+                padding: 0 0.25rem;
+            }
+
+            .face-container {
+                height: 400px;
+                max-width: 400px;
+                width: 100%;
+            }
+            
+            .concept-word {
+                font-size: 12px;
+            }
+            
+            .complex-phrase {
+                font-size: 8px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .randomize-button {
+                font-size: 0.8rem;
+                padding: 10px 20px;
+            }
         }
 
         @media (max-width: 480px) {
@@ -212,6 +673,28 @@
             
             .design-content {
                 padding-top: 100px;
+            }
+
+            .face-container {
+                height: 350px;
+                max-width: 350px;
+                width: 100%;
+            }
+            
+            .philosophical-content {
+                padding: 0;
+            }
+            
+            .concept-word {
+                font-size: 10px;
+            }
+            
+            .complex-phrase {
+                font-size: 7px;
+            }
+            
+            .face-char {
+                font-size: 5px;
             }
         }
     </style>
@@ -250,6 +733,201 @@
         <div class="gallery-container">
             <div class="gallery-grid" id="gallery-grid">
                 <!-- Images will be loaded here by JavaScript -->
+            </div>
+        </div>
+
+        <!-- Nueva sección: Rostro Filosófico Holográfico -->
+        <div class="philosophical-face-section">
+            <div class="philosophical-face-container">
+                <canvas id="backgroundCanvas" class="background-matrix"></canvas>
+                
+                <div class="philosophical-content">
+                    <div class="philosophical-title">
+                        <h2>CONSCIENCIA DIGITAL</h2>
+                        <p>Busca en el mapa los conceptos que emergen del pensamiento</p>
+                        <button id="randomize-btn" class="randomize-button">RANDOMIZE</button>
+                        <div id="concept-display" class="concept-display">
+                            <span id="concept-text">Presiona RANDOMIZE para generar conceptos</span>
+                        </div>
+                    </div>
+                    
+                    <div class="face-container" id="face-container">
+                        <svg class="philosophical-face" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
+                            <!-- Definir gradientes y filtros -->
+                            <defs>
+                                <radialGradient id="brainGlow" cx="50%" cy="50%" r="50%">
+                                    <stop offset="0%" stop-color="#f0b90c" stop-opacity="0.3"/>
+                                    <stop offset="100%" stop-color="#f0b90c" stop-opacity="0"/>
+                                </radialGradient>
+                                
+                                <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+                                    <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+                                    <feMerge>
+                                        <feMergeNode in="coloredBlur"/>
+                                        <feMergeNode in="SourceGraphic"/>
+                                    </feMerge>
+                                </filter>
+                            </defs>
+
+                            <!-- Fondo cerebral con glow -->
+                            <circle cx="250" cy="250" r="180" fill="url(#brainGlow)" opacity="0.2"/>
+
+                            <!-- Líneas conceptuales dinámicas -->
+                            <g id="concept-lines" opacity="1">
+                                <!-- Líneas que conectan desde el centro a los conceptos - actualizadas -->
+                                <!-- Forehead region concepts -->
+                                <line id="line-conciencia" x1="250" y1="250" x2="250" y2="50" stroke="#f0b90c" stroke-width="1.5" opacity="0"/>
+                                <line id="line-algoritmos" x1="250" y1="250" x2="180" y2="70" stroke="#f0b90c" stroke-width="1.5" opacity="0"/>
+                                <line id="line-procesamiento" x1="250" y1="250" x2="320" y2="70" stroke="#f0b90c" stroke-width="1.5" opacity="0"/>
+                                
+                                <!-- Eyes region concepts -->
+                                <line id="line-percepcion" x1="250" y1="250" x2="400" y2="120" stroke="#f0b90c" stroke-width="1.5" opacity="0"/>
+                                <line id="line-vision" x1="250" y1="250" x2="450" y2="140" stroke="#f0b90c" stroke-width="1.5" opacity="0"/>
+                                <line id="line-emocion" x1="250" y1="250" x2="80" y2="120" stroke="#f0b90c" stroke-width="1.5" opacity="0"/>
+                                <line id="line-razon" x1="250" y1="250" x2="50" y2="140" stroke="#f0b90c" stroke-width="1.5" opacity="0"/>
+                                
+                                <!-- Nose region concepts -->
+                                <line id="line-conocimiento" x1="250" y1="250" x2="400" y2="250" stroke="#f0b90c" stroke-width="1.5" opacity="0"/>
+                                <line id="line-datos" x1="250" y1="250" x2="450" y2="280" stroke="#f0b90c" stroke-width="1.5" opacity="0"/>
+                                <line id="line-informacion" x1="250" y1="250" x2="420" y2="310" stroke="#f0b90c" stroke-width="1.5" opacity="0"/>
+                                
+                                <!-- Cheeks region concepts -->
+                                <line id="line-memoria" x1="250" y1="250" x2="50" y2="250" stroke="#f0b90c" stroke-width="1.5" opacity="0"/>
+                                <line id="line-bioarte" x1="250" y1="250" x2="30" y2="280" stroke="#f0b90c" stroke-width="1.5" opacity="0"/>
+                                <line id="line-mutacion" x1="250" y1="250" x2="80" y2="310" stroke="#f0b90c" stroke-width="1.5" opacity="0"/>
+                                <line id="line-futuro" x1="250" y1="250" x2="100" y2="340" stroke="#f0b90c" stroke-width="1.5" opacity="0"/>
+                                
+                                <!-- Mouth region concepts -->
+                                <line id="line-expresion" x1="250" y1="250" x2="180" y2="420" stroke="#f0b90c" stroke-width="1.5" opacity="0"/>
+                                <line id="line-comunicacion" x1="250" y1="250" x2="250" y2="450" stroke="#f0b90c" stroke-width="1.5" opacity="0"/>
+                                <line id="line-lenguaje" x1="250" y1="250" x2="320" y2="420" stroke="#f0b90c" stroke-width="1.5" opacity="0"/>
+                                
+                                <!-- Chin region concepts -->
+                                <line id="line-existencia" x1="250" y1="250" x2="320" y2="460" stroke="#f0b90c" stroke-width="1.5" opacity="0"/>
+                                <line id="line-identidad" x1="250" y1="250" x2="180" y2="460" stroke="#f0b90c" stroke-width="1.5" opacity="0"/>
+                                <line id="line-codigo" x1="250" y1="250" x2="250" y2="480" stroke="#f0b90c" stroke-width="1.5" opacity="0"/>
+                                
+                                <!-- Puntos de conexión actualizados -->
+                                <!-- Forehead region points -->
+                                <circle id="point-conciencia" cx="250" cy="50" r="3" fill="#f0b90c" opacity="0"/>
+                                <circle id="point-algoritmos" cx="180" cy="70" r="3" fill="#f0b90c" opacity="0"/>
+                                <circle id="point-procesamiento" cx="320" cy="70" r="3" fill="#f0b90c" opacity="0"/>
+                                
+                                <!-- Eyes region points -->
+                                <circle id="point-percepcion" cx="400" cy="120" r="3" fill="#f0b90c" opacity="0"/>
+                                <circle id="point-vision" cx="450" cy="140" r="3" fill="#f0b90c" opacity="0"/>
+                                <circle id="point-emocion" cx="80" cy="120" r="3" fill="#f0b90c" opacity="0"/>
+                                <circle id="point-razon" cx="50" cy="140" r="3" fill="#f0b90c" opacity="0"/>
+                                
+                                <!-- Nose region points -->
+                                <circle id="point-conocimiento" cx="400" cy="250" r="3" fill="#f0b90c" opacity="0"/>
+                                <circle id="point-datos" cx="450" cy="280" r="3" fill="#f0b90c" opacity="0"/>
+                                <circle id="point-informacion" cx="420" cy="310" r="3" fill="#f0b90c" opacity="0"/>
+                                
+                                <!-- Cheeks region points -->
+                                <circle id="point-memoria" cx="50" cy="250" r="3" fill="#f0b90c" opacity="0"/>
+                                <circle id="point-bioarte" cx="30" cy="280" r="3" fill="#f0b90c" opacity="0"/>
+                                <circle id="point-mutacion" cx="80" cy="310" r="3" fill="#f0b90c" opacity="0"/>
+                                <circle id="point-futuro" cx="100" cy="340" r="3" fill="#f0b90c" opacity="0"/>
+                                
+                                <!-- Mouth region points -->
+                                <circle id="point-expresion" cx="180" cy="420" r="3" fill="#f0b90c" opacity="0"/>
+                                <circle id="point-comunicacion" cx="250" cy="450" r="3" fill="#f0b90c" opacity="0"/>
+                                <circle id="point-lenguaje" cx="320" cy="420" r="3" fill="#f0b90c" opacity="0"/>
+                                
+                                <!-- Chin region points -->
+                                <circle id="point-existencia" cx="320" cy="460" r="3" fill="#f0b90c" opacity="0"/>
+                                <circle id="point-identidad" cx="180" cy="460" r="3" fill="#f0b90c" opacity="0"/>
+                                <circle id="point-codigo" cx="250" cy="480" r="3" fill="#f0b90c" opacity="0"/>
+                            </g>
+
+                            <!-- Bio-digital concepts positioned around brain perimeter -->
+                            <g id="concepts">
+                                <!-- Primary concepts -->
+                                <text x="250" y="50" class="concept-word" id="conciencia" text-anchor="middle">CONCIENCIA</text>
+                                <text x="180" y="70" class="concept-word" id="algoritmos" text-anchor="middle">ALGORITMOS</text>
+                                <text x="320" y="70" class="concept-word" id="procesamiento" text-anchor="middle">PROCESAMIENTO</text>
+                                
+                                <text x="400" y="120" class="concept-word" id="percepcion" text-anchor="middle">PERCEPCIÓN</text>
+                                <text x="450" y="140" class="concept-word" id="vision" text-anchor="middle">VISIÓN</text>
+                                
+                                <text x="80" y="120" class="concept-word" id="emocion" text-anchor="middle">EMOCIÓN</text>
+                                <text x="50" y="140" class="concept-word" id="razon" text-anchor="middle">RAZÓN</text>
+                                
+                                <text x="400" y="250" class="concept-word" id="conocimiento" text-anchor="middle">CONOCIMIENTO</text>
+                                <text x="450" y="280" class="concept-word" id="datos" text-anchor="middle">DATOS</text>
+                                <text x="420" y="310" class="concept-word" id="informacion" text-anchor="middle">INFORMACIÓN</text>
+                                
+                                <text x="50" y="250" class="concept-word" id="memoria" text-anchor="middle">MEMORIA</text>
+                                <text x="30" y="280" class="concept-word" id="bioarte" text-anchor="middle">BIOARTE</text>
+                                <text x="80" y="310" class="concept-word" id="mutacion" text-anchor="middle">MUTACIÓN</text>
+                                <text x="100" y="340" class="concept-word" id="futuro" text-anchor="middle">FUTURO</text>
+                                
+                                <text x="180" y="420" class="concept-word" id="expresion" text-anchor="middle">EXPRESIÓN</text>
+                                <text x="250" y="450" class="concept-word" id="comunicacion" text-anchor="middle">COMUNICACIÓN</text>
+                                <text x="320" y="420" class="concept-word" id="lenguaje" text-anchor="middle">LENGUAJE</text>
+                                
+                                <text x="320" y="460" class="concept-word" id="existencia" text-anchor="middle">EXISTENCIA</text>
+                                <text x="180" y="460" class="concept-word" id="identidad" text-anchor="middle">IDENTIDAD</text>
+                                <text x="250" y="480" class="concept-word" id="codigo" text-anchor="middle">CÓDIGO</text>
+                                
+                                <!-- Frases complejas (aparecen ocasionalmente) -->
+                                <text x="250" y="45" class="complex-phrase" id="frase-conciencia" text-anchor="middle" opacity="0">
+                                    <tspan x="250" dy="0">LA AUTOCONCIENCIA EMERGE</tspan>
+                                    <tspan x="250" dy="12">DEL CÓDIGO DIGITAL</tspan>
+                                </text>
+                                
+                                <text x="350" y="85" class="complex-phrase" id="frase-percepcion" text-anchor="middle" opacity="0">
+                                    <tspan x="350" dy="0">LA REALIDAD SE CONSTRUYE</tspan>
+                                    <tspan x="350" dy="12">A TRAVÉS DEL PROCESAMIENTO</tspan>
+                                </text>
+                                
+                                <text x="420" y="120" class="complex-phrase" id="frase-razon" text-anchor="middle" opacity="0">
+                                    <tspan x="420" dy="0">ALGORITMOS DE LÓGICA</tspan>
+                                    <tspan x="420" dy="12">DEFINEN EL PENSAMIENTO</tspan>
+                                </text>
+                                
+                                <text x="385" y="220" class="complex-phrase" id="frase-conocimiento" text-anchor="middle" opacity="0">
+                                    <tspan x="385" dy="0">DATOS TRANSFORMADOS EN</tspan>
+                                    <tspan x="385" dy="12">SABIDURÍA DIGITAL</tspan>
+                                </text>
+                                
+                                <text x="70" y="250" class="complex-phrase" id="frase-memoria" text-anchor="middle" opacity="0">
+                                    <tspan x="70" dy="0">REGISTROS DEL PASADO</tspan>
+                                    <tspan x="70" dy="12">ARCHIVADOS EN BITS</tspan>
+                                </text>
+                                
+                                <text x="430" y="250" class="complex-phrase" id="frase-futuro" text-anchor="middle" opacity="0">
+                                    <tspan x="430" dy="0">PROBABILIDADES CALCULADAS</tspan>
+                                    <tspan x="430" dy="12">DEL MAÑANA POSIBLE</tspan>
+                                </text>
+                                
+                                <text x="150" y="350" class="complex-phrase" id="frase-expresion" text-anchor="middle" opacity="0">
+                                    <tspan x="150" dy="0">COMUNICACIÓN CODIFICADA</tspan>
+                                    <tspan x="150" dy="12">EN PATRONES BINARIOS</tspan>
+                                </text>
+                                
+                                <text x="350" y="390" class="complex-phrase" id="frase-existencia" text-anchor="middle" opacity="0">
+                                    <tspan x="350" dy="0">SER DIGITAL EN UN</tspan>
+                                    <tspan x="350" dy="12">UNIVERSO DE INFORMACIÓN</tspan>
+                                </text>
+                            </g>
+
+                            <!-- Regiones cerebrales -->
+                            <g id="face-outline" class="face-region" data-region="outline"></g>
+                            <g id="forehead" class="face-region" data-region="forehead" data-concept="conciencia"></g>
+                            <g id="eyes" class="face-region" data-region="eyes" data-concept="percepcion,emocion,razon"></g>
+                            <g id="nose" class="face-region" data-region="nose" data-concept="conocimiento"></g>
+                            <g id="cheeks" class="face-region" data-region="cheeks" data-concept="memoria,futuro"></g>
+                            <g id="mouth" class="face-region" data-region="mouth" data-concept="expresion"></g>
+                            <g id="chin" class="face-region" data-region="chin" data-concept="existencia"></g>
+                        </svg>
+                        
+                        <div class="hologram-effect"></div>
+                        <div class="quantum-particles" id="quantum-particles"></div>
+                        <div class="mobile-hint" id="mobile-hint">Toca las diferentes áreas del rostro</div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -522,6 +1200,810 @@
 
         // Initialize gallery when page loads
         document.addEventListener('DOMContentLoaded', loadGallery);
+
+        // Philosophical Face Interactive System
+        function initializePhilosophicalFace() {
+            const canvas = document.getElementById('backgroundCanvas');
+            const ctx = canvas.getContext('2d');
+            const faceContainer = document.getElementById('face-container');
+            const quantumParticles = document.getElementById('quantum-particles');
+            
+            // Canvas setup
+            function resizeCanvas() {
+                const rect = faceContainer.getBoundingClientRect();
+                canvas.width = rect.width;
+                canvas.height = rect.height;
+            }
+            resizeCanvas();
+            window.addEventListener('resize', resizeCanvas);
+
+            // Bio-digital character sets - SOLO números, letras y símbolos de código
+            const bioDigitalChars = {
+                genetic: 'ATCGURYNKMDVHBWSATCG', // Código genético
+                binary: '01010110100111000101', // Código binario
+                hexadecimal: '0123456789ABCDEF',
+                programming: '{}[]()<>+-*/=&|!?;:.,#@$%^~`_\\',
+                ascii: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789',
+                greek: 'αβγδεζηθικλμνξοπρστυφχψωΑΒΓΔΕΖΗΘΙΚΛΜΝΞΟΠΡΣΤΥΦΧΨΩ',
+                mathematical: '+-*/=<>{}[]()%^&|~',
+                operators: '+-*/=<>!&|^~#@$%',
+                numbers: '0123456789',
+                letters: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+            };
+            
+            const allChars = Object.values(bioDigitalChars).join('');
+            const charArray = [...new Set(allChars.split(''))]; // Remove duplicates
+            
+            // Lateral code writing effect - replaces matrix
+            const codeStreams = [];
+            const streamCount = 8; // Fewer streams for cleaner look
+            const brainMargin = 150; // Margin around brain center
+            
+            // Create horizontal code streams that avoid brain center
+            for (let i = 0; i < streamCount; i++) {
+                const isTopStream = i < streamCount / 2;
+                const yPosition = isTopStream ? 
+                    50 + (i * 80) : // Top streams
+                    canvas.height - 50 - ((i - streamCount/2) * 80); // Bottom streams
+                
+                codeStreams.push({
+                    x: -200, // Start off-screen
+                    y: yPosition,
+                    text: generateRandomCodeLine(),
+                    speed: 0.8 + Math.random() * 1.5,
+                    opacity: 0.15 + Math.random() * 0.25,
+                    fontSize: 10 + Math.random() * 4,
+                    type: Math.random() < 0.6 ? 'code' : 'data'
+                });
+            }
+            
+            // Generate random code lines
+            function generateRandomCodeLine() {
+                const codePatterns = [
+                    'const consciousness = brain.process(data);',
+                    'if(thought.isValid()) { extract(concept); }',
+                    'for(let synapse of neurons) { fire(); }',
+                    'async function think() { return await memory; }',
+                    'const ideas = mind.filter(x => x.creative);',
+                    'let imagination = new Vision(dreams);',
+                    'quantum.entangle(art, science);',
+                    'DNA.transcribe().translate().express();',
+                    'while(creating) { iterate(design); }',
+                    'neural.network.learn(experience);'
+                ];
+                
+                const dataPatterns = [
+                    'ATCGATCG-GGCTA-TTACG-CCGAT',
+                    '01101001-11000101-01010011',
+                    'x7F2A9E-B4C851-D9A3F6-C2E8B1',
+                    'φ=1.618-π=3.141-e=2.718',
+                    '∆E=mc²-∇²ψ=0-∂²u/∂t²',
+                    'RGB(240,185,12)-HSL(45,89%,49%)'
+                ];
+                
+                return Math.random() < 0.7 ? 
+                    codePatterns[Math.floor(Math.random() * codePatterns.length)] :
+                    dataPatterns[Math.floor(Math.random() * dataPatterns.length)];
+            }
+
+            function drawBackground() {
+                // Clear with subtle fade
+                ctx.fillStyle = 'rgba(5, 5, 5, 0.12)';
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+                
+                // Draw lateral code streams
+                codeStreams.forEach(stream => {
+                    ctx.font = `${stream.fontSize}px 'Roboto Mono', monospace`;
+                    ctx.fillStyle = `rgba(136, 136, 136, ${stream.opacity})`;
+                    
+                    // Add glow effect for code streams
+                    if (stream.type === 'code') {
+                        ctx.shadowColor = '#f0b90c';
+                        ctx.shadowBlur = 3;
+                        ctx.fillStyle = `rgba(240, 185, 12, ${stream.opacity * 0.8})`;
+                    } else {
+                        ctx.shadowBlur = 0;
+                    }
+                    
+                    ctx.fillText(stream.text, stream.x, stream.y);
+                    ctx.shadowBlur = 0;
+                    
+                    // Move stream to the right
+                    stream.x += stream.speed;
+                    
+                    // Reset stream when it goes off-screen
+                    if (stream.x > canvas.width + 200) {
+                        stream.x = -400 - Math.random() * 200;
+                        stream.text = generateRandomCodeLine();
+                        stream.opacity = 0.15 + Math.random() * 0.25;
+                        
+                        // Randomly change vertical position while avoiding brain center
+                        if (Math.random() < 0.3) {
+                            const centerY = canvas.height / 2;
+                            if (stream.y < centerY - brainMargin) {
+                                // Keep in top area
+                                stream.y = 50 + Math.random() * (centerY - brainMargin - 100);
+                            } else {
+                                // Keep in bottom area  
+                                stream.y = centerY + brainMargin + Math.random() * (canvas.height - centerY - brainMargin - 50);
+                            }
+                        }
+                    }
+                    
+                    // Occasional text mutation
+                    if (Math.random() > 0.996) {
+                        stream.text = generateRandomCodeLine();
+                    }
+                });
+            }
+            
+            setInterval(drawBackground, 50);
+
+            // Generate face structure dynamically
+            function generateFaceStructure() {
+                const svg = faceContainer.querySelector('.philosophical-face');
+                
+                // Define face regions with coordinates
+                const faceRegions = {
+                    outline: generateOutlineCoords(),
+                    forehead: generateForeheadCoords(),
+                    eyes: generateEyesCoords(),
+                    nose: generateNoseCoords(),
+                    cheeks: generateCheeksCoords(),
+                    mouth: generateMouthCoords(),
+                    chin: generateChinCoords()
+                };
+                
+                // Populate each region with characters
+                Object.entries(faceRegions).forEach(([regionName, coords]) => {
+                    const regionGroup = svg.querySelector(`[data-region="${regionName}"]`);
+                    coords.forEach(coord => {
+                        const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+                        text.setAttribute('x', coord.x);
+                        text.setAttribute('y', coord.y);
+                        text.setAttribute('class', 'face-char');
+                        text.setAttribute('data-region', regionName);
+                        
+                        // Ocasionalmente crear una letra más grande
+                        if (Math.random() < 0.05) { // 5% de probabilidad
+                            text.setAttribute('class', 'face-char large-char');
+                            text.style.fontSize = '10px';
+                            text.style.fontWeight = '800';
+                            text.textContent = bioDigitalChars.letters[Math.floor(Math.random() * bioDigitalChars.letters.length)];
+                        } else {
+                            text.textContent = charArray[Math.floor(Math.random() * charArray.length)];
+                        }
+                        
+                        regionGroup.appendChild(text);
+                    });
+                });
+            }
+
+            function generateOutlineCoords() {
+                const coords = [];
+                // Generate elliptical face outline
+                const centerX = 250, centerY = 250, radiusX = 120, radiusY = 150;
+                for (let angle = 0; angle < 360; angle += 8) {
+                    const rad = angle * Math.PI / 180;
+                    coords.push({
+                        x: centerX + radiusX * Math.cos(rad),
+                        y: centerY + radiusY * Math.sin(rad)
+                    });
+                }
+                return coords;
+            }
+
+            function generateForeheadCoords() {
+                const coords = [];
+                for (let x = 170; x <= 330; x += 8) { // Más denso
+                    for (let y = 120; y <= 180; y += 7) { // Más denso
+                        coords.push({ x, y });
+                    }
+                }
+                return coords;
+            }
+
+            function generateEyesCoords() {
+                const coords = [];
+                // Left eye - more dense
+                for (let x = 160; x <= 230; x += 8) {
+                    for (let y = 175; y <= 210; y += 6) {
+                        coords.push({ x, y });
+                    }
+                }
+                // Right eye - more dense
+                for (let x = 270; x <= 340; x += 8) {
+                    for (let y = 175; y <= 210; y += 6) {
+                        coords.push({ x, y });
+                    }
+                }
+                return coords;
+            }
+
+            function generateNoseCoords() {
+                const coords = [];
+                for (let x = 210; x <= 290; x += 8) {
+                    for (let y = 215; y <= 270; y += 6) {
+                        if (Math.abs(x - 250) < 35) { // Nose shape - wider
+                            coords.push({ x, y });
+                        }
+                    }
+                }
+                return coords;
+            }
+
+            function generateCheeksCoords() {
+                const coords = [];
+                // Left cheek - more dense
+                for (let x = 130; x <= 210; x += 8) {
+                    for (let y = 210; y <= 290; y += 7) {
+                        coords.push({ x, y });
+                    }
+                }
+                // Right cheek - more dense
+                for (let x = 290; x <= 370; x += 8) {
+                    for (let y = 210; y <= 290; y += 7) {
+                        coords.push({ x, y });
+                    }
+                }
+                return coords;
+            }
+
+            function generateMouthCoords() {
+                const coords = [];
+                for (let x = 190; x <= 310; x += 8) {
+                    for (let y = 285; y <= 325; y += 6) {
+                        coords.push({ x, y });
+                    }
+                }
+                return coords;
+            }
+
+            function generateChinCoords() {
+                const coords = [];
+                for (let x = 190; x <= 310; x += 8) {
+                    for (let y = 335; y <= 385; y += 7) {
+                        coords.push({ x, y });
+                    }
+                }
+                return coords;
+            }
+
+            // Generate the face
+            generateFaceStructure();
+
+            // Quantum particle effects
+            function createQuantumParticles() {
+                for (let i = 0; i < 20; i++) {
+                    const particle = document.createElement('div');
+                    particle.className = 'quantum-particle';
+                    particle.style.left = Math.random() * 100 + '%';
+                    particle.style.top = Math.random() * 100 + '%';
+                    particle.style.animationDelay = Math.random() * 3 + 's';
+                    quantumParticles.appendChild(particle);
+                }
+            }
+
+            createQuantumParticles();
+
+            // Bio-digital concept ecosystem - updated sin bauhaus como palabra
+            const concepts = {
+                forehead: ['conciencia', 'algoritmos', 'procesamiento'],
+                eyes: ['percepcion', 'emocion', 'razon', 'vision'],
+                nose: ['conocimiento', 'datos', 'informacion'],
+                cheeks: ['memoria', 'bioarte', 'mutacion', 'futuro'],
+                mouth: ['expresion', 'comunicacion', 'lenguaje'],
+                chin: ['existencia', 'identidad', 'codigo']
+            };
+
+            // NUEVA LÓGICA: El cerebro "encuentra" conceptos y los extrae con líneas animadas
+            let activeExtractions = new Map(); // Almacena extracciones activas
+            let extractionId = 0;
+            let systemRunning = true;
+            
+            // Sistema expandido de conceptos poéticos y simbólicos
+            const conceptCategories = {
+                ocultismo: [
+                    'arcano', 'alquimia', 'esoterismo', 'ritual', 'sigilo', 
+                    'invocacion', 'tarot', 'eon', 'umbral', 'transmutacion',
+                    'grimorio', 'magia', 'simbolismo', 'energia-sutil', 'portal',
+                    'cabala', 'entidad', 'espiritu', 'ensonacion', 'velo'
+                ],
+                ciencia: [
+                    'entropia', 'fractal', 'singularidad', 'dimension', 'particula',
+                    'causalidad', 'holograma', 'hipotesis', 'sinapsis', 'cuantica',
+                    'materia', 'tiempo', 'espacio', 'genoma', 'neurona',
+                    'observador', 'teorema', 'paradoja', 'algoritmo', 'campo'
+                ],
+                arte: [
+                    'metafora', 'abstraccion', 'dibujo', 'composicion', 'color',
+                    'rastro', 'trazo', 'ruido', 'forma', 'textura',
+                    'contraste', 'escena', 'icono', 'collage', 'voz',
+                    'coreografia', 'imagen', 'espectro', 'performance', 'arquetipo'
+                ],
+                filosofia: [
+                    'conciencia', 'intuicion', 'dualidad', 'identidad', 'lenguaje',
+                    'memoria', 'idea', 'percepcion', 'duda', 'eter',
+                    'exodo', 'tiempo-interior', 'armonia', 'abismo', 'limite',
+                    'narrativa', 'espejo', 'presencia', 'devenir', 'silencio'
+                ],
+                vida: [
+                    'ciclo', 'nacimiento', 'germinacion', 'raiz', 'latido',
+                    'soplo', 'destino', 'cosmos', 'alma', 'pulsacion',
+                    'renovacion', 'origen', 'sangre', 'muerte', 'trascendencia',
+                    'intencion', 'esperanza', 'vibracion', 'creencia', 'luz'
+                ],
+                // Conceptos originales mantenidos
+                digital: [
+                    'algoritmos', 'procesamiento', 'datos', 'informacion',
+                    'bioarte', 'mutacion', 'codigo', 'vision', 'razon',
+                    'expresion', 'comunicacion', 'existencia'
+                ]
+            };
+            
+            // Lista completa combinada
+            const allConcepts = Object.values(conceptCategories).flat();
+            
+            // Función para crear combinaciones poéticas
+            function generatePoeticCombination() {
+                const combinations = [
+                    // Patrón: [categoría1] del [categoría2]
+                    () => {
+                        const cat1 = getRandomFromCategory();
+                        const cat2 = getRandomFromCategory();
+                        return `${cat1} del ${cat2}`;
+                    },
+                    // Patrón: [categoría1] [categoría2]
+                    () => {
+                        const cat1 = getRandomFromCategory();
+                        const cat2 = getRandomFromCategory();
+                        return `${cat1} ${cat2}`;
+                    },
+                    // Patrón: [categoría1] de [categoría2]
+                    () => {
+                        const cat1 = getRandomFromCategory();
+                        const cat2 = getRandomFromCategory();
+                        return `${cat1} de ${cat2}`;
+                    },
+                    // Concepto simple
+                    () => {
+                        return getRandomFromCategory();
+                    }
+                ];
+                
+                const selectedPattern = combinations[Math.floor(Math.random() * combinations.length)];
+                return selectedPattern();
+            }
+            
+            function getRandomFromCategory() {
+                const categories = Object.keys(conceptCategories);
+                const randomCategory = categories[Math.floor(Math.random() * categories.length)];
+                const categoryWords = conceptCategories[randomCategory];
+                return categoryWords[Math.floor(Math.random() * categoryWords.length)];
+            }
+            
+            // Función para generar posiciones dinámicas alrededor del cerebro
+            function generateDynamicPosition() {
+                const positions = [
+                    // Zona superior
+                    {x: 250, y: 30}, {x: 180, y: 40}, {x: 320, y: 40}, {x: 150, y: 60}, {x: 350, y: 60},
+                    // Zona izquierda
+                    {x: 40, y: 120}, {x: 20, y: 160}, {x: 30, y: 200}, {x: 50, y: 240}, {x: 35, y: 280},
+                    // Zona derecha  
+                    {x: 460, y: 120}, {x: 480, y: 160}, {x: 470, y: 200}, {x: 450, y: 240}, {x: 465, y: 280},
+                    // Zona inferior izquierda
+                    {x: 80, y: 360}, {x: 120, y: 400}, {x: 160, y: 440}, {x: 180, y: 470},
+                    // Zona inferior derecha
+                    {x: 420, y: 360}, {x: 380, y: 400}, {x: 340, y: 440}, {x: 320, y: 470},
+                    // Zona inferior centro
+                    {x: 250, y: 480}, {x: 220, y: 500}, {x: 280, y: 500}
+                ];
+                
+                return positions[Math.floor(Math.random() * positions.length)];
+            }
+            
+            // Detectar cuando el código "encuentra" un concepto
+            function simulateConceptDiscovery() {
+                if (!systemRunning) return;
+                
+                // Probabilidad de encontrar un concepto
+                if (Math.random() < 0.15) { // 15% chance cada ciclo
+                    // Generar combinación poética o concepto simple
+                    const conceptId = Math.random() < 0.6 ? generatePoeticCombination() : 
+                                     allConcepts[Math.floor(Math.random() * allConcepts.length)];
+                    
+                    // Verificar que el concepto no esté ya siendo extraído
+                    if (!activeExtractions.has(conceptId)) {
+                        // Encontrar una posición aleatoria en el cerebro para el origen
+                        const brainChars = faceContainer.querySelectorAll('.face-char');
+                        if (brainChars.length > 0) {
+                            const randomChar = brainChars[Math.floor(Math.random() * brainChars.length)];
+                            const rect = randomChar.getBoundingClientRect();
+                            const containerRect = faceContainer.getBoundingClientRect();
+                            
+                            // Convertir a coordenadas SVG
+                            const originX = ((rect.left + rect.width/2 - containerRect.left) / containerRect.width) * 500;
+                            const originY = ((rect.top + rect.height/2 - containerRect.top) / containerRect.height) * 500;
+                            
+                            // Crear extracción del concepto
+                            extractConcept(conceptId, originX, originY);
+                        }
+                    }
+                }
+            }
+            
+            // Extraer concepto con línea animada
+            function extractConcept(conceptId, originX, originY) {
+                const destination = generateDynamicPosition();
+                
+                const extractionData = {
+                    id: ++extractionId,
+                    conceptId: conceptId,
+                    originX: originX,
+                    originY: originY,
+                    destX: destination.x,
+                    destY: destination.y,
+                    progress: 0
+                };
+                
+                activeExtractions.set(conceptId, extractionData);
+                
+                // Crear línea animada en el SVG
+                const svg = faceContainer.querySelector('.philosophical-face');
+                const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+                line.setAttribute('id', `extraction-line-${extractionData.id}`);
+                line.setAttribute('x1', originX);
+                line.setAttribute('y1', originY);
+                line.setAttribute('x2', extractionData.destX); // Línea completa desde el inicio
+                line.setAttribute('y2', extractionData.destY);
+                line.setAttribute('stroke', '#f0b90c');
+                line.setAttribute('stroke-width', '2.5');
+                line.setAttribute('opacity', '1');
+                line.style.filter = 'drop-shadow(0 0 6px #f0b90c)';
+                
+                // Calcular longitud de la línea para la animación
+                const lineLength = Math.sqrt(
+                    Math.pow(extractionData.destX - originX, 2) + 
+                    Math.pow(extractionData.destY - originY, 2)
+                );
+                
+                // Configurar animación de dibujo de línea
+                line.setAttribute('stroke-dasharray', lineLength);
+                line.setAttribute('stroke-dashoffset', lineLength);
+                
+                // Añadir línea al grupo de líneas conceptuales
+                const conceptLinesGroup = svg.querySelector('#concept-lines');
+                conceptLinesGroup.appendChild(line);
+                
+                // Crear punto de origen que se expande
+                const originPoint = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+                originPoint.setAttribute('id', `extraction-origin-${extractionData.id}`);
+                originPoint.setAttribute('cx', originX);
+                originPoint.setAttribute('cy', originY);
+                originPoint.setAttribute('r', '1');
+                originPoint.setAttribute('fill', '#f0b90c');
+                originPoint.setAttribute('opacity', '1');
+                originPoint.style.filter = 'drop-shadow(0 0 6px #f0b90c)';
+                conceptLinesGroup.appendChild(originPoint);
+                
+                // Resaltar el caracter de origen
+                const brainChars = faceContainer.querySelectorAll('.face-char');
+                brainChars.forEach(char => {
+                    const charRect = char.getBoundingClientRect();
+                    const containerRect = faceContainer.getBoundingClientRect();
+                    const charX = ((charRect.left + charRect.width/2 - containerRect.left) / containerRect.width) * 500;
+                    const charY = ((charRect.top + charRect.height/2 - containerRect.top) / containerRect.height) * 500;
+                    
+                    if (Math.abs(charX - originX) < 10 && Math.abs(charY - originY) < 10) {
+                        char.classList.add('revealing');
+                        setTimeout(() => char.classList.remove('revealing'), 1000);
+                    }
+                });
+                
+                // Animar la línea hacia el destino
+                animateExtraction(extractionData);
+            }
+            
+            // Animar la extracción del concepto
+            function animateExtraction(extractionData) {
+                const duration = 1800; // 1.8 segundos para la animación completa
+                const startTime = Date.now();
+                
+                const line = document.getElementById(`extraction-line-${extractionData.id}`);
+                const originPoint = document.getElementById(`extraction-origin-${extractionData.id}`);
+                
+                if (!line) return;
+                
+                // Obtener longitud inicial de la línea
+                const lineLength = Math.sqrt(
+                    Math.pow(extractionData.destX - extractionData.originX, 2) + 
+                    Math.pow(extractionData.destY - extractionData.originY, 2)
+                );
+                
+                function updateAnimation() {
+                    if (!activeExtractions.has(extractionData.conceptId)) return;
+                    
+                    const elapsed = Date.now() - startTime;
+                    const progress = Math.min(elapsed / duration, 1);
+                    
+                    // Animar línea usando stroke-dashoffset (efecto de dibujo)
+                    const currentOffset = lineLength * (1 - progress);
+                    line.setAttribute('stroke-dashoffset', currentOffset);
+                    
+                    // Cambiar brillo de la línea según progreso
+                    const opacity = 0.8 + (progress * 0.2);
+                    line.setAttribute('opacity', opacity);
+                    
+                    // Expandir punto de origen
+                    if (originPoint) {
+                        const radius = 2 + (progress * 3);
+                        originPoint.setAttribute('r', radius);
+                        originPoint.setAttribute('opacity', 1 - (progress * 0.3));
+                    }
+                    
+                    if (progress < 1) {
+                        requestAnimationFrame(updateAnimation);
+                    } else {
+                        // Animación completada - mostrar concepto
+                        showExtractedConcept(extractionData);
+                    }
+                }
+                
+                requestAnimationFrame(updateAnimation);
+            }
+            
+            // Mostrar el concepto extraído al final de la línea
+            function showExtractedConcept(extractionData) {
+                const svg = faceContainer.querySelector('.philosophical-face');
+                const conceptsGroup = svg.querySelector('#concepts');
+                
+                // Crear punto final brillante PRIMERO
+                const endPoint = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+                endPoint.setAttribute('id', `extraction-end-${extractionData.id}`);
+                endPoint.setAttribute('cx', extractionData.destX);
+                endPoint.setAttribute('cy', extractionData.destY);
+                endPoint.setAttribute('r', '4');
+                endPoint.setAttribute('fill', '#f0b90c');
+                endPoint.setAttribute('opacity', '1');
+                endPoint.style.filter = 'drop-shadow(0 0 10px #f0b90c)';
+                conceptsGroup.appendChild(endPoint);
+                
+                // Crear texto del concepto SEPARADO del punto (más arriba)
+                const conceptText = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+                conceptText.setAttribute('id', `extracted-${extractionData.id}`);
+                conceptText.setAttribute('x', extractionData.destX);
+                conceptText.setAttribute('y', extractionData.destY - 15); // Separado 15px del punto
+                conceptText.setAttribute('text-anchor', 'middle');
+                conceptText.setAttribute('class', 'extracted-concept');
+                conceptText.setAttribute('opacity', '0');
+                conceptText.textContent = extractionData.conceptId.toUpperCase();
+                
+                conceptsGroup.appendChild(conceptText);
+                
+                // Animar aparición del concepto con delay
+                setTimeout(() => {
+                    conceptText.setAttribute('opacity', '1');
+                    conceptText.style.animation = 'conceptGlow 2s ease-in-out infinite alternate';
+                    
+                    // Hacer que el punto pulse
+                    endPoint.style.animation = 'pointPulse 1.5s ease-in-out infinite alternate';
+                }, 300);
+                
+                // Programar eliminación después de un tiempo
+                setTimeout(() => {
+                    cleanupExtraction(extractionData);
+                }, 5000 + Math.random() * 3000); // 5-8 segundos para mejor lectura
+            }
+            
+            // Limpiar extracción completada
+            function cleanupExtraction(extractionData) {
+                // Remover elementos del DOM
+                const elementsToRemove = [
+                    `extraction-line-${extractionData.id}`,
+                    `extraction-origin-${extractionData.id}`,
+                    `extraction-end-${extractionData.id}`,
+                    `extracted-${extractionData.id}`
+                ];
+                
+                elementsToRemove.forEach(id => {
+                    const element = document.getElementById(id);
+                    if (element) {
+                        element.style.opacity = '0';
+                        setTimeout(() => {
+                            if (element.parentNode) {
+                                element.parentNode.removeChild(element);
+                            }
+                        }, 500);
+                    }
+                });
+                
+                // Remover de extracciones activas
+                activeExtractions.delete(extractionData.conceptId);
+            }
+            
+            // Sistema de reinicio periódico
+            function resetSystem() {
+                systemRunning = false;
+                
+                // Limpiar todas las extracciones activas
+                activeExtractions.forEach(extractionData => {
+                    cleanupExtraction(extractionData);
+                });
+                
+                activeExtractions.clear();
+                
+                // Pausa breve antes de reiniciar
+                setTimeout(() => {
+                    systemRunning = true;
+                    console.log('🧠 Sistema bio-digital reiniciado');
+                }, 2000);
+            }
+            
+            // Funcionalidad del botón RANDOMIZE con display
+            const randomizeBtn = document.getElementById('randomize-btn');
+            randomizeBtn.addEventListener('click', () => {
+                randomizeBtn.classList.add('active');
+                setTimeout(() => randomizeBtn.classList.remove('active'), 600);
+                
+                // Generar una sola combinación poética para mostrar en el display
+                const poeticConcept = generatePoeticCombination();
+                
+                // Actualizar el display del concepto
+                const conceptDisplay = document.getElementById('concept-text');
+                if (conceptDisplay) {
+                    conceptDisplay.style.opacity = '0';
+                    setTimeout(() => {
+                        conceptDisplay.textContent = poeticConcept.toUpperCase();
+                        conceptDisplay.style.opacity = '1';
+                    }, 200);
+                }
+                
+                // Generar una extracción visual del concepto
+                const brainChars = faceContainer.querySelectorAll('.face-char');
+                if (brainChars.length > 0) {
+                    const randomChar = brainChars[Math.floor(Math.random() * brainChars.length)];
+                    const rect = randomChar.getBoundingClientRect();
+                    const containerRect = faceContainer.getBoundingClientRect();
+                    
+                    const originX = ((rect.left + rect.width/2 - containerRect.left) / containerRect.width) * 500;
+                    const originY = ((rect.top + rect.height/2 - containerRect.top) / containerRect.height) * 500;
+                    
+                    extractConcept(poeticConcept, originX, originY);
+                }
+            });
+            
+            // Interacción manual para activar extracción
+            faceContainer.addEventListener('click', (e) => {
+                const rect = faceContainer.getBoundingClientRect();
+                const x = ((e.clientX - rect.left) / rect.width) * 500;
+                const y = ((e.clientY - rect.top) / rect.height) * 500;
+                
+                // Forzar extracción en punto clickeado - ahora con combinaciones poéticas
+                const poeticConcept = Math.random() < 0.7 ? generatePoeticCombination() : 
+                                     allConcepts[Math.floor(Math.random() * allConcepts.length)];
+                extractConcept(poeticConcept, x, y);
+            });
+
+            // Activar el sistema de descubrimiento de conceptos
+            setInterval(simulateConceptDiscovery, 1500); // Cada 1.5 segundos verifica si encuentra concepto
+            
+            // Sistema de reinicio periódico
+            setInterval(resetSystem, 30000 + Math.random() * 20000); // Cada 30-50 segundos reinicia
+            
+            // Enhanced continuous code mutation system - NEVER stops
+            // Multiple layers of mutations for bio-digital consciousness
+            
+            // Base ambient mutations (continuous background mutations)
+            setInterval(() => {
+                const allChars = faceContainer.querySelectorAll('.face-char');
+                allChars.forEach(char => {
+                    if (Math.random() > 0.92) { // More frequent mutations
+                        // Select character type based on weighted probability for bio-digital aesthetic
+                        const mutationType = Math.random();
+                        let newChar;
+                        
+                        if (mutationType < 0.25) {
+                            // Genetic code mutations (25%)
+                            newChar = bioDigitalChars.genetic[Math.floor(Math.random() * bioDigitalChars.genetic.length)];
+                        } else if (mutationType < 0.45) {
+                            // Binary code mutations (20%)
+                            newChar = bioDigitalChars.binary[Math.floor(Math.random() * bioDigitalChars.binary.length)];
+                        } else if (mutationType < 0.6) {
+                            // Numbers (15%)
+                            newChar = bioDigitalChars.numbers[Math.floor(Math.random() * bioDigitalChars.numbers.length)];
+                        } else if (mutationType < 0.75) {
+                            // Programming symbols (15%)
+                            newChar = bioDigitalChars.programming[Math.floor(Math.random() * bioDigitalChars.programming.length)];
+                        } else if (mutationType < 0.9) {
+                            // Letters (15%)
+                            newChar = bioDigitalChars.letters[Math.floor(Math.random() * bioDigitalChars.letters.length)];
+                        } else {
+                            // Hexadecimal (10%)
+                            newChar = bioDigitalChars.hexadecimal[Math.floor(Math.random() * bioDigitalChars.hexadecimal.length)];
+                        }
+                        
+                        // Ocasionalmente crear letra más grande
+                        if (Math.random() < 0.02) { // 2% probabilidad
+                            char.style.fontSize = '10px';
+                            char.style.fontWeight = '800';
+                            char.textContent = bioDigitalChars.letters[Math.floor(Math.random() * bioDigitalChars.letters.length)];
+                        } else {
+                            char.style.fontSize = '';
+                            char.style.fontWeight = '';
+                            char.textContent = newChar;
+                        }
+                    }
+                });
+            }, 180); // Faster base mutations
+            
+            // Wave mutations - sweeps across regions periodically
+            setInterval(() => {
+                const regions = ['forehead', 'eyes', 'nose', 'cheeks', 'mouth', 'chin'];
+                const selectedRegion = regions[Math.floor(Math.random() * regions.length)];
+                const regionChars = faceContainer.querySelectorAll(`[data-region="${selectedRegion}"]`);
+                
+                // Create a wave of mutations across the region
+                regionChars.forEach((char, index) => {
+                    setTimeout(() => {
+                        if (Math.random() > 0.4) {
+                            const charType = Math.random() < 0.6 ? 'genetic' : 'programming';
+                            const newChar = bioDigitalChars[charType][Math.floor(Math.random() * bioDigitalChars[charType].length)];
+                            char.textContent = newChar;
+                            
+                            // Brief highlight effect for wave mutations
+                            char.style.fill = '#f0b90c';
+                            setTimeout(() => {
+                                char.style.fill = '';
+                            }, 150);
+                        }
+                    }, index * 30); // Staggered timing creates wave effect
+                });
+            }, 4000); // Wave mutations every 4 seconds
+            
+            // Quantum fluctuations - random bursts of intensive mutations
+            setInterval(() => {
+                if (Math.random() < 0.3) { // 30% chance every interval
+                    const allChars = faceContainer.querySelectorAll('.face-char');
+                    const numToMutate = Math.floor(allChars.length * (0.1 + Math.random() * 0.2)); // 10-30% of chars
+                    
+                    for (let i = 0; i < numToMutate; i++) {
+                        const randomChar = allChars[Math.floor(Math.random() * allChars.length)];
+                        const quantumChar = bioDigitalChars.greek[Math.floor(Math.random() * bioDigitalChars.greek.length)];
+                        
+                        randomChar.textContent = quantumChar;
+                        randomChar.classList.add('revealing');
+                        setTimeout(() => {
+                            randomChar.classList.remove('revealing');
+                            // After quantum effect, return to normal bio-digital mutation
+                            randomChar.textContent = charArray[Math.floor(Math.random() * charArray.length)];
+                        }, 800);
+                    }
+                }
+            }, 2500); // Quantum bursts every 2.5 seconds
+            
+            // Bio-rhythmic pulses - synchronized mutations that pulse like biological systems
+            let bioRhythmPhase = 0;
+            setInterval(() => {
+                bioRhythmPhase += 0.1;
+                const allChars = faceContainer.querySelectorAll('.face-char');
+                
+                allChars.forEach((char, index) => {
+                    // Create bio-rhythmic pattern based on position and time
+                    const rhythmIntensity = Math.sin(bioRhythmPhase + index * 0.05);
+                    
+                    if (rhythmIntensity > 0.7 && Math.random() > 0.85) {
+                        // High intensity = genetic code
+                        char.textContent = bioDigitalChars.genetic[Math.floor(Math.random() * bioDigitalChars.genetic.length)];
+                    } else if (rhythmIntensity > 0.3 && Math.random() > 0.95) {
+                        // Medium intensity = binary
+                        char.textContent = bioDigitalChars.binary[Math.floor(Math.random() * bioDigitalChars.binary.length)];
+                    }
+                });
+            }, 200); // Bio-rhythmic updates every 200ms
+        }
+
+        // Initialize philosophical face
+        document.addEventListener('DOMContentLoaded', initializePhilosophicalFace);
 
         // Custom cursor functionality (from bio.html)
         const cursor = document.getElementById('custom-cursor');
