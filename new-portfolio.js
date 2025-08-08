@@ -24,23 +24,56 @@ class NavigationManager {
     }
 
     setupEventListeners() {
-        // Handle clicks on navigation buttons
+        // Handle clicks on navigation buttons with improved touch handling
         this.navBtns.forEach(btn => {
             btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
                 this.handleNavClick(e.target);
+            });
+            
+            // Add touch feedback for mobile
+            btn.addEventListener('touchstart', () => {
+                btn.style.backgroundColor = 'rgba(255, 255, 255, 0.1)';
+            });
+            
+            btn.addEventListener('touchend', () => {
+                setTimeout(() => {
+                    btn.style.backgroundColor = '';
+                }, 150);
             });
         });
 
-        // Handle opening/closing the menu
+        // Handle opening/closing the menu with touch improvements
         this.menuTrigger.addEventListener('click', (e) => {
+            e.preventDefault();
             e.stopPropagation();
             this.isOpen = !this.isOpen;
             this.toggleMenu(this.isOpen);
         });
 
-        // Close menu when clicking outside
+        // Add touch feedback for menu trigger
+        this.menuTrigger.addEventListener('touchstart', () => {
+            this.menuTrigger.style.backgroundColor = 'rgba(255, 255, 255, 0.1)';
+        });
+        
+        this.menuTrigger.addEventListener('touchend', () => {
+            setTimeout(() => {
+                this.menuTrigger.style.backgroundColor = '';
+            }, 150);
+        });
+
+        // Close menu when clicking outside (with touch support)
         document.addEventListener('click', (e) => {
-            if (this.isOpen && !this.navContainer.contains(e.target)) {
+            if (this.isOpen && !this.navContainer.contains(e.target) && !this.menuTrigger.contains(e.target)) {
+                this.isOpen = false;
+                this.toggleMenu(false);
+            }
+        });
+        
+        // Close menu on touch outside
+        document.addEventListener('touchstart', (e) => {
+            if (this.isOpen && !this.navContainer.contains(e.target) && !this.menuTrigger.contains(e.target)) {
                 this.isOpen = false;
                 this.toggleMenu(false);
             }

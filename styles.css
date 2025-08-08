@@ -127,6 +127,25 @@ body.cursor-hover #custom-cursor {
     display: flex;
     align-items: center;
     gap: 10px;
+    padding: 8px 12px; /* Add padding for better touch target */
+    border-radius: 4px;
+    transition: background-color 0.2s ease;
+}
+
+/* Hover only for devices that support hover */
+@media (hover: hover) and (pointer: fine) {
+    #menu-trigger:hover {
+        background-color: rgba(255, 255, 255, 0.05);
+    }
+}
+
+/* Enhanced touch target for mobile */
+@media (hover: none) and (pointer: coarse) {
+    #menu-trigger {
+        padding: 12px 16px;
+        min-height: 44px;
+        min-width: 44px;
+    }
 }
 
 .menu-trigger-text {
@@ -182,9 +201,27 @@ body.cursor-hover #custom-cursor {
     transition: color 0.3s ease, background-color 0.3s ease;
 }
 
-.nav-btn:hover, .nav-btn.active {
+/* Hover only for devices that support hover (desktop) */
+@media (hover: hover) and (pointer: fine) {
+    .nav-btn:hover {
+        color: var(--text-primary);
+        background-color: rgba(255, 255, 255, 0.05);
+    }
+}
+
+.nav-btn.active {
     color: var(--text-primary);
     background-color: rgba(255, 255, 255, 0.05);
+}
+
+/* Enhanced touch targets for mobile */
+@media (hover: none) and (pointer: coarse) {
+    .nav-btn {
+        padding: 16px 18px; /* Larger tap target */
+        min-height: 48px; /* Minimum touch target size */
+        display: flex;
+        align-items: center;
+    }
 }
 
 /* --- Other Sections --- */
