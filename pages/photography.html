@@ -6,92 +6,75 @@
     <title>Photography | Francisco Santelices Ariztía</title>
     <meta name="description" content="Galería de fotografía de Francisco Santelices Ariztía - Fotografía análoga y digital, series artísticas y trabajos comerciales.">
     <link rel="stylesheet" href="../assets/css/styles.css">
-    <link rel="stylesheet" href="../assets/css/dynamic-gallery.css">
+    <link rel="stylesheet" href="../assets/css/lets-create.css">
     <style>
-        .photography-gallery {
-            padding: 2rem;
-            background: var(--black);
-            min-height: 100vh;
+        /* Main header identical to main.html */
+        .main-header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(13, 17, 23, 0.95);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 1rem 0;
         }
 
-        .gallery-header {
-            text-align: center;
-            margin-bottom: 3rem;
-            padding-top: 6rem;
-        }
-
-        .gallery-header h1 {
-            font-size: 3rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            color: var(--text-primary);
-        }
-
-        .gallery-header p {
-            font-size: 1.1rem;
-            color: var(--text-secondary);
-            max-width: 600px;
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
             margin: 0 auto;
+            padding: 0 2rem;
         }
 
-        .photo-section {
-            margin-bottom: 4rem;
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
         }
 
-        .section-title {
-            font-size: 2rem;
-            font-weight: 600;
-            margin-bottom: 2rem;
+        .logo-image {
+            width: 40px;
+            height: 40px;
+            object-fit: contain;
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.2;
+        }
+
+        .logo-main {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            text-transform: uppercase;
+            letter-spacing: 0.05rem;
+        }
+
+        .logo-sub {
+            font-size: 0.7rem;
+            font-weight: 400;
             color: var(--accent-yellow);
-            text-align: center;
             text-transform: uppercase;
             letter-spacing: 0.1rem;
         }
 
-        .photo-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-bottom: 3rem;
-        }
-
-        .photo-item {
-            position: relative;
-            overflow: hidden;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: transform 0.3s ease;
-            background: #1a1a1a;
-        }
-
-        .photo-item:hover {
-            transform: scale(1.02);
-        }
-
-        .photo-item img {
-            width: 100%;
-            height: auto;
-            display: block;
-            object-fit: cover;
-            transition: opacity 0.3s ease;
-        }
-
-        .photo-item:hover img {
-            opacity: 0.8;
-        }
-
         .back-button {
-            position: fixed;
-            top: 2rem;
-            left: 2rem;
-            z-index: 1000;
-            background: rgba(13, 17, 23, 0.9);
+            background: transparent;
             border: 1px solid var(--accent-yellow);
-            color: var(--text-primary);
-            padding: 0.5rem 1rem;
+            color: var(--accent-yellow);
+            padding: 0.5rem 1.5rem;
             border-radius: 4px;
             text-decoration: none;
             font-weight: 500;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05rem;
             transition: all 0.3s ease;
         }
 
@@ -100,7 +83,140 @@
             color: var(--black);
         }
 
-        /* Lightbox styles */
+        /* Photography Gallery Layout */
+        .photography-container {
+            margin-top: 80px;
+            background: var(--black);
+            min-height: 100vh;
+        }
+
+        /* Main Slider - Full Width */
+        .main-slider-container {
+            position: relative;
+            width: 100%;
+            height: 60vh;
+            overflow: hidden;
+            background: #000;
+        }
+
+        .main-slider {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        .slider-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+            cursor: pointer;
+        }
+
+        .slider-image.active {
+            opacity: 1;
+        }
+
+        .slider-controls {
+            position: absolute;
+            bottom: 2rem;
+            right: 2rem;
+            display: flex;
+            gap: 1rem;
+            z-index: 100;
+        }
+
+        .slider-btn {
+            background: rgba(0, 0, 0, 0.7);
+            border: 1px solid var(--accent-yellow);
+            color: var(--accent-yellow);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .slider-btn:hover {
+            background: var(--accent-yellow);
+            color: var(--black);
+        }
+
+        /* Modern Grid Layout */
+        .photo-grid-container {
+            padding: 4rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .modern-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: repeat(2, 200px);
+            gap: 1rem;
+            margin-bottom: 3rem;
+        }
+
+        .grid-item {
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: all 0.4s ease;
+            background: #1a1a1a;
+        }
+
+        /* Different sizes for modern layout */
+        .grid-item:nth-child(1) {
+            grid-column: 1 / 3;
+            grid-row: 1 / 3;
+        }
+
+        .grid-item:nth-child(2) {
+            grid-column: 3;
+            grid-row: 1;
+        }
+
+        .grid-item:nth-child(3) {
+            grid-column: 4;
+            grid-row: 1;
+        }
+
+        .grid-item:nth-child(4) {
+            grid-column: 3;
+            grid-row: 2;
+        }
+
+        .grid-item:nth-child(5) {
+            grid-column: 4;
+            grid-row: 2;
+        }
+
+        .grid-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: all 0.4s ease;
+        }
+
+        .grid-item:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .grid-item:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Lightbox with info strip */
         .lightbox {
             display: none;
             position: fixed;
@@ -108,44 +224,159 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.9);
+            background: rgba(0, 0, 0, 0.95);
             z-index: 2000;
             cursor: pointer;
         }
 
         .lightbox.active {
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
         }
 
-        .lightbox img {
+        .lightbox-content {
+            position: relative;
             max-width: 90%;
-            max-height: 90%;
+            max-height: 80%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .lightbox-image {
+            width: 100%;
+            height: auto;
             object-fit: contain;
+            border-radius: 8px;
+        }
+
+        .lightbox-info {
+            background: linear-gradient(135deg, #0D1117 0%, #1a1a1a 100%);
+            padding: 2rem;
+            border-radius: 0 0 8px 8px;
+            border-top: 2px solid var(--accent-yellow);
+        }
+
+        .lightbox-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--accent-yellow);
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05rem;
+        }
+
+        .lightbox-description {
+            color: var(--text-primary);
+            font-size: 1rem;
+            line-height: 1.6;
         }
 
         .lightbox-close {
             position: absolute;
-            top: 2rem;
-            right: 2rem;
-            color: white;
-            font-size: 2rem;
+            top: -3rem;
+            right: 0;
+            background: var(--accent-yellow);
+            color: var(--black);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
             cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .lightbox-close:hover {
+            transform: scale(1.1);
+        }
+
+        /* Section Navigation */
+        .section-nav {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 3rem;
+            padding: 0 2rem;
+        }
+
+        .section-btn {
+            background: transparent;
+            border: 1px solid #333;
+            color: var(--text-primary);
+            padding: 0.8rem 2rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.05rem;
+            transition: all 0.3s ease;
+        }
+
+        .section-btn.active {
+            border-color: var(--accent-yellow);
+            color: var(--accent-yellow);
+            background: rgba(240, 185, 12, 0.1);
+        }
+
+        .section-btn:hover {
+            border-color: var(--accent-yellow);
+            color: var(--accent-yellow);
         }
 
         @media (max-width: 768px) {
-            .photo-grid {
-                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-                gap: 1rem;
+            .modern-grid {
+                grid-template-columns: repeat(2, 1fr);
+                grid-template-rows: repeat(3, 150px);
             }
             
-            .gallery-header h1 {
-                font-size: 2rem;
+            .grid-item:nth-child(1) {
+                grid-column: 1 / 3;
+                grid-row: 1;
+            }
+
+            .grid-item:nth-child(2) {
+                grid-column: 1;
+                grid-row: 2;
+            }
+
+            .grid-item:nth-child(3) {
+                grid-column: 2;
+                grid-row: 2;
+            }
+
+            .grid-item:nth-child(4) {
+                grid-column: 1;
+                grid-row: 3;
+            }
+
+            .grid-item:nth-child(5) {
+                grid-column: 2;
+                grid-row: 3;
+            }
+
+            .main-slider-container {
+                height: 50vh;
             }
             
-            .photography-gallery {
-                padding: 1rem;
+            .photo-grid-container {
+                padding: 2rem 1rem;
+            }
+
+            .header-content {
+                padding: 0 1rem;
+            }
+
+            .logo-main {
+                font-size: 0.8rem;
+            }
+
+            .logo-sub {
+                font-size: 0.65rem;
             }
         }
     </style>
@@ -153,43 +384,209 @@
 <body>
     <div id="custom-cursor"></div>
     
-    <a href="../main.html" class="back-button">← Volver al sitio</a>
-    
-    <div class="photography-gallery">
-        <div class="gallery-header">
-            <h1>Photography</h1>
-            <p>Explorando la luz, la forma y la narrativa a través del lente. Una colección de trabajos que capturan momentos, emociones y conceptos visuales.</p>
+    <!-- Header identical to main -->
+    <header class="main-header">
+        <div class="header-content">
+            <div class="logo-container">
+                <img src="../assets/logo.png" alt="Francisco Santelices Logo" class="logo-image">
+                <div class="logo-text">
+                    <span class="logo-main">FRANCISCO SANTELICES ARIZTÍA</span>
+                    <span class="logo-sub">CREATIVE CONTENT STUDIO</span>
+                </div>
+            </div>
+            <a href="../main.html" class="back-button">← Volver al Sitio</a>
         </div>
-
-        <!-- Fotografía General -->
-        <div class="photo-section">
-            <h2 class="section-title">Fotografía</h2>
-            <div class="photo-grid" id="fotografia-grid">
-                <!-- Images will be loaded dynamically -->
+    </header>
+    
+    <div class="photography-container">
+        <!-- Main Full-Width Slider -->
+        <div class="main-slider-container">
+            <div class="main-slider" id="main-slider">
+                <!-- Images will be loaded here -->
+            </div>
+            <div class="slider-controls">
+                <button class="slider-btn" id="prev-slide">‹</button>
+                <button class="slider-btn" id="next-slide">›</button>
             </div>
         </div>
 
-        <!-- Recuerdos Deconstruidos -->
-        <div class="photo-section">
-            <h2 class="section-title">Recuerdos Deconstruidos</h2>
-            <div class="photo-grid" id="recuerdos-grid">
-                <!-- Images will be loaded dynamically -->
+        <!-- Section Navigation -->
+        <div class="section-nav">
+            <button class="section-btn active" data-section="fotografia">Fotografía</button>
+            <button class="section-btn" data-section="recuerdos">Recuerdos Deconstruidos</button>
+        </div>
+
+        <!-- Modern Grid Layout -->
+        <div class="photo-grid-container">
+            <div class="modern-grid" id="photo-grid">
+                <!-- Images will be loaded here dynamically -->
             </div>
         </div>
     </div>
 
-    <!-- Lightbox -->
+    <!-- Advanced Lightbox -->
     <div class="lightbox" id="lightbox">
-        <span class="lightbox-close" onclick="closeLightbox()">×</span>
-        <img id="lightbox-image" src="" alt="">
+        <div class="lightbox-content">
+            <span class="lightbox-close" onclick="closeLightbox()">×</span>
+            <img class="lightbox-image" id="lightbox-image" src="" alt="">
+            <div class="lightbox-info">
+                <div class="lightbox-title" id="lightbox-title">Título de la Fotografía</div>
+                <div class="lightbox-description" id="lightbox-description">Descripción detallada de la fotografía...</div>
+            </div>
+        </div>
     </div>
 
     <script>
+        // Modern Photography Gallery System
+        class ModernPhotographyGallery {
+            constructor() {
+                this.currentSection = 'fotografia';
+                this.currentSlide = 0;
+                this.sliderImages = [];
+                this.gridImages = [];
+                
+                this.fotografiaImages = [
+                    { filename: '1.jpg', title: 'Composición I', description: 'Exploración de luz y sombra en geometría urbana' },
+                    { filename: '2.jpg', title: 'Retrato Urbano', description: 'Captura espontánea de la vida citadina' },
+                    { filename: '3.jpg', title: 'Arquitectura Emocional', description: 'La relación entre espacio y sentimiento' },
+                    { filename: '4.jpg', title: 'Naturaleza Abstracta', description: 'Formas orgánicas en interpretación conceptual' },
+                    { filename: '5.jpg', title: 'Luz Cinematográfica', description: 'Juego dramático entre luz y oscuridad' },
+                    { filename: '6.jpg', title: 'Textura Urbana', description: 'Detalles que cuentan historias silenciosas' },
+                    { filename: '7.jpg', title: 'Movimiento Congelado', description: 'Captura del tiempo en suspensión' },
+                    { filename: '8.jpg', title: 'Perspectiva Única', description: 'Ángulos que transforman la realidad' },
+                    { filename: '9.jpg', title: 'Contraste Social', description: 'Documentación de la diversidad humana' },
+                    { filename: '10.jpg', title: 'Geometría Natural', description: 'Patrones ocultos en la naturaleza' },
+                    { filename: '11.jpg', title: 'Atmósfera Nocturna', description: 'La ciudad bajo el manto de la noche' },
+                    { filename: '12.jpg', title: 'Reflexiones', description: 'Realidad multiplicada en superficies' },
+                    { filename: '13.jpg', title: 'Minimalismo Urbano', description: 'La belleza de la simplicidad' },
+                    { filename: '14.jpg', title: 'Narrativa Visual', description: 'Historias contadas sin palabras' },
+                    { filename: '15.jpg', title: 'Color y Emoción', description: 'Paletas que evocan sentimientos' },
+                    { filename: 'KEROSENE RESIZE.jpg', title: 'Kerosene', description: 'Serie experimental con elementos industriales' },
+                    { filename: 'TELE.jpg', title: 'Telepático', description: 'Conexión visual entre mundos paralelos' }
+                ];
+
+                this.recuerdosImages = [
+                    { filename: 'Recuerdos deconstruidos 1.png', title: 'Fragmento I', description: 'Primer acercamiento a la deconstrucción de la memoria' },
+                    { filename: 'Recuerdos deconstruidos 2.JPG', title: 'Fragmento II', description: 'Capas temporales superpuestas en una imagen' },
+                    { filename: 'Recuerdos deconstruidos 3.JPG', title: 'Fragmento III', description: 'La nostalgia como elemento compositivo' },
+                    { filename: 'Recuerdos deconstruidos 4.JPG', title: 'Fragmento IV', description: 'Reconstrucción visual de momentos perdidos' },
+                    { filename: 'Recuerdos deconstruidos 5.JPG', title: 'Fragmento V', description: 'Texturas del tiempo en la memoria colectiva' },
+                    { filename: 'Recuerdos deconstruidos 6.jpg', title: 'Fragmento VI', description: 'Diálogo entre pasado y presente visual' },
+                    { filename: 'Recuerdos deconstruidos 7.jpg', title: 'Fragmento VII', description: 'Arqueología fotográfica de emociones' },
+                    { filename: 'Recuerdos deconstruidos 8.jpg', title: 'Fragmento VIII', description: 'La identidad fragmentada en múltiples planos' },
+                    { filename: 'Recuerdos deconstruidos 9.jpg', title: 'Fragmento IX', description: 'Síntesis visual de experiencias difusas' },
+                    { filename: 'Recuerdos deconstruidos 10.jpg', title: 'Fragmento X', description: 'Culminación conceptual de la serie deconstructiva' },
+                    { filename: 'Recuerdos deconstruidos 11.JPG', title: 'Fragmento XI', description: 'Epílogo visual: la memoria como construcción permanente' }
+                ];
+
+                this.init();
+            }
+
+            init() {
+                this.loadSlider();
+                this.loadGrid();
+                this.setupEventListeners();
+            }
+
+            setupEventListeners() {
+                // Slider controls
+                document.getElementById('prev-slide').addEventListener('click', () => this.prevSlide());
+                document.getElementById('next-slide').addEventListener('click', () => this.nextSlide());
+
+                // Section navigation
+                document.querySelectorAll('.section-btn').forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        document.querySelectorAll('.section-btn').forEach(b => b.classList.remove('active'));
+                        e.target.classList.add('active');
+                        this.currentSection = e.target.dataset.section;
+                        this.loadSlider();
+                        this.loadGrid();
+                    });
+                });
+
+                // Auto-advance slider
+                setInterval(() => this.nextSlide(), 5000);
+            }
+
+            loadSlider() {
+                const slider = document.getElementById('main-slider');
+                const images = this.currentSection === 'fotografia' ? this.fotografiaImages : this.recuerdosImages;
+                const basePath = this.currentSection === 'fotografia' ? '../assets/images/Photo/Fotografía/' : '../assets/images/Photo/RECUERDOS DECONSTRUIDOS/';
+                
+                this.sliderImages = images.slice(0, 8); // Use first 8 images for slider
+                this.currentSlide = 0;
+                
+                slider.innerHTML = '';
+                
+                this.sliderImages.forEach((image, index) => {
+                    const img = document.createElement('img');
+                    img.src = basePath + image.filename;
+                    img.alt = image.title;
+                    img.className = 'slider-image' + (index === 0 ? ' active' : '');
+                    img.loading = 'lazy';
+                    img.onclick = () => this.openLightbox(basePath + image.filename, image.title, image.description);
+                    slider.appendChild(img);
+                });
+            }
+
+            loadGrid() {
+                const grid = document.getElementById('photo-grid');
+                const images = this.currentSection === 'fotografia' ? this.fotografiaImages : this.recuerdosImages;
+                const basePath = this.currentSection === 'fotografia' ? '../assets/images/Photo/Fotografía/' : '../assets/images/Photo/RECUERDOS DECONSTRUIDOS/';
+                
+                // Use different images for grid (avoid repeating slider images)
+                this.gridImages = images.slice(8, 13); // Use images 8-12 for grid
+                
+                grid.innerHTML = '';
+                
+                this.gridImages.forEach((image, index) => {
+                    const gridItem = document.createElement('div');
+                    gridItem.className = 'grid-item';
+                    
+                    const img = document.createElement('img');
+                    img.src = basePath + image.filename;
+                    img.alt = image.title;
+                    img.loading = 'lazy';
+                    
+                    gridItem.appendChild(img);
+                    gridItem.onclick = () => this.openLightbox(basePath + image.filename, image.title, image.description);
+                    
+                    grid.appendChild(gridItem);
+                });
+            }
+
+            nextSlide() {
+                const slides = document.querySelectorAll('.slider-image');
+                slides[this.currentSlide].classList.remove('active');
+                this.currentSlide = (this.currentSlide + 1) % slides.length;
+                slides[this.currentSlide].classList.add('active');
+            }
+
+            prevSlide() {
+                const slides = document.querySelectorAll('.slider-image');
+                slides[this.currentSlide].classList.remove('active');
+                this.currentSlide = this.currentSlide === 0 ? slides.length - 1 : this.currentSlide - 1;
+                slides[this.currentSlide].classList.add('active');
+            }
+
+            openLightbox(src, title, description) {
+                const lightbox = document.getElementById('lightbox');
+                const lightboxImage = document.getElementById('lightbox-image');
+                const lightboxTitle = document.getElementById('lightbox-title');
+                const lightboxDescription = document.getElementById('lightbox-description');
+                
+                lightboxImage.src = src;
+                lightboxTitle.textContent = title;
+                lightboxDescription.textContent = description;
+                lightbox.classList.add('active');
+            }
+        }
+
         // Custom cursor
         class CustomCursor {
             constructor() {
                 this.cursor = document.getElementById('custom-cursor');
-                this.interactiveElements = document.querySelectorAll('a, .photo-item, button');
+                this.interactiveElements = document.querySelectorAll('a, button, .grid-item, .slider-image');
                 this.init();
             }
 
@@ -209,80 +606,24 @@
                     this.cursor.style.opacity = '0';
                 });
 
+                this.updateInteractiveElements();
+            }
+
+            updateInteractiveElements() {
+                // Re-select elements after dynamic loading
+                this.interactiveElements = document.querySelectorAll('a, button, .grid-item, .slider-image');
+                
                 this.interactiveElements.forEach(element => {
                     element.addEventListener('mouseenter', () => {
                         this.cursor.style.transform = 'translate(-50%, -50%) scale(1.5)';
-                        this.cursor.style.mixBlendMode = 'difference';
+                        this.cursor.style.borderBottomColor = 'var(--accent-yellow)';
                     });
 
                     element.addEventListener('mouseleave', () => {
                         this.cursor.style.transform = 'translate(-50%, -50%) scale(1)';
-                        this.cursor.style.mixBlendMode = 'normal';
+                        this.cursor.style.borderBottomColor = 'var(--text-primary)';
                     });
                 });
-            }
-        }
-
-        // Photography gallery management
-        class PhotographyGallery {
-            constructor() {
-                this.fotografiaImages = [
-                    '1.jpg', '1.png', '2.jpg', '3.jpg', '4.jpg', '5.jpg', '6.jpg', '7.jpg', '8.jpg', '9.jpg',
-                    '10.jpg', '11.jpg', '12.jpg', '13.jpg', '14.jpg', '15.jpg', '16.jpg', '17.jpg', '18.jpg', '19.jpg',
-                    '20.jpg', '21.jpg', '22.jpg', '23.jpg', '24.jpg', '26.jpg', '27.jpg', '28.jpg', '29.jpg', '30.jpg',
-                    '31.jpg', '32.jpg', '33.jpg', 'KEROSENE RESIZE.jpg', 'TELE.jpg'
-                ];
-
-                this.recuerdosImages = [
-                    'Recuerdos deconstruidos 1.png', 'Recuerdos deconstruidos 2.JPG', 'Recuerdos deconstruidos 3.JPG',
-                    'Recuerdos deconstruidos 4.JPG', 'Recuerdos deconstruidos 5.JPG', 'Recuerdos deconstruidos 6.jpg',
-                    'Recuerdos deconstruidos 7.jpg', 'Recuerdos deconstruidos 8.jpg', 'Recuerdos deconstruidos 9.jpg',
-                    'Recuerdos deconstruidos 10.jpg', 'Recuerdos deconstruidos 11.JPG'
-                ];
-
-                this.loadGalleries();
-            }
-
-            loadGalleries() {
-                this.loadFotografiaGallery();
-                this.loadRecuerdosGallery();
-            }
-
-            loadFotografiaGallery() {
-                const grid = document.getElementById('fotografia-grid');
-                this.fotografiaImages.forEach(image => {
-                    const photoItem = this.createPhotoItem(`../assets/images/Photo/Fotografía/${image}`, image);
-                    grid.appendChild(photoItem);
-                });
-            }
-
-            loadRecuerdosGallery() {
-                const grid = document.getElementById('recuerdos-grid');
-                this.recuerdosImages.forEach(image => {
-                    const photoItem = this.createPhotoItem(`../assets/images/Photo/RECUERDOS DECONSTRUIDOS/${image}`, image);
-                    grid.appendChild(photoItem);
-                });
-            }
-
-            createPhotoItem(src, alt) {
-                const photoItem = document.createElement('div');
-                photoItem.className = 'photo-item';
-                photoItem.onclick = () => this.openLightbox(src);
-                
-                const img = document.createElement('img');
-                img.src = src;
-                img.alt = alt;
-                img.loading = 'lazy';
-                
-                photoItem.appendChild(img);
-                return photoItem;
-            }
-
-            openLightbox(src) {
-                const lightbox = document.getElementById('lightbox');
-                const lightboxImage = document.getElementById('lightbox-image');
-                lightboxImage.src = src;
-                lightbox.classList.add('active');
             }
         }
 
@@ -299,8 +640,27 @@
             }
             window.scrollTo(0, 0);
 
-            new CustomCursor();
-            new PhotographyGallery();
+            const gallery = new ModernPhotographyGallery();
+            const cursor = new CustomCursor();
+            
+            // Update cursor interactive elements after gallery loads
+            setTimeout(() => {
+                cursor.updateInteractiveElements();
+            }, 500);
+        });
+
+        // Close lightbox when clicking outside content
+        document.addEventListener('click', (e) => {
+            if (e.target.id === 'lightbox') {
+                closeLightbox();
+            }
+        });
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeLightbox();
+            }
         });
     </script>
 </body>
