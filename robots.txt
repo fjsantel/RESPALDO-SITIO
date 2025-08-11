@@ -1,0 +1,36 @@
+# www.franciscosantelices.cl - robots.txt
+# Francisco Santelices Ariztía - Director Audiovisual y Creador Multimedia
+
+User-agent: *
+
+# Allow all main content
+Allow: /
+Allow: /main.html
+Allow: /bio.html
+Allow: /design.html
+Allow: /assets/
+Allow: /Diseño/
+
+# Disallow development/test files
+Disallow: /crop-demo.html
+Disallow: /crop-integration-example.html
+Disallow: /video-container-template.html
+Disallow: /youtube-fullscreen-test.html
+Disallow: /gallery-section.html
+Disallow: /loading.html
+Disallow: /html
+Disallow: /*.json
+Disallow: /*.md
+
+# Media files - Allow but don't prioritize for crawling
+Allow: /*.jpg
+Allow: /*.jpeg
+Allow: /*.png
+Allow: /*.mp4
+Allow: /*.mov
+
+# Sitemap location
+Sitemap: https://www.franciscosantelices.cl/sitemap.xml
+
+# Crawl-delay for respectful crawling
+Crawl-delay: 1
