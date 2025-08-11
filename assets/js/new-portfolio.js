@@ -83,7 +83,7 @@ class NavigationManager {
     handleNavClick(clickedBtn) {
         // Handle Bio section - open in new window
         if (clickedBtn.dataset.section === 'bio') {
-            window.open('bio.html', '_blank');
+            window.open('pages/bio.html', '_blank');
             this.isOpen = false;
             this.toggleMenu(false);
             return;
@@ -91,7 +91,7 @@ class NavigationManager {
 
         // Handle Design section - navigate to design page
         if (clickedBtn.dataset.section === 'design') {
-            window.location.href = 'design.html';
+            window.location.href = 'pages/design.html';
             return;
         }
 
