@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Fotografía por Francisco Santelices Ariztía - Portfolio de fotografía artística, retratos y composiciones visuales. Exploración fotográfica contemporánea.">
+    <meta name="keywords" content="Francisco Santelices fotografía, portfolio fotográfico, fotografía artística, retratos Chile, fotografía contemporánea">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.franciscosantelices.cl/photography.html">
+    
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.franciscosantelices.cl/photography.html">
+    <meta property="og:title" content="Fotografía - Francisco Santelices Ariztía">
+    <meta property="og:description" content="Portfolio de fotografía artística y retratos por Francisco Santelices Ariztía.">
+    <meta property="og:image" content="https://www.franciscosantelices.cl/assets/photography/A.jpg">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:title" content="Fotografía - Francisco Santelices Ariztía">
+    <meta property="twitter:description" content="Portfolio de fotografía artística y retratos.">
+    <meta property="twitter:image" content="https://www.franciscosantelices.cl/assets/photography/A.jpg">
+    
+    <title>Fotografía - Francisco Santelices Ariztía</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Photography page specific styles */
+        .photography-page {
+            background-color: #050505;
+            color: #FFFFFF;
+            min-height: 100vh;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        /* Content spacing for header */
+        .photography-content {
+            padding-top: 120px;
+            min-height: 100vh;
+        }
+
+        /* Random display section */
+        .random-display-section {
+            height: calc(100vh - 120px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .random-photo-container {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .random-photo {
+            max-width: 100%;
+            max-height: 100%;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        .photo-counter {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #CCCCCC;
+            z-index: 100;
+        }
+
+        .refresh-button {
+            position: absolute;
+            top: 2rem;
+            left: 2rem;
+            background: rgba(240, 185, 12, 0.1);
+            border: 2px solid #f0b90c;
+            color: #f0b90c;
+            padding: 0.8rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 100;
+        }
+
+        .refresh-button:hover {
+            background: #f0b90c;
+            color: #050505;
+            transform: translateY(-2px);
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #CCCCCC;
+            font-size: 0.9rem;
+            text-align: center;
+            animation: fadeInOut 3s ease-in-out infinite;
+        }
+
+        @keyframes fadeInOut {
+            0%, 50%, 100% { opacity: 1; }
+            25%, 75% { opacity: 0.5; }
+        }
+
+        /* Gallery section */
+        .gallery-section {
+            padding: 4rem 0;
+            background: #050505;
+        }
+
+        .gallery-container {
+            width: 100%;
+            padding: 0 2rem;
+        }
+
+        .gallery-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .gallery-item {
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.02);
+        }
+
+
+        /* Navigation menu - inherited from styles.css */
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .photography-content {
+                padding-top: 110px;
+            }
+            
+            .photo-counter, .refresh-button {
+                top: 1rem;
+            }
+            
+            .photo-counter {
+                right: 1rem;
+                font-size: 1rem;
+            }
+            
+            .refresh-button {
+                left: 1rem;
+                padding: 0.6rem 1rem;
+                font-size: 0.8rem;
+            }
+            
+            .gallery-container {
+                padding: 0 1rem;
+            }
+            
+            .gallery-grid {
+                gap: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .photography-content {
+                padding-top: 100px;
+            }
+            
+            .scroll-indicator {
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body class="photography-page">
+    <div id="custom-cursor"></div>
+
+    <!-- Header igual al del portfolio -->
+    <header class="main-header">
+        <div class="logo-container">
+            <img src="assets/logo.png" alt="Francisco Santelices Logo" class="logo-image" loading="eager" decoding="async">
+            <div class="logo-text">
+                <span class="logo-main">FRANCISCO SANTELICES ARIZTÍA</span>
+                <span class="logo-sub">CREATIVE CONTENT</span>
+            </div>
+        </div>
+        <div id="menu-trigger">
+            <span class="menu-trigger-text">CLICK TO MENU</span>
+            <span class="menu-trigger-cursor"></span>
+        </div>
+    </header>
+
+    <!-- Navegación igual al del portfolio -->
+    <nav class="main-navigation">
+        <button class="nav-btn" data-section="lets-create">Cotiza tu Proyecto</button>
+        <button class="nav-btn" data-section="audiovisual">Audiovisual</button>
+        <button class="nav-btn" data-section="photography">Fotografía</button>
+        <button class="nav-btn" data-section="design">Diseño</button>
+        <button class="nav-btn" data-section="bio">Bio</button>
+    </nav>
+
+    <div class="photography-content">
+        <!-- Random display section -->
+        <section class="random-display-section">
+            <div class="random-photo-container">
+                <img id="random-photo" class="random-photo" src="" alt="Fotografía por Francisco Santelices">
+                <div class="photo-counter">
+                    <span id="current-photo">1</span> / <span id="total-photos">26</span>
+                </div>
+                <button class="refresh-button" onclick="loadRandomPhoto()">NUEVA FOTO</button>
+                <div class="scroll-indicator">
+                    <div style="font-size: 1.2rem;">↓</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Gallery section -->
+        <section class="gallery-section">
+            <div class="gallery-container">
+                <div class="gallery-grid" id="gallery-grid">
+                    <!-- Photos will be loaded here by JavaScript -->
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // Photography data
+        const photos = [
+            'A.jpg', 'B.jpg', 'C.jpg', 'D.jpg', 'E.jpg', 'F.jpg', 'G.jpg', 'H.JPG', 
+            'I.JPG', 'J.jpg', 'K.jpg', 'L.jpg', 'M.jpg', 'N.jpg', 'Ñ.jpg', 'O.JPG', 
+            'P.jpg', 'Q.jpg', 'R.jpg', 'S.jpg', 'T.jpg', 'U.jpg', 'W.jpg', 'X.jpg', 
+            'Y.jpg', 'Z.jpg'
+        ];
+        
+        let currentRandomIndex = 0;
+
+        // Load random photo
+        function loadRandomPhoto() {
+            const randomIndex = Math.floor(Math.random() * photos.length);
+            const randomPhoto = document.getElementById('random-photo');
+            const currentPhotoSpan = document.getElementById('current-photo');
+            
+            randomPhoto.style.opacity = '0';
+            
+            setTimeout(() => {
+                randomPhoto.src = `assets/photography/${photos[randomIndex]}`;
+                randomPhoto.alt = `Fotografía ${photos[randomIndex].replace('.jpg', '').replace('.JPG', '')} - Francisco Santelices`;
+                currentRandomIndex = randomIndex;
+                currentPhotoSpan.textContent = randomIndex + 1;
+                randomPhoto.style.opacity = '1';
+            }, 250);
+        }
+
+        // Generate gallery
+        function loadGallery() {
+            const galleryGrid = document.getElementById('gallery-grid');
+            
+            photos.forEach((photo, index) => {
+                const galleryItem = document.createElement('div');
+                galleryItem.className = 'gallery-item';
+                
+                const img = document.createElement('img');
+                img.src = `assets/photography/${photo}`;
+                img.alt = `Fotografía ${photo.replace('.jpg', '').replace('.JPG', '')} - Francisco Santelices`;
+                img.loading = 'lazy';
+                
+                galleryItem.appendChild(img);
+                galleryGrid.appendChild(galleryItem);
+            });
+        }
+
+        // Custom cursor functionality (from other pages)
+        const cursor = document.getElementById('custom-cursor');
+        
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+            cursor.style.transform = 'translate(-50%, -50%)';
+        });
+
+        // Hover effects
+        const hoverElements = document.querySelectorAll('.gallery-item, a, button, .nav-btn, #menu-trigger');
+        
+        hoverElements.forEach(element => {
+            element.addEventListener('mouseenter', () => {
+                document.body.classList.add('cursor-hover');
+            });
+            
+            element.addEventListener('mouseleave', () => {
+                document.body.classList.remove('cursor-hover');
+            });
+        });
+
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', () => {
+            loadRandomPhoto();
+            loadGallery();
+            cursor.style.opacity = '1';
+            
+            // Update total photos count
+            document.getElementById('total-photos').textContent = photos.length;
+        });
+
+        // Navigation functionality (same as portfolio)
+        document.getElementById('menu-trigger').addEventListener('click', () => {
+            document.querySelector('.main-navigation').classList.toggle('active');
+            document.body.classList.toggle('menu-open');
+        });
+
+        // Navigation buttons
+        document.querySelectorAll('.nav-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const section = e.target.getAttribute('data-section');
+                
+                switch(section) {
+                    case 'audiovisual':
+                        window.location.href = 'portfolio.html';
+                        break;
+                    case 'photography':
+                        // Already on photography page
+                        document.querySelector('.main-navigation').classList.remove('active');
+                        document.body.classList.remove('menu-open');
+                        break;
+                    case 'design':
+                        window.location.href = 'design.html';
+                        break;
+                    case 'bio':
+                        window.location.href = 'bio.html';
+                        break;
+                    case 'lets-create':
+                        // Scroll to contact or open contact form
+                        break;
+                }
+            });
+        });
+
+        // Smooth scroll for gallery
+        document.querySelector('.scroll-indicator').addEventListener('click', () => {
+            document.querySelector('.gallery-section').scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+    </script>
+</body>
+</html>

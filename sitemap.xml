@@ -59,4 +59,17 @@
     </image:image>
   </url>
   
+  <!-- Fotografía -->
+  <url>
+    <loc>https://www.franciscosantelices.cl/photography.html</loc>
+    <lastmod>2025-01-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://www.franciscosantelices.cl/assets/photography/A.jpg</image:loc>
+      <image:title>Portfolio de Fotografía - Francisco Santelices Ariztía</image:title>
+      <image:caption>Colección fotográfica artística y retratos por Francisco Santelices Ariztía</image:caption>
+    </image:image>
+  </url>
+  
 </urlset>
