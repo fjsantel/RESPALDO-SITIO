@@ -230,7 +230,7 @@
             <div class="random-photo-container">
                 <img id="random-photo" class="random-photo" src="" alt="Fotografía por Francisco Santelices">
                 <div class="photo-counter">
-                    <span id="current-photo">1</span> / <span id="total-photos">26</span>
+                    <span id="current-photo">1</span> / <span id="total-photos">27</span>
                 </div>
                 <button class="refresh-button" onclick="loadRandomPhoto()">NUEVA FOTO</button>
                 <div class="scroll-indicator">
@@ -252,7 +252,7 @@
     <script>
         // Photography data
         const photos = [
-            'A.jpg', 'B.jpg', 'C.jpg', 'D.jpg', 'E.jpg', 'F.jpg', 'G.jpg', 'H.JPG', 
+            'A.jpg', 'B.jpg', 'C.jpg', 'cuadros.png', 'D.jpg', 'E.jpg', 'F.jpg', 'G.jpg', 'H.JPG', 
             'I.JPG', 'J.jpg', 'K.jpg', 'L.jpg', 'M.jpg', 'N.jpg', 'Ñ.jpg', 'O.JPG', 
             'P.jpg', 'Q.jpg', 'R.jpg', 'S.jpg', 'T.jpg', 'U.jpg', 'W.jpg', 'X.jpg', 
             'Y.jpg', 'Z.jpg'
@@ -354,7 +354,9 @@
                         window.location.href = 'bio.html';
                         break;
                     case 'lets-create':
-                        // Scroll to contact or open contact form
+                        // Do nothing - only works on main portfolio
+                        document.querySelector('.main-navigation').classList.remove('active');
+                        document.body.classList.remove('menu-open');
                         break;
                 }
             });
