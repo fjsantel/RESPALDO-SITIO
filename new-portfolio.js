@@ -1,14 +1,6 @@
 // FRANCISCO SANTELICES CREATIVE CONTENT - Pharmaceutical + Terminal Interface
 
 document.addEventListener('DOMContentLoaded', () => {
-    // Prevent automatic scroll restoration
-    if ('scrollRestoration' in history) {
-        history.scrollRestoration = 'manual';
-    }
-    
-    // Ensure page starts at top
-    window.scrollTo(0, 0);
-    
     // Initialize core components
     new NavigationManager();
     new TerminalInterface();
@@ -91,7 +83,7 @@ class NavigationManager {
     handleNavClick(clickedBtn) {
         // Handle Bio section - open in new window
         if (clickedBtn.dataset.section === 'bio') {
-            window.open('pages/bio.html', '_blank');
+            window.open('bio.html', '_blank');
             this.isOpen = false;
             this.toggleMenu(false);
             return;
@@ -99,13 +91,7 @@ class NavigationManager {
 
         // Handle Design section - navigate to design page
         if (clickedBtn.dataset.section === 'design') {
-            window.location.href = 'pages/design.html';
-            return;
-        }
-
-        // Handle Photography section - navigate to photography page
-        if (clickedBtn.dataset.section === 'photography') {
-            window.location.href = 'pages/photography.html';
+            window.location.href = 'design.html';
             return;
         }
 
