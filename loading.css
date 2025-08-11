@@ -25,8 +25,8 @@ body, html {
 
 #custom-cursor {
     position: fixed;
-    top: 0;
-    left: 0;
+    top: 50%;
+    left: 50%;
     pointer-events: none;
     z-index: 9999;
     width: 0;
@@ -34,12 +34,13 @@ body, html {
     border-left: 8px solid transparent;
     border-right: 8px solid transparent;
     border-bottom: 14px solid var(--text-primary);
+    transform: translate(-50%, -50%);
+    transition: transform 0.1s ease-out, border-bottom-color 0.2s ease-out;
 }
 
 body.cursor-hover #custom-cursor {
-    transform: scale(1.8);
+    transform: translate(-50%, -50%) scale(1.8);
     border-bottom-color: var(--accent-yellow);
-    transition: transform 0.2s ease-out, border-bottom-color 0.2s ease-out;
 }
 
 /* Video de fondo en la parte superior */

@@ -80,9 +80,10 @@
         document.addEventListener('mousemove', (e) => {
             cursor.style.left = e.clientX + 'px';
             cursor.style.top = e.clientY + 'px';
+            cursor.style.transform = 'translate(-50%, -50%)';
         });
 
-        // Hover effects
+        // Hover effects for interactive elements
         const hoverElements = document.querySelectorAll('.enter-button, button, a');
         
         hoverElements.forEach(element => {
@@ -93,6 +94,11 @@
             element.addEventListener('mouseleave', () => {
                 document.body.classList.remove('cursor-hover');
             });
+        });
+
+        // Initialize cursor position
+        document.addEventListener('DOMContentLoaded', () => {
+            cursor.style.opacity = '1';
         });
     </script>
 </body>
