@@ -1,6 +1,14 @@
 // FRANCISCO SANTELICES CREATIVE CONTENT - Pharmaceutical + Terminal Interface
 
 document.addEventListener('DOMContentLoaded', () => {
+    // Prevent automatic scroll restoration
+    if ('scrollRestoration' in history) {
+        history.scrollRestoration = 'manual';
+    }
+    
+    // Ensure page starts at top
+    window.scrollTo(0, 0);
+    
     // Initialize core components
     new NavigationManager();
     new TerminalInterface();
