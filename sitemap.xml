@@ -6,32 +6,46 @@
         xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
                             http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
   
-  <!-- Home Page (Loading/Intro) -->
+  <!-- Home Page (Loading/Intro) - SEO Optimized -->
   <url>
     <loc>https://www.franciscosantelices.cl/</loc>
-    <lastmod>2025-01-11</lastmod>
-    <changefreq>monthly</changefreq>
+    <lastmod>2025-08-11</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>1.0</priority>
     <video:video>
       <video:thumbnail_loc>https://www.franciscosantelices.cl/assets/og-image.jpg</video:thumbnail_loc>
-      <video:title>Francisco Santelices Ariztía - Director Audiovisual</video:title>
-      <video:description>Presentación de Francisco Santelices Ariztía, director audiovisual y creador de contenido multimedia profesional en Chile.</video:description>
-      <video:content_loc>https://www.franciscosantelices.cl/tentaculos.mp4</video:content_loc>
+      <video:title>Francisco Santelices - Director Audiovisual Santiago Chile Motion Graphics</video:title>
+      <video:description>Director audiovisual profesional especializado en motion graphics Chile, producción audiovisual Santiago, diseño gráfico web y fotografía profesional. Portfolio 2025 con servicios integrales de postproducción.</video:description>
+      <video:content_loc>https://github.com/fjsantel/RESPALDO-SITIO/raw/main/tentaculos_1.mp4</video:content_loc>
       <video:duration>30</video:duration>
+      <video:tag>motion graphics chile</video:tag>
+      <video:tag>director audiovisual santiago</video:tag>
+      <video:tag>producción audiovisual chile</video:tag>
     </video:video>
   </url>
   
-  <!-- Portfolio Principal -->
+  <!-- Portfolio Principal - SEO Keywords -->
   <url>
     <loc>https://www.franciscosantelices.cl/portfolio.html</loc>
-    <lastmod>2025-01-11</lastmod>
+    <lastmod>2025-08-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
     <image:image>
       <image:loc>https://www.franciscosantelices.cl/assets/og-image.jpg</image:loc>
-      <image:title>Portfolio Audiovisual Francisco Santelices</image:title>
-      <image:caption>Portfolio profesional de motion graphics, documentales y contenido multimedia</image:caption>
+      <image:title>Portfolio Motion Graphics Chile Director Audiovisual Santiago Francisco Santelices</image:title>
+      <image:caption>Portfolio profesional 2025 motion graphics Chile, producción audiovisual Santiago, diseño gráfico web, documentales y contenido multimedia</image:caption>
     </image:image>
+    <video:video>
+      <video:thumbnail_loc>https://www.franciscosantelices.cl/assets/og-image.jpg</video:thumbnail_loc>
+      <video:title>Reel Audiovisual 2024 Motion Graphics Chile Francisco Santelices</video:title>
+      <video:description>Demo reel profesional 2024 con proyectos de motion graphics, producción audiovisual, documentales y contenido multimedia realizados en Santiago Chile</video:description>
+      <video:content_loc>https://github.com/fjsantel/RESPALDO-SITIO/raw/main/Reel_2024.mp4</video:content_loc>
+      <video:duration>180</video:duration>
+      <video:tag>motion graphics chile</video:tag>
+      <video:tag>producción audiovisual santiago</video:tag>
+      <video:tag>director audiovisual chile</video:tag>
+      <video:tag>video corporativo chile</video:tag>
+    </video:video>
   </url>
   
   <!-- Biografía -->

@@ -1,18 +1,23 @@
 # www.franciscosantelices.cl - robots.txt
-# Francisco Santelices Ariztía - Director Audiovisual y Creador Multimedia
+# Francisco Santelices Ariztía - Director Audiovisual Santiago Chile
+# Motion Graphics | Producción Audiovisual | Diseño Gráfico Web | Fotografía Profesional
 
 User-agent: *
 
-# Allow all main content
+# Allow all main content - SEO Optimized
 Allow: /
+Allow: /index.html
 Allow: /portfolio.html
 Allow: /bio.html
 Allow: /design.html
+Allow: /photography.html
 Allow: /assets/
 Allow: /Diseño/
 Allow: /VIDEO ASSETS/
 Allow: /*.mp4
 Allow: /*.mov
+Allow: /*.webp
+Allow: /*.avif
 
 # Disallow backup/development files  
 Disallow: /splash.html
