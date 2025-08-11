@@ -14,25 +14,26 @@ jobs:
       uses: actions/checkout@v4
       with:
         fetch-depth: 0
-        token: ${{ secrets.GITHUB_TOKEN }}
+        token: ${{ secrets.GH_PAT || secrets.GITHUB_TOKEN }}
     
     - name: Setup Git
       run: |
-        git config --global user.name 'GitHub Actions'
-        git config --global user.email 'actions@github.com'
+        git config --global user.name 'Francisco Santelices'
+        git config --global user.email 'noreply@franciscosantelices.cl'
     
     - name: Add backup repository as remote
       run: |
-        git remote add respaldo https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository_owner }}/RESPALDO-SITIO.git || true
+        git remote add respaldo https://x-access-token:${{ secrets.GH_PAT || secrets.GITHUB_TOKEN }}@github.com/fjsantel/RESPALDO-SITIO.git || true
     
     - name: Force push to backup repository
       run: |
         git push respaldo main --force
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.GH_PAT || secrets.GITHUB_TOKEN }}
     
     - name: Verify sync completed
       run: |
         echo "✅ Sincronización completada exitosamente"
-        echo "Repositorio principal: https://github.com/${{ github.repository }}"
-        echo "Repositorio respaldo: https://github.com/${{ github.repository_owner }}/RESPALDO-SITIO"
+        echo "📂 Repositorio principal: https://fjsantel.github.io/francisco-santelices-agencia-contenido/"
+        echo "🔄 Repositorio respaldo: https://fjsantel.github.io/RESPALDO-SITIO/"
+        echo "🚀 Ambos sitios actualizados automáticamente"
