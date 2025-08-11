@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photography | Francisco Santelices Ariztía</title>
+    <meta name="description" content="Galería de fotografía de Francisco Santelices Ariztía - Fotografía análoga y digital, series artísticas y trabajos comerciales.">
+    <link rel="stylesheet" href="../assets/css/styles.css">
+    <link rel="stylesheet" href="../assets/css/dynamic-gallery.css">
+    <style>
+        .photography-gallery {
+            padding: 2rem;
+            background: var(--black);
+            min-height: 100vh;
+        }
+
+        .gallery-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding-top: 6rem;
+        }
+
+        .gallery-header h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .gallery-header p {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .photo-section {
+            margin-bottom: 4rem;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            color: var(--accent-yellow);
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 0.1rem;
+        }
+
+        .photo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .photo-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            background: #1a1a1a;
+        }
+
+        .photo-item:hover {
+            transform: scale(1.02);
+        }
+
+        .photo-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: cover;
+            transition: opacity 0.3s ease;
+        }
+
+        .photo-item:hover img {
+            opacity: 0.8;
+        }
+
+        .back-button {
+            position: fixed;
+            top: 2rem;
+            left: 2rem;
+            z-index: 1000;
+            background: rgba(13, 17, 23, 0.9);
+            border: 1px solid var(--accent-yellow);
+            color: var(--text-primary);
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .back-button:hover {
+            background: var(--accent-yellow);
+            color: var(--black);
+        }
+
+        /* Lightbox styles */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 2000;
+            cursor: pointer;
+        }
+
+        .lightbox.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .lightbox img {
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            .photo-grid {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                gap: 1rem;
+            }
+            
+            .gallery-header h1 {
+                font-size: 2rem;
+            }
+            
+            .photography-gallery {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="custom-cursor"></div>
+    
+    <a href="../main.html" class="back-button">← Volver al sitio</a>
+    
+    <div class="photography-gallery">
+        <div class="gallery-header">
+            <h1>Photography</h1>
+            <p>Explorando la luz, la forma y la narrativa a través del lente. Una colección de trabajos que capturan momentos, emociones y conceptos visuales.</p>
+        </div>
+
+        <!-- Fotografía General -->
+        <div class="photo-section">
+            <h2 class="section-title">Fotografía</h2>
+            <div class="photo-grid" id="fotografia-grid">
+                <!-- Images will be loaded dynamically -->
+            </div>
+        </div>
+
+        <!-- Recuerdos Deconstruidos -->
+        <div class="photo-section">
+            <h2 class="section-title">Recuerdos Deconstruidos</h2>
+            <div class="photo-grid" id="recuerdos-grid">
+                <!-- Images will be loaded dynamically -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox">
+        <span class="lightbox-close" onclick="closeLightbox()">×</span>
+        <img id="lightbox-image" src="" alt="">
+    </div>
+
+    <script>
+        // Custom cursor
+        class CustomCursor {
+            constructor() {
+                this.cursor = document.getElementById('custom-cursor');
+                this.interactiveElements = document.querySelectorAll('a, .photo-item, button');
+                this.init();
+            }
+
+            init() {
+                this.cursor.style.opacity = '0';
+
+                window.addEventListener('mousemove', e => {
+                    this.cursor.style.left = e.clientX + 'px';
+                    this.cursor.style.top = e.clientY + 'px';
+                });
+
+                document.addEventListener('mouseenter', () => {
+                    this.cursor.style.opacity = '1';
+                });
+
+                document.addEventListener('mouseleave', () => {
+                    this.cursor.style.opacity = '0';
+                });
+
+                this.interactiveElements.forEach(element => {
+                    element.addEventListener('mouseenter', () => {
+                        this.cursor.style.transform = 'translate(-50%, -50%) scale(1.5)';
+                        this.cursor.style.mixBlendMode = 'difference';
+                    });
+
+                    element.addEventListener('mouseleave', () => {
+                        this.cursor.style.transform = 'translate(-50%, -50%) scale(1)';
+                        this.cursor.style.mixBlendMode = 'normal';
+                    });
+                });
+            }
+        }
+
+        // Photography gallery management
+        class PhotographyGallery {
+            constructor() {
+                this.fotografiaImages = [
+                    '1.jpg', '1.png', '2.jpg', '3.jpg', '4.jpg', '5.jpg', '6.jpg', '7.jpg', '8.jpg', '9.jpg',
+                    '10.jpg', '11.jpg', '12.jpg', '13.jpg', '14.jpg', '15.jpg', '16.jpg', '17.jpg', '18.jpg', '19.jpg',
+                    '20.jpg', '21.jpg', '22.jpg', '23.jpg', '24.jpg', '26.jpg', '27.jpg', '28.jpg', '29.jpg', '30.jpg',
+                    '31.jpg', '32.jpg', '33.jpg', 'KEROSENE RESIZE.jpg', 'TELE.jpg'
+                ];
+
+                this.recuerdosImages = [
+                    'Recuerdos deconstruidos 1.png', 'Recuerdos deconstruidos 2.JPG', 'Recuerdos deconstruidos 3.JPG',
+                    'Recuerdos deconstruidos 4.JPG', 'Recuerdos deconstruidos 5.JPG', 'Recuerdos deconstruidos 6.jpg',
+                    'Recuerdos deconstruidos 7.jpg', 'Recuerdos deconstruidos 8.jpg', 'Recuerdos deconstruidos 9.jpg',
+                    'Recuerdos deconstruidos 10.jpg', 'Recuerdos deconstruidos 11.JPG'
+                ];
+
+                this.loadGalleries();
+            }
+
+            loadGalleries() {
+                this.loadFotografiaGallery();
+                this.loadRecuerdosGallery();
+            }
+
+            loadFotografiaGallery() {
+                const grid = document.getElementById('fotografia-grid');
+                this.fotografiaImages.forEach(image => {
+                    const photoItem = this.createPhotoItem(`../assets/images/Photo/Fotografía/${image}`, image);
+                    grid.appendChild(photoItem);
+                });
+            }
+
+            loadRecuerdosGallery() {
+                const grid = document.getElementById('recuerdos-grid');
+                this.recuerdosImages.forEach(image => {
+                    const photoItem = this.createPhotoItem(`../assets/images/Photo/RECUERDOS DECONSTRUIDOS/${image}`, image);
+                    grid.appendChild(photoItem);
+                });
+            }
+
+            createPhotoItem(src, alt) {
+                const photoItem = document.createElement('div');
+                photoItem.className = 'photo-item';
+                photoItem.onclick = () => this.openLightbox(src);
+                
+                const img = document.createElement('img');
+                img.src = src;
+                img.alt = alt;
+                img.loading = 'lazy';
+                
+                photoItem.appendChild(img);
+                return photoItem;
+            }
+
+            openLightbox(src) {
+                const lightbox = document.getElementById('lightbox');
+                const lightboxImage = document.getElementById('lightbox-image');
+                lightboxImage.src = src;
+                lightbox.classList.add('active');
+            }
+        }
+
+        function closeLightbox() {
+            const lightbox = document.getElementById('lightbox');
+            lightbox.classList.remove('active');
+        }
+
+        // Initialize when page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            // Prevent automatic scroll restoration
+            if ('scrollRestoration' in history) {
+                history.scrollRestoration = 'manual';
+            }
+            window.scrollTo(0, 0);
+
+            new CustomCursor();
+            new PhotographyGallery();
+        });
+    </script>
+</body>
+</html>

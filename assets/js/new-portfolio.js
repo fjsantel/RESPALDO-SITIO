@@ -103,6 +103,12 @@ class NavigationManager {
             return;
         }
 
+        // Handle Photography section - navigate to photography page
+        if (clickedBtn.dataset.section === 'photography') {
+            window.location.href = 'pages/photography.html';
+            return;
+        }
+
         // Handle Let's Create section - scroll to center "LET'S CREATE" title
         if (clickedBtn.dataset.section === 'lets-create') {
             this.navBtns.forEach(btn => btn.classList.remove('active'));
