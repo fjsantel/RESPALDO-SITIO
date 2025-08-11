@@ -5,22 +5,26 @@ User-agent: *
 
 # Allow all main content
 Allow: /
-Allow: /main.html
+Allow: /portfolio.html
 Allow: /bio.html
 Allow: /design.html
 Allow: /assets/
 Allow: /Diseño/
+Allow: /VIDEO ASSETS/
+Allow: /*.mp4
+Allow: /*.mov
 
-# Disallow development/test files
-Disallow: /crop-demo.html
-Disallow: /crop-integration-example.html
-Disallow: /video-container-template.html
-Disallow: /youtube-fullscreen-test.html
-Disallow: /gallery-section.html
-Disallow: /loading.html
-Disallow: /html
+# Disallow backup/development files  
+Disallow: /splash.html
 Disallow: /*.json
 Disallow: /*.md
+Disallow: /.DS_Store
+Disallow: /.git/
+
+# Prioritize main pages for crawling
+Allow: /portfolio.html
+Allow: /bio.html  
+Allow: /design.html
 
 # Media files - Allow but don't prioritize for crawling
 Allow: /*.jpg

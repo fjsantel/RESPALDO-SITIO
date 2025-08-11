@@ -14,6 +14,13 @@
     AddOutputFilterByType DEFLATE application/javascript
     AddOutputFilterByType DEFLATE application/x-javascript
     AddOutputFilterByType DEFLATE application/json
+    AddOutputFilterByType DEFLATE image/svg+xml
+</IfModule>
+
+# Brotli compression (if available)
+<IfModule mod_brotli.c>
+    AddOutputFilterByType BROTLI_COMPRESS text/html text/plain text/xml text/css text/javascript
+    AddOutputFilterByType BROTLI_COMPRESS application/javascript application/json application/xml
 </IfModule>
 
 # Browser caching
@@ -71,4 +78,15 @@ ErrorDocument 404 /index.html
 AddType video/mp4 .mp4
 AddType video/webm .webm
 AddType image/webp .webp
-EOF < /dev/null
+AddType image/avif .avif
+
+# Preload critical resources
+<FilesMatch "\.(css|js)$">
+    Header set Link "</assets/og-image.jpg>; rel=preload; as=image"
+</FilesMatch>
+
+# Remove server signature
+ServerSignature Off
+
+# Disable ETags for better caching
+FileETag None
