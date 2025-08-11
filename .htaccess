@@ -27,21 +27,21 @@
 <IfModule mod_expires.c>
     ExpiresActive on
 
-    # Images
-    ExpiresByType image/jpg "access plus 1 month"
-    ExpiresByType image/jpeg "access plus 1 month"  
-    ExpiresByType image/gif "access plus 1 month"
-    ExpiresByType image/png "access plus 1 month"
-    ExpiresByType image/webp "access plus 1 month"
+    # Images - Cache longer for better repeat visits
+    ExpiresByType image/jpg "access plus 1 year"
+    ExpiresByType image/jpeg "access plus 1 year"  
+    ExpiresByType image/gif "access plus 1 year"
+    ExpiresByType image/png "access plus 1 year"
+    ExpiresByType image/webp "access plus 1 year"
 
-    # Videos
-    ExpiresByType video/mp4 "access plus 1 month"
-    ExpiresByType video/webm "access plus 1 month"
+    # Videos - Cache longer for better repeat visits  
+    ExpiresByType video/mp4 "access plus 1 year"
+    ExpiresByType video/webm "access plus 1 year"
 
-    # CSS and JS
-    ExpiresByType text/css "access plus 1 month"
-    ExpiresByType application/javascript "access plus 1 month"
-    ExpiresByType text/javascript "access plus 1 month"
+    # CSS and JS - Cache longer
+    ExpiresByType text/css "access plus 6 months"
+    ExpiresByType application/javascript "access plus 6 months"
+    ExpiresByType text/javascript "access plus 6 months"
 
     # HTML and XML
     ExpiresByType text/html "access plus 1 week"
