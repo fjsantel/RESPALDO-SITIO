@@ -69,39 +69,6 @@
             transition: opacity 0.5s ease-in-out;
         }
 
-        .photo-counter {
-            position: absolute;
-            top: 2rem;
-            right: 2rem;
-            font-size: 1.2rem;
-            font-weight: 600;
-            color: #CCCCCC;
-            z-index: 100;
-        }
-
-        .refresh-button {
-            position: absolute;
-            top: 2rem;
-            left: 2rem;
-            background: rgba(240, 185, 12, 0.1);
-            border: 2px solid #f0b90c;
-            color: #f0b90c;
-            padding: 0.8rem 1.5rem;
-            border-radius: 8px;
-            font-weight: 600;
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 0.1rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            z-index: 100;
-        }
-
-        .refresh-button:hover {
-            background: #f0b90c;
-            color: #050505;
-            transform: translateY(-2px);
-        }
 
         .scroll-indicator {
             position: absolute;
@@ -162,21 +129,6 @@
                 padding-top: 110px;
             }
             
-            .photo-counter, .refresh-button {
-                top: 1rem;
-            }
-            
-            .photo-counter {
-                right: 1rem;
-                font-size: 1rem;
-            }
-            
-            .refresh-button {
-                left: 1rem;
-                padding: 0.6rem 1rem;
-                font-size: 0.8rem;
-            }
-            
             .gallery-container {
                 padding: 0 1rem;
             }
@@ -229,10 +181,6 @@
         <section class="random-display-section">
             <div class="random-photo-container">
                 <img id="random-photo" class="random-photo" src="" alt="Fotografía por Francisco Santelices">
-                <div class="photo-counter">
-                    <span id="current-photo">1</span> / <span id="total-photos">25</span>
-                </div>
-                <button class="refresh-button" onclick="loadRandomPhoto()">NUEVA FOTO</button>
                 <div class="scroll-indicator">
                     <div style="font-size: 1.2rem;">↓</div>
                 </div>
@@ -250,7 +198,7 @@
     </div>
 
     <script>
-        // Photography data
+        // Photography data - exact files in assets/photography/
         const photos = [
             'A.jpg', 'B.jpg', 'C.jpg', 'D.jpg', 'E.jpg', 'F.jpg', 'G.jpg', 'H.jpg', 
             'I.jpg', 'J.jpg', 'K.jpg', 'L.jpg', 'M.jpg', 'N.jpg', 'Ñ.jpg', 'O.jpg', 
@@ -258,12 +206,12 @@
         ];
         
         let currentRandomIndex = 0;
+        let photoInterval;
 
         // Load random photo
         function loadRandomPhoto() {
             const randomIndex = Math.floor(Math.random() * photos.length);
             const randomPhoto = document.getElementById('random-photo');
-            const currentPhotoSpan = document.getElementById('current-photo');
             
             randomPhoto.style.opacity = '0';
             
@@ -271,16 +219,42 @@
                 randomPhoto.src = `assets/photography/${photos[randomIndex]}`;
                 randomPhoto.alt = `Fotografía ${photos[randomIndex].replace('.jpg', '').replace('.JPG', '')} - Francisco Santelices`;
                 currentRandomIndex = randomIndex;
-                currentPhotoSpan.textContent = randomIndex + 1;
                 randomPhoto.style.opacity = '1';
             }, 250);
+        }
+
+        // Start automatic photo slideshow
+        function startPhotoSlideshow() {
+            // Load first photo immediately
+            loadRandomPhoto();
+            
+            // Then change every 8 seconds
+            photoInterval = setInterval(() => {
+                loadRandomPhoto();
+            }, 8000);
+        }
+
+        // Stop slideshow (if needed for cleanup)
+        function stopPhotoSlideshow() {
+            if (photoInterval) {
+                clearInterval(photoInterval);
+            }
         }
 
         // Generate gallery
         function loadGallery() {
             const galleryGrid = document.getElementById('gallery-grid');
             
+            if (!galleryGrid) {
+                console.error('Gallery grid element not found!');
+                return;
+            }
+            
+            console.log('Loading', photos.length, 'photos into gallery...');
+            
             photos.forEach((photo, index) => {
+                console.log(`Creating gallery item ${index + 1}: ${photo}`);
+                
                 const galleryItem = document.createElement('div');
                 galleryItem.className = 'gallery-item';
                 
@@ -289,9 +263,20 @@
                 img.alt = `Fotografía ${photo.replace('.jpg', '').replace('.JPG', '')} - Francisco Santelices`;
                 img.loading = 'lazy';
                 
+                // Add error handling for images
+                img.onerror = function() {
+                    console.error('Failed to load image:', this.src);
+                };
+                
+                img.onload = function() {
+                    console.log('Successfully loaded:', this.src);
+                };
+                
                 galleryItem.appendChild(img);
                 galleryGrid.appendChild(galleryItem);
             });
+            
+            console.log('Gallery loading complete. Items added:', galleryGrid.children.length);
         }
 
         // Custom cursor functionality (from other pages)
@@ -318,12 +303,22 @@
 
         // Initialize page
         document.addEventListener('DOMContentLoaded', () => {
-            loadRandomPhoto();
+            console.log('Photography page loaded with', photos.length, 'photos');
+            
+            // Start automatic slideshow
+            startPhotoSlideshow();
+            
+            // Load gallery
             loadGallery();
+            
+            // Initialize cursor
             cursor.style.opacity = '1';
             
-            // Update total photos count
-            document.getElementById('total-photos').textContent = photos.length;
+            // Debug: Check if gallery items were created
+            setTimeout(() => {
+                const galleryItems = document.querySelectorAll('.gallery-item');
+                console.log('Gallery items created:', galleryItems.length);
+            }, 1000);
         });
 
         // Navigation functionality (same as portfolio)
