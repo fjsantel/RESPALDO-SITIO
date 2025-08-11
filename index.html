@@ -45,6 +45,7 @@
     </script>
 </head>
 <body>
+    <div id="custom-cursor"></div>
     <div class="loading-content">
         <!-- Video de fondo -->
         <div class="video-background">
@@ -71,5 +72,28 @@
             </div>
         </div>
     </div>
+
+    <script>
+        // Custom cursor functionality
+        const cursor = document.getElementById('custom-cursor');
+        
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        });
+
+        // Hover effects
+        const hoverElements = document.querySelectorAll('.enter-button, button, a');
+        
+        hoverElements.forEach(element => {
+            element.addEventListener('mouseenter', () => {
+                document.body.classList.add('cursor-hover');
+            });
+            
+            element.addEventListener('mouseleave', () => {
+                document.body.classList.remove('cursor-hover');
+            });
+        });
+    </script>
 </body>
 </html>
