@@ -332,10 +332,10 @@
         
         .studio-images.portfolio-gallery {
             display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            grid-template-rows: 1fr 1fr;
-            gap: 20px;
-            height: 600px;
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: repeat(4, 1fr);
+            gap: 12px;
+            height: 900px;
             width: 100%;
         }
         
@@ -343,30 +343,23 @@
             aspect-ratio: unset;
         }
         
-        .portfolio-gallery .studio-image:nth-child(1) {
-            grid-column: 1;
-            grid-row: 1;
-        }
-        
-        .portfolio-gallery .studio-image:nth-child(2) {
-            grid-column: 1;
-            grid-row: 2;
-        }
-        
-        .portfolio-gallery .studio-image:nth-child(3) {
-            grid-column: 2;
-            grid-row: 1;
-        }
-        
-        .portfolio-gallery .studio-image:nth-child(4) {
-            grid-column: 2;
-            grid-row: 2;
-        }
-        
-        .portfolio-gallery .studio-image:nth-child(5) {
-            grid-column: 3;
-            grid-row: 1 / span 2;
-        }
+        /* Portfolio gallery positioning for 16 images */
+        .portfolio-gallery .studio-image:nth-child(1) { grid-column: 1; grid-row: 1; }
+        .portfolio-gallery .studio-image:nth-child(2) { grid-column: 2; grid-row: 1; }
+        .portfolio-gallery .studio-image:nth-child(3) { grid-column: 3; grid-row: 1; }
+        .portfolio-gallery .studio-image:nth-child(4) { grid-column: 4; grid-row: 1; }
+        .portfolio-gallery .studio-image:nth-child(5) { grid-column: 1; grid-row: 2; }
+        .portfolio-gallery .studio-image:nth-child(6) { grid-column: 2; grid-row: 2; }
+        .portfolio-gallery .studio-image:nth-child(7) { grid-column: 3; grid-row: 2; }
+        .portfolio-gallery .studio-image:nth-child(8) { grid-column: 4; grid-row: 2; }
+        .portfolio-gallery .studio-image:nth-child(9) { grid-column: 1; grid-row: 3; }
+        .portfolio-gallery .studio-image:nth-child(10) { grid-column: 2; grid-row: 3; }
+        .portfolio-gallery .studio-image:nth-child(11) { grid-column: 3; grid-row: 3; }
+        .portfolio-gallery .studio-image:nth-child(12) { grid-column: 4; grid-row: 3; }
+        .portfolio-gallery .studio-image:nth-child(13) { grid-column: 1; grid-row: 4; }
+        .portfolio-gallery .studio-image:nth-child(14) { grid-column: 2; grid-row: 4; }
+        .portfolio-gallery .studio-image:nth-child(15) { grid-column: 3; grid-row: 4; }
+        .portfolio-gallery .studio-image:nth-child(16) { grid-column: 4; grid-row: 4; }
         
         .studio-image {
             aspect-ratio: 16/10;
@@ -614,38 +607,122 @@
             
             .studio-images.portfolio-gallery {
                 grid-template-columns: 1fr 1fr;
-                grid-template-rows: auto auto auto;
+                grid-template-rows: repeat(8, auto);
                 height: auto;
             }
             
-            .portfolio-gallery .studio-image:nth-child(1) {
-                grid-column: 1;
-                grid-row: 1;
+            /* Mobile layout for 16 images - simple 2-column grid */
+            .portfolio-gallery .studio-image:nth-child(1) { grid-column: 1; grid-row: 1; }
+            .portfolio-gallery .studio-image:nth-child(2) { grid-column: 2; grid-row: 1; }
+            .portfolio-gallery .studio-image:nth-child(3) { grid-column: 1; grid-row: 2; }
+            .portfolio-gallery .studio-image:nth-child(4) { grid-column: 2; grid-row: 2; }
+            .portfolio-gallery .studio-image:nth-child(5) { grid-column: 1; grid-row: 3; }
+            .portfolio-gallery .studio-image:nth-child(6) { grid-column: 2; grid-row: 3; }
+            .portfolio-gallery .studio-image:nth-child(7) { grid-column: 1; grid-row: 4; }
+            .portfolio-gallery .studio-image:nth-child(8) { grid-column: 2; grid-row: 4; }
+            .portfolio-gallery .studio-image:nth-child(9) { grid-column: 1; grid-row: 5; }
+            .portfolio-gallery .studio-image:nth-child(10) { grid-column: 2; grid-row: 5; }
+            .portfolio-gallery .studio-image:nth-child(11) { grid-column: 1; grid-row: 6; }
+            .portfolio-gallery .studio-image:nth-child(12) { grid-column: 2; grid-row: 6; }
+            .portfolio-gallery .studio-image:nth-child(13) { grid-column: 1; grid-row: 7; }
+            .portfolio-gallery .studio-image:nth-child(14) { grid-column: 2; grid-row: 7; }
+            .portfolio-gallery .studio-image:nth-child(15) { grid-column: 1; grid-row: 8; }
+            .portfolio-gallery .studio-image:nth-child(16) { grid-column: 2; grid-row: 8; }
+        }
+        
+        /* Navigation styles */
+        .top-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 15px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #fff;
+            text-decoration: none;
+            letter-spacing: 0.1em;
+        }
+        
+        .main-navigation {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+        
+        .nav-btn {
+            background: none;
+            border: none;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+            padding: 8px 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            letter-spacing: 0.05em;
+        }
+        
+        .nav-btn:hover {
+            color: #fff;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 4px;
+        }
+        
+        .nav-btn.active {
+            color: #fff;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+        }
+        
+        /* Adjust main content to account for fixed header */
+        .professional-header {
+            margin-top: 80px;
+        }
+        
+        @media (max-width: 768px) {
+            .top-header {
+                padding: 10px 20px;
             }
             
-            .portfolio-gallery .studio-image:nth-child(2) {
-                grid-column: 2;
-                grid-row: 1;
+            .main-navigation {
+                gap: 15px;
             }
             
-            .portfolio-gallery .studio-image:nth-child(3) {
-                grid-column: 1;
-                grid-row: 2;
+            .nav-btn {
+                font-size: 0.8rem;
+                padding: 6px 12px;
             }
             
-            .portfolio-gallery .studio-image:nth-child(4) {
-                grid-column: 2;
-                grid-row: 2;
-            }
-            
-            .portfolio-gallery .studio-image:nth-child(5) {
-                grid-column: 1 / span 2;
-                grid-row: 3;
+            .professional-header {
+                margin-top: 70px;
             }
         }
     </style>
 </head>
 <body>
+    <!-- Top Navigation -->
+    <header class="top-header">
+        <a href="/" class="logo">FRANCISCO SANTELICES</a>
+        <nav class="main-navigation">
+            <a href="/portfolio.html#lets-create" class="nav-btn">Cotiza tu Proyecto</a>
+            <a href="/portfolio.html" class="nav-btn">Audiovisual</a>
+            <a href="/design.html" class="nav-btn">Diseño</a>
+            <a href="/photography.html" class="nav-btn">Photography</a>
+            <a href="/bio.html" class="nav-btn">Bio</a>
+            <a href="/portafolio-profesional.html" class="nav-btn active">Competencias</a>
+        </nav>
+    </header>
+
     <!-- Header -->
     <header class="professional-header">
         <h1>COMPETENCIAS Y HABILIDADES PROFESIONALES</h1>
@@ -1025,27 +1102,82 @@
             <div class="studio-images portfolio-gallery">
                 <div class="studio-image">
                     <img src="assets/fotos productos competencias/Foto producto 1.png" alt="Fotografía publicitaria de café en vaso takeaway">
-                    <div class="image-caption">Fotografía publicitaria lifestyle de café con composición cinematográfica y luz natural</div>
+                    <div class="image-caption">Fotografía publicitaria lifestyle de café con composición cinematográfica</div>
                 </div>
                 
                 <div class="studio-image">
-                    <img src="assets/fotos productos competencias/Foto producto 2.png" alt="Fotografía de producto frasco cosmético en estudio">
-                    <div class="image-caption">Fotografía de producto cosmético con iluminación dramática y setup de estudio profesional</div>
+                    <img src="assets/fotos productos competencias/Foto producto 2.png" alt="Fotografía de producto cosmético en estudio">
+                    <div class="image-caption">Fotografía de producto cosmético con iluminación dramática</div>
                 </div>
                 
                 <div class="studio-image">
-                    <img src="assets/fotos productos competencias/Foto-producto-4.jpg" alt="Fotografía gastronómica de desayuno y café">
-                    <div class="image-caption">Fotografía gastronómica con styling profesional y composición colorimétrica controlada</div>
+                    <img src="assets/fotos productos competencias/Foto producto 3.png" alt="Retrato corporativo profesional">
+                    <div class="image-caption">Retrato corporativo con dirección de arte minimalista</div>
                 </div>
                 
                 <div class="studio-image">
-                    <img src="assets/fotos productos competencias/Foto-producto-5.jpg" alt="Fotografía culinaria de panadería y repostería">
-                    <div class="image-caption">Fotografía culinaria de productos de panadería con técnicas de food styling profesional</div>
+                    <img src="assets/fotos productos competencias/Foto-producto-4.jpg" alt="Fotografía gastronómica de desayuno">
+                    <div class="image-caption">Fotografía gastronómica con styling profesional</div>
                 </div>
                 
                 <div class="studio-image">
-                    <img src="assets/fotos productos competencias/Foto producto 3.png" alt="Retrato corporativo profesional en estudio">
-                    <div class="image-caption">Retrato corporativo con iluminación de estudio y dirección de arte minimalista</div>
+                    <img src="assets/fotos productos competencias/Foto-producto-5.jpg" alt="Fotografía culinaria de panadería">
+                    <div class="image-caption">Fotografía culinaria con técnicas de food styling</div>
+                </div>
+                
+                <div class="studio-image">
+                    <img src="assets/fotos productos competencias/Foto-producto-6.jpg" alt="Fotografía macro de textura orgánica">
+                    <div class="image-caption">Fotografía macro con técnica de detalle extremo</div>
+                </div>
+                
+                <div class="studio-image">
+                    <img src="assets/fotos productos competencias/Foto-producto-7.jpg" alt="Fotografía conceptual digital">
+                    <div class="image-caption">Fotografía conceptual con composición experimental</div>
+                </div>
+                
+                <div class="studio-image">
+                    <img src="assets/fotos productos competencias/Foto-producto-8.jpg" alt="Fotografía gastronómica gourmet">
+                    <div class="image-caption">Fotografía gastronómica con presentación gourmet</div>
+                </div>
+                
+                <div class="studio-image">
+                    <img src="assets/fotos productos competencias/Foto-producto-9.jpg" alt="Fotografía urbana con doble exposición">
+                    <div class="image-caption">Fotografía urbana experimental con técnica de doble exposición</div>
+                </div>
+                
+                <div class="studio-image">
+                    <img src="assets/fotos productos competencias/Foto-producto-10.jpg" alt="Fotografía de fauna con iluminación dramática">
+                    <div class="image-caption">Fotografía de fauna con iluminación dramática especializada</div>
+                </div>
+                
+                <div class="studio-image">
+                    <img src="assets/fotos productos competencias/Foto-producto-11jpg.jpg" alt="Fotografía de producto industrial">
+                    <div class="image-caption">Fotografía industrial con composición técnica profesional</div>
+                </div>
+                
+                <div class="studio-image">
+                    <img src="assets/fotos productos competencias/Foto-producto-12.jpg" alt="Fotografía artística conceptual">
+                    <div class="image-caption">Fotografía artística con dirección creativa conceptual</div>
+                </div>
+                
+                <div class="studio-image">
+                    <img src="assets/fotos productos competencias/Foto-producto-13.jpg" alt="Fotografía de producto comercial">
+                    <div class="image-caption">Fotografía comercial con setup de estudio avanzado</div>
+                </div>
+                
+                <div class="studio-image">
+                    <img src="assets/fotos productos competencias/Foto-producto-14.png" alt="Fotografía de moda y lifestyle">
+                    <div class="image-caption">Fotografía de moda con dirección creativa lifestyle</div>
+                </div>
+                
+                <div class="studio-image">
+                    <img src="assets/fotos productos competencias/Foto-producto-15.jpg" alt="Fotografía arquitectónica de interiores">
+                    <div class="image-caption">Fotografía arquitectónica de interiores con iluminación natural</div>
+                </div>
+                
+                <div class="studio-image">
+                    <img src="assets/fotos productos competencias/Foto-producto-16.png" alt="Fotografía de producto tecnológico">
+                    <div class="image-caption">Fotografía de producto tecnológico con composición minimalista</div>
                 </div>
             </div>
             
