@@ -1,4 +1,5 @@
 // Initialize immediately if DOM is already loaded, otherwise wait for DOMContentLoaded
+// Fixed: Handle case where script loads after DOMContentLoaded event
 function initializeLetsCreate() {
     const letsCreateContainer = document.getElementById('letsCreateContainer');
     if (!letsCreateContainer) return;
