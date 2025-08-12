@@ -76,7 +76,7 @@ function initializeLetsCreate() {
                 userInput.focus();
             } else if (node.type === 'final') {
                 finalCta.style.display = 'block';
-                submitFormspree();
+                submitForm();
                 setTimeout(resetConsultation, RESET_DELAY);
             }
         }, QUESTION_READING_DELAY);
@@ -99,14 +99,45 @@ function initializeLetsCreate() {
         }
     }
 
-    function submitFormspree() {
-        document.getElementById('form-context').value = userResponses.context || '';
-        document.getElementById('form-purpose').value = userResponses.purpose || '';
-        document.getElementById('form-format').value = userResponses.format || '';
-        document.getElementById('form-vision').value = userResponses.vision || '';
-        document.getElementById('form-contact').value = userResponses.contact || '';
-        const formData = new FormData(formspreeForm);
-        fetch(formspreeForm.action, { method: 'POST', body: formData, headers: { 'Accept': 'application/json' } });
+    function submitForm() {
+        console.log('Form submission process started.');
+        console.log('Final data:', userResponses);
+
+        // Populate the hidden form fields
+        document.getElementById('form-context').value = userResponses.context || 'No especificado';
+        document.getElementById('form-purpose').value = userResponses.purpose || 'No especificado';
+        document.getElementById('form-format').value = userResponses.format || 'No especificado';
+        document.getElementById('form-vision').value = userResponses.vision || 'No especificado';
+        document.getElementById('form-contact').value = userResponses.contact || 'No especificado';
+
+        // Create a FormData object from the form
+        const form = document.getElementById('formspree-form');
+        const formData = new FormData(form);
+
+        // Use fetch to submit the form data asynchronously
+        fetch(form.action, {
+            method: 'POST',
+            body: formData,
+            headers: {
+                'Accept': 'application/json'
+            }
+        }).then(response => {
+            if (response.ok) {
+                console.log('Form successfully submitted to Formspree.');
+            } else {
+                response.json().then(data => {
+                    if (Object.hasOwn(data, 'errors')) {
+                        console.error('Form submission failed:', data.errors.map(error => error.message).join(', '));
+                    } else {
+                        console.error('An unknown error occurred during form submission.');
+                    }
+                });
+            }
+        }).catch(error => {
+            console.error('Error submitting form:', error);
+        });
+
+        console.log('Form submitted via fetch.');
     }
 
     function resetConsultation() {
@@ -141,13 +172,26 @@ function initializeLetsCreate() {
     resetConsultation();
 }
 
+// Global flag to indicate Let's Create is ready
+window.letsCreateReady = false;
+
 // Initialize when DOM is ready
 console.log('Let\'s Create script loaded, DOM ready state:', document.readyState);
+
+function initWithCallback() {
+    initializeLetsCreate();
+    window.letsCreateReady = true;
+    console.log('Let\'s Create initialized and ready');
+    
+    // Dispatch a custom event to let other scripts know Let's Create is ready
+    window.dispatchEvent(new CustomEvent('letsCreateReady'));
+}
+
 if (document.readyState === 'loading') {
     console.log('Waiting for DOMContentLoaded...');
-    document.addEventListener('DOMContentLoaded', initializeLetsCreate);
+    document.addEventListener('DOMContentLoaded', initWithCallback);
 } else {
     // DOM is already loaded
     console.log('DOM already loaded, initializing immediately...');
-    initializeLetsCreate();
+    initWithCallback();
 }
