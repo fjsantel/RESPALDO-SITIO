@@ -459,6 +459,46 @@
                 behavior: 'smooth'
             });
         });
+        
+        // Commercial Photography Video Sound Control
+        let commercialPlayer;
+        let isCommercialMuted = true;
+        
+        // Load YouTube API
+        function onYouTubeIframeAPIReady() {
+            commercialPlayer = new YT.Player('commercial-photography-video', {
+                events: {
+                    'onReady': function(event) {
+                        // Video is ready, muted by default
+                    }
+                }
+            });
+        }
+        
+        // Sound toggle functionality
+        document.getElementById('commercial-sound-toggle').addEventListener('click', function() {
+            if (commercialPlayer && commercialPlayer.isMuted !== undefined) {
+                if (isCommercialMuted) {
+                    commercialPlayer.unMute();
+                    this.textContent = 'SONIDO ACTIVADO';
+                    this.classList.add('active');
+                    isCommercialMuted = false;
+                } else {
+                    commercialPlayer.mute();
+                    this.textContent = 'ACTIVAR SONIDO';
+                    this.classList.remove('active');
+                    isCommercialMuted = true;
+                }
+            }
+        });
+        
+        // Load YouTube API script if not already loaded
+        if (!window.YT) {
+            const tag = document.createElement('script');
+            tag.src = 'https://www.youtube.com/iframe_api';
+            const firstScriptTag = document.getElementsByTagName('script')[0];
+            firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+        }
     </script>
 
     <!-- Commercial Photography Section -->
@@ -473,72 +513,153 @@
         <!-- Commercial Photography Grid -->
         <div class="commercial-gallery" style="
             display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            grid-template-rows: repeat(4, 1fr);
+            grid-template-columns: repeat(6, 1fr);
+            grid-template-rows: repeat(7, 1fr);
             gap: 8px;
             max-width: 1400px;
             margin: 0 auto;
-            height: 800px;
+            height: 1260px;
         ">
-            <div class="commercial-item" style="overflow: hidden; border-radius: 4px;">
+            <!-- Foto 1 - Grande 2x2 -->
+            <div class="commercial-item" style="grid-column: 1 / 3; grid-row: 1 / 3; overflow: hidden; border-radius: 4px;">
                 <img src="assets/fotos productos competencias/Foto producto 1.png" alt="Fotografía comercial profesional - Producto cosmético con iluminación técnica" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
             </div>
-            <div class="commercial-item" style="overflow: hidden; border-radius: 4px;">
+            
+            <!-- Foto 2 - Normal -->
+            <div class="commercial-item" style="grid-column: 3; grid-row: 1; overflow: hidden; border-radius: 4px;">
                 <img src="assets/fotos productos competencias/Foto producto 2.png" alt="Fotografía comercial - Producto de belleza con composición minimalista" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
             </div>
-            <div class="commercial-item" style="overflow: hidden; border-radius: 4px;">
+            
+            <!-- Foto 3 - Vertical 1x2 -->
+            <div class="commercial-item" style="grid-column: 4; grid-row: 1 / 3; overflow: hidden; border-radius: 4px;">
                 <img src="assets/fotos productos competencias/Foto producto 3.png" alt="Retrato profesional con iluminación de estudio y composición creativa" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; object-position: center top; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
             </div>
-            <div class="commercial-item" style="overflow: hidden; border-radius: 4px;">
+            
+            <!-- Foto 4 - Normal -->
+            <div class="commercial-item" style="grid-column: 5; grid-row: 1; overflow: hidden; border-radius: 4px;">
                 <img src="assets/fotos productos competencias/Foto-producto-4.jpg" alt="Fotografía comercial especializada en productos de consumo" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
             </div>
-            <div class="commercial-item" style="overflow: hidden; border-radius: 4px;">
+            
+            <!-- Foto 5 - Normal -->
+            <div class="commercial-item" style="grid-column: 6; grid-row: 1; overflow: hidden; border-radius: 4px;">
                 <img src="assets/fotos productos competencias/Foto-producto-5.jpg" alt="Fotografía de producto con setup de estudio profesional" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
             </div>
-            <div class="commercial-item" style="overflow: hidden; border-radius: 4px;">
+            
+            <!-- Foto 6 - Normal -->
+            <div class="commercial-item" style="grid-column: 3; grid-row: 2; overflow: hidden; border-radius: 4px;">
                 <img src="assets/fotos productos competencias/Foto-producto-6.jpg" alt="Fotografía comercial con técnicas de iluminación avanzada" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
             </div>
-            <div class="commercial-item" style="overflow: hidden; border-radius: 4px;">
+            
+            <!-- Foto 7 - Normal -->
+            <div class="commercial-item" style="grid-column: 5; grid-row: 2; overflow: hidden; border-radius: 4px;">
                 <img src="assets/fotos productos competencias/Foto-producto-7.jpg" alt="Fotografía de producto profesional para e-commerce" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
             </div>
-            <div class="commercial-item" style="overflow: hidden; border-radius: 4px;">
+            
+            <!-- Foto 8 - Normal -->
+            <div class="commercial-item" style="grid-column: 6; grid-row: 2; overflow: hidden; border-radius: 4px;">
                 <img src="assets/fotos productos competencias/Foto-producto-8.jpg" alt="Fotografía comercial con composición creativa y técnica" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
             </div>
-            <div class="commercial-item" style="overflow: hidden; border-radius: 4px;">
+            
+            <!-- Foto 9 - Horizontal 2x1 -->
+            <div class="commercial-item" style="grid-column: 1 / 3; grid-row: 3; overflow: hidden; border-radius: 4px;">
                 <img src="assets/fotos productos competencias/Foto-producto-9.jpg" alt="Fotografía de producto con iluminación cinematográfica" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
             </div>
-            <div class="commercial-item" style="overflow: hidden; border-radius: 4px;">
+            
+            <!-- Foto 10 - Normal -->
+            <div class="commercial-item" style="grid-column: 3; grid-row: 3; overflow: hidden; border-radius: 4px;">
                 <img src="assets/fotos productos competencias/Foto-producto-10.jpg" alt="Fotografía comercial especializada en productos corporativos" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
             </div>
-            <div class="commercial-item" style="overflow: hidden; border-radius: 4px;">
+            
+            <!-- Foto 11 - Normal -->
+            <div class="commercial-item" style="grid-column: 4; grid-row: 3; overflow: hidden; border-radius: 4px;">
                 <img src="assets/fotos productos competencias/Foto-producto-11jpg.jpg" alt="Fotografía de producto con técnicas de estudio avanzadas" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
             </div>
-            <div class="commercial-item" style="overflow: hidden; border-radius: 4px;">
+            
+            <!-- Foto 12 - Grande 2x2 -->
+            <div class="commercial-item" style="grid-column: 5 / 7; grid-row: 3 / 5; overflow: hidden; border-radius: 4px;">
                 <img src="assets/fotos productos competencias/Foto-producto-12.jpg" alt="Fotografía comercial con postproducción profesional" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
             </div>
-            <div class="commercial-item" style="overflow: hidden; border-radius: 4px;">
+            
+            <!-- Foto 13 - Normal -->
+            <div class="commercial-item" style="grid-column: 1; grid-row: 4; overflow: hidden; border-radius: 4px;">
                 <img src="assets/fotos productos competencias/Foto-producto-13.jpg" alt="Fotografía de producto premium con calidad comercial" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
             </div>
-            <div class="commercial-item" style="overflow: hidden; border-radius: 4px;">
+            
+            <!-- Foto 14 - Normal -->
+            <div class="commercial-item" style="grid-column: 2; grid-row: 4; overflow: hidden; border-radius: 4px;">
                 <img src="assets/fotos productos competencias/Foto-producto-14.png" alt="Fotografía comercial especializada en imaging corporativo" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
             </div>
-            <div class="commercial-item" style="overflow: hidden; border-radius: 4px;">
+            
+            <!-- Foto 15 - Normal -->
+            <div class="commercial-item" style="grid-column: 3; grid-row: 4; overflow: hidden; border-radius: 4px;">
                 <img src="assets/fotos productos competencias/Foto-producto-15.jpg" alt="Fotografía de producto con iluminación técnica y composición avanzada" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
             </div>
-            <div class="commercial-item" style="overflow: hidden; border-radius: 4px;">
+            
+            <!-- Foto 16 - Normal -->
+            <div class="commercial-item" style="grid-column: 4; grid-row: 4; overflow: hidden; border-radius: 4px;">
                 <img src="assets/fotos productos competencias/Foto-producto-16.png" alt="Fotografía comercial profesional con setup de estudio completo" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
             </div>
-            <div class="commercial-item" style="overflow: hidden; border-radius: 4px;">
+            
+            <!-- Foto 17 - Horizontal 2x1 -->
+            <div class="commercial-item" style="grid-column: 1 / 3; grid-row: 5; overflow: hidden; border-radius: 4px;">
                 <img src="assets/fotos productos competencias/Foto-producto-17.jpg" alt="Fotografía comercial de producto con iluminación técnica especializada" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
             </div>
-            <div class="commercial-item" style="overflow: hidden; border-radius: 4px;">
+            
+            <!-- Foto 18 - Normal -->
+            <div class="commercial-item" style="grid-column: 3; grid-row: 5; overflow: hidden; border-radius: 4px;">
                 <img src="assets/fotos productos competencias/Foto-producto-18.jpg" alt="Fotografía de producto profesional con composición avanzada" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
             </div>
-            <div class="commercial-item" style="overflow: hidden; border-radius: 4px;">
+            
+            <!-- Foto 19 - Normal -->
+            <div class="commercial-item" style="grid-column: 5; grid-row: 5; overflow: hidden; border-radius: 4px;">
                 <img src="assets/fotos productos competencias/Foto-producto-19.jpg" alt="Fotografía comercial con setup de estudio y postproducción especializada" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
             </div>
-            <div class="commercial-item" style="overflow: hidden; border-radius: 4px;">
+            
+            <!-- Foto 20 - Normal -->
+            <div class="commercial-item" style="grid-column: 6; grid-row: 5; overflow: hidden; border-radius: 4px;">
                 <img src="assets/fotos productos competencias/Foto-producto-20.jpg" alt="Fotografía de producto con técnicas de iluminación cinematográfica" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+            </div>
+            
+            <!-- Foto 21 - Horizontal apaisada 3x1 -->
+            <div class="commercial-item" style="grid-column: 1 / 4; grid-row: 6; overflow: hidden; border-radius: 4px;">
+                <img src="assets/fotos productos competencias/Foto-producto-21.jpg" alt="Fotografía comercial profesional con setup especializado" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+            </div>
+            
+            <!-- Foto 22 - Normal -->
+            <div class="commercial-item" style="grid-column: 4; grid-row: 6; overflow: hidden; border-radius: 4px;">
+                <img src="assets/fotos productos competencias/Foto-producto-22.jpg" alt="Fotografía de producto con composición cinematográfica" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+            </div>
+            
+            <!-- Foto 23 - Normal -->
+            <div class="commercial-item" style="grid-column: 5; grid-row: 6; overflow: hidden; border-radius: 4px;">
+                <img src="assets/fotos productos competencias/Foto-producto-23.jpg" alt="Fotografía comercial con iluminación técnica avanzada" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+            </div>
+            
+            <!-- Foto 24 - Horizontal apaisada 3x1 -->
+            <div class="commercial-item" style="grid-column: 4 / 7; grid-row: 7; overflow: hidden; border-radius: 4px;">
+                <img src="assets/fotos productos competencias/Foto-producto-24.jpg" alt="Fotografía de producto profesional con postproducción especializada" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+            </div>
+        </div>
+        
+        <!-- Commercial Photography Video -->
+        <div style="margin-top: 80px; margin-bottom: 60px;">
+            <div style="position: relative; width: 100%; max-width: 800px; margin: 0 auto; aspect-ratio: 16/9; border-radius: 8px; overflow: hidden; background: #000;">
+                <iframe 
+                    id="commercial-photography-video"
+                    src="https://www.youtube.com/embed/PexdbdL9BVk?enablejsapi=1&mute=1&rel=0&showinfo=0&controls=1&loop=1&playlist=PexdbdL9BVk" 
+                    style="width: 100%; height: 100%; border: none;"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                    allowfullscreen>
+                </iframe>
+                
+                <!-- Sound Control Button -->
+                <button 
+                    id="commercial-sound-toggle"
+                    class="sound-activation-btn"
+                    style="position: absolute; top: 15px; right: 15px; background: #f0b90c; color: #000; border: none; padding: 15px 35px; cursor: pointer; border-radius: 4px; font-weight: 600; font-size: 14px; white-space: nowrap; min-width: fit-content; transition: all 0.3s ease;"
+                >
+                    ACTIVAR SONIDO
+                </button>
             </div>
         </div>
         
@@ -555,10 +676,16 @@
         @media (max-width: 768px) {
             .commercial-gallery {
                 grid-template-columns: repeat(2, 1fr) !important;
-                grid-template-rows: repeat(10, 1fr) !important;
-                height: 2000px !important;
-                gap: 6px !important;
+                grid-template-rows: repeat(12, 150px) !important;
+                height: auto !important;
+                gap: 8px !important;
                 max-width: 600px !important;
+            }
+            
+            /* Reset all grid positioning for mobile */
+            .commercial-item {
+                grid-column: auto !important;
+                grid-row: auto !important;
             }
             
             section {
@@ -577,10 +704,15 @@
         @media (max-width: 480px) {
             .commercial-gallery {
                 grid-template-columns: 1fr !important;
-                grid-template-rows: repeat(20, 250px) !important;
+                grid-template-rows: repeat(24, 200px) !important;
                 height: auto !important;
                 gap: 12px !important;
                 max-width: 100% !important;
+            }
+            
+            .commercial-item {
+                grid-column: auto !important;
+                grid-row: auto !important;
             }
             
             section {
