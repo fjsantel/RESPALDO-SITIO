@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Francisco Santelices Ariztía - Director Audiovisual Santiago Chile ⭐ Motion Graphics, Producción Audiovisual, Diseño Gráfico Web, Documentales y Fotografía Profesional. Portfolio 2025 especializado en contenido multimedia Chile. Servicios integrales desde concepto hasta postproducción.">
-    <meta name="keywords" content="director audiovisual santiago chile, motion graphics chile, producción audiovisual chile, diseño gráfico web santiago, documentales chile, fotografía profesional, postproducción audiovisual, video corporativo chile, contenido multimedia, animación digital chile, Francisco Santelices Ariztía">
+    <meta name="description" content="Francisco Santelices Ariztía - Director Audiovisual Santiago Chile ⭐ Especialista en Motion Graphics, Video Corporativo, Spots Publicitarios, Branded Content y Video Marketing. Dirección Creativa Audiovisual para Marcas. Portfolio 2025 con Campañas Digitales Creativas, Contenido para Redes Sociales y Storytelling de Marca. Producción integral desde concepto hasta postproducción cinematográfica.">
+    <meta name="keywords" content="director audiovisual santiago chile, motion graphics chile, producción audiovisual chile, video corporativo santiago, spots publicitarios chile, dirección creativa audiovisual, branded content chile, storytelling de marca, marketing visual santiago, campañas digitales creativas, video marketing chile, contenido para redes sociales, reels creativos, microcontenidos audiovisuales, animación 2D 3D chile, postproducción cinematográfica, color grading, montaje edición profesional">
     <meta name="author" content="Francisco Santelices Ariztía">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://www.franciscosantelices.cl/">
@@ -24,12 +24,172 @@
     <meta property="twitter:image" content="https://www.franciscosantelices.cl/assets/og-image.jpg">
     
     
-    <title>Francisco Santelices - Director Audiovisual Santiago Chile | Motion Graphics & Producción 2025</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <title>Francisco Santelices - Director Audiovisual Santiago | Video Corporativo, Spots Publicitarios & Motion Graphics Chile 2025</title>
+    <!-- Critical CSS Inlined for Zero Blocking -->
+    <style>
+        /* CRITICAL INLINE CSS - Zero Render Blocking */
+        :root {
+            --black: #050505;
+            --text-primary: #FFFFFF;
+            --accent-yellow: #f0b90c;
+            --font-primary: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            cursor: none !important;
+        }
+        body, html {
+            height: 100%;
+            overflow: hidden;
+            font-family: var(--font-primary);
+            background-color: var(--black);
+        }
+        #custom-cursor {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            width: 0;
+            height: 0;
+            border-left: 8px solid transparent;
+            border-right: 8px solid transparent;
+            border-bottom: 14px solid var(--text-primary);
+            transform: translate(-50%, -50%);
+            transition: transform 0.1s ease-out;
+        }
+        body.cursor-hover #custom-cursor {
+            transform: translate(-50%, -50%) scale(1.8);
+            border-bottom-color: var(--accent-yellow);
+        }
+        .video-background {
+            width: 100%;
+            height: 60vh;
+            position: relative;
+            overflow: hidden;
+            background-color: var(--black);
+        }
+        .video-background video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center center;
+            background-color: var(--black);
+        }
+        .loading-content {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            color: var(--text-primary);
+            background-color: var(--black);
+        }
+        .text-section {
+            flex: 1;
+            background-color: var(--black);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .loading-text {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 2rem;
+            max-width: 600px;
+            margin: 0 auto;
+            width: 100%;
+        }
+        .text-lines-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            max-width: 95vw;
+        }
+        .agency-title {
+            font-size: clamp(0.5rem, 1.2vw, 0.9rem);
+            font-weight: 300;
+            letter-spacing: clamp(0.15rem, 0.35vw, 0.25rem);
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+            line-height: 1.1;
+            animation: fadeInUp 1.5s ease-out;
+            white-space: nowrap;
+            text-align: center;
+        }
+        .main-title {
+            font-size: clamp(0.77rem, 1.76vw, 1.375rem);
+            font-weight: 700;
+            letter-spacing: clamp(0.22rem, 0.545vw, 0.425rem);
+            text-transform: uppercase;
+            margin-bottom: 0.165rem;
+            color: var(--text-primary);
+            line-height: 1.1;
+            animation: fadeInUp 1.5s ease-out;
+            white-space: nowrap;
+            text-align: center;
+        }
+        .sub-title {
+            font-size: clamp(0.79rem, 1.8vw, 1.395rem);
+            font-weight: 400;
+            letter-spacing: clamp(0.72rem, 1.66vw, 1.19rem);
+            text-transform: uppercase;
+            color: var(--accent-yellow);
+            animation: fadeInUp 1.5s ease-out 0.3s both;
+            white-space: nowrap;
+            text-align: center;
+            margin-left: clamp(4px, 0.5vw, 9px);
+        }
+        .enter-button-container {
+            padding: 2rem;
+            display: flex;
+            justify-content: center;
+            animation: fadeInUp 1.5s ease-out 0.6s both;
+        }
+        .enter-button {
+            background: transparent;
+            border: none;
+            color: var(--text-primary);
+            font-family: var(--font-primary);
+            font-size: 1.1rem;
+            font-weight: 300;
+            letter-spacing: 0.1rem;
+            text-transform: uppercase;
+            padding: 1rem 2.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            max-width: 600px;
+        }
+        .enter-button:hover {
+            color: var(--accent-yellow);
+            transform: translateY(-2px);
+        }
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        @media (max-width: 768px) {
+            .loading-text { padding: 1.5rem; max-width: 95vw; }
+            .enter-button { font-size: clamp(0.9rem, 2.5vw, 1.1rem); padding: 0.8rem 2rem; max-width: 95vw; }
+        }
+    </style>
+    
+    <!-- Load Montserrat after critical render -->
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&display=swap&text=DIRECCIÓN%20AUDIOVISUAL%20SANTIAGO%20CHILE%20FRANCISCO%20SANTELICES%20ARIZTÍA%20MOTION%20GRAPHICS%20PRODUCCIÓN%20INGRESAR%20AL%20SITIO" as="style" onload="this.onload=null;this.rel='stylesheet';document.documentElement.style.setProperty('--font-primary', 'Montserrat, -apple-system, BlinkMacSystemFont, sans-serif')">
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&display=swap"></noscript>
-    <link rel="stylesheet" href="loading.css">
     <link rel="preload" href="https://github.com/fjsantel/RESPALDO-SITIO/raw/main/tentaculos_1.mp4" as="video" type="video/mp4">
     <meta name="theme-color" content="#050505">
     
@@ -68,11 +228,22 @@
                     <h2 class="sub-title">MOTION GRAPHICS & PRODUCCIÓN</h2>
                 </div>
                 
-                <!-- Hidden SEO Content -->
+                <!-- Strategic SEO Content with New Keywords -->
                 <div style="position: absolute; left: -9999px; opacity: 0;">
-                    <h4>Director Audiovisual Profesional Santiago Chile</h4>
-                    <p>Especialista en motion graphics Chile, producción audiovisual, diseño gráfico web, documentales y fotografía profesional. Portfolio 2025 con servicios integrales de postproducción audiovisual y contenido multimedia en Santiago y toda Chile.</p>
-                    <span>Videos corporativos Chile, animación digital, storytelling audiovisual, broadcast design</span>
+                    <h4>Director Audiovisual y Director Creativo Santiago Chile</h4>
+                    <p>Especialista en <strong>motion graphics chile</strong>, <strong>video corporativo santiago</strong>, <strong>spots publicitarios chile</strong>, <strong>dirección creativa audiovisual</strong>, <strong>branded content</strong> y <strong>storytelling de marca</strong>. Portfolio 2025 con <strong>campañas digitales creativas</strong>, <strong>marketing visual</strong>, <strong>video marketing</strong>, <strong>contenido para redes sociales</strong>, <strong>reels creativos</strong> y <strong>microcontenidos audiovisuales</strong>.</p>
+                    <span>Producción de spots publicitarios, animación 2D y 3D, postproducción cinematográfica, color grading, montaje y edición profesional, contenido vertical TikTok Instagram, videos interactivos, live streaming profesional, activaciones publicitarias, marketing de experiencias</span>
+                    <h5>Servicios de Video Marketing Chile 2025</h5>
+                    <ul style="list-style: none;">
+                        <li>Video Corporativo Santiago - Producción integral</li>
+                        <li>Spots Publicitarios Chile - Campañas creativas</li>
+                        <li>Motion Graphics - Animación 2D y 3D profesional</li>
+                        <li>Branded Content - Storytelling de marca efectivo</li>
+                        <li>Video Marketing - Estrategias audiovisuales digitales</li>
+                        <li>Contenido Redes Sociales - Reels e Instagram creativos</li>
+                        <li>Dirección Creativa - Campañas multiplataforma</li>
+                        <li>Postproducción Cinematográfica - Color grading profesional</li>
+                    </ul>
                 </div>
             </div>
             
