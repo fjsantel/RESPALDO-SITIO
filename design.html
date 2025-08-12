@@ -242,10 +242,19 @@
                 </div>
             </a>
         </div>
-        <div class="header-actions">
-            <a href="portfolio.html" class="menu-trigger-text" style="text-decoration: none;">VOLVER</a>
+        <div id="menu-trigger">
+            <span class="menu-trigger-text">CLICK TO MENU</span>
+            <span class="menu-trigger-cursor"></span>
         </div>
     </header>
+
+    <nav class="main-navigation">
+        <button class="nav-btn" data-section="lets-create">Cotiza tu Proyecto</button>
+        <button class="nav-btn" data-section="audiovisual">Audiovisual</button>
+        <button class="nav-btn active" data-section="design">Diseño</button>
+        <button class="nav-btn" data-section="photography">Photography</button>
+        <button class="nav-btn" data-section="bio">Bio</button>
+    </nav>
 
     <div class="design-content">
         <div class="franja-titulo">
@@ -557,19 +566,62 @@
                 document.body.classList.remove('cursor-hover');
             });
         });
-    </script>
-
-        // Hover effects
-        const hoverElements = document.querySelectorAll('.gallery-item, a, button');
         
-        hoverElements.forEach(element => {
-            element.addEventListener('mouseenter', () => {
-                document.body.classList.add('cursor-hover');
+        // Design page navigation handler
+        const navContainer = document.querySelector('.main-navigation');
+        const navBtns = document.querySelectorAll('.nav-btn');
+        const menuTrigger = document.getElementById('menu-trigger');
+        let isOpen = false;
+
+        // Handle menu trigger
+        if (menuTrigger) {
+            menuTrigger.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                isOpen = !isOpen;
+                if (isOpen) {
+                    navContainer.classList.add('active');
+                } else {
+                    navContainer.classList.remove('active');
+                }
             });
-            
-            element.addEventListener('mouseleave', () => {
-                document.body.classList.remove('cursor-hover');
+        }
+
+        // Handle navigation buttons
+        navBtns.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                const section = e.target.getAttribute('data-section');
+                
+                switch(section) {
+                    case 'audiovisual':
+                        window.location.href = 'portfolio.html';
+                        break;
+                    case 'photography':
+                        window.location.href = 'photography.html';
+                        break;
+                    case 'design':
+                        // Already on design page - just close menu
+                        isOpen = false;
+                        navContainer.classList.remove('active');
+                        break;
+                    case 'bio':
+                        window.location.href = 'bio.html';
+                        break;
+                    case 'lets-create':
+                        window.location.href = 'portfolio.html#lets-create';
+                        break;
+                }
             });
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (isOpen && !navContainer.contains(e.target) && !menuTrigger.contains(e.target)) {
+                isOpen = false;
+                navContainer.classList.remove('active');
+            }
         });
     </script>
 </body>

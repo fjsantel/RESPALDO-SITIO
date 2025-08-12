@@ -1107,22 +1107,76 @@
     });
     </script>
 
+    <style>
+        /* Servicios Profesionales - Elegant hover effects */
+        .seo-nav a:hover {
+            color: var(--text-primary) !important;
+        }
+        
+        .seo-nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 1px;
+            bottom: -4px;
+            left: 0;
+            background-color: var(--text-primary);
+            transition: width 0.3s ease;
+        }
+        
+        .seo-nav a:hover::after {
+            width: 100%;
+        }
+        
+        /* Responsive for Servicios Profesionales */
+        @media (max-width: 768px) {
+            .seo-footer-links {
+                padding: 40px 20px !important;
+            }
+            
+            .seo-nav {
+                gap: 20px !important;
+                margin-bottom: 30px !important;
+            }
+            
+            .seo-nav a {
+                font-size: 12px !important;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .seo-footer-links {
+                padding: 30px 15px !important;
+            }
+            
+            .seo-nav {
+                gap: 15px !important;
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .seo-nav a {
+                font-size: 11px !important;
+            }
+        }
+    </style>
+
     <!-- SEO Footer with Strategic Links -->
-    <section class="seo-footer-links" style="background: var(--black); padding: 40px; text-align: center; border-top: 1px solid var(--light-gray);">
-        <h3 style="color: var(--text-primary); margin-bottom: 20px; font-size: 18px;">Servicios Profesionales en Chile</h3>
-        <nav class="seo-nav" style="display: flex; justify-content: center; flex-wrap: wrap; gap: 20px; margin-bottom: 30px;">
-            <a href="/portfolio.html" style="color: var(--text-secondary); text-decoration: none; font-size: 14px; padding: 8px 12px; border: 1px solid var(--light-gray); border-radius: 4px; transition: all 0.3s ease;">Motion Graphics Chile</a>
-            <a href="/portfolio.html" style="color: var(--text-secondary); text-decoration: none; font-size: 14px; padding: 8px 12px; border: 1px solid var(--light-gray); border-radius: 4px; transition: all 0.3s ease;">Producción Audiovisual Santiago</a>
-            <a href="/design.html" style="color: var(--text-secondary); text-decoration: none; font-size: 14px; padding: 8px 12px; border: 1px solid var(--light-gray); border-radius: 4px; transition: all 0.3s ease;">Diseño Gráfico Web</a>
-            <a href="/photography.html" style="color: var(--text-secondary); text-decoration: none; font-size: 14px; padding: 8px 12px; border: 1px solid var(--light-gray); border-radius: 4px; transition: all 0.3s ease;">Fotografía Profesional</a>
-            <a href="/bio.html" style="color: var(--text-secondary); text-decoration: none; font-size: 14px; padding: 8px 12px; border: 1px solid var(--light-gray); border-radius: 4px; transition: all 0.3s ease;">Director Audiovisual CV</a>
+    <section class="seo-footer-links" style="background: var(--black); padding: 60px 40px; text-align: center; border-top: 1px solid rgba(255, 255, 255, 0.1);">
+        <h3 style="color: var(--text-primary); margin-bottom: 40px; font-size: 16px; font-weight: 300; letter-spacing: 0.1em; text-transform: uppercase;">Servicios Profesionales en Chile</h3>
+        <nav class="seo-nav" style="display: flex; justify-content: center; flex-wrap: wrap; gap: 30px; margin-bottom: 40px; max-width: 800px; margin-left: auto; margin-right: auto;">
+            <a href="/portfolio.html" style="color: var(--text-secondary); text-decoration: none; font-size: 13px; font-weight: 400; letter-spacing: 0.05em; padding: 0; border: none; transition: all 0.3s ease; position: relative;">Motion Graphics Chile</a>
+            <a href="/portfolio.html" style="color: var(--text-secondary); text-decoration: none; font-size: 13px; font-weight: 400; letter-spacing: 0.05em; padding: 0; border: none; transition: all 0.3s ease; position: relative;">Producción Audiovisual Santiago</a>
+            <a href="/design.html" style="color: var(--text-secondary); text-decoration: none; font-size: 13px; font-weight: 400; letter-spacing: 0.05em; padding: 0; border: none; transition: all 0.3s ease; position: relative;">Diseño Gráfico Web</a>
+            <a href="/photography.html" style="color: var(--text-secondary); text-decoration: none; font-size: 13px; font-weight: 400; letter-spacing: 0.05em; padding: 0; border: none; transition: all 0.3s ease; position: relative;">Fotografía Profesional</a>
+            <a href="/bio.html" style="color: var(--text-secondary); text-decoration: none; font-size: 13px; font-weight: 400; letter-spacing: 0.05em; padding: 0; border: none; transition: all 0.3s ease; position: relative;">Director Audiovisual CV</a>
         </nav>
-        <div style="display: flex; justify-content: center; flex-wrap: wrap; gap: 15px; font-size: 12px; color: var(--text-secondary);">
-            <span>Videos Corporativos Chile</span> • 
-            <span>Documentales</span> • 
-            <span>Postproducción Audiovisual</span> • 
-            <span>Animación Digital</span> • 
-            <span>Storytelling</span> • 
+        <div style="display: flex; justify-content: center; flex-wrap: wrap; gap: 30px; font-size: 11px; color: rgba(255, 255, 255, 0.4); font-weight: 300; letter-spacing: 0.05em; max-width: 600px; margin: 0 auto;">
+            <span>Videos Corporativos Chile</span>
+            <span>Documentales</span>
+            <span>Postproducción Audiovisual</span>
+            <span>Animación Digital</span>
+            <span>Storytelling</span>
             <span>Broadcast Design</span>
         </div>
     </section>

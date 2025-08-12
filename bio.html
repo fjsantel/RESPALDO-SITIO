@@ -38,6 +38,7 @@
             </a>
         </div>
         <div class="header-actions">
+            <button class="nav-btn" data-section="lets-create" style="background: transparent; border: 1px solid #f0b90c; color: #f0b90c; padding: 8px 16px; margin-right: 15px; cursor: pointer; font-size: 0.9rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; transition: all 0.3s ease;">Cotiza tu Proyecto</button>
             <a href="portfolio.html" class="menu-trigger-text" style="text-decoration: none;">VOLVER</a>
             <div class="cv-download-header">
                 <a href="documents/CV2025 AUDIOVISUAL_LINKS.pdf" target="_blank" class="cv-link">
@@ -157,6 +158,25 @@
         // Initialize only CustomCursor for bio page
         document.addEventListener('DOMContentLoaded', () => {
             new CustomCursor();
+            
+            // Handle Cotiza tu Proyecto button navigation
+            const cotizaBtn = document.querySelector('[data-section="lets-create"]');
+            if (cotizaBtn) {
+                cotizaBtn.addEventListener('click', () => {
+                    window.location.href = 'portfolio.html#lets-create';
+                });
+                
+                // Add hover effect
+                cotizaBtn.addEventListener('mouseenter', () => {
+                    cotizaBtn.style.background = '#f0b90c';
+                    cotizaBtn.style.color = '#050505';
+                });
+                
+                cotizaBtn.addEventListener('mouseleave', () => {
+                    cotizaBtn.style.background = 'transparent';
+                    cotizaBtn.style.color = '#f0b90c';
+                });
+            }
         });
     </script>
 </body>

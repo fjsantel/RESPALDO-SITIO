@@ -45,44 +45,139 @@
 
         /* Random display section */
         .random-display-section {
-            height: 100vh;
+            height: auto;
             width: 100vw;
             margin-left: calc(-50vw + 50%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            display: block;
             position: relative;
             overflow: hidden;
-            margin-top: 0;
+            margin: 0;
+            padding: 0;
         }
 
         .random-photo-container {
             width: 100%;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            height: auto;
+            display: block;
             position: relative;
+            margin: 0;
+            padding: 0;
         }
 
         .random-photo {
             width: 100vw;
-            height: 100vh;
+            height: auto;
+            max-height: 100vh;
             object-fit: cover;
-            object-position: center;
+            object-position: center top;
             transition: opacity 0.5s ease-in-out;
+            margin: 0;
+            padding: 0;
+            display: block;
+        }
+        
+        /* Ensure images scale responsively while maintaining aspect ratio */
+        @media (max-width: 768px) {
+            .photography-content {
+                padding: 0;
+                margin: 0;
+            }
+            
+            .random-display-section {
+                margin: 0;
+                padding: 0;
+                height: auto;
+                position: relative;
+                display: block;
+            }
+            
+            .random-photo-container {
+                margin: 0;
+                padding: 0;
+                display: block;
+                line-height: 0;
+            }
+            
+            .random-photo {
+                width: 100vw;
+                height: auto;
+                margin: 0;
+                padding: 0;
+                display: block;
+                vertical-align: top;
+                line-height: 0;
+            }
+            
+            .scroll-indicator {
+                position: absolute;
+                bottom: 10px;
+                left: 50%;
+                transform: translateX(-50%);
+                z-index: 10;
+            }
+            
+            .gallery-section {
+                margin: 0;
+                padding-top: 2rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .photography-content {
+                padding: 0;
+                margin: 0;
+            }
+            
+            .random-display-section {
+                margin: 0;
+                padding: 0;
+                height: auto;
+                position: relative;
+                display: block;
+            }
+            
+            .random-photo-container {
+                margin: 0;
+                padding: 0;
+                display: block;
+                line-height: 0;
+            }
+            
+            .random-photo {
+                width: 100vw;
+                height: auto;
+                margin: 0;
+                padding: 0;
+                display: block;
+                vertical-align: top;
+                line-height: 0;
+            }
+            
+            .scroll-indicator {
+                position: absolute;
+                bottom: 10px;
+                left: 50%;
+                transform: translateX(-50%);
+                z-index: 10;
+            }
+            
+            .gallery-section {
+                margin: 0;
+                padding-top: 2rem;
+            }
         }
 
 
         .scroll-indicator {
             position: absolute;
-            bottom: 2rem;
+            bottom: 0;
             left: 50%;
             transform: translateX(-50%);
             color: #CCCCCC;
             font-size: 0.9rem;
             text-align: center;
             animation: fadeInOut 3s ease-in-out infinite;
+            z-index: 10;
         }
 
         @keyframes fadeInOut {
@@ -352,9 +447,7 @@
                         window.location.href = 'bio.html';
                         break;
                     case 'lets-create':
-                        // Do nothing - only works on main portfolio
-                        document.querySelector('.main-navigation').classList.remove('active');
-                        document.body.classList.remove('menu-open');
+                        window.location.href = 'portfolio.html#lets-create';
                         break;
                 }
             });

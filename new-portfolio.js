@@ -13,6 +13,39 @@ function initializePortfolio() {
     new MotionGraphicsSoundController();
     // Initialize BFA video control
     new BFAVideoController();
+    
+    // Handle URL hash navigation
+    handleHashNavigation();
+}
+
+// Handle URL hash navigation for direct links to sections
+function handleHashNavigation() {
+    const hash = window.location.hash;
+    if (hash === '#lets-create') {
+        // Wait a moment for everything to initialize
+        setTimeout(() => {
+            const chatTitle = document.getElementById('chat-title-main');
+            if (chatTitle) {
+                // Get title's current position
+                const titleRect = chatTitle.getBoundingClientRect();
+                const viewportHeight = window.innerHeight;
+                
+                // Calculate how much we need to scroll to center the title
+                const titleCurrentTop = titleRect.top;
+                const viewportCenter = viewportHeight / 2;
+                const titleHeight = titleRect.height;
+                
+                // Current scroll position + distance to move title to center
+                const currentScroll = window.pageYOffset;
+                const scrollToCenter = currentScroll + titleCurrentTop - viewportCenter + (titleHeight / 2);
+                
+                window.scrollTo({
+                    top: scrollToCenter,
+                    behavior: 'smooth'
+                });
+            }
+        }, 500);
+    }
 }
 
 // Initialize when DOM is ready
