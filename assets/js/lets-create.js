@@ -1,8 +1,13 @@
 // Initialize immediately if DOM is already loaded, otherwise wait for DOMContentLoaded
 // Fixed: Handle case where script loads after DOMContentLoaded event
 function initializeLetsCreate() {
+    console.log('Let\'s Create script initializing...');
     const letsCreateContainer = document.getElementById('letsCreateContainer');
-    if (!letsCreateContainer) return;
+    if (!letsCreateContainer) {
+        console.error('letsCreateContainer not found!');
+        return;
+    }
+    console.log('Let\'s Create container found, initializing...');
 
     // Elementos del DOM
     const chatTitle = document.getElementById('chat-title-main');
@@ -137,9 +142,12 @@ function initializeLetsCreate() {
 }
 
 // Initialize when DOM is ready
+console.log('Let\'s Create script loaded, DOM ready state:', document.readyState);
 if (document.readyState === 'loading') {
+    console.log('Waiting for DOMContentLoaded...');
     document.addEventListener('DOMContentLoaded', initializeLetsCreate);
 } else {
     // DOM is already loaded
+    console.log('DOM already loaded, initializing immediately...');
     initializeLetsCreate();
 }
