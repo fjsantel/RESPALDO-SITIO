@@ -759,23 +759,29 @@
 
     <!-- Defer non-critical JavaScript -->
     <script>
-        function loadScript(src) {
+        function loadScript(src, callback) {
             var script = document.createElement('script');
             script.src = src;
             script.defer = true;
+            if (callback) {
+                script.onload = callback;
+            }
             document.head.appendChild(script);
         }
         
-        // Load scripts after critical content
+        // Load scripts after critical content with proper sequencing
         window.addEventListener('load', function() {
-            setTimeout(function() {
-                loadScript('https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js');
+            // Load GSAP libraries first
+            loadScript('https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js', function() {
                 loadScript('https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js');
                 loadScript('https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/TextPlugin.min.js');
-                loadScript('video-config.js');
+            });
+            
+            // Load video config first, then main scripts
+            loadScript('video-config.js', function() {
                 loadScript('new-portfolio.js');
                 loadScript('assets/js/lets-create.js');
-            }, 100);
+            });
         });
     </script>
     

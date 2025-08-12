@@ -1,6 +1,7 @@
 // FRANCISCO SANTELICES CREATIVE CONTENT - Pharmaceutical + Terminal Interface
 
-document.addEventListener('DOMContentLoaded', () => {
+// Initialize portfolio when DOM is ready
+function initializePortfolio() {
     // Initialize core components
     new NavigationManager();
     new TerminalInterface();
@@ -12,7 +13,15 @@ document.addEventListener('DOMContentLoaded', () => {
     new MotionGraphicsSoundController();
     // Initialize BFA video control
     new BFAVideoController();
-});
+}
+
+// Initialize when DOM is ready
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initializePortfolio);
+} else {
+    // DOM is already loaded
+    initializePortfolio();
+}
 
 class NavigationManager {
     constructor() {

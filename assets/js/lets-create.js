@@ -1,4 +1,5 @@
-document.addEventListener('DOMContentLoaded', () => {
+// Initialize immediately if DOM is already loaded, otherwise wait for DOMContentLoaded
+function initializeLetsCreate() {
     const letsCreateContainer = document.getElementById('letsCreateContainer');
     if (!letsCreateContainer) return;
 
@@ -132,4 +133,12 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     resetConsultation();
-});
+}
+
+// Initialize when DOM is ready
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initializeLetsCreate);
+} else {
+    // DOM is already loaded
+    initializeLetsCreate();
+}
