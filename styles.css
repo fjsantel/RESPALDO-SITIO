@@ -382,8 +382,9 @@ section.photography-grid {
 }
 
 /* Specific margin-top for video section to account for fixed header */
+/* Desktop - Header height calculation: 12px padding + 60px logo + 12px padding + 1px border = 85px */
 section.seccion-video-principal {
-    margin-top: 84px;
+    margin-top: 85px;
 }
 
 /* Seccion Video Principal */
@@ -1464,11 +1465,12 @@ section.seccion-video-principal {
     }
     
     /* Video principal section - sin franjas negras */
+    /* Tablet - Header height: 0.75rem(12px) + 2.8rem(45px) + 0.75rem(12px) + 1px border = 70px */
     section.seccion-video-principal {
         height: 50vh;
         min-height: 20rem;
         margin: 0;
-        margin-top: 60px !important; /* Account for header on tablet - exactly touch header bottom */
+        margin-top: 70px !important;
         padding: 0;
         border: none;
         background-color: var(--black);
@@ -1781,11 +1783,12 @@ section.seccion-video-principal {
     }
     
     /* Video principal section - completamente sin franjas */
+    /* Mobile - Header height: 0.25rem(4px) + 2.2rem(35px) + 0.25rem(4px) + 1px border = 44px */
     section.seccion-video-principal {
         height: 40vh;
         min-height: 18rem;
         margin: 0;
-        margin-top: 50px !important; /* Account for smaller header on mobile - exactly touch header bottom */
+        margin-top: 44px !important;
         padding: 0;
         border: none;
         background-color: var(--black);
