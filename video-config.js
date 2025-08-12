@@ -20,7 +20,7 @@ const VIDEO_CONFIG = [
         videoId: 'L-ejHvF0UJU',
         url: 'https://www.youtube.com/embed/L-ejHvF0UJU?enablejsapi=1&autoplay=1&mute=1&loop=1&playlist=L-ejHvF0UJU&controls=0&modestbranding=1&rel=0&showinfo=0&fs=0&iv_load_policy=3&disablekb=1&start=5',
         title: 'NAYARA ALTO ATACAMA<br><span class="subtitle">Video Corporativo de Lujo | Leading Hotels</span>',
-        description: 'Video corporativo de lujo desarrollado para Nayara Alto Atacama, parte de Leading Hotels of The World. Esta pieza de branded content combina storytelling de marca premium con técnicas cinematográficas avanzadas, capturando la experiencia única del desierto de Atacama. La dirección creativa audiovisual enfatiza la conexión entre el lujo y la naturaleza árida chilena, utilizando postproducción cinematográfica especializada en color grading para realzar los paisajes del norte de Chile.'
+        description: 'Ubicado en el corazón del impresionante desierto de Atacama, el Nayara Alto Atacama Hotel ofrece una experiencia única de lujo y conexión con la naturaleza. Rodeado de paisajes sobrecogedores y un entorno de pura serenidad, este hotel es el destino ideal para los amantes de la aventura y la relajación.'
     },
     {
         // VIDEO 1 - SEGUNDO VIDEO (La Ciudad No Da Más - inicia en segundo 11)
@@ -28,7 +28,7 @@ const VIDEO_CONFIG = [
         videoId: 'qsw5XT3mZXM',
         url: 'https://www.youtube.com/embed/qsw5XT3mZXM?enablejsapi=1&autoplay=1&mute=1&loop=1&playlist=qsw5XT3mZXM&controls=0&modestbranding=1&rel=0&showinfo=0&fs=0&iv_load_policy=3&disablekb=1&start=11',
         title: 'LA CIUDAD NO DA MÁS<br><span class="subtitle">Documental de Impacto Social</span>',
-        description: 'Documental de impacto social que aborda la crisis habitacional chilena, explorando las realidades de miles de familias en búsqueda de soluciones habitacionales. Esta producción audiovisual emplea storytelling de marca social profundo, combinando entrevistas testimoniales con dirección creativa audiovisual sensible. Ejemplo destacado de branded content social, desarrollado con técnicas documentales avanzadas y postproducción cinematográfica ética, desde Santiago hacia toda Chile.'
+        description: 'Este documental aborda algunos elementos de la problemática habitacional y las diversas realidades que viven miles de chilenos en el proceso de encontrar una solución en materia de vivienda.'
     },
     {
         // VIDEO 2 - TERCER VIDEO
@@ -36,7 +36,7 @@ const VIDEO_CONFIG = [
         videoId: 'kMdRuuU7tjk', 
         url: 'https://www.youtube.com/embed/kMdRuuU7tjk?enablejsapi=1&autoplay=1&mute=1&loop=1&playlist=kMdRuuU7tjk&controls=0&modestbranding=1&rel=0&showinfo=0&fs=0&iv_load_policy=3&disablekb=1',
         title: 'CANTA TU SUEÑO<br><span class="subtitle">Video Corporativo Inspiracional | 3xi</span>',
-        description: 'Video corporativo inspiracional para la iniciativa "Canta Tu Sueño" de 3xi, que combina música, sueños y colaboración comunitaria. Esta pieza de branded content emplea storytelling de marca emotivo, integrando dirección creativa audiovisual con técnicas de postproducción cinematográfica especializada. Ejemplo destacado de video marketing social que inspira transformación comunitaria, producido íntegramente en Chile con técnicas avanzadas de marketing visual.'
+        description: 'Un emotivo viaje que une música, sueños y comunidad. "Canta Tu Sueño" es una propuesta de 3xi que inspira a las personas a imaginar un futuro mejor, a través del poder de la colaboración, la esperanza y la creatividad.'
     },
     {
         // VIDEO 3 - CUARTO VIDEO
