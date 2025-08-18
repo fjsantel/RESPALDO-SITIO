@@ -624,5 +624,113 @@
             }
         });
     </script>
+    
+    <!-- CONTACTO SECTION -->
+    <section class="contacto-section" id="contacto" style="width: 100vw; margin: 0; padding: 80px 40px; background: #0D1117; display: block; position: relative;">
+        <div class="contacto-container" style="max-width: 900px; margin: 0 auto; text-align: center; position: relative;">
+            
+            <!-- Título Principal -->
+            <div style="margin-bottom: 60px;">
+                <h2 style="color: #f0b90c; font-size: 36px; font-weight: 300; margin-bottom: 24px; letter-spacing: 0.15em; text-transform: uppercase; line-height: 1.2;">Contacto</h2>
+                <div style="width: 80px; height: 2px; background: #f0b90c; margin: 0 auto 30px; opacity: 0.8;"></div>
+                <p style="color: rgba(255,255,255,0.85); font-size: 18px; font-weight: 300; line-height: 1.6; max-width: 600px; margin: 0 auto;">¿Tienes un proyecto en mente?</p>
+                <p style="color: rgba(255,255,255,0.75); font-size: 16px; font-weight: 300; line-height: 1.6; max-width: 600px; margin: 10px auto 0;">Hablemos y creemos algo increíble juntos.</p>
+            </div>
+            
+            <!-- Información de contacto -->
+            <div class="contact-info" style="display: flex; justify-content: center; gap: 80px; margin-bottom: 0; flex-wrap: wrap;">
+                
+                <!-- Email -->
+                <div class="contact-item" style="text-align: center; flex: 0 1 auto; min-width: 280px;">
+                    <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(240, 185, 12, 0.2); border-radius: 12px; padding: 30px 25px; transition: all 0.3s ease; position: relative;">
+                        <div style="width: 50px; height: 50px; background: rgba(240, 185, 12, 0.1); border-radius: 50%; margin: 0 auto 20px; display: flex; align-items: center; justify-content: center; border: 2px solid rgba(240, 185, 12, 0.3);">
+                            <span style="color: #f0b90c; font-size: 20px; font-weight: 600;">✉</span>
+                        </div>
+                        <h3 style="color: #f0b90c; font-size: 14px; font-weight: 600; margin-bottom: 15px; text-transform: uppercase; letter-spacing: 0.1em;">Email</h3>
+                        <a href="mailto:franciscosantelicesariztia@gmail.com" style="color: rgba(255,255,255,0.9); text-decoration: none; font-size: 16px; font-weight: 400; transition: all 0.3s ease; border-bottom: 1px solid transparent; word-break: break-word; display: inline-block;">franciscosantelicesariztia@gmail.com</a>
+                    </div>
+                </div>
+                
+                <!-- WhatsApp -->
+                <div class="contact-item" style="text-align: center; flex: 0 1 auto; min-width: 280px;">
+                    <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(240, 185, 12, 0.2); border-radius: 12px; padding: 30px 25px; transition: all 0.3s ease; position: relative;">
+                        <div style="width: 50px; height: 50px; background: rgba(37, 211, 102, 0.1); border-radius: 50%; margin: 0 auto 20px; display: flex; align-items: center; justify-content: center; border: 2px solid rgba(37, 211, 102, 0.3);">
+                            <span style="color: #25d366; font-size: 20px; font-weight: 600;">💬</span>
+                        </div>
+                        <h3 style="color: #f0b90c; font-size: 14px; font-weight: 600; margin-bottom: 15px; text-transform: uppercase; letter-spacing: 0.1em;">WhatsApp</h3>
+                        <a href="https://wa.me/56989186523?text=Hola%20Francisco,%20me%20gustaría%20contactarte%20para%20un%20proyecto%20audiovisual." target="_blank" style="color: rgba(255,255,255,0.9); text-decoration: none; font-size: 16px; font-weight: 400; transition: all 0.3s ease; border-bottom: 1px solid transparent;">+56 9 8918 6523</a>
+                    </div>
+                </div>
+                
+            </div>
+            
+        </div>
+    </section>
+    
+    <style>
+    /* === CONTACTO SECTION RESPONSIVE STYLES === */
+    @media (max-width: 900px) {
+        .contacto-section {
+            padding: 60px 30px !important;
+        }
+        
+        .contact-info {
+            gap: 40px !important;
+            margin-bottom: 50px !important;
+        }
+        
+        .contact-item {
+            min-width: 260px !important;
+        }
+    }
+    
+    @media (max-width: 768px) {
+        .contacto-section {
+            padding: 50px 20px !important;
+        }
+        
+        .contact-info {
+            flex-direction: column !important;
+            align-items: center !important;
+            gap: 30px !important;
+            margin-bottom: 40px !important;
+        }
+        
+        .contact-item {
+            min-width: 300px !important;
+            max-width: 350px !important;
+        }
+        
+        .contacto-container h2 {
+            font-size: 28px !important;
+        }
+    }
+    
+    @media (max-width: 480px) {
+        .contacto-section {
+            padding: 40px 15px !important;
+        }
+        
+        .contact-info {
+            margin-bottom: 35px !important;
+        }
+        
+        .contact-item {
+            min-width: 280px !important;
+        }
+        
+        .contacto-container h2 {
+            font-size: 24px !important;
+        }
+        
+        .contacto-container p {
+            font-size: 16px !important;
+        }
+        
+        .contact-item a {
+            font-size: 15px !important;
+        }
+    }
+    </style>
 </body>
 </html>

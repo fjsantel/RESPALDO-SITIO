@@ -178,6 +178,31 @@ class NavigationManager {
             return;
         }
 
+        // Handle Contacto section - scroll to contacto section
+        if (clickedBtn.dataset.section === 'contacto') {
+            this.navBtns.forEach(btn => btn.classList.remove('active'));
+            clickedBtn.classList.add('active');
+            this.isOpen = false;
+            this.toggleMenu(false);
+            
+            // Wait for menu to close then scroll to contacto
+            setTimeout(() => {
+                const contactoSection = document.getElementById('contacto');
+                if (contactoSection) {
+                    // Make sure the section is visible
+                    contactoSection.style.display = 'block';
+                    
+                    // Scroll to the section
+                    contactoSection.scrollIntoView({ 
+                        behavior: 'smooth', 
+                        block: 'start' 
+                    });
+                }
+            }, 300);
+            
+            return;
+        }
+
         // Do not run scroll logic for regular links
         if (!clickedBtn.dataset.section) return;
 
