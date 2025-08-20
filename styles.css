@@ -296,12 +296,14 @@ body.cursor-hover #custom-cursor {
     .footer-content {
         width: 100vw;
         display: flex;
-        justify-content: flex-end;
+        justify-content: center;
     }
     
     .footer-credit {
-        gap: 1px;
-        padding: 0 20px 0 0;
+        gap: 3px;
+        padding: 0;
+        text-align: center;
+        align-items: center;
     }
     
     .credit-label {
@@ -329,11 +331,13 @@ body.cursor-hover #custom-cursor {
     .footer-content {
         width: 100vw;
         display: flex;
-        justify-content: flex-end;
+        justify-content: center;
     }
     
     .footer-credit {
-        padding: 0 15px 0 0;
+        padding: 0;
+        text-align: center;
+        align-items: center;
     }
     
     .credit-label {
