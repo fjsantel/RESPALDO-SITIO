@@ -34,9 +34,11 @@
 
 html {
     scroll-behavior: smooth;
+    overflow-x: hidden;
 }
 
 body {
+    overflow-x: hidden;
     font-family: var(--font-primary);
     background-color: var(--black);
     color: var(--text-primary);
