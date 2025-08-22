@@ -1,0 +1,974 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Servicios - FRANCISCO SANTELICES CREATIVE CONTENT</title>
+    <meta name="description" content="Servicios de producción audiovisual cinematográfica, motion graphics, desarrollo web y contenido estratégico. Dirección creativa profesional con estándares broadcast.">
+    <meta name="keywords" content="servicios audiovisuales, producción cinematográfica, motion graphics, desarrollo web, contenido estratégico, dirección creativa, francisco santelices">
+    
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.franciscosantelices.cl/servicios.html">
+    <meta property="og:title" content="Servicios - FRANCISCO SANTELICES CREATIVE CONTENT">
+    <meta property="og:description" content="Producción audiovisual cinematográfica, motion graphics avanzada, desarrollo web y contenido estratégico con estándares broadcast profesionales.">
+    <meta property="og:image" content="https://www.franciscosantelices.cl/assets/logo.png">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:title" content="Servicios - FRANCISCO SANTELICES CREATIVE CONTENT">
+    <meta property="twitter:description" content="Producción audiovisual cinematográfica, motion graphics avanzada, desarrollo web y contenido estratégico con estándares broadcast profesionales.">
+    <meta property="twitter:image" content="https://www.franciscosantelices.cl/assets/logo.png">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/logo.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/logo-tiny.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/logo.png">
+    <link rel="manifest" href="site.webmanifest">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <style>
+        /* Reset and base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            cursor: none !important;
+        }
+        
+        :root {
+            --black: #0D1117;
+            --dark-gray: #161B22;
+            --light-gray: #30363D;
+            --text-primary: #FFFFFF;
+            --text-secondary: #8B949E;
+            --accent-yellow: #f0b90c;
+            --font-primary: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            --font-mono: 'Roboto Mono', monospace;
+        }
+        
+        body {
+            font-family: var(--font-primary);
+            background: var(--black);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        /* Header Navigation */
+        .main-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1100;
+            background: rgba(13, 17, 23, 0.85);
+            backdrop-filter: blur(12px);
+            padding: 12px 40px;
+            border-bottom: 1px solid var(--light-gray);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logo-image {
+            height: 60px;
+            width: auto;
+        }
+        
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.2;
+        }
+        
+        .logo-main {
+            font-size: 14px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            color: var(--text-primary);
+            text-transform: uppercase;
+        }
+        
+        .logo-sub {
+            font-size: 10px;
+            font-weight: 400;
+            letter-spacing: 1px;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+        }
+        
+        #menu-trigger {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 12px;
+            border-radius: 4px;
+            transition: background-color 0.2s ease;
+            cursor: pointer;
+        }
+        
+        .menu-trigger-text {
+            font-family: var(--font-mono);
+            font-size: 12px;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+        }
+        
+        .menu-trigger-cursor {
+            width: 10px;
+            height: 10px;
+            background-color: var(--text-primary);
+            animation: blink 1s step-end infinite;
+        }
+        
+        @keyframes blink { 50% { opacity: 0; } }
+        
+        .main-navigation {
+            position: fixed;
+            top: 85px;
+            right: 40px;
+            background-color: var(--dark-gray);
+            border: 1px solid var(--light-gray);
+            flex-direction: column;
+            align-items: flex-start;
+            padding: 10px;
+            border-radius: 5px;
+            z-index: 1200;
+            display: none;
+            transform: scale(0.9) translateY(-10px);
+            opacity: 0;
+            transition: all 0.2s ease;
+            pointer-events: none;
+        }
+        
+        .main-navigation.active {
+            display: flex;
+            transform: scale(1) translateY(0);
+            opacity: 1;
+            pointer-events: all;
+        }
+        
+        .nav-btn {
+            background: transparent;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 1rem;
+            font-weight: 300;
+            padding: 1rem;
+            letter-spacing: 0.05em;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-decoration: none;
+            display: block;
+            width: 100%;
+            text-align: left;
+            text-transform: uppercase;
+        }
+        
+        .nav-btn:hover {
+            color: var(--text-primary);
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 3px;
+        }
+        
+        .nav-btn.active {
+            color: var(--accent-yellow);
+            background: rgba(240, 185, 12, 0.1);
+            border-radius: 3px;
+        }
+        
+        /* Main Content */
+        .services-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 120px 40px 80px;
+        }
+        
+        .services-header {
+            text-align: center;
+            margin-bottom: 100px;
+        }
+        
+        .services-title {
+            font-size: 3.5rem;
+            font-weight: 100;
+            letter-spacing: 0.15em;
+            margin-bottom: 30px;
+            background: linear-gradient(135deg, #fff 0%, #ccc 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .services-subtitle {
+            font-size: 1.3rem;
+            color: rgba(255, 255, 255, 0.7);
+            font-weight: 300;
+            letter-spacing: 0.05em;
+            max-width: 900px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+        
+        /* Service Categories */
+        .service-category {
+            margin-bottom: 120px;
+            padding: 80px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        
+        .service-category:last-child {
+            border-bottom: none;
+        }
+        
+        .category-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 60px;
+            gap: 20px;
+        }
+        
+        .category-icon {
+            font-size: 2.5rem;
+            background: linear-gradient(135deg, var(--accent-yellow), #ffcc00);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .category-title {
+            font-size: 2.2rem;
+            font-weight: 300;
+            letter-spacing: 0.1em;
+            color: var(--text-primary);
+        }
+        
+        .category-description {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.7);
+            max-width: 800px;
+            margin-bottom: 60px;
+            font-weight: 300;
+            line-height: 1.8;
+        }
+        
+        /* Service Grid */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 40px;
+            margin-bottom: 80px;
+        }
+        
+        .service-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            padding: 40px;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, transparent 0%, var(--accent-yellow) 50%, transparent 100%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(255, 255, 255, 0.15);
+            background: rgba(255, 255, 255, 0.04);
+        }
+        
+        .service-card:hover::before {
+            opacity: 1;
+        }
+        
+        .service-name {
+            font-size: 1.4rem;
+            font-weight: 500;
+            color: var(--text-primary);
+            margin-bottom: 20px;
+            letter-spacing: 0.02em;
+        }
+        
+        .service-description {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            font-weight: 300;
+            margin-bottom: 25px;
+        }
+        
+        .service-features {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .service-features li {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+            margin-bottom: 8px;
+            padding-left: 20px;
+            position: relative;
+        }
+        
+        .service-features li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--accent-yellow);
+            font-weight: 600;
+        }
+        
+        /* Specialization Section */
+        .specialization-section {
+            background: rgba(255, 255, 255, 0.02);
+            padding: 80px 60px;
+            margin: 100px 0;
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        
+        .specialization-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+        
+        .specialization-item {
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+        }
+        
+        .specialization-title {
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: var(--accent-yellow);
+            margin-bottom: 15px;
+        }
+        
+        .specialization-items {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .specialization-items li {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+            margin-bottom: 8px;
+            padding-left: 15px;
+            position: relative;
+        }
+        
+        .specialization-items li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: var(--accent-yellow);
+        }
+        
+        /* Process Section */
+        .process-section {
+            margin: 100px 0;
+        }
+        
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 60px;
+        }
+        
+        .process-step {
+            text-align: center;
+            padding: 30px 20px;
+        }
+        
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--accent-yellow), #ffcc00);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--black);
+        }
+        
+        .step-title {
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: var(--text-primary);
+            margin-bottom: 15px;
+        }
+        
+        .step-description {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+        
+        /* CTA Section */
+        .cta-section {
+            text-align: center;
+            padding: 100px 40px;
+            background: linear-gradient(135deg, #111 0%, #000 100%);
+            margin-top: 120px;
+            border-radius: 16px;
+        }
+        
+        .cta-section h2 {
+            font-size: 2.5rem;
+            font-weight: 200;
+            margin-bottom: 20px;
+            letter-spacing: 0.05em;
+        }
+        
+        .cta-section p {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 50px;
+            font-weight: 300;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            padding: 18px 50px;
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: #fff;
+            text-decoration: none;
+            font-size: 0.95rem;
+            letter-spacing: 0.15em;
+            font-weight: 300;
+            transition: all 0.4s ease;
+            border-radius: 4px;
+        }
+        
+        .cta-button:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(255, 255, 255, 0.5);
+            transform: translateY(-2px);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .main-header { padding: 10px 20px; }
+            .logo-image { height: 40px; }
+            .logo-main { font-size: 12px; }
+            .logo-sub { font-size: 8px; }
+            .main-navigation { top: 4.7rem; right: 1.25rem; }
+            
+            .services-container { padding: 80px 20px 60px; }
+            .services-title { font-size: 2.5rem; }
+            .services-subtitle { font-size: 1.1rem; }
+            .category-title { font-size: 1.8rem; }
+            .services-grid { grid-template-columns: 1fr; gap: 30px; }
+            .specialization-section { padding: 50px 30px; margin: 60px 0; }
+            .specialization-grid { grid-template-columns: 1fr; }
+            .process-steps { grid-template-columns: 1fr; }
+        }
+        
+        @media (max-width: 480px) {
+            .main-header { padding: 8px 15px; }
+            .logo-image { height: 35px; }
+            .logo-main { font-size: 10px; }
+            .logo-sub { font-size: 7px; }
+            .main-navigation { top: 3.75rem; right: 1rem; }
+            
+            .services-container { padding: 70px 15px 50px; }
+            .services-title { font-size: 2rem; }
+            .services-subtitle { font-size: 1rem; }
+            .category-header { flex-direction: column; align-items: flex-start; gap: 10px; }
+            .category-icon { font-size: 2rem; }
+            .category-title { font-size: 1.5rem; }
+            .service-card { padding: 30px 25px; }
+        }
+    </style>
+</head>
+<body>
+    <div id="custom-cursor"></div>
+    
+    <!-- Navigation Header -->
+    <header class="main-header">
+        <div class="logo-container">
+            <img src="assets/logo-tiny.png" alt="Francisco Santelices Logo" class="logo-image" loading="eager" decoding="async" onload="this.src='assets/logo.png'">
+            <div class="logo-text">
+                <span class="logo-main">FRANCISCO SANTELICES ARIZTÍA</span>
+                <span class="logo-sub">CREATIVE CONTENT</span>
+            </div>
+        </div>
+        <div id="menu-trigger">
+            <span class="menu-trigger-text">CLICK TO MENU</span>
+            <span class="menu-trigger-cursor"></span>
+        </div>
+    </header>
+
+    <nav class="main-navigation">
+        <button class="nav-btn" data-section="lets-create">Cotiza tu Proyecto</button>
+        <button class="nav-btn" data-section="audiovisual">Audiovisual</button>
+        <button class="nav-btn" data-section="design">Diseño</button>
+        <button class="nav-btn" data-section="photography">Photography</button>
+        <button class="nav-btn" data-section="bio">Bio</button>
+        <a href="/portafolio-profesional.html" class="nav-btn">Competencias</a>
+        <a href="/servicios.html" class="nav-btn active">Servicios</a>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="services-container">
+        
+        <!-- Header -->
+        <div class="services-header">
+            <h1 class="services-title">SERVICIOS PROFESIONALES</h1>
+            <p class="services-subtitle">
+                Producción audiovisual cinematográfica, motion graphics avanzada y contenido estratégico con estándares broadcast. Dirección creativa que eleva la percepción de marca a través de la excelencia estética y narrativa profesional.
+            </p>
+        </div>
+
+        <!-- Dirección y Producción Audiovisual -->
+        <section class="service-category">
+            <div class="category-header">
+                <span class="category-icon">🎬</span>
+                <h2 class="category-title">DIRECCIÓN Y PRODUCCIÓN AUDIOVISUAL CINEMATOGRÁFICA</h2>
+            </div>
+            
+            <p class="category-description">
+                Dirección Creativa y Narrativa Visual. Desarrollo de conceptos audiovisuales únicos que elevan la percepción de marca través de la excelencia estética y narrativa profesional.
+            </p>
+            
+            <div class="services-grid">
+                <div class="service-card">
+                    <h3 class="service-name">Dirección Creativa y Narrativa Visual</h3>
+                    <p class="service-description">
+                        Desarrollo de conceptos audiovisuales únicos que elevan la percepción de marca través de la excelencia estética y narrativa profesional.
+                    </p>
+                    <ul class="service-features">
+                        <li>Dirección de Videos Comerciales con calidad cinematográfica</li>
+                        <li>Storytelling Visual Corporativo que conecta emocionalmente</li>
+                        <li>Dirección de Arte Audiovisual integral</li>
+                        <li>Narrativa Transmedia coherente multiplataforma</li>
+                    </ul>
+                </div>
+                
+                <div class="service-card">
+                    <h3 class="service-name">Producción Cinematográfica Profesional</h3>
+                    <p class="service-description">
+                        Realización técnica de proyectos audiovisuales con estándares broadcast y calidad de cine comercial.
+                    </p>
+                    <ul class="service-features">
+                        <li>Videos Corporativos Premium con valor cinematográfico</li>
+                        <li>Documentales Comerciales y casos de éxito</li>
+                        <li>Contenido para Plataformas Premium y streaming</li>
+                        <li>Campañas Multiplataforma con producción integral</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Motion Graphics y Postproducción -->
+        <section class="service-category">
+            <div class="category-header">
+                <span class="category-icon">⚡</span>
+                <h2 class="category-title">MOTION GRAPHICS Y POSTPRODUCCIÓN AVANZADA</h2>
+            </div>
+            
+            <p class="category-description">
+                Motion Graphics Cinematográficos. Animación gráfica profesional que combina diseño visual sofisticado con movimiento fluido y orgánico.
+            </p>
+            
+            <div class="services-grid">
+                <div class="service-card">
+                    <h3 class="service-name">Motion Graphics Cinematográficos</h3>
+                    <p class="service-description">
+                        Animación gráfica profesional que combina diseño visual sofisticado con movimiento fluido y orgánico.
+                    </p>
+                    <ul class="service-features">
+                        <li>Identidad Visual Dinámica con coherencia estética</li>
+                        <li>Motion Graphics Narrativos visualmente elegantes</li>
+                        <li>Composición Digital Avanzada 2D/3D</li>
+                        <li>Tipografía Cinética Premium como arte visual</li>
+                    </ul>
+                </div>
+                
+                <div class="service-card">
+                    <h3 class="service-name">Postproducción y Color Grading Profesional</h3>
+                    <p class="service-description">
+                        Workflow de postproducción cinematográfica usando software industry-standard para resultados broadcast.
+                    </p>
+                    <ul class="service-features">
+                        <li>Color Grading Cinematográfico profesional</li>
+                        <li>Composición y VFX integrados</li>
+                        <li>Audio Post-Producción completa</li>
+                        <li>Finishing Técnico multiplataforma</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Desarrollo de Contenido Estratégico -->
+        <section class="service-category">
+            <div class="category-header">
+                <span class="category-icon">🎯</span>
+                <h2 class="category-title">DESARROLLO DE CONTENIDO ESTRATÉGICO</h2>
+            </div>
+            
+            <p class="category-description">
+                Contenido Inductivo Multiplataforma. Creación de narrativas audiovisuales diseñadas estratégicamente para generar engagement y conversión medible.
+            </p>
+            
+            <div class="services-grid">
+                <div class="service-card">
+                    <h3 class="service-name">Contenido Inductivo Multiplataforma</h3>
+                    <p class="service-description">
+                        Creación de narrativas audiovisuales diseñadas estratégicamente para generar engagement y conversión medible.
+                    </p>
+                    <ul class="service-features">
+                        <li>Videos Explicativos Cinematográficos educativos</li>
+                        <li>Storytelling Comercial Avanzado estratégico</li>
+                        <li>Contenido Serial para Marcas a largo plazo</li>
+                        <li>Campañas de Contenido Integradas coherentes</li>
+                    </ul>
+                </div>
+                
+                <div class="service-card">
+                    <h3 class="service-name">Dirección Creativa Digital</h3>
+                    <p class="service-description">
+                        Concepto y dirección de experiencias digitales que mantienen calidad cinematográfica en formatos interactivos.
+                    </p>
+                    <ul class="service-features">
+                        <li>Experiencias Web Audiovisuales elegantes</li>
+                        <li>Contenido para Redes Sociales Premium</li>
+                        <li>Portfolios Digitales Cinematográficos</li>
+                        <li>Branded Content Interactivo estratégico</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contenido Educativo y Corporativo -->
+        <section class="service-category">
+            <div class="category-header">
+                <span class="category-icon">📚</span>
+                <h2 class="category-title">CONTENIDO EDUCATIVO Y CORPORATIVO DE ALTA GAMA</h2>
+            </div>
+            
+            <p class="category-description">
+                e-Learning Cinematográfico. Transformación del contenido educativo tradicional en experiencias de aprendizaje visualmente atractivas.
+            </p>
+            
+            <div class="services-grid">
+                <div class="service-card">
+                    <h3 class="service-name">e-Learning Cinematográfico</h3>
+                    <p class="service-description">
+                        Transformación del contenido educativo tradicional en experiencias de aprendizaje visualmente atractivas.
+                    </p>
+                    <ul class="service-features">
+                        <li>Cursos Corporativos Premium cinematográficos</li>
+                        <li>Videos Tutoriales Profesionales de expertise</li>
+                        <li>Documentales Educativos para conocimiento complejo</li>
+                        <li>Presentaciones Ejecutivas Audiovisuales impactantes</li>
+                    </ul>
+                </div>
+                
+                <div class="service-card">
+                    <h3 class="service-name">Comunicación Interna Cinematográfica</h3>
+                    <p class="service-description">
+                        Contenido interno que refuerza cultura corporativa y engagement de equipos.
+                    </p>
+                    <ul class="service-features">
+                        <li>Videos de Onboarding Cinematográficos inspiradores</li>
+                        <li>Documentación de Procesos Visual profesional</li>
+                        <li>Comunicados Ejecutivos de alta calidad</li>
+                        <li>Eventos Corporativos con estándares broadcast</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tecnología al Servicio de la Creatividad -->
+        <section class="service-category">
+            <div class="category-header">
+                <span class="category-icon">🚀</span>
+                <h2 class="category-title">TECNOLOGÍA AL SERVICIO DE LA CREATIVIDAD</h2>
+            </div>
+            
+            <p class="category-description">
+                Optimización Inteligente de Workflows. Integración transparente de herramientas avanzadas que potencian la creatividad sin comprometer la calidad.
+            </p>
+            
+            <div class="services-grid">
+                <div class="service-card">
+                    <h3 class="service-name">Optimización Inteligente de Workflows</h3>
+                    <p class="service-description">
+                        Integración transparente de herramientas avanzadas que potencian la creatividad sin comprometer la calidad.
+                    </p>
+                    <ul class="service-features">
+                        <li>Automatización de Procesos Técnicos con IA</li>
+                        <li>Generación de Assets Complementarios</li>
+                        <li>Optimización de Entrega automática</li>
+                        <li>Analytics de Performance para decisiones creativas</li>
+                    </ul>
+                </div>
+                
+                <div class="service-card">
+                    <h3 class="service-name">Desarrollo Web Cinematográfico</h3>
+                    <p class="service-description">
+                        Sitios web que integran la sensibilidad visual cinematográfica con funcionalidad técnica avanzada.
+                    </p>
+                    <ul class="service-features">
+                        <li>Experiencias Web Inmersivas cinematográficas</li>
+                        <li>Portfolios Audiovisuales Dinámicos sofisticados</li>
+                        <li>Landing Pages Cinematográficas optimizadas</li>
+                        <li>Micrositios de Campaña narrativos</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sectores de Especialización -->
+        <section class="specialization-section">
+            <h2 class="services-title" style="font-size: 2.5rem; margin-bottom: 30px;">SECTORES DE ESPECIALIZACIÓN</h2>
+            <p class="services-subtitle" style="margin-bottom: 0;">
+                Experiencia especializada en sectores que valoran la excelencia visual y narrativa profesional.
+            </p>
+            
+            <div class="specialization-grid">
+                <div class="specialization-item">
+                    <h3 class="specialization-title">Marcas de Lujo y Premium</h3>
+                    <ul class="specialization-items">
+                        <li>Contenido que refleja exclusividad y sofisticación</li>
+                        <li>Producciones que elevan la percepción de marca</li>
+                        <li>Storytelling para audiencias de alto valor</li>
+                    </ul>
+                </div>
+                
+                <div class="specialization-item">
+                    <h3 class="specialization-title">Tecnología y Startups Innovadoras</h3>
+                    <ul class="specialization-items">
+                        <li>Videos que hacen tangible lo intangible</li>
+                        <li>Narrativas que humanizan marcas digitales</li>
+                        <li>Comunicación de innovación sin tecnicismos</li>
+                    </ul>
+                </div>
+                
+                <div class="specialization-item">
+                    <h3 class="specialization-title">Instituciones y Organizaciones</h3>
+                    <ul class="specialization-items">
+                        <li>Documentales corporativos de impacto</li>
+                        <li>Contenido que inspira confianza y credibilidad</li>
+                        <li>Comunicación visual trascendente</li>
+                    </ul>
+                </div>
+                
+                <div class="specialization-item">
+                    <h3 class="specialization-title">Agencias Creativas y Estudios</h3>
+                    <ul class="specialization-items">
+                        <li>Producción audiovisual para campañas</li>
+                        <li>Servicios de dirección creativa especializada</li>
+                        <li>Post-producción avanzada de excelencia</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Proceso Creativo -->
+        <section class="process-section">
+            <h2 class="services-title" style="font-size: 2.5rem; margin-bottom: 30px; text-align: center;">PROCESO CREATIVO PROFESIONAL</h2>
+            <p class="services-subtitle" style="margin-bottom: 0; text-align: center;">
+                Metodología estructurada que garantiza resultados excepcionales en cada proyecto.
+            </p>
+            
+            <div class="process-steps">
+                <div class="process-step">
+                    <div class="step-number">1</div>
+                    <h3 class="step-title">Consulta Estratégica y Brief Creativo</h3>
+                    <p class="step-description">Análisis profundo de objetivos, audiencia y oportunidades narrativas</p>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-number">2</div>
+                    <h3 class="step-title">Desarrollo Conceptual y Dirección de Arte</h3>
+                    <p class="step-description">Creación de mood boards, referencias visuales y concepto estético integral</p>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-number">3</div>
+                    <h3 class="step-title">Pre-Producción Cinematográfica</h3>
+                    <p class="step-description">Storyboarding, planificación técnica y preparación de producción profesional</p>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-number">4</div>
+                    <h3 class="step-title">Producción con Estándares Broadcast</h3>
+                    <p class="step-description">Dirección, cinematografía y captura con calidad técnica superior</p>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-number">5</div>
+                    <h3 class="step-title">Post-Producción y Finishing</h3>
+                    <p class="step-description">Edición, color grading, motion graphics y audio con workflow cinematográfico</p>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-number">6</div>
+                    <h3 class="step-title">Entrega Optimizada y Seguimiento</h3>
+                    <p class="step-description">Formatos técnicos precisos y análisis de performance para optimización futura</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="cta-section">
+            <h2>Experiencia Cinematográfica al Servicio de tu Marca</h2>
+            <p>La combinación de visión cinematográfica, dominio técnico profesional y comprensión estratégica del contenido crea piezas audiovisuales que elevan la percepción de marca y generan impacto medible.</p>
+            <a href="#contacto" class="cta-button">SOLICITAR COTIZACIÓN</a>
+        </section>
+    </div>
+
+    <!-- Footer / Contact Section -->
+    <section class="contacto-section" id="contacto" style="width: 100vw; margin: 0; padding: 80px 40px; background: #0D1117; display: block; position: relative;">
+        <div class="contacto-container" style="max-width: 900px; margin: 0 auto; text-align: center; position: relative;">
+            
+            <!-- Título Principal -->
+            <div style="margin-bottom: 60px;">
+                <h2 style="color: #f0b90c; font-size: 36px; font-weight: 300; margin-bottom: 24px; letter-spacing: 0.15em; text-transform: uppercase; line-height: 1.2;">Contacto</h2>
+                <div style="width: 80px; height: 2px; background: #f0b90c; margin: 0 auto 30px; opacity: 0.8;"></div>
+                <p style="color: rgba(255,255,255,0.85); font-size: 18px; font-weight: 300; line-height: 1.6; max-width: 600px; margin: 0 auto;">¿Tienes un proyecto en mente?</p>
+                <p style="color: rgba(255,255,255,0.75); font-size: 16px; font-weight: 300; line-height: 1.6; max-width: 600px; margin: 10px auto 0;">Hablemos y creemos algo increíble juntos.</p>
+            </div>
+            
+            <!-- Información de contacto -->
+            <div class="contact-info" style="display: flex; justify-content: center; gap: 80px; margin-bottom: 0; flex-wrap: wrap;">
+                
+                <!-- Email -->
+                <div class="contact-item" style="text-align: center; flex: 0 1 auto; min-width: 280px;">
+                    <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(240, 185, 12, 0.2); border-radius: 12px; padding: 30px 25px; transition: all 0.3s ease; position: relative;">
+                        <div style="width: 50px; height: 50px; background: rgba(240, 185, 12, 0.1); border-radius: 50%; margin: 0 auto 20px; display: flex; align-items: center; justify-content: center; border: 2px solid rgba(240, 185, 12, 0.3);">
+                            <span style="color: #f0b90c; font-size: 20px; font-weight: 600;">✉</span>
+                        </div>
+                        <h3 style="color: #f0b90c; font-size: 14px; font-weight: 600; margin-bottom: 15px; text-transform: uppercase; letter-spacing: 0.1em;">Email</h3>
+                        <a href="mailto:franciscosantelicesariztia@gmail.com" style="color: rgba(255,255,255,0.9); text-decoration: none; font-size: 16px; font-weight: 400; transition: all 0.3s ease; border-bottom: 1px solid transparent; word-break: break-word; display: inline-block;">franciscosantelicesariztia@gmail.com</a>
+                    </div>
+                </div>
+                
+                <!-- WhatsApp -->
+                <div class="contact-item" style="text-align: center; flex: 0 1 auto; min-width: 280px;">
+                    <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(240, 185, 12, 0.2); border-radius: 12px; padding: 30px 25px; transition: all 0.3s ease; position: relative;">
+                        <div style="width: 50px; height: 50px; background: rgba(37, 211, 102, 0.1); border-radius: 50%; margin: 0 auto 20px; display: flex; align-items: center; justify-content: center; border: 2px solid rgba(37, 211, 102, 0.3);">
+                            <span style="color: #25d366; font-size: 20px; font-weight: 600;">💬</span>
+                        </div>
+                        <h3 style="color: #f0b90c; font-size: 14px; font-weight: 600; margin-bottom: 15px; text-transform: uppercase; letter-spacing: 0.1em;">WhatsApp</h3>
+                        <a href="https://wa.me/56989186523?text=Hola%20Francisco,%20me%20gustaría%20contactarte%20para%20un%20proyecto%20audiovisual." target="_blank" style="color: rgba(255,255,255,0.9); text-decoration: none; font-size: 16px; font-weight: 400; transition: all 0.3s ease; border-bottom: 1px solid transparent;">+56 9 8918 6523</a>
+                    </div>
+                </div>
+                
+            </div>
+            
+        </div>
+    </section>
+
+    <!-- JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="new-portfolio.js"></script>
+    <script>
+        // Initialize services page
+        document.addEventListener('DOMContentLoaded', () => {
+            // Initialize custom cursor
+            new CustomCursor();
+            
+            // Initialize NavigationManager
+            new NavigationManager();
+        });
+    </script>
+    
+    <style>
+    /* Responsive Contact Section */
+    @media (max-width: 900px) {
+        .contacto-section {
+            padding: 60px 30px !important;
+        }
+        
+        .contact-info {
+            gap: 40px !important;
+            margin-bottom: 50px !important;
+        }
+        
+        .contact-item {
+            min-width: 260px !important;
+        }
+    }
+    
+    @media (max-width: 768px) {
+        .contacto-section {
+            padding: 50px 20px !important;
+        }
+        
+        .contact-info {
+            flex-direction: column !important;
+            align-items: center !important;
+            gap: 30px !important;
+            margin-bottom: 40px !important;
+        }
+        
+        .contact-item {
+            min-width: 300px !important;
+            max-width: 350px !important;
+        }
+        
+        .contacto-container h2 {
+            font-size: 28px !important;
+        }
+    }
+    
+    @media (max-width: 480px) {
+        .contacto-section {
+            padding: 40px 15px !important;
+        }
+        
+        .contact-info {
+            margin-bottom: 35px !important;
+        }
+        
+        .contact-item {
+            min-width: 280px !important;
+        }
+        
+        .contacto-container h2 {
+            font-size: 24px !important;
+        }
+        
+        .contacto-container p {
+            font-size: 16px !important;
+        }
+        
+        .contact-item a {
+            font-size: 15px !important;
+        }
+    }
+    </style>
+</body>
+</html>
