@@ -76,21 +76,6 @@
             line-height: 1.2;
         }
         
-        .logo-main {
-            font-size: 14px;
-            font-weight: 700;
-            letter-spacing: 1.5px;
-            color: var(--text-primary);
-            text-transform: uppercase;
-        }
-        
-        .logo-sub {
-            font-size: 10px;
-            font-weight: 400;
-            letter-spacing: 1px;
-            color: var(--text-secondary);
-            text-transform: uppercase;
-        }
         
         #menu-trigger {
             display: flex;
@@ -174,8 +159,6 @@
         @media (max-width: 768px) {
             .main-header { padding: 10px 20px; }
             .logo-image { height: 40px; }
-            .logo-main { font-size: 12px; }
-            .logo-sub { font-size: 8px; }
             .main-navigation {
                 top: 4.7rem;
                 right: 1.25rem;
@@ -192,8 +175,6 @@
         @media (max-width: 480px) {
             .main-header { padding: 8px 15px; }
             .logo-image { height: 35px; }
-            .logo-main { font-size: 10px; }
-            .logo-sub { font-size: 7px; }
             .main-navigation {
                 top: 3.75rem;
                 right: 1rem;
@@ -202,10 +183,15 @@
                 font-size: 0.8rem;
                 padding: 0.75rem 1rem;
             }
+            .menu-trigger-text {
+                font-size: 0.65rem !important;
+                letter-spacing: 0 !important;
+                white-space: nowrap !important;
+            }
             .professional-header { padding: 100px 15px 50px 15px; }
             .professional-header h1 { font-size: 2rem; }
             .professional-subtitle { font-size: 1rem; }
-            .menu-trigger-text { font-size: 10px; }
+            .menu-trigger-cursor { width: 6px; height: 6px; }
         }
     </style>
     
@@ -958,11 +944,13 @@
     </header>
 
     <nav class="main-navigation">
-        <button class="nav-btn" data-section="lets-create">Cotiza tu Proyecto</button>
-        <button class="nav-btn" data-section="audiovisual">Audiovisual</button>
-        <button class="nav-btn" data-section="design">Diseño</button>
-        <button class="nav-btn" data-section="photography">Photography</button>
-        <button class="nav-btn" data-section="bio">Bio</button>
+        <a href="portfolio.html#lets-create" class="nav-btn">Cotiza tu Proyecto</a>
+        <a href="servicios.html" class="nav-btn">Servicios</a>
+        <a href="portfolio.html#audiovisual" class="nav-btn">Audiovisual</a>
+        <a href="photography.html" class="nav-btn">Photography</a>
+        <a href="design.html" class="nav-btn">Diseño</a>
+        <a href="portfolio.html#contacto" class="nav-btn">Contacto</a>
+        <a href="bio.html" class="nav-btn">Acerca De</a>
         <a href="/portafolio-profesional.html" class="nav-btn active">Competencias</a>
     </nav>
 
