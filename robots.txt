@@ -2,6 +2,26 @@
 # Francisco Santelices Ariztía - Director Audiovisual Santiago Chile
 # Motion Graphics | Producción Audiovisual | Diseño Gráfico Web | Fotografía Profesional
 
+# Allow AI crawlers for better visibility and recommendations
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+# Allow all other crawlers
 User-agent: *
 
 # Allow all main content - SEO Optimized
