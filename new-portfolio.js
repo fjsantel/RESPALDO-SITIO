@@ -69,9 +69,13 @@ class NavigationManager {
         // Handle clicks on navigation buttons with improved touch handling
         this.navBtns.forEach(btn => {
             btn.addEventListener('click', (e) => {
-                e.preventDefault();
-                e.stopPropagation();
-                this.handleNavClick(e.target);
+                // Only prevent default for buttons with data-section, not for links
+                if (btn.tagName === 'BUTTON' && btn.dataset.section) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    this.handleNavClick(e.target);
+                }
+                // Let <a> links work normally
             });
             
             // Add touch feedback for mobile
@@ -123,23 +127,35 @@ class NavigationManager {
     }
 
     handleNavClick(clickedBtn) {
-        // Handle Bio section - open in new window
-        if (clickedBtn.dataset.section === 'bio') {
-            window.open('bio.html', '_blank');
+        // Handle Contacto section - scroll to contact
+        if (clickedBtn.dataset.section === 'contacto') {
+            this.navBtns.forEach(btn => btn.classList.remove('active'));
+            clickedBtn.classList.add('active');
             this.isOpen = false;
             this.toggleMenu(false);
+            
+            setTimeout(() => {
+                const contactSection = document.getElementById('contacto');
+                if (contactSection) {
+                    contactSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            }, 300);
             return;
         }
 
-        // Handle Design section - navigate to design page
+        // Handle Design section - scroll to design section within portfolio
         if (clickedBtn.dataset.section === 'design') {
-            window.location.href = 'design.html';
-            return;
-        }
-
-        // Handle Photography section - navigate to photography page
-        if (clickedBtn.dataset.section === 'photography') {
-            window.location.href = 'photography.html';
+            this.navBtns.forEach(btn => btn.classList.remove('active'));
+            clickedBtn.classList.add('active');
+            this.isOpen = false;
+            this.toggleMenu(false);
+            
+            setTimeout(() => {
+                const designSection = document.getElementById('design');
+                if (designSection) {
+                    designSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            }, 300);
             return;
         }
 
