@@ -254,7 +254,7 @@
         <a href="portfolio.html#audiovisual" class="nav-btn">Audiovisual</a>
         <a href="photography.html" class="nav-btn">Photography</a>
         <button class="nav-btn active" data-section="design">Diseño</button>
-        <button class="nav-btn" data-section="contacto">Contacto</button>
+        <a href="portfolio.html#contacto" class="nav-btn">Contacto</a>
         <a href="bio.html" class="nav-btn">Acerca De</a>
     </nav>
 
@@ -592,29 +592,21 @@
         // Handle navigation buttons
         navBtns.forEach(btn => {
             btn.addEventListener('click', (e) => {
-                e.preventDefault();
-                e.stopPropagation();
-                const section = e.target.getAttribute('data-section');
-                
-                switch(section) {
-                    case 'audiovisual':
-                        window.location.href = 'portfolio.html';
-                        break;
-                    case 'photography':
-                        window.location.href = 'photography.html';
-                        break;
-                    case 'design':
-                        // Already on design page - just close menu
-                        isOpen = false;
-                        navContainer.classList.remove('active');
-                        break;
-                    case 'bio':
-                        window.location.href = 'bio.html';
-                        break;
-                    case 'lets-create':
-                        window.location.href = 'portfolio.html#lets-create';
-                        break;
+                // Only prevent default for buttons with data-section, not for links
+                if (btn.tagName === 'BUTTON' && btn.dataset.section) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    const section = e.target.getAttribute('data-section');
+                    
+                    switch(section) {
+                        case 'design':
+                            // Already on design page - just close menu
+                            isOpen = false;
+                            navContainer.classList.remove('active');
+                            break;
+                    }
                 }
+                // Let <a> links work normally for external navigation
             });
         });
 
