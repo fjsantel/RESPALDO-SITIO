@@ -143,21 +143,7 @@ class NavigationManager {
             return;
         }
 
-        // Handle Design section - scroll to design section within portfolio
-        if (clickedBtn.dataset.section === 'design') {
-            this.navBtns.forEach(btn => btn.classList.remove('active'));
-            clickedBtn.classList.add('active');
-            this.isOpen = false;
-            this.toggleMenu(false);
-            
-            setTimeout(() => {
-                const designSection = document.getElementById('design');
-                if (designSection) {
-                    designSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }
-            }, 300);
-            return;
-        }
+        // Design button is now a link to design.html, no longer handled here
 
         // Handle Let's Create section - scroll to center "LET'S CREATE" title
         if (clickedBtn.dataset.section === 'lets-create') {
