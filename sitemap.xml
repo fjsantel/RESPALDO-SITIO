@@ -9,7 +9,7 @@
   <!-- Home Page (Loading/Intro) - SEO Optimized -->
   <url>
     <loc>https://www.franciscosantelices.cl/</loc>
-    <lastmod>2025-08-11</lastmod>
+    <lastmod>2025-01-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
     <video:video>
@@ -27,7 +27,7 @@
   <!-- Portfolio Principal - SEO Keywords -->
   <url>
     <loc>https://www.franciscosantelices.cl/portfolio.html</loc>
-    <lastmod>2025-08-11</lastmod>
+    <lastmod>2025-01-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
     <image:image>
@@ -83,6 +83,19 @@
       <image:loc>https://www.franciscosantelices.cl/assets/photography/A.jpg</image:loc>
       <image:title>Portfolio de Fotografía - Francisco Santelices Ariztía</image:title>
       <image:caption>Colección fotográfica artística y retratos por Francisco Santelices Ariztía</image:caption>
+    </image:image>
+  </url>
+  
+  <!-- Competencias y Habilidades Profesionales - Nueva página -->
+  <url>
+    <loc>https://www.franciscosantelices.cl/portafolio-profesional.html</loc>
+    <lastmod>2025-01-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://www.franciscosantelices.cl/assets/fotos productos competencias/Foto producto 1.png</image:loc>
+      <image:title>Competencias y Habilidades Profesionales - Francisco Santelices Ariztía</image:title>
+      <image:caption>Portfolio de competencias profesionales en motion graphics, desarrollo web, fotografía y producción audiovisual</image:caption>
     </image:image>
   </url>
   
