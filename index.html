@@ -206,13 +206,21 @@
         
         /* Responsive mobile adjustments */
         @media screen and (max-width: 768px) {
+            .text-section {
+                transform: translateY(-20%) !important;
+            }
+            
+            .loading-text {
+                padding: 1rem !important;
+            }
+            
             .enter-button-container {
-                margin-top: -2rem !important;
+                margin-top: -3rem !important;
                 padding: 1rem !important;
             }
             
             .audio-button-container {
-                margin-top: 0 !important;
+                margin-top: -1rem !important;
                 padding: 0.5rem !important;
             }
             
@@ -229,12 +237,21 @@
         }
         
         @media screen and (max-width: 480px) {
+            .text-section {
+                transform: translateY(-25%) !important;
+            }
+            
+            .loading-text {
+                padding: 0.5rem !important;
+            }
+            
             .enter-button-container {
-                margin-top: -2.5rem !important;
+                margin-top: -3.5rem !important;
                 padding: 0.8rem !important;
             }
             
             .audio-button-container {
+                margin-top: -1.5rem !important;
                 padding: 0.3rem !important;
             }
             
