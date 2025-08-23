@@ -196,39 +196,29 @@
             transform: translateY(-2px);
         }
         
-        /* Botón de diseño sonoro */
-        .audio-button-container {
-            padding: 1rem;
+        /* Sistema de audio como elemento independiente */
+        .audio-system-container {
+            position: absolute;
+            bottom: 5%;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1000;
+            width: 100%;
+        }
+        
+        .audio-button-wrapper {
             display: flex;
-            justify-content: center;
-            margin-top: -1rem;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
         }
         
-        /* Desplazar todo 20% hacia arriba excepto video */
-        .text-section {
-            transform: translateY(-20%) !important;
-        }
-        
-        .loading-text {
-            padding: 1rem !important;
-        }
-        
-        .enter-button-container {
-            margin-top: -3rem !important;
-            padding: 1rem !important;
-            transform: translateY(10%) !important;
-        }
-        
-        .audio-button-container {
-            margin-top: -1rem !important;
-            padding: 0.5rem !important;
-            transform: translateY(10%) !important;
-        }
+        /* Sin cambios en versión web - solo mobile */
         
         /* Responsive mobile adjustments */
         @media screen and (max-width: 768px) {
             .text-section {
-                transform: translateY(-35%) !important;
+                transform: translateY(-20%) !important;
             }
             
             .loading-text {
@@ -236,15 +226,15 @@
             }
             
             .enter-button-container {
-                margin-top: -4rem !important;
+                margin-top: -2rem !important;
                 padding: 1rem !important;
-                transform: translateY(10%) !important;
+                transform: translateY(20%) !important;
             }
             
             .audio-button-container {
-                margin-top: -2rem !important;
+                margin-top: -1rem !important;
                 padding: 0.5rem !important;
-                transform: translateY(10%) !important;
+                transform: translateY(30%) !important;
             }
             
             .audio-button {
@@ -261,7 +251,7 @@
         
         @media screen and (max-width: 480px) {
             .text-section {
-                transform: translateY(-40%) !important;
+                transform: translateY(-25%) !important;
             }
             
             .loading-text {
@@ -269,15 +259,15 @@
             }
             
             .enter-button-container {
-                margin-top: -4.5rem !important;
+                margin-top: -2.5rem !important;
                 padding: 0.8rem !important;
-                transform: translateY(10%) !important;
+                transform: translateY(25%) !important;
             }
             
             .audio-button-container {
-                margin-top: -2.5rem !important;
+                margin-top: -1.5rem !important;
                 padding: 0.3rem !important;
-                transform: translateY(10%) !important;
+                transform: translateY(35%) !important;
             }
             
             .track-info {
@@ -290,14 +280,22 @@
             border: 1px solid rgba(255, 255, 255, 0.15) !important;
             color: rgba(255, 255, 255, 0.6) !important;
             font-family: var(--font-primary) !important;
-            font-size: 0.65rem !important;
+            font-size: 0.55rem !important;
             font-weight: 300 !important;
-            letter-spacing: 0.05rem !important;
+            letter-spacing: 0.03rem !important;
             text-transform: uppercase !important;
-            padding: 0.4rem 1rem !important;
+            padding: 0.3rem 0.7rem !important;
             cursor: pointer !important;
             transition: all 0.2s ease !important;
-            border-radius: 15px !important;
+            border-radius: 12px !important;
+        }
+        
+        /* Botón más pequeño cuando está activo */
+        .audio-button.active {
+            font-size: 0.45rem !important;
+            padding: 0.2rem 0.5rem !important;
+            transform: translateY(130%) !important;
+            margin-bottom: 0.5rem !important;
         }
         
         .audio-button:hover {
@@ -309,12 +307,16 @@
         .audio-controls {
             display: flex;
             align-items: center;
-            gap: 0.5rem;
+            justify-content: center;
+            gap: 0.8rem;
             margin-top: 0.5rem;
-            padding: 0.3rem 0.6rem;
-            background: rgba(0, 0, 0, 0.3);
-            border-radius: 12px;
-            backdrop-filter: blur(5px);
+            padding: 0.4rem 1rem;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 20px;
+            backdrop-filter: blur(3px);
+            width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
         }
         
         .audio-controls.hidden {
@@ -323,30 +325,33 @@
         
         .control-btn {
             background: transparent !important;
-            border: none !important;
-            color: rgba(255, 255, 255, 0.5) !important;
-            font-size: 0.7rem !important;
-            padding: 0.2rem !important;
+            border: 1px solid rgba(255, 255, 255, 0.2) !important;
+            color: rgba(255, 255, 255, 0.7) !important;
+            font-size: 0.9rem !important;
+            padding: 0.3rem !important;
             cursor: pointer !important;
             border-radius: 50% !important;
-            width: 24px !important;
-            height: 24px !important;
+            width: 32px !important;
+            height: 32px !important;
             display: flex !important;
             align-items: center !important;
             justify-content: center !important;
-            transition: all 0.1s ease !important;
+            transition: all 0.2s ease !important;
         }
         
         .control-btn:hover {
-            color: rgba(240, 185, 12, 0.8) !important;
+            color: rgba(255, 255, 255, 0.9) !important;
+            border-color: rgba(255, 255, 255, 0.4) !important;
             transform: scale(1.1) !important;
         }
         
         .track-info {
-            color: rgba(255, 255, 255, 0.4) !important;
-            font-size: 0.6rem !important;
+            color: rgba(255, 255, 255, 0.5) !important;
+            font-size: 0.55rem !important;
             font-weight: 300 !important;
             letter-spacing: 0.02rem !important;
+            min-width: 50px;
+            text-align: center;
         }
         @keyframes fadeInUp {
             from {
@@ -433,9 +438,11 @@
                     INGRESAR AL SITIO
                 </button>
             </div>
-            
-            <!-- Botón de diseño sonoro -->
-            <div class="audio-button-container">
+        </div>
+        
+        <!-- Botón de diseño sonoro como elemento independiente -->
+        <div class="audio-system-container">
+            <div class="audio-button-wrapper">
                 <button class="audio-button" id="audioToggle">
                     ACTIVAR DISEÑO SONORO
                 </button>
@@ -504,7 +511,8 @@
                 if (!this.isActive) {
                     // Activar sistema
                     this.isActive = true;
-                    toggleBtn.textContent = 'DESACTIVAR DISEÑO SONORO';
+                    toggleBtn.textContent = 'DESACTIVAR SONIDO';
+                    toggleBtn.classList.add('active');
                     controls.classList.remove('hidden');
                     this.loadTrack(0);
                     setTimeout(() => this.play(), 200);
@@ -513,6 +521,7 @@
                     // Desactivar sistema
                     this.isActive = false;
                     toggleBtn.textContent = 'ACTIVAR DISEÑO SONORO';
+                    toggleBtn.classList.remove('active');
                     controls.classList.add('hidden');
                     this.stop();
                 }
