@@ -27,6 +27,19 @@
         .agency-title { font-size: clamp(0.5rem, 1.2vw, 0.9rem); font-weight: 300; letter-spacing: clamp(0.15rem, 0.35vw, 0.25rem); text-transform: uppercase; margin-bottom: 0.5rem; color: var(--text-primary); line-height: 1.1; white-space: nowrap; width: 100%; text-align: center; }
         .main-title { font-size: clamp(0.77rem, 1.76vw, 1.375rem); font-weight: 700; letter-spacing: clamp(0.22rem, 0.545vw, 0.425rem); text-transform: uppercase; margin-bottom: 0.165rem; color: var(--text-primary); line-height: 1.1; white-space: nowrap; width: 100%; text-align: center; }
         .sub-title { font-size: clamp(0.79rem, 1.8vw, 1.395rem); font-weight: 400; letter-spacing: clamp(0.72rem, 1.66vw, 1.19rem); text-transform: uppercase; color: var(--accent-yellow); white-space: nowrap; width: 100%; text-align: center; margin-left: clamp(4px, 0.5vw, 9px); }
+        
+        /* Experiencia Sonora Styles */
+        .audio-experience-container { margin-top: 2rem; margin-bottom: 1rem; display: flex; flex-direction: column; align-items: center; }
+        .audio-toggle-btn { background: transparent; border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.3s ease; color: var(--text-primary); }
+        .audio-toggle-btn:hover { border-color: var(--accent-yellow); transform: scale(1.05); }
+        .audio-toggle-btn.active { border-color: var(--accent-yellow); background: rgba(240, 185, 12, 0.1); }
+        .audio-icon { font-size: 16px; }
+        .audio-selector { position: absolute; bottom: 120px; left: 50%; transform: translateX(-50%); background: rgba(0, 0, 0, 0.95); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 8px; padding: 0.5rem; backdrop-filter: blur(10px); }
+        .audio-selector.hidden { display: none; }
+        .audio-tracks { display: flex; gap: 0.5rem; }
+        .track-btn { background: transparent; border: 1px solid rgba(255, 255, 255, 0.2); color: var(--text-primary); padding: 0.4rem 0.8rem; border-radius: 4px; font-size: 0.75rem; cursor: pointer; transition: all 0.2s ease; }
+        .track-btn:hover { border-color: var(--accent-yellow); }
+        .track-btn.active { border-color: var(--accent-yellow); background: rgba(240, 185, 12, 0.2); }
     </style>
     <link rel="stylesheet" href="loading.css" media="print" onload="this.media='all'">
 </head>
@@ -48,6 +61,20 @@
                     <h3 class="agency-title">AGENCIA DE CONTENIDOS</h3>
                     <h1 class="main-title">FRANCISCO SANTELICES ARIZTÍA</h1>
                     <h2 class="sub-title">CREATIVE CONTENT</h2>
+                </div>
+                
+                <!-- Botón de experiencia sonora -->
+                <div class="audio-experience-container">
+                    <button class="audio-toggle-btn" id="audioToggle" title="Activar experiencia sonora">
+                        <span class="audio-icon">🔊</span>
+                    </button>
+                    <div class="audio-selector hidden" id="audioSelector">
+                        <div class="audio-tracks">
+                            <button class="track-btn active" data-track="ambient1">Ambiente 1</button>
+                            <button class="track-btn" data-track="ambient2">Ambiente 2</button>
+                            <button class="track-btn" data-track="ambient3">Ambiente 3</button>
+                        </div>
+                    </div>
                 </div>
             </div>
             
@@ -99,6 +126,93 @@
 
         // Inicializar cuando se carga la página
         document.addEventListener('DOMContentLoaded', typeWriter);
+
+        // Audio Experience Functionality
+        class AudioExperience {
+            constructor() {
+                this.isActive = false;
+                this.currentTrack = null;
+                this.audioElement = null;
+                this.tracks = {
+                    ambient1: 'path/to/ambient1.mp3', // Reemplazar con tu archivo
+                    ambient2: 'path/to/ambient2.mp3', // Reemplazar con tu archivo
+                    ambient3: 'path/to/ambient3.mp3'  // Reemplazar con tu archivo
+                };
+                this.init();
+            }
+
+            init() {
+                const toggleBtn = document.getElementById('audioToggle');
+                const selector = document.getElementById('audioSelector');
+                const trackBtns = document.querySelectorAll('.track-btn');
+
+                toggleBtn.addEventListener('click', () => this.toggleAudioExperience());
+                
+                trackBtns.forEach(btn => {
+                    btn.addEventListener('click', (e) => this.selectTrack(e.target.dataset.track));
+                });
+
+                // Cerrar selector al hacer click fuera
+                document.addEventListener('click', (e) => {
+                    if (!e.target.closest('.audio-experience-container')) {
+                        selector.classList.add('hidden');
+                    }
+                });
+            }
+
+            toggleAudioExperience() {
+                const toggleBtn = document.getElementById('audioToggle');
+                const selector = document.getElementById('audioSelector');
+                const icon = toggleBtn.querySelector('.audio-icon');
+
+                if (!this.isActive) {
+                    // Activar experiencia sonora
+                    this.isActive = true;
+                    toggleBtn.classList.add('active');
+                    selector.classList.remove('hidden');
+                    icon.textContent = '🔊';
+                    
+                    // Reproducir track por defecto
+                    this.selectTrack('ambient1');
+                } else {
+                    // Desactivar experiencia sonora
+                    this.isActive = false;
+                    toggleBtn.classList.remove('active');
+                    selector.classList.add('hidden');
+                    icon.textContent = '🔇';
+                    
+                    // Pausar audio
+                    if (this.audioElement) {
+                        this.audioElement.pause();
+                    }
+                }
+            }
+
+            selectTrack(trackKey) {
+                if (!this.isActive) return;
+
+                // Actualizar botones activos
+                document.querySelectorAll('.track-btn').forEach(btn => btn.classList.remove('active'));
+                document.querySelector(`[data-track="${trackKey}"]`).classList.add('active');
+
+                // Cambiar audio
+                if (this.audioElement) {
+                    this.audioElement.pause();
+                }
+
+                this.audioElement = new Audio(this.tracks[trackKey]);
+                this.audioElement.loop = true;
+                this.audioElement.volume = 0.3; // Volumen sutil
+                this.audioElement.play().catch(e => console.log('Audio autoplay blocked:', e));
+                
+                this.currentTrack = trackKey;
+            }
+        }
+
+        // Inicializar experiencia de audio
+        document.addEventListener('DOMContentLoaded', () => {
+            new AudioExperience();
+        });
 
         // Video loading management
         function handleVideoLoading() {
