@@ -32,6 +32,9 @@ Allow: /bio.html
 Allow: /design.html
 Allow: /photography.html
 Allow: /assets/
+Allow: /assets/logo.png
+Allow: /assets/logo-tiny.png
+Allow: /assets/og-image.jpg
 Allow: /Diseño/
 Allow: /VIDEO ASSETS/
 Allow: /*.mp4

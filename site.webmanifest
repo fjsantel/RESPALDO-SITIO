@@ -1,7 +1,7 @@
 {
-    "name": "Francisco Santelices - Productora de Contenidos",
+    "name": "Francisco Santelices Creative Content - Productora Audiovisual Santiago",
     "short_name": "FSA Creative",
-    "description": "Productora de Contenidos, Director Audiovisual Santiago Chile",
+    "description": "Productora Audiovisual Santiago Chile - Motion Graphics, Publicidad, Diseño Web, Comunicaciones",
     "icons": [
         {
             "src": "assets/logo-tiny.png",
@@ -15,8 +15,19 @@
         },
         {
             "src": "assets/logo.png",
+            "sizes": "144x144",
+            "type": "image/png"
+        },
+        {
+            "src": "assets/logo.png",
             "sizes": "180x180",
             "type": "image/png"
+        },
+        {
+            "src": "assets/logo.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "maskable any"
         }
     ],
     "theme_color": "#f0b90c",

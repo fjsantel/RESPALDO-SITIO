@@ -9,9 +9,14 @@
   <!-- Home Page (Loading/Intro) - SEO Optimized -->
   <url>
     <loc>https://www.franciscosantelices.cl/</loc>
-    <lastmod>2025-01-22</lastmod>
+    <lastmod>2025-01-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://www.franciscosantelices.cl/assets/logo.png</image:loc>
+      <image:title>Francisco Santelices Creative Content - Logo Productora Audiovisual Santiago</image:title>
+      <image:caption>Logo oficial Francisco Santelices Creative Content - Productora Audiovisual especializada en Motion Graphics, Publicidad y Contenido Digital Santiago Chile</image:caption>
+    </image:image>
     <video:video>
       <video:thumbnail_loc>https://www.franciscosantelices.cl/assets/og-image.jpg</video:thumbnail_loc>
       <video:title>Francisco Santelices - Director Audiovisual Santiago Chile Motion Graphics</video:title>
@@ -27,7 +32,7 @@
   <!-- Portfolio Principal - SEO Keywords -->
   <url>
     <loc>https://www.franciscosantelices.cl/portfolio.html</loc>
-    <lastmod>2025-01-22</lastmod>
+    <lastmod>2025-01-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
     <image:image>
@@ -89,7 +94,7 @@
   <!-- Competencias y Habilidades Profesionales - Nueva página -->
   <url>
     <loc>https://www.franciscosantelices.cl/portafolio-profesional.html</loc>
-    <lastmod>2025-01-22</lastmod>
+    <lastmod>2025-01-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <image:image>
@@ -102,7 +107,7 @@
   <!-- Servicios Profesionales -->
   <url>
     <loc>https://www.franciscosantelices.cl/servicios.html</loc>
-    <lastmod>2025-01-22</lastmod>
+    <lastmod>2025-01-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
     <image:image>
