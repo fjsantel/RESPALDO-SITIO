@@ -195,6 +195,78 @@
             color: var(--accent-yellow);
             transform: translateY(-2px);
         }
+        
+        /* Botón de diseño sonoro */
+        .audio-button-container {
+            padding: 1rem;
+            display: flex;
+            justify-content: center;
+            margin-top: -1rem;
+        }
+        
+        .audio-button {
+            background: transparent !important;
+            border: 1px solid rgba(255, 255, 255, 0.15) !important;
+            color: rgba(255, 255, 255, 0.6) !important;
+            font-family: var(--font-primary) !important;
+            font-size: 0.65rem !important;
+            font-weight: 300 !important;
+            letter-spacing: 0.05rem !important;
+            text-transform: uppercase !important;
+            padding: 0.4rem 1rem !important;
+            cursor: pointer !important;
+            transition: all 0.2s ease !important;
+            border-radius: 15px !important;
+        }
+        
+        .audio-button:hover {
+            border-color: rgba(240, 185, 12, 0.4) !important;
+            color: rgba(240, 185, 12, 0.8) !important;
+        }
+        
+        /* Controles de audio minimalistas */
+        .audio-controls {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+            padding: 0.3rem 0.6rem;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 12px;
+            backdrop-filter: blur(5px);
+        }
+        
+        .audio-controls.hidden {
+            display: none !important;
+        }
+        
+        .control-btn {
+            background: transparent !important;
+            border: none !important;
+            color: rgba(255, 255, 255, 0.5) !important;
+            font-size: 0.7rem !important;
+            padding: 0.2rem !important;
+            cursor: pointer !important;
+            border-radius: 50% !important;
+            width: 24px !important;
+            height: 24px !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            transition: all 0.1s ease !important;
+        }
+        
+        .control-btn:hover {
+            color: rgba(240, 185, 12, 0.8) !important;
+            transform: scale(1.1) !important;
+        }
+        
+        .track-info {
+            color: rgba(255, 255, 255, 0.4) !important;
+            font-size: 0.6rem !important;
+            font-weight: 300 !important;
+            letter-spacing: 0.02rem !important;
+        }
         @keyframes fadeInUp {
             from {
                 opacity: 0;
@@ -280,10 +352,221 @@
                     INGRESAR AL SITIO
                 </button>
             </div>
+            
+            <!-- Botón de diseño sonoro -->
+            <div class="audio-button-container">
+                <button class="audio-button" id="audioToggle">
+                    ACTIVAR DISEÑO SONORO
+                </button>
+                
+                <!-- Controles de audio (ocultos inicialmente) -->
+                <div class="audio-controls hidden" id="audioControls">
+                    <button class="control-btn" id="prevBtn">⏮</button>
+                    <button class="control-btn" id="playPauseBtn">⏸</button>
+                    <button class="control-btn" id="nextBtn">⏭</button>
+                    <span class="track-info" id="trackInfo">Pista 1/4</span>
+                </div>
+            </div>
         </div>
     </div>
 
     <script>
+        // Sistema de Audio Diseño Sonoro
+        class AudioDesignSystem {
+            constructor() {
+                this.audioFiles = [
+                    './assets/sonidos/1.mp3',
+                    './assets/sonidos/2.mp3',
+                    './assets/sonidos/3.mp3',
+                    './assets/sonidos/4.mp3'
+                ];
+                this.currentTrack = 0;
+                this.isPlaying = false;
+                this.isActive = false;
+                this.audioElement = null;
+                console.log('AudioDesignSystem inicializado con archivos:', this.audioFiles);
+                this.testAudioFiles();
+                this.init();
+            }
+
+            testAudioFiles() {
+                console.log('🔍 Verificando archivos de audio...');
+                this.audioFiles.forEach((file, index) => {
+                    const testAudio = new Audio();
+                    testAudio.addEventListener('loadeddata', () => {
+                        console.log(`✅ Archivo ${index} OK: ${file}`);
+                    });
+                    testAudio.addEventListener('error', (e) => {
+                        console.error(`❌ Archivo ${index} FALLA: ${file}`, e);
+                    });
+                    testAudio.src = file;
+                });
+            }
+
+            init() {
+                const toggleBtn = document.getElementById('audioToggle');
+                const controls = document.getElementById('audioControls');
+                const playPauseBtn = document.getElementById('playPauseBtn');
+                const prevBtn = document.getElementById('prevBtn');
+                const nextBtn = document.getElementById('nextBtn');
+
+                toggleBtn.addEventListener('click', () => this.toggleAudioSystem());
+                playPauseBtn.addEventListener('click', () => this.togglePlayPause());
+                prevBtn.addEventListener('click', () => this.previousTrack());
+                nextBtn.addEventListener('click', () => this.nextTrack());
+            }
+
+            toggleAudioSystem() {
+                const toggleBtn = document.getElementById('audioToggle');
+                const controls = document.getElementById('audioControls');
+
+                if (!this.isActive) {
+                    // Activar sistema
+                    this.isActive = true;
+                    toggleBtn.textContent = 'DESACTIVAR DISEÑO SONORO';
+                    controls.classList.remove('hidden');
+                    this.loadTrack(0);
+                    setTimeout(() => this.play(), 200);
+                    console.log('Audio system activated');
+                } else {
+                    // Desactivar sistema
+                    this.isActive = false;
+                    toggleBtn.textContent = 'ACTIVAR DISEÑO SONORO';
+                    controls.classList.add('hidden');
+                    this.stop();
+                }
+            }
+
+            loadTrack(trackIndex) {
+                console.log(`🎵 Cargando track ${trackIndex + 1}: ${this.audioFiles[trackIndex]}`);
+                
+                // Detener y limpiar audio anterior
+                if (this.audioElement) {
+                    this.audioElement.pause();
+                    this.audioElement.src = '';
+                    this.audioElement = null;
+                }
+
+                this.currentTrack = trackIndex;
+                this.isPlaying = false;
+                
+                // Crear nuevo elemento de audio
+                this.audioElement = new Audio(this.audioFiles[trackIndex]);
+                this.audioElement.loop = true;
+                this.audioElement.volume = 0.4;
+                this.audioElement.preload = 'auto';
+                
+                // Eventos específicos para debugging
+                this.audioElement.addEventListener('loadstart', () => {
+                    console.log(`📂 Iniciando carga de pista ${trackIndex + 1}`);
+                });
+                
+                this.audioElement.addEventListener('loadeddata', () => {
+                    console.log(`✅ Datos cargados para pista ${trackIndex + 1}`);
+                });
+                
+                this.audioElement.addEventListener('canplay', () => {
+                    console.log(`▶️ Pista ${trackIndex + 1} lista para reproducir`);
+                });
+                
+                this.audioElement.addEventListener('error', (e) => {
+                    console.error(`❌ ERROR en pista ${trackIndex + 1}:`, e);
+                    console.error('Error details:', this.audioElement.error);
+                });
+                
+                this.audioElement.load();
+                
+                this.updateTrackInfo();
+                console.log(`🔧 Track ${trackIndex + 1} configurado`);
+            }
+
+            play() {
+                if (this.audioElement && !this.isPlaying) {
+                    console.log(`🔊 Intentando reproducir: ${this.audioElement.src}`);
+                    console.log(`Estado del audio: readyState=${this.audioElement.readyState}`);
+                    
+                    const playPromise = this.audioElement.play();
+                    if (playPromise !== undefined) {
+                        playPromise.then(() => {
+                            this.isPlaying = true;
+                            document.getElementById('playPauseBtn').textContent = '⏸';
+                            console.log('✅ Audio reproduciéndose correctamente');
+                        }).catch(e => {
+                            console.error('❌ Error al reproducir:', e);
+                            // No recargar para evitar bucles infinitos
+                        });
+                    }
+                } else if (!this.audioElement) {
+                    console.error('❌ No hay elemento de audio');
+                } else if (this.isPlaying) {
+                    console.log('ℹ️ Audio ya está reproduciéndose');
+                }
+            }
+
+            pause() {
+                if (this.audioElement && this.isPlaying) {
+                    this.audioElement.pause();
+                    this.isPlaying = false;
+                    document.getElementById('playPauseBtn').textContent = '▶';
+                    console.log('Audio paused');
+                }
+            }
+
+            stop() {
+                if (this.audioElement) {
+                    this.audioElement.pause();
+                    this.audioElement = null;
+                    this.isPlaying = false;
+                    document.getElementById('playPauseBtn').textContent = '▶';
+                }
+            }
+
+            togglePlayPause() {
+                console.log(`Toggle play/pause. Currently playing: ${this.isPlaying}`);
+                if (this.isPlaying) {
+                    this.pause();
+                } else {
+                    if (this.audioElement) {
+                        this.play();
+                    } else {
+                        console.log('No audio element, loading current track...');
+                        this.loadTrack(this.currentTrack);
+                        setTimeout(() => this.play(), 200);
+                    }
+                }
+            }
+
+            nextTrack() {
+                console.log('⏭️ Next track');
+                const wasPlaying = this.isPlaying;
+                const nextIndex = (this.currentTrack + 1) % this.audioFiles.length;
+                this.loadTrack(nextIndex);
+                if (wasPlaying) {
+                    setTimeout(() => this.play(), 300);
+                }
+            }
+
+            previousTrack() {
+                console.log('⏮️ Previous track');
+                const wasPlaying = this.isPlaying;
+                const prevIndex = (this.currentTrack - 1 + this.audioFiles.length) % this.audioFiles.length;
+                this.loadTrack(prevIndex);
+                if (wasPlaying) {
+                    setTimeout(() => this.play(), 300);
+                }
+            }
+
+            updateTrackInfo() {
+                const trackInfo = document.getElementById('trackInfo');
+                trackInfo.textContent = `Pista ${this.currentTrack + 1}/${this.audioFiles.length}`;
+            }
+        }
+
+        // Inicializar sistema de audio
+        document.addEventListener('DOMContentLoaded', () => {
+            new AudioDesignSystem();
+        });
+
         // Custom cursor functionality
         const cursor = document.getElementById('custom-cursor');
         
