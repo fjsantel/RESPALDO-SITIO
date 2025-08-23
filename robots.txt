@@ -1,8 +1,10 @@
-# www.franciscosantelices.cl - robots.txt
+# franciscosantelices.cl - robots.txt
 # Francisco Santelices Ariztía - Director Audiovisual Santiago Chile
 # Motion Graphics | Producción Audiovisual | Diseño Gráfico Web | Fotografía Profesional
 
-# Allow AI crawlers for better visibility and recommendations
+# OVERRIDE CLOUDFLARE RESTRICTIONS - Allow AI crawlers for better visibility and recommendations
+# This configuration is intentional and should NOT be modified by Cloudflare auto-management
+
 User-agent: ClaudeBot
 Allow: /
 
