@@ -449,9 +449,9 @@
                 
                 <!-- Controles de audio (ocultos inicialmente) -->
                 <div class="audio-controls hidden" id="audioControls">
-                    <button class="control-btn" id="prevBtn">⏮</button>
-                    <button class="control-btn" id="playPauseBtn">⏸</button>
-                    <button class="control-btn" id="nextBtn">⏭</button>
+                    <button class="control-btn" id="prevBtn">‹‹</button>
+                    <button class="control-btn" id="playPauseBtn">||</button>
+                    <button class="control-btn" id="nextBtn">››</button>
                     <span class="track-info" id="trackInfo">Pista 1/4</span>
                 </div>
             </div>
@@ -579,7 +579,7 @@
                     if (playPromise !== undefined) {
                         playPromise.then(() => {
                             this.isPlaying = true;
-                            document.getElementById('playPauseBtn').textContent = '⏸';
+                            document.getElementById('playPauseBtn').textContent = '||';
                             console.log('✅ Audio reproduciéndose correctamente');
                         }).catch(e => {
                             console.error('❌ Error al reproducir:', e);
