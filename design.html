@@ -254,6 +254,7 @@
         <a href="portfolio.html#audiovisual" class="nav-btn">Audiovisual</a>
         <a href="photography.html" class="nav-btn">Photography</a>
         <button class="nav-btn active" data-section="design">Diseño</button>
+        <a href="diseño-web.html" class="nav-btn">Diseño Web</a>
         <a href="portfolio.html#contacto" class="nav-btn">Contacto</a>
         <a href="bio.html" class="nav-btn">Acerca De</a>
     </nav>
@@ -301,6 +302,16 @@
             "La mecánica de la imágen EFB1C0E27690.jpeg",
             "La mecánica de la imágen F2D336225EF2.jpeg",
             "La mecánica de la imágen0A2471F2D336.jpeg"
+        ];
+
+        // GIF elements from diseño-web folder
+        const designWebGifs = [
+            "3.gif",
+            "4.gif", 
+            "5.gif",
+            "6.gif",
+            "gif1.gif",
+            "gif2.gif"
         ];
 
         // Extract dominant colors from image
@@ -361,6 +372,7 @@
         function loadGallery() {
             const galleryGrid = document.getElementById('gallery-grid');
             
+            // Load regular images
             images.forEach((imageName, index) => {
                 const galleryItem = document.createElement('div');
                 galleryItem.className = 'gallery-item';
@@ -539,6 +551,35 @@
                 if (compraButton) {
                     galleryItem.appendChild(compraButton);
                 }
+                
+                galleryGrid.appendChild(galleryItem);
+            });
+
+            // Load design web GIFs
+            designWebGifs.forEach((gifName, index) => {
+                const galleryItem = document.createElement('div');
+                galleryItem.className = 'gallery-item';
+                
+                const img = document.createElement('img');
+                img.src = `assets/diseño-web/${gifName}`;
+                img.alt = 'Diseño Web GIF';
+                img.loading = 'lazy';
+                
+                // Create color palette container for GIFs
+                const colorPalette = document.createElement('div');
+                colorPalette.className = 'color-palette';
+                
+                // Add fallback colors for GIFs (since color extraction might not work well with animated GIFs)
+                const fallbackColors = ['#f0b90c', '#2c2c2c', '#666666'];
+                fallbackColors.forEach(color => {
+                    const colorSquare = document.createElement('div');
+                    colorSquare.className = 'color-square';
+                    colorSquare.style.backgroundColor = color;
+                    colorPalette.appendChild(colorSquare);
+                });
+                
+                galleryItem.appendChild(img);
+                galleryItem.appendChild(colorPalette);
                 
                 galleryGrid.appendChild(galleryItem);
             });

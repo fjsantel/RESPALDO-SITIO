@@ -1,0 +1,1638 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Diseño Web Profesional Santiago Chile - Francisco Santelices ⭐ Desarrollo Web Personalizado, Sitios Únicos vs Plantillas, Contenido Estratégico y Diferenciación Visual. Fotografía Propia, Videos Exclusivos y Experiencia de Usuario Personalizada. Portfolio 2025.">
+    <meta name="keywords" content="diseño web profesional santiago chile, desarrollo web personalizado chile, sitios web únicos santiago, diferenciación visual web, contenido estratégico web chile, fotografía web profesional, videos web exclusivos, experiencia usuario personalizada, Francisco Santelices web design">
+    <meta name="author" content="Francisco Santelices Ariztía">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.franciscosantelices.cl/diseño-web.html">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.franciscosantelices.cl/diseño-web.html">
+    <meta property="og:title" content="Diseño Web Profesional Santiago Chile - Francisco Santelices">
+    <meta property="og:description" content="Desarrollo Web Personalizado con Contenido Estratégico y Diferenciación Visual. Sitios únicos vs plantillas genéricas. Portfolio 2025.">
+    <meta property="og:image" content="https://www.franciscosantelices.cl/assets/diseño-web/6.gif">
+    <meta property="og:locale" content="es_CL">
+    <meta property="og:site_name" content="Francisco Santelices Ariztía">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://www.franciscosantelices.cl/diseño-web.html">
+    <meta property="twitter:title" content="Diseño Web Profesional - Francisco Santelices">
+    <meta property="twitter:description" content="Desarrollo Web Personalizado Chile - Contenido Estratégico y Diferenciación Visual profesional.">
+    <meta property="twitter:image" content="https://www.franciscosantelices.cl/assets/diseño-web/6.gif">
+    
+    <title>Diseño Web Profesional Santiago Chile - Contenido Estratégico & Diferenciación Visual | Francisco Santelices 2025</title>
+    
+    <!-- CSS Variables y base styles -->
+    <style>
+        :root {
+            --black: #0D1117;
+            --dark-gray: #161B22;
+            --light-gray: #30363D;
+            --text-primary: #FFFFFF;
+            --text-secondary: #8B949E;
+            --accent-yellow: #f0b90c;
+            --font-primary: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            --font-mono: 'Roboto Mono', monospace;
+            
+            /* Grid de 8px */
+            --grid-base: 8px;
+            --spacing-xl: calc(var(--grid-base) * 7); /* 56px */
+            --spacing-lg: calc(var(--grid-base) * 4); /* 32px */
+            --spacing-md: calc(var(--grid-base) * 2); /* 16px */
+            --spacing-sm: var(--grid-base); /* 8px */
+            
+            /* Separaciones específicas */
+            --sep-horizontal: 57px; /* Como especificaste */
+            --sep-vertical: 31px; /* Como especificaste */
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-primary);
+            background-color: var(--black);
+            color: var(--text-primary);
+            line-height: 1.7;
+            font-weight: 400;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Header - copiado del portfolio.html */
+        .main-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1100;
+            background: rgba(13, 17, 23, 0.85);
+            backdrop-filter: blur(12px);
+            padding: 12px 40px;
+            border-bottom: 1px solid var(--light-gray);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-image {
+            height: 60px;
+            width: auto;
+            opacity: 0.9;
+            transition: opacity 0.3s ease;
+        }
+
+        .logo-image:hover {
+            opacity: 1;
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .logo-main {
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            color: var(--text-primary);
+        }
+
+        .logo-sub {
+            font-size: 10px;
+            font-weight: 300;
+            letter-spacing: 2px;
+            color: var(--text-secondary);
+        }
+
+        #menu-trigger {
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            border: 1px solid var(--light-gray);
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        #menu-trigger:hover {
+            background: var(--light-gray);
+        }
+
+        .menu-trigger-text {
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 1px;
+        }
+
+        .menu-trigger-cursor {
+            width: 2px;
+            height: 12px;
+            background: var(--accent-yellow);
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+
+        /* Menú de navegación - Exacto del portfolio */
+        #menu-trigger {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 12px;
+            border-radius: 4px;
+            transition: background-color 0.2s ease;
+            cursor: pointer;
+        }
+
+        /* Hover solo para dispositivos que lo soportan */
+        @media (hover: hover) and (pointer: fine) {
+            #menu-trigger:hover {
+                background-color: rgba(255, 255, 255, 0.05);
+            }
+        }
+
+        /* Target táctil mejorado para mobile */
+        @media (hover: none) and (pointer: coarse) {
+            #menu-trigger {
+                padding: 12px 16px;
+                min-height: 44px;
+                min-width: 44px;
+            }
+        }
+
+        .menu-trigger-text {
+            font-family: var(--font-mono);
+            font-size: 12px;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+        }
+
+        .menu-trigger-cursor {
+            width: 10px;
+            height: 10px;
+            background-color: var(--text-primary);
+            animation: blink 1s step-end infinite;
+        }
+
+        @keyframes blink { 
+            50% { opacity: 0; } 
+        }
+
+        .main-navigation {
+            position: fixed;
+            top: 85px; /* Posición debajo del header */
+            right: 40px;
+            background-color: var(--dark-gray);
+            border: 1px solid var(--light-gray);
+            flex-direction: column;
+            align-items: flex-start;
+            padding: 10px;
+            border-radius: 5px;
+            z-index: 1200;
+            transform-origin: top right;
+            transition: transform 0.2s ease, opacity 0.2s ease;
+            transform: scale(0.95) translateY(-10px);
+            opacity: 0;
+            pointer-events: none;
+            display: none;
+        }
+
+        .main-navigation.active {
+            display: flex; /* Hacerlo visible */
+            transform: scale(1) translateY(0);
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .nav-btn {
+            background: transparent;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 14px;
+            font-weight: 500;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            padding: 12px 18px;
+            width: 100%;
+            text-align: left;
+            text-decoration: none;
+            display: block;
+            transition: color 0.3s ease, background-color 0.3s ease;
+            cursor: pointer;
+        }
+
+        /* Hover solo para dispositivos que lo soportan (desktop) */
+        @media (hover: hover) and (pointer: fine) {
+            .nav-btn:hover {
+                color: var(--text-primary);
+                background-color: rgba(255, 255, 255, 0.05);
+            }
+        }
+
+        .nav-btn.active {
+            color: var(--text-primary);
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+
+        /* Targets táctiles mejorados para mobile */
+        @media (hover: none) and (pointer: coarse) {
+            .nav-btn {
+                padding: 16px 18px;
+                min-height: 48px;
+                display: flex;
+                align-items: center;
+            }
+        }
+
+        /* Contenedor principal con las separaciones especificadas */
+        .main-container {
+            margin-top: 84px; /* Altura del header */
+            padding: var(--sep-vertical) var(--sep-vertical) var(--sep-vertical) var(--sep-vertical);
+            height: calc(100vh - 84px);
+        }
+
+        /* Contenedor de scroll con bordes redondeados */
+        .scroll-container {
+            height: 100%;
+            background: rgba(22, 27, 34, 0.5);
+            border: 1px solid var(--light-gray);
+            border-radius: calc(var(--grid-base) * 3); /* 24px */
+            overflow-y: auto;
+            overflow-x: hidden;
+            scroll-snap-type: y mandatory;
+            backdrop-filter: blur(8px);
+        }
+
+        /* Secciones del scroll */
+        .scroll-section {
+            min-height: 100vh;
+            scroll-snap-align: start;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            padding: calc(var(--grid-base) * 6); /* 48px */
+        }
+
+        /* SECCIÓN 1: Texto animado con cursor */
+        .section-1 {
+            flex-direction: column;
+            text-align: center;
+        }
+
+        .typing-container {
+            position: relative;
+            display: inline-block;
+        }
+
+        .typing-text {
+            font-size: 84px;
+            font-weight: 700;
+            line-height: 1.2;
+            color: var(--text-primary);
+            font-family: var(--font-primary);
+            opacity: 0;
+        }
+
+        .typing-cursor {
+            display: inline-block;
+            width: 24px;
+            height: 55px;
+            background: var(--accent-yellow);
+            animation: blink-cursor 1s infinite;
+            vertical-align: text-bottom;
+            margin-left: 4px;
+        }
+
+        .www-container {
+            position: relative;
+            display: inline-block;
+            opacity: 0;
+        }
+
+        .www-text {
+            font-size: 84px;
+            font-weight: 700;
+            color: var(--text-primary);
+            font-family: var(--font-primary);
+            position: relative;
+            z-index: 10;
+        }
+
+        .www-rectangle {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(240, 185, 12, 0.1);
+            border: 2px solid var(--accent-yellow);
+            transform: translate(-50%, -50%);
+            transition: all 0.6s ease;
+            z-index: 5;
+        }
+
+        .www-rectangle.animate {
+            width: calc(100% + 40px);
+            height: calc(100% + 20px);
+        }
+
+        @keyframes blink-cursor {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+
+        @keyframes typewriter {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+
+        @keyframes fadeOut {
+            from { opacity: 1; }
+            to { opacity: 0; }
+        }
+
+        /* SECCIÓN 2: Línea guía animada */
+        .section-2 {
+            position: relative;
+            background: linear-gradient(180deg, rgba(22, 27, 34, 0.8) 0%, rgba(13, 17, 23, 0.9) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .guide-line-container {
+            position: absolute;
+            width: 2px;
+            z-index: 50;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .guide-line-container.visible {
+            opacity: 1;
+        }
+
+        .guide-line {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 0%;
+            background: linear-gradient(180deg, var(--accent-yellow) 0%, rgba(240, 185, 12, 0.7) 100%);
+            transition: height 0.1s ease-out;
+            box-shadow: 0 0 10px rgba(240, 185, 12, 0.3);
+            transform-origin: top center;
+        }
+
+        /* Punto de inicio para la línea */
+        .line-start-point {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: var(--accent-yellow);
+            border-radius: 50%;
+            left: 50%;
+            top: calc(100% + 20px);
+            transform: translateX(-50%);
+            z-index: 45;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            box-shadow: 0 0 12px rgba(240, 185, 12, 0.6);
+        }
+
+        .line-start-point.visible {
+            opacity: 1;
+        }
+
+        /* Línea que se despliega desde el punto */
+        .deployable-line {
+            position: absolute;
+            width: 2px;
+            background: linear-gradient(180deg, var(--accent-yellow) 0%, rgba(240, 185, 12, 0.7) 100%);
+            box-shadow: 0 0 10px rgba(240, 185, 12, 0.3);
+            left: 50%;
+            top: calc(100% + 24px);
+            transform: translateX(-50%);
+            z-index: 1; /* Muy bajo para pasar por debajo de TODOS los elementos */
+            opacity: 0;
+            height: 0;
+            transition: opacity 0.3s ease, height 0.1s ease-out;
+        }
+
+        .deployable-line.visible {
+            opacity: 1;
+        }
+
+        /* En mobile, reducir opacidad pero mantener z-index bajo */
+        @media (max-width: 768px) {
+            .deployable-line.visible {
+                opacity: 0.7; /* Mantener opacidad reducida en mobile */
+            }
+        }
+
+        /* Punto final de la línea */
+        .line-end-point {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: var(--accent-yellow);
+            border-radius: 50%;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 45;
+            opacity: 0;
+            transition: all 0.1s ease-out;
+            box-shadow: 0 0 12px rgba(240, 185, 12, 0.6);
+        }
+
+        .line-end-point.visible {
+            opacity: 1;
+        }
+
+        /* Conceptos laterales en sección 2 */
+        .section-2-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            width: 100%;
+            max-width: 1200px;
+            padding: 0 calc(var(--grid-base) * 4);
+            position: relative;
+            z-index: 60;
+            gap: calc(var(--grid-base) * 4);
+        }
+
+        .concept-side {
+            flex: 1;
+            max-width: 400px;
+        }
+
+        .concept-side.left {
+            text-align: right;
+            padding-right: calc(var(--grid-base) * 4);
+        }
+
+        .concept-side.right {
+            text-align: left;
+            padding-left: calc(var(--grid-base) * 4);
+        }
+
+        .side-concept {
+            margin-bottom: calc(var(--grid-base) * 4);
+            opacity: 0;
+            transform: translateX(0);
+            transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .side-concept.left {
+            transform: translateX(-30px);
+        }
+
+        .side-concept.right {
+            transform: translateX(30px);
+        }
+
+        .side-concept.animate {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .side-concept h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--accent-yellow);
+            margin-bottom: calc(var(--grid-base) * 1);
+        }
+
+        .side-concept p {
+            font-size: 0.95rem;
+            line-height: 1.5;
+            color: var(--text-secondary);
+        }
+
+        /* SECCIÓN 3: Conceptos de diseño */
+        .section-3 {
+            flex-direction: column;
+            gap: calc(var(--grid-base) * 4);
+        }
+
+        .design-concepts {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: calc(var(--grid-base) * 4);
+            width: 100%;
+            max-width: 1200px;
+        }
+
+        .concept-item {
+            padding: calc(var(--grid-base) * 3);
+            background: rgba(48, 54, 61, 0.3);
+            border-radius: calc(var(--grid-base) * 2);
+            border: 1px solid var(--light-gray);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            opacity: 0;
+            transform: translateY(30px);
+            position: relative;
+            z-index: 10; /* Por encima de la línea */
+        }
+
+        .concept-item.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .concept-item:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 16px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Elemento GIF independiente - Fácil de mover y escalar */
+        .gif-element {
+            /* Posicionamiento - Puedes modificar estos valores */
+            position: relative;
+            top: 0px;           /* MOVER: Cambia este valor (ej: -50px, 20px) */
+            left: 0px;          /* MOVER: Cambia este valor (ej: -30px, 40px) */
+            
+            /* Tamaño base - Puedes modificar */
+            width: 100%;        /* ESCALAR: Ajustado para acomodar gif más grande */
+            max-width: 800px;   /* ESCALAR: Límite máximo */
+            height: auto;
+            
+            /* Estilos visuales */
+            padding: calc(var(--grid-base) * 3);
+            background: rgba(48, 54, 61, 0.3);
+            border-radius: calc(var(--grid-base) * 2);
+            border: 1px solid var(--light-gray);
+            
+            /* Animaciones */
+            transition: all 0.3s ease;
+            opacity: 1;         /* VISIBLE: Cambiado de 0 a 1 para que se vea */
+            
+            /* Layout */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 50;        /* Mucho más alto que la línea (z-index: 1) */
+        }
+
+        /* Animación de aparición - ahora visible desde el inicio */
+        .gif-element.animate {
+            opacity: 1;
+            transform: translateY(0) translateX(0);
+        }
+
+        .gif-element:hover {
+            transform: translateY(-8px) scale(1.05);
+            box-shadow: 0 16px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        .gif-animation {
+            /* ESCALAR GIF: Cambia estos valores */
+            width: 100%;
+            max-width: 750px;   /* TAMAÑO: Aumentado como en tu CSS */
+            height: auto;
+            
+            border-radius: calc(var(--grid-base) * 1);
+            opacity: 1;         /* VISIBLE: Siempre visible */
+            transition: all 0.3s ease;
+            
+            /* Asegurar que se muestre correctamente */
+            display: block;
+            object-fit: contain;
+            object-position: center;
+        }
+
+        .gif-element:hover .gif-animation {
+            opacity: 1;
+            transform: scale(1.02);
+        }
+
+        /* CLASE HELPER PARA POSICIONAMIENTO ABSOLUTO */
+        .gif-element.absolute {
+            position: absolute;
+            top: 50px;          /* MOVER: Posición desde arriba */
+            right: 50px;        /* MOVER: Posición desde derecha */
+        }
+
+        /* CLASES HELPER PARA ESCALADO */
+        .gif-element.small {
+            width: 200px;       /* Tamaño pequeño */
+        }
+
+        .gif-element.medium {
+            width: 300px;       /* Tamaño mediano */
+        }
+
+        .gif-element.large {
+            width: 400px;       /* Tamaño grande */
+        }
+
+        .concept-h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: calc(var(--grid-base) * 2);
+            color: var(--accent-yellow);
+        }
+
+        .concept-h2 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: calc(var(--grid-base) * 2);
+            color: var(--text-primary);
+        }
+
+        .concept-h3 {
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+        }
+
+        /* SECCIONES 4-5: Los 3 pilares */
+        .pillars-section {
+            padding: calc(var(--grid-base) * 8) 25px;
+            background: linear-gradient(135deg, rgba(22, 27, 34, 0.9) 0%, rgba(13, 17, 23, 0.95) 100%);
+            display: flex;
+            flex-direction: column;
+            gap: calc(var(--grid-base) * 8);
+        }
+
+        .pillar {
+            max-width: 900px;
+            margin: 0 auto;
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s ease;
+            padding: 0 calc(var(--grid-base) * 3);
+            box-sizing: border-box;
+        }
+
+        .pillar.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .pillar h2 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: calc(var(--grid-base) * 3);
+            color: var(--accent-yellow);
+        }
+
+        .pillar p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            text-align: justify;
+            color: var(--text-primary);
+            margin-bottom: calc(var(--grid-base) * 4);
+        }
+
+        .pillar-intro {
+            background: rgba(48, 54, 61, 0.3);
+            border: 1px solid rgba(240, 185, 12, 0.2);
+            border-radius: calc(var(--grid-base) * 2);
+            padding: calc(var(--grid-base) * 4);
+            margin-bottom: calc(var(--grid-base) * 6);
+            margin-left: calc(var(--grid-base) * 2);
+            margin-right: calc(var(--grid-base) * 2);
+            max-width: calc(100% - calc(var(--grid-base) * 4));
+            box-sizing: border-box;
+        }
+
+        .pillar-intro p {
+            margin-bottom: 0;
+            font-size: 1.05rem;
+            line-height: 1.7;
+            text-align: left;
+        }
+
+        /* Estilos para GIF en pilares */
+        .pillar-gif {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: calc(var(--grid-base) * 4);
+            width: 100%;
+            min-height: 300px; /* Altura mínima para asegurar espacio */
+            position: relative;
+            z-index: 20; /* Por encima de la línea */
+        }
+
+        .pillar-gif-animation {
+            width: 100%;
+            max-width: 600px; /* TAMAÑO: Ajusta este valor según necesites */
+            height: auto;
+            min-height: 200px; /* Altura mínima visible */
+            border-radius: calc(var(--grid-base) * 2);
+            opacity: 1;
+            transition: all 0.3s ease;
+            
+            /* Asegurar que se muestre correctamente */
+            display: block !important;
+            object-fit: contain;
+            object-position: center;
+            background: rgba(48, 54, 61, 0.1); /* Fondo sutil para debugging */
+            border: 1px solid rgba(240, 185, 12, 0.3); /* Borde sutil para ver el área */
+        }
+
+        /* Hover effect para GIF del pilar */
+        .pillar:hover .pillar-gif-animation {
+            transform: scale(1.02);
+            opacity: 1;
+        }
+
+        /* Estilos para concept-cards en pilares */
+        .concept-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: calc(var(--grid-base) * 4);
+            margin-top: calc(var(--grid-base) * 6);
+            align-items: start;
+        }
+
+        .concept-card {
+            background: rgba(48, 54, 61, 0.4);
+            border: 1px solid var(--light-gray);
+            border-radius: calc(var(--grid-base) * 2);
+            padding: calc(var(--grid-base) * 4);
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 10;
+            min-height: 160px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+        }
+
+        .concept-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+            border-color: var(--accent-yellow);
+        }
+
+        .concept-card.highlight {
+            border-color: var(--accent-yellow);
+            background: rgba(240, 185, 12, 0.1);
+        }
+
+        .concept-card h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--accent-yellow);
+            margin-bottom: calc(var(--grid-base) * 2);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            line-height: 1.3;
+            min-height: 32px;
+            flex-shrink: 0;
+        }
+
+        .concept-card p {
+            font-size: 0.9rem;
+            line-height: 1.5;
+            color: var(--text-primary);
+            margin: 0;
+            flex-grow: 1;
+            text-align: left;
+        }
+
+        .concept-card.highlight h4 {
+            color: var(--text-primary);
+        }
+
+        .concept-card.gif-card {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: calc(var(--grid-base) * 2);
+            min-height: 200px;
+        }
+
+        .concept-gif {
+            width: 100%;
+            height: auto;
+            max-width: 100%;
+            border-radius: calc(var(--grid-base) * 1);
+            object-fit: cover;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .main-header {
+                padding: 10px 20px;
+            }
+            
+            .logo-image {
+                height: 40px;
+            }
+            
+            .logo-main {
+                font-size: 12px;
+            }
+            
+            .logo-sub {
+                font-size: 8px;
+            }
+
+            /* Menú mobile */
+            .main-navigation {
+                right: 20px;
+                top: 75px;
+            }
+
+            .main-container {
+                padding: var(--sep-vertical) calc(var(--sep-vertical) / 2) var(--sep-vertical) calc(var(--sep-vertical) / 2);
+            }
+
+            .typing-text {
+                font-size: 48px;
+            }
+
+            .typing-cursor {
+                width: 16px;
+                height: 32px;
+            }
+
+            .scroll-section {
+                padding: calc(var(--grid-base) * 3);
+            }
+
+            /* Sección 2 responsive */
+            .section-2-content {
+                flex-direction: column;
+                align-items: center;
+                gap: calc(var(--grid-base) * 6);
+                padding: 0 calc(var(--grid-base) * 2);
+                max-width: 100%;
+            }
+
+            .concept-side {
+                max-width: 100%;
+                width: 100%;
+            }
+
+            .concept-side.left {
+                text-align: center;
+                padding-right: 0;
+                order: 1;
+            }
+
+            .concept-side.right {
+                text-align: center;
+                padding-left: 0;
+                order: 2;
+            }
+
+            .side-concept {
+                margin-bottom: calc(var(--grid-base) * 3);
+                padding: calc(var(--grid-base) * 3);
+                background: var(--dark-gray); /* Fondo sólido para ocultar línea */
+                border-radius: calc(var(--grid-base) * 2);
+                border: 1px solid var(--light-gray);
+                position: relative;
+                z-index: 70; /* Por encima de la línea */
+            }
+
+            .side-concept.left,
+            .side-concept.right {
+                transform: translateY(20px);
+            }
+
+            .side-concept.animate {
+                transform: translateY(0);
+            }
+
+            .side-concept h3 {
+                font-size: 1.2rem;
+                margin-bottom: calc(var(--grid-base) * 1);
+            }
+
+            .side-concept p {
+                font-size: 0.9rem;
+                line-height: 1.4;
+            }
+
+            /* Sección 3 responsive */
+            .design-concepts {
+                grid-template-columns: 1fr;
+                gap: calc(var(--grid-base) * 3);
+                padding: 0 calc(var(--grid-base) * 2);
+            }
+
+            .concept-item {
+                min-width: unset;
+                padding: calc(var(--grid-base) * 2);
+            }
+
+            .concept-h1 {
+                font-size: 2rem;
+            }
+
+            .concept-h2 {
+                font-size: 1.5rem;
+            }
+
+            .concept-h3 {
+                font-size: 1rem;
+            }
+
+            /* Pilares responsive */
+            .pillars-section {
+                padding: calc(var(--grid-base) * 4) 25px;
+            }
+
+            .pillar {
+                max-width: 100%;
+                padding: 0 calc(var(--grid-base) * 2);
+            }
+
+            .pillar h2 {
+                font-size: 1.8rem;
+            }
+
+            .pillar p {
+                font-size: 1rem;
+            }
+            
+            .concept-grid {
+                grid-template-columns: 1fr;
+                gap: calc(var(--grid-base) * 3);
+                margin-top: calc(var(--grid-base) * 4);
+            }
+            
+            .concept-card {
+                min-height: 120px;
+                padding: calc(var(--grid-base) * 3);
+            }
+            
+            .concept-card h4 {
+                font-size: 0.9rem;
+                min-height: 28px;
+            }
+            
+            .pillar-intro {
+                padding: calc(var(--grid-base) * 3);
+                margin-bottom: calc(var(--grid-base) * 4);
+                margin-left: calc(var(--grid-base) * 1);
+                margin-right: calc(var(--grid-base) * 1);
+                max-width: calc(100% - calc(var(--grid-base) * 2));
+            }
+            
+            .pillar-intro p {
+                font-size: 0.95rem;
+                line-height: 1.6;
+            }
+        }
+
+        /* Utilidades para debugging en desarrollo */
+        .dev-grid {
+            background-image: 
+                linear-gradient(to right, rgba(240, 185, 12, 0.1) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(240, 185, 12, 0.1) 1px, transparent 1px);
+            background-size: 8px 8px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header igual al portfolio -->
+    <header class="main-header">
+        <div class="logo-container">
+            <img src="assets/logo-tiny.png" alt="Francisco Santelices Logo" class="logo-image" loading="eager" decoding="async" onload="this.src='assets/logo.png'">
+            <div class="logo-text">
+                <span class="logo-main">FRANCISCO SANTELICES ARIZTÍA</span>
+                <span class="logo-sub">CREATIVE CONTENT</span>
+            </div>
+        </div>
+        <div id="menu-trigger">
+            <span class="menu-trigger-text">CLICK TO MENU</span>
+            <span class="menu-trigger-cursor"></span>
+        </div>
+    </header>
+
+    <nav class="main-navigation">
+        <button class="nav-btn" data-section="lets-create">Cotiza tu Proyecto</button>
+        <a href="servicios.html" class="nav-btn">Servicios</a>
+        <button class="nav-btn" data-section="audiovisual">Audiovisual</button>
+        <a href="photography.html" class="nav-btn">Photography</a>
+        <a href="design.html" class="nav-btn active">Diseño</a>
+        <button class="nav-btn" data-section="contacto">Contacto</button>
+        <a href="bio.html" class="nav-btn">Acerca De</a>
+    </nav>
+
+
+    <!-- Contenedor principal -->
+    <div class="main-container">
+        <div class="scroll-container" id="scrollContainer">
+            
+            <!-- SECCIÓN 1: Animación de texto inicial -->
+            <section class="scroll-section section-1" id="section1">
+                <div class="typing-container" id="typingContainer">
+                    <span class="typing-text" id="typingText"></span>
+                    <span class="typing-cursor" id="typingCursor"></span>
+                </div>
+                <div class="www-container" id="wwwContainer">
+                    <div class="www-rectangle" id="wwwRectangle"></div>
+                    <span class="www-text" id="wwwText">WWW</span>
+                    <div class="line-start-point" id="lineStartPoint"></div>
+                    <div class="deployable-line" id="deployableLine"></div>
+                </div>
+            </section>
+
+            <!-- SECCIÓN 2: Línea guía con conceptos laterales -->
+            <section class="scroll-section section-2" id="section2">
+                <div class="section-2-content">
+                    <!-- Conceptos izquierdos -->
+                    <div class="concept-side left">
+                        <div class="side-concept left" data-trigger="10">
+                            <h3>Relato</h3>
+                            <p>Contar una historia hace que el mensaje sea humano, cercano y recordable.</p>
+                        </div>
+                        <div class="side-concept left" data-trigger="30">
+                            <h3>Estrategia</h3>
+                            <p>Cada proyecto web necesita una base sólida que conecte objetivos con audiencia.</p>
+                        </div>
+                        <div class="side-concept left" data-trigger="50">
+                            <h3>Diseño</h3>
+                            <p>La experiencia visual comunica antes que las palabras, creando la primera impresión.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Espacio central para la línea -->
+                    <div style="width: 2px; flex-shrink: 0;"></div>
+                    
+                    <!-- Conceptos derechos -->
+                    <div class="concept-side right">
+                        <div class="side-concept right" data-trigger="20">
+                            <h3>Contenido Estratégico</h3>
+                            <p>Fotografía propia, textos únicos y elementos visuales exclusivos marcan la diferencia.</p>
+                        </div>
+                        <div class="side-concept right" data-trigger="40">
+                            <h3>Desarrollo</h3>
+                            <p>Código limpio y optimizado que hace realidad la visión creativa.</p>
+                        </div>
+                        <div class="side-concept right" data-trigger="60">
+                            <h3>Diferenciación Visual</h3>
+                            <p>Jerarquías únicas, paletas específicas y layouts que responden a tus objetivos reales.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECCIÓN 3: Conceptos de diseño -->
+            <section class="scroll-section section-3" id="section3">
+                <div class="line-end-point" id="lineEndPoint"></div>
+                <div class="design-concepts">
+                    <div class="concept-item" data-delay="0">
+                        <h1 class="concept-h1">Experiencia</h1>
+                        <h3 class="concept-h3">Cada click cuenta una historia</h3>
+                    </div>
+                    <div class="concept-item" data-delay="200">
+                        <h2 class="concept-h2">Identidad</h2>
+                        <h3 class="concept-h3">Tu marca, tu voz única</h3>
+                    </div>
+                    <div class="concept-item" data-delay="400">
+                        <h2 class="concept-h2">Funcionalidad</h2>
+                        <h3 class="concept-h3">Hermoso, pero que funcione</h3>
+                    </div>
+                    <div class="concept-item" data-delay="600">
+                        <h1 class="concept-h1">Impacto</h1>
+                        <h3 class="concept-h3">Resultados que se miden</h3>
+                    </div>
+                    <div class="gif-element" data-delay="800">
+                        <img src="assets/diseño-web/gif1.gif" alt="Gif de impacto" class="gif-animation" loading="lazy">
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECCIÓN 4: Los 3 pilares (primera parte) -->
+            <section class="scroll-section pillars-section" id="section4">
+                <div class="pillar" data-delay="0">
+                    <div class="pillar-gif">
+                        <img src="assets/diseño-web/4.gif" alt="Gif de relato" class="pillar-gif-animation" loading="lazy">
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECCIÓN 5: Los 3 pilares (segunda parte) -->
+            <section class="scroll-section pillars-section" id="section5">
+                <div class="pillar" data-delay="0">
+                    <h2>Contenido Estratégico</h2>
+                    <div class="pillar-intro">
+                        <p>La diferencia entre una plantilla y un sitio personalizado está en el contenido: fotografía propia, textos únicos, videos exclusivos y elementos visuales que cuentan tu historia específica, no la de miles de otros sitios.</p>
+                    </div>
+                    
+                    <div class="concept-grid">
+                        <div class="concept-card">
+                            <h4>Fotografía Propia vs Stock</h4>
+                            <p>Tu equipo, espacios y productos reales conectan más que imágenes genéricas. La autenticidad visual genera 3x más engagement.</p>
+                        </div>
+                        <div class="concept-card">
+                            <h4>Textos Únicos</h4>
+                            <p>Copywriting estratégico que habla el idioma de tu audiencia específica, no plantillas de texto que usan todos.</p>
+                        </div>
+                        <div class="concept-card">
+                            <h4>Video Exclusivo</h4>
+                            <p>Motion graphics personalizados y videos que explican exactamente tu propuesta de valor, no contenido reutilizado.</p>
+                        </div>
+                        <div class="concept-card gif-card">
+                            <img src="assets/diseño-web/6.gif" alt="Gif de contenido estratégico" class="concept-gif" loading="lazy">
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="pillar" data-delay="300">
+                    <h2>Diferenciación Visual</h2>
+                    <div class="pillar-intro">
+                        <p>Mientras las plantillas ofrecen diseños genéricos, el trabajo personalizado crea jerarquías visuales únicas, paletas de color específicas y layouts que responden exactamente a tus objetivos de negocio y personalidad de marca.</p>
+                    </div>
+                    
+                    <div class="concept-grid">
+                        <div class="concept-card highlight">
+                            <h4>Ecosistema Visual Coherente</h4>
+                            <p>Cuando fotografía, diseño y video comparten la misma visión creativa, el impacto se multiplica. No es suma, es sinergia.</p>
+                        </div>
+                        <div class="concept-card">
+                            <h4>Identidad Visual Única</h4>
+                            <p>Paletas de color, tipografías y estilos visuales diseñados específicamente para tu marca, no para miles de sitios.</p>
+                        </div>
+                        <div class="concept-card">
+                            <h4>Arquitectura de Información</h4>
+                            <p>Jerarquía de contenidos pensada para tu flujo de ventas específico, no para necesidades genéricas.</p>
+                        </div>
+                        <div class="concept-card">
+                            <h4>Experiencia de Usuario Personalizada</h4>
+                            <p>Interacciones, animaciones y micro-momentos diseñados para cómo tu audiencia realmente navega y decide.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </div>
+
+    <script>
+        // ANIMACIONES Y FUNCIONALIDAD
+
+        // Variables globales
+        let currentSection = 1;
+        const totalSections = 5;
+        let scrollContainer;
+        let deployableLine;
+        let lineStartPoint;
+        let lineEndPoint;
+        let isLooping = true;
+        let hasScrolled = false;
+        let wwwContainer;
+        let lineStartPosition = 0;
+        let lineEndPosition = 0;
+
+        // Función principal de inicialización
+        document.addEventListener('DOMContentLoaded', function() {
+            scrollContainer = document.getElementById('scrollContainer');
+            deployableLine = document.getElementById('deployableLine');
+            lineStartPoint = document.getElementById('lineStartPoint');
+            lineEndPoint = document.getElementById('lineEndPoint');
+            wwwContainer = document.getElementById('wwwContainer');
+            
+            startTypingAnimation();
+            setupScrollObserver();
+            setupSection2Observer();
+            setupScrollListener();
+            setupMenuFunctionality();
+        });
+
+        // Funcionalidad del menú - Exacto del portfolio
+        function setupMenuFunctionality() {
+            const menuTrigger = document.getElementById('menu-trigger');
+            const mainNavigation = document.querySelector('.main-navigation');
+            
+            // Toggle del menú
+            menuTrigger.addEventListener('click', function(event) {
+                event.stopPropagation();
+                mainNavigation.classList.toggle('active');
+            });
+
+            // Cerrar menú al hacer click fuera
+            document.addEventListener('click', function(event) {
+                if (!mainNavigation.contains(event.target)) {
+                    mainNavigation.classList.remove('active');
+                }
+            });
+
+            // Prevenir que clicks dentro del menú lo cierren
+            mainNavigation.addEventListener('click', function(event) {
+                event.stopPropagation();
+            });
+
+            // Funcionalidad para botones con data-section
+            const sectionButtons = document.querySelectorAll('[data-section]');
+            sectionButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const section = this.getAttribute('data-section');
+                    handleSectionNavigation(section);
+                    mainNavigation.classList.remove('active'); // Cerrar menú después de click
+                });
+            });
+        }
+
+        // Manejar navegación a secciones
+        function handleSectionNavigation(sectionName) {
+            switch(sectionName) {
+                case 'lets-create':
+                    // Redirigir al portfolio con hash para "Cotiza tu Proyecto"
+                    window.location.href = 'portfolio.html#lets-create';
+                    break;
+                case 'audiovisual':
+                    // Redirigir al portfolio con hash para sección audiovisual
+                    window.location.href = 'portfolio.html#audiovisual';
+                    break;
+                case 'contacto':
+                    // Redirigir al portfolio con hash para sección contacto
+                    window.location.href = 'portfolio.html#contacto';
+                    break;
+                default:
+                    console.log('Sección no encontrada:', sectionName);
+            }
+        }
+
+        // SECCIÓN 1: Animación de escritura
+        function startTypingAnimation() {
+            const texts = [
+                "quiero tener un sitio web",
+                "Mi sitio...",
+                "Mi idea..."
+            ];
+            
+            let textIndex = 0;
+            const typingText = document.getElementById('typingText');
+            const typingContainer = document.getElementById('typingContainer');
+            const wwwContainer = document.getElementById('wwwContainer');
+            const wwwRectangle = document.getElementById('wwwRectangle');
+            const cursor = document.getElementById('typingCursor');
+            
+            function typeText(text, callback) {
+                if (!isLooping) return; // Si ya no estamos en loop, detener
+                
+                typingText.style.opacity = '1';
+                typingText.textContent = '';
+                
+                let i = 0;
+                const typeInterval = setInterval(() => {
+                    if (!isLooping) {
+                        clearInterval(typeInterval);
+                        return;
+                    }
+                    
+                    typingText.textContent += text[i];
+                    i++;
+                    
+                    if (i >= text.length) {
+                        clearInterval(typeInterval);
+                        setTimeout(callback, 1500); // Pausa antes de la siguiente acción
+                    }
+                }, 80);
+            }
+            
+            function eraseText(callback) {
+                if (!isLooping) return;
+                
+                const currentText = typingText.textContent;
+                let i = currentText.length;
+                
+                const eraseInterval = setInterval(() => {
+                    if (!isLooping) {
+                        clearInterval(eraseInterval);
+                        return;
+                    }
+                    
+                    typingText.textContent = currentText.substring(0, i);
+                    i--;
+                    
+                    if (i < 0) {
+                        clearInterval(eraseInterval);
+                        setTimeout(callback, 500);
+                    }
+                }, 50);
+            }
+            
+            function startLoop() {
+                if (!isLooping) return;
+                
+                typeText(texts[0], () => {
+                    eraseText(() => {
+                        typeText(texts[1], () => {
+                            eraseText(() => {
+                                typeText(texts[2], () => {
+                                    // Al terminar "Mi idea...", iniciar loop
+                                    setTimeout(() => {
+                                        if (isLooping) {
+                                            startLoop(); // Reiniciar el loop
+                                        }
+                                    }, 2000);
+                                });
+                            });
+                        });
+                    });
+                });
+            }
+            
+            // Función para manejar el scroll y detener el loop
+            function handleScrollStart() {
+                if (hasScrolled) return;
+                
+                hasScrolled = true;
+                isLooping = false;
+                
+                // Borrar el texto actual
+                const currentText = typingText.textContent;
+                let i = currentText.length;
+                
+                const eraseInterval = setInterval(() => {
+                    typingText.textContent = currentText.substring(0, i);
+                    i--;
+                    
+                    if (i < 0) {
+                        clearInterval(eraseInterval);
+                        
+                        // Mostrar WWW y animar rectángulo
+                        setTimeout(() => {
+                            showWWWAnimation();
+                        }, 300);
+                    }
+                }, 30); // Borrado más rápido
+            }
+            
+            function showWWWAnimation() {
+                // Ocultar typing container
+                typingContainer.style.opacity = '0';
+                
+                // Mostrar WWW container
+                setTimeout(() => {
+                    wwwContainer.style.opacity = '1';
+                    
+                    // Animar rectángulo
+                    setTimeout(() => {
+                        wwwRectangle.classList.add('animate');
+                        
+                        // Mostrar punto de inicio después del rectángulo
+                        setTimeout(() => {
+                            showLineStartPoint();
+                        }, 600);
+                    }, 200);
+                }, 500);
+            }
+            
+            function showLineStartPoint() {
+                // Mostrar el punto de inicio bajo el rectángulo
+                lineStartPoint.classList.add('visible');
+                
+                // Calcular posición inicial para la línea
+                const wwwRect = wwwContainer.getBoundingClientRect();
+                const containerRect = scrollContainer.getBoundingClientRect();
+                
+                // Guardar posición inicial (punto donde comienza la línea)
+                lineStartPosition = wwwRect.bottom + 24 - containerRect.top + scrollContainer.scrollTop;
+                
+                // Calcular posición del punto final (inicio de sección 3)
+                const section3 = document.getElementById('section3');
+                lineEndPosition = section3.offsetTop;
+                
+                // Posicionar punto final al inicio de sección 3
+                lineEndPoint.style.top = '48px'; // Padding de sección
+                
+                // Mostrar línea con altura 0 (punto inicial = punto final)
+                setTimeout(() => {
+                    deployableLine.classList.add('visible');
+                    deployableLine.style.height = '0px'; // Ambos puntos en 0%
+                }, 300);
+            }
+            
+            // Detectar primer scroll
+            scrollContainer.addEventListener('scroll', handleScrollStart, { once: true });
+            
+            // Secuencia de animación inicial
+            setTimeout(() => {
+                startLoop();
+            }, 3000); // Espera inicial de 3 segundos
+        }
+
+        // Listener para scroll continuo y animación de línea
+        function setupScrollListener() {
+            scrollContainer.addEventListener('scroll', function() {
+                if (hasScrolled) { // Solo actualizar si ya se activó la línea
+                    updateGuideLineProgress();
+                    updateSideConcepts();
+                }
+            });
+        }
+
+        // Actualizar progreso de línea basado en scroll
+        function updateGuideLineProgress() {
+            if (!deployableLine || !hasScrolled) return;
+            
+            const scrollTop = scrollContainer.scrollTop;
+            
+            // Detectar si estamos en sección 4 o posterior para ocultar línea
+            const section4 = document.getElementById('section4');
+            const section4Top = section4.offsetTop;
+            
+            // Si llegamos a la sección 4, ocultar línea completamente
+            if (scrollTop >= section4Top - scrollContainer.clientHeight) {
+                deployableLine.style.opacity = '0';
+                deployableLine.style.height = '0px';
+                lineEndPoint.classList.remove('visible');
+                return;
+            }
+            
+            // Calcular el rango de scroll desde el punto inicial hasta el punto final
+            const lineStartScroll = lineStartPosition - scrollContainer.clientHeight;
+            const lineEndScroll = lineEndPosition - scrollContainer.clientHeight / 2;
+            
+            let progress = 0;
+            
+            if (scrollTop >= lineStartScroll && scrollTop <= lineEndScroll) {
+                progress = (scrollTop - lineStartScroll) / (lineEndScroll - lineStartScroll);
+                progress = Math.max(0, Math.min(1, progress)); // Clamp entre 0 y 1
+                
+                // Calcular altura máxima: desde punto inicial hasta punto final SOLAMENTE
+                const maxHeight = lineEndPosition - lineStartPosition;
+                
+                // Aplicar el progreso a la línea desplegable
+                // La línea va desde el punto inicial hasta el punto final únicamente
+                deployableLine.style.height = `${progress * maxHeight}px`;
+                deployableLine.style.opacity = '1'; // Asegurar que esté visible
+                
+                // Mostrar punto final cuando la línea esté cerca del 100%
+                if (progress > 0.95) {
+                    lineEndPoint.classList.add('visible');
+                } else {
+                    lineEndPoint.classList.remove('visible');
+                }
+                
+            } else if (scrollTop > lineEndScroll && scrollTop < section4Top - scrollContainer.clientHeight) {
+                // Mantener línea al 100% y punto final visible (solo si no estamos en sección 4)
+                const maxHeight = lineEndPosition - lineStartPosition;
+                deployableLine.style.height = `${maxHeight}px`;
+                deployableLine.style.opacity = '1';
+                lineEndPoint.classList.add('visible');
+            } else {
+                deployableLine.style.height = '0px';
+                deployableLine.style.opacity = '0';
+                lineEndPoint.classList.remove('visible');
+            }
+        }
+
+        // Actualizar conceptos laterales basado en progreso de línea
+        function updateSideConcepts() {
+            if (!deployableLine) return;
+            
+            const scrollTop = scrollContainer.scrollTop;
+            const lineStartScroll = lineStartPosition - scrollContainer.clientHeight;
+            const lineEndScroll = lineEndPosition - scrollContainer.clientHeight / 2;
+            
+            // Calcular progreso como porcentaje (0-100)
+            let progress = 0;
+            if (scrollTop >= lineStartScroll && scrollTop <= lineEndScroll) {
+                progress = ((scrollTop - lineStartScroll) / (lineEndScroll - lineStartScroll)) * 100;
+                progress = Math.max(0, Math.min(100, progress));
+            } else if (scrollTop > lineEndScroll) {
+                progress = 100; // Mantener al 100% después de completar
+            }
+            
+            const sideConcepts = document.querySelectorAll('.side-concept');
+            
+            sideConcepts.forEach(concept => {
+                const trigger = parseInt(concept.dataset.trigger);
+                
+                if (progress >= trigger) {
+                    concept.classList.add('animate');
+                } else {
+                    concept.classList.remove('animate');
+                }
+            });
+        }
+
+        // Observer para detectar scroll entre secciones
+        function setupScrollObserver() {
+            const sections = document.querySelectorAll('.scroll-section');
+            
+            const observerOptions = {
+                root: scrollContainer,
+                rootMargin: '-20% 0px -20% 0px',
+                threshold: 0.1
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const sectionId = entry.target.id;
+                        handleSectionAnimation(sectionId);
+                    }
+                });
+            }, observerOptions);
+            
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+        }
+
+        // Detectar cuando sección 2 está completamente visible
+        function setupSection2Observer() {
+            const section2 = document.getElementById('section2');
+            
+            const section2Options = {
+                root: scrollContainer,
+                rootMargin: '0px',
+                threshold: 0.8 // Cuando el 80% de la sección 2 está visible
+            };
+            
+            const section2Observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        // Mostrar todos los conceptos de sección 2 inmediatamente
+                        showAllSection2Concepts();
+                    }
+                });
+            }, section2Options);
+            
+            section2Observer.observe(section2);
+        }
+
+        function showAllSection2Concepts() {
+            // Ya no mostramos todos inmediatamente
+            // Los conceptos aparecerán según el progreso de la línea con updateSideConcepts()
+        }
+
+        // Manejo de animaciones por sección
+        function handleSectionAnimation(sectionId) {
+            switch(sectionId) {
+                case 'section2':
+                    // Sección 2 se maneja con observer específico
+                    break;
+                case 'section3':
+                    animateSection3();
+                    break;
+                case 'section4':
+                    animateSection4();
+                    break;
+                case 'section5':
+                    animateSection5();
+                    break;
+            }
+        }
+
+        function animateSection3() {
+            const concepts = document.querySelectorAll('.concept-item');
+            
+            concepts.forEach((concept, index) => {
+                setTimeout(() => {
+                    concept.classList.add('animate');
+                }, index * 200);
+            });
+        }
+
+        function animateSection4() {
+            const pillars = document.querySelectorAll('#section4 .pillar');
+            animatePillars(pillars);
+        }
+
+        function animateSection5() {
+            const pillars = document.querySelectorAll('#section5 .pillar');
+            animatePillars(pillars);
+        }
+
+        function animatePillars(pillars) {
+            pillars.forEach((pillar, index) => {
+                setTimeout(() => {
+                    pillar.classList.add('animate');
+                }, index * 300);
+            });
+        }
+    </script>
+</body>
+</html>
