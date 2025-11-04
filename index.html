@@ -86,7 +86,7 @@
     <style>
         /* CRITICAL INLINE CSS - Zero Render Blocking */
         :root {
-            --black: #050505;
+            --black: #000000;
             --text-primary: #FFFFFF;
             --accent-yellow: #f0b90c;
             --font-primary: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
@@ -122,31 +122,28 @@
         }
         .video-background {
             width: 100%;
-            height: 60vh;
             position: relative;
-            overflow: hidden;
             background-color: var(--black);
         }
         .video-background video {
             width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: center center;
+            height: auto;
+            display: block;
             background-color: var(--black);
         }
         .loading-content {
-            height: 100vh;
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
             color: var(--text-primary);
             background-color: var(--black);
         }
         .text-section {
-            flex: 1;
             background-color: var(--black);
             display: flex;
             flex-direction: column;
             justify-content: center;
+            padding: 2rem 0;
         }
         .loading-text {
             display: flex;
@@ -167,9 +164,9 @@
             max-width: 95vw;
         }
         .agency-title {
-            font-size: clamp(0.5rem, 1.2vw, 0.9rem);
+            font-size: clamp(0.4rem, 1.1vw, 0.8rem);
             font-weight: 300;
-            letter-spacing: clamp(0.15rem, 0.35vw, 0.25rem);
+            letter-spacing: clamp(0.08rem, 0.3vw, 0.2rem);
             text-transform: uppercase;
             margin-bottom: 0.5rem;
             color: var(--text-primary);
@@ -178,10 +175,17 @@
             white-space: nowrap;
             text-align: center;
         }
+
+        @media screen and (max-width: 480px) {
+            .agency-title {
+                font-size: 0.38rem;
+                letter-spacing: 0.06rem;
+            }
+        }
         .main-title {
-            font-size: clamp(0.77rem, 1.76vw, 1.375rem);
+            font-size: clamp(0.7rem, 1.76vw, 1.375rem);
             font-weight: 700;
-            letter-spacing: clamp(0.22rem, 0.545vw, 0.425rem);
+            letter-spacing: clamp(0.18rem, 0.545vw, 0.425rem);
             text-transform: uppercase;
             margin-bottom: 0.165rem;
             color: var(--text-primary);
@@ -189,6 +193,13 @@
             animation: fadeInUp 1.5s ease-out;
             white-space: nowrap;
             text-align: center;
+        }
+
+        @media screen and (max-width: 480px) {
+            .main-title {
+                font-size: 0.65rem;
+                letter-spacing: 0.15rem;
+            }
         }
         .sub-title {
             font-size: clamp(0.79rem, 1.8vw, 1.395rem);
@@ -428,7 +439,7 @@
 <body>
     <div id="custom-cursor"></div>
     <div class="loading-content">
-        <!-- Video de fondo -->
+        <!-- BLOQUE 1: Video completo sin crop -->
         <div class="video-background">
             <video autoplay loop muted playsinline>
                 <source src="https://github.com/fjsantel/RESPALDO-SITIO/raw/main/tentaculos_1.mp4" type="video/mp4">
@@ -436,7 +447,7 @@
             </video>
         </div>
 
-        <!-- Área negra con texto abajo -->
+        <!-- BLOQUE 2: Información principal -->
         <div class="text-section">
             <div class="loading-text">
                 <div class="text-lines-container">
@@ -445,36 +456,14 @@
                     <p class="sub-title">CREATIVE CONTENT</p>
                 </div>
 
-                <!-- Enter button first -->
+                <!-- Enter button -->
                 <div style="padding: 2rem; padding-bottom: 1rem; display: flex; justify-content: center;">
                     <button class="enter-button" onclick="window.location.href='portfolio.html'">
                         INGRESAR AL SITIO
                     </button>
                 </div>
 
-                <!-- Collapsible info toggle -->
-                <div style="text-align: center; padding: 1rem 0;">
-                    <button id="toggleInfo" style="background: transparent; border: 1px solid rgba(255, 255, 255, 0.2); color: rgba(255, 255, 255, 0.5); font-family: var(--font-primary); font-size: 0.7rem; font-weight: 300; letter-spacing: 0.1rem; text-transform: uppercase; padding: 0.5rem 1.5rem; cursor: pointer; transition: all 0.3s ease; border-radius: 20px;">
-                        ⌄ SOBRE EL ESTUDIO
-                    </button>
-                </div>
-
-                <!-- Collapsible description -->
-                <div id="studioInfo" style="max-height: 0; overflow: hidden; transition: max-height 0.4s ease, opacity 0.4s ease; opacity: 0;">
-                    <div style="color: rgba(255, 255, 255, 0.7); font-size: 0.85rem; font-weight: 300; letter-spacing: 0.05rem; max-width: 580px; margin: 0 auto; padding: 1rem 2rem 2rem 2rem; line-height: 1.8; text-align: center;">
-                        <p style="margin-bottom: 1.2rem;">
-                            Estudio creativo especializado en ecosistemas visuales. Producción y dirección audiovisual, fotografía, diseño gráfico web, digital e impreso. Motion graphics y postproducción.
-                        </p>
-                        <p style="margin-bottom: 1.2rem;">
-                            Desarrollo de proyectos desde preproducción hasta finalización. Dirección creativa, identidad visual, desarrollo web. Expertise técnico en iluminación, sonido directo, corrección de color y montaje.
-                        </p>
-                        <p style="margin-bottom: 0;">
-                            Proyectos para marcas, agencias y medios. Contenido para campañas publicitarias, plataformas digitales y televisión. Dirigido por Francisco Santelices Ariztía. Santiago de Chile.
-                        </p>
-                    </div>
-                </div>
-
-                <!-- Footer navigation - visible links for SEO -->
+                <!-- Footer navigation -->
                 <nav style="text-align: center; padding: 1.5rem 0 0.5rem 0;">
                     <a href="portfolio.html" style="color: rgba(255, 255, 255, 0.5); font-size: 0.7rem; font-weight: 300; letter-spacing: 0.08rem; text-transform: uppercase; text-decoration: none; margin: 0 1rem; transition: color 0.3s ease;">Portfolio</a>
                     <span style="color: rgba(255, 255, 255, 0.2);">|</span>
@@ -483,10 +472,37 @@
                     <a href="bio.html" style="color: rgba(255, 255, 255, 0.5); font-size: 0.7rem; font-weight: 300; letter-spacing: 0.08rem; text-transform: uppercase; text-decoration: none; margin: 0 1rem; transition: color 0.3s ease;">Contacto</a>
                 </nav>
 
-                <!-- WhatsApp contact - discrete link -->
-                <div style="text-align: center; padding: 0.8rem 0 4rem 0;">
+                <!-- WhatsApp contact -->
+                <div style="text-align: center; padding: 0.8rem 0 2rem 0;">
                     <a href="https://wa.me/56989186523" target="_blank" rel="noopener noreferrer" id="whatsappLink" style="color: rgba(255, 255, 255, 0.3); font-size: 0.65rem; font-weight: 300; letter-spacing: 0.08rem; text-transform: uppercase; text-decoration: none; transition: all 0.3s ease; display: inline-block;">WhatsApp</a>
                 </div>
+            </div>
+        </div>
+
+        <!-- BLOQUE 3: Sobre el Estudio (desplegable) -->
+        <div style="background-color: var(--black); padding: 2rem 0;">
+            <!-- Collapsible info toggle -->
+            <div style="text-align: center; padding: 1rem 0;">
+                <button id="toggleInfo" style="background: transparent; border: 1px solid rgba(255, 255, 255, 0.2); color: rgba(255, 255, 255, 0.5); font-family: var(--font-primary); font-size: 0.7rem; font-weight: 300; letter-spacing: 0.1rem; text-transform: uppercase; padding: 0.5rem 1.5rem; cursor: pointer; transition: all 0.3s ease; border-radius: 20px;">
+                    ⌄ SOBRE EL ESTUDIO
+                </button>
+            </div>
+
+            <!-- Collapsible description -->
+            <div id="studioInfo" style="max-height: 0; overflow: hidden; transition: max-height 0.4s ease, opacity 0.4s ease; opacity: 0; overflow-y: auto;">
+                <div style="color: rgba(255, 255, 255, 0.7); font-size: 0.85rem; font-weight: 300; letter-spacing: 0.05rem; max-width: 580px; margin: 0 auto; padding: 1rem 2rem 1.5rem 2rem; line-height: 1.8; text-align: center;">
+                    <p style="margin-bottom: 1.2rem;">
+                        Estudio creativo especializado en ecosistemas visuales. Producción y dirección audiovisual, fotografía, diseño gráfico web, digital e impreso. Motion graphics y postproducción.
+                    </p>
+                    <p style="margin-bottom: 1.2rem;">
+                        Desarrollo de proyectos desde preproducción hasta finalización. Dirección creativa, identidad visual, desarrollo web. Expertise técnico en iluminación, sonido directo, corrección de color y montaje.
+                    </p>
+                    <p style="margin-bottom: 0;">
+                        Proyectos para marcas, agencias y medios. Contenido para campañas publicitarias, plataformas digitales y televisión. Dirigido por Francisco Santelices Ariztía. Santiago de Chile.
+                    </p>
+                </div>
+            </div>
+        </div>
 
                 <!-- Strategic SEO Content -->
                 <div style="position: absolute; left: -9999px; opacity: 0;">
@@ -761,8 +777,9 @@
 
             toggleBtn.addEventListener('click', () => {
                 if (!isOpen) {
-                    // Open
-                    infoDiv.style.maxHeight = '800px';
+                    // Open - altura adaptativa según tamaño de pantalla
+                    const isMobile = window.innerWidth <= 768;
+                    infoDiv.style.maxHeight = isMobile ? '300px' : '500px';
                     infoDiv.style.opacity = '1';
                     toggleBtn.innerHTML = '⌃ CERRAR';
                     toggleBtn.style.color = 'rgba(240, 185, 12, 0.7)';
