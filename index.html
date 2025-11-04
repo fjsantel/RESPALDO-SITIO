@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Francisco Santelices Creative Content - Productora Audiovisual Santiago Chile 🎬 Especialistas en Motion Graphics, Publicidad, Diseño Web y Comunicaciones. Servicios integrales de contenido audiovisual para marcas, programas TV y campañas publicitarias. Portfolio 2025">
+    <meta name="description" content="Productora audiovisual en Santiago Chile. Especialistas en motion graphics, publicidad, diseño web y contenido digital profesional. Portfolio 2025 - Francisco Santelices">
     <meta name="keywords" content="productora audiovisual santiago, productora contenidos chile, productora publicidad chile, motion graphics chile, diseño web santiago, comunicaciones audiovisuales, programas television, spots publicitarios, contenido digital, francisco santelices, creative content chile, produccion audiovisual santiago, agencia publicidad digital">
     <meta name="author" content="Francisco Santelices Ariztía">
     <meta name="robots" content="index, follow">
@@ -30,7 +30,7 @@
     <link rel="apple-touch-icon" sizes="180x180" href="assets/logo.png">
     <link rel="manifest" href="site.webmanifest">
     
-    <title>Francisco Santelices Creative Content - Productora Audiovisual Santiago Chile | Motion Graphics & Publicidad 2025</title>
+    <title>Francisco Santelices | Productora Audiovisual Chile</title>
     
     <!-- Schema Markup para Videos -->
     <script type="application/ld+json">
@@ -203,6 +203,7 @@
         }
         .enter-button-container {
             padding: 2rem;
+            padding-bottom: 3rem;
             display: flex;
             justify-content: center;
             animation: fadeInUp 1.5s ease-out 0.6s both;
@@ -230,7 +231,7 @@
         /* Sistema de audio como elemento independiente */
         .audio-system-container {
             position: absolute;
-            bottom: 5%;
+            bottom: 3%;
             left: 50%;
             transform: translateX(-50%);
             z-index: 1000;
@@ -251,14 +252,15 @@
             .text-section {
                 transform: translateY(-20%) !important;
             }
-            
+
             .loading-text {
                 padding: 1rem !important;
             }
-            
+
             .enter-button-container {
                 margin-top: -2rem !important;
                 padding: 1rem !important;
+                padding-bottom: 4rem !important;
                 transform: translateY(20%) !important;
             }
             
@@ -284,14 +286,15 @@
             .text-section {
                 transform: translateY(-25%) !important;
             }
-            
+
             .loading-text {
                 padding: 0.5rem !important;
             }
-            
+
             .enter-button-container {
                 margin-top: -2.5rem !important;
                 padding: 0.8rem !important;
+                padding-bottom: 5rem !important;
                 transform: translateY(25%) !important;
             }
             
@@ -437,38 +440,65 @@
         <div class="text-section">
             <div class="loading-text">
                 <div class="text-lines-container">
-                    <h3 class="agency-title">AGENCIA DE CONTENIDOS</h3>
+                    <p class="agency-title">AGENCIA DE CONTENIDOS / PRODUCTORA AUDIOVISUAL</p>
                     <h1 class="main-title">FRANCISCO SANTELICES ARIZTÍA</h1>
-                    <h2 class="sub-title">CREATIVE CONTENT</h2>
+                    <p class="sub-title">CREATIVE CONTENT</p>
                 </div>
-                
-                <!-- Strategic SEO Content with New Keywords -->
+
+                <!-- Enter button first -->
+                <div style="padding: 2rem; padding-bottom: 1rem; display: flex; justify-content: center;">
+                    <button class="enter-button" onclick="window.location.href='portfolio.html'">
+                        INGRESAR AL SITIO
+                    </button>
+                </div>
+
+                <!-- Collapsible info toggle -->
+                <div style="text-align: center; padding: 1rem 0;">
+                    <button id="toggleInfo" style="background: transparent; border: 1px solid rgba(255, 255, 255, 0.2); color: rgba(255, 255, 255, 0.5); font-family: var(--font-primary); font-size: 0.7rem; font-weight: 300; letter-spacing: 0.1rem; text-transform: uppercase; padding: 0.5rem 1.5rem; cursor: pointer; transition: all 0.3s ease; border-radius: 20px;">
+                        ⌄ SOBRE EL ESTUDIO
+                    </button>
+                </div>
+
+                <!-- Collapsible description -->
+                <div id="studioInfo" style="max-height: 0; overflow: hidden; transition: max-height 0.4s ease, opacity 0.4s ease; opacity: 0;">
+                    <p style="color: rgba(255, 255, 255, 0.7); font-size: 0.85rem; font-weight: 300; letter-spacing: 0.05rem; max-width: 520px; margin: 0 auto; padding: 1rem 2rem 2rem 2rem; line-height: 1.8; text-align: center;">
+                        Estudio creativo especializado en ecosistemas visuales: producción y dirección audiovisual, fotografía, diseño gráfico web, digital e impreso. Motion graphics y postproducción. Dirección creativa para marcas y contenido multiplataforma. Santiago de Chile.
+                    </p>
+                </div>
+
+                <!-- Footer navigation - visible links for SEO -->
+                <nav style="text-align: center; padding: 1.5rem 0 0.5rem 0;">
+                    <a href="portfolio.html" style="color: rgba(255, 255, 255, 0.5); font-size: 0.7rem; font-weight: 300; letter-spacing: 0.08rem; text-transform: uppercase; text-decoration: none; margin: 0 1rem; transition: color 0.3s ease;">Portfolio</a>
+                    <span style="color: rgba(255, 255, 255, 0.2);">|</span>
+                    <a href="servicios.html" style="color: rgba(255, 255, 255, 0.5); font-size: 0.7rem; font-weight: 300; letter-spacing: 0.08rem; text-transform: uppercase; text-decoration: none; margin: 0 1rem; transition: color 0.3s ease;">Servicios</a>
+                    <span style="color: rgba(255, 255, 255, 0.2);">|</span>
+                    <a href="bio.html" style="color: rgba(255, 255, 255, 0.5); font-size: 0.7rem; font-weight: 300; letter-spacing: 0.08rem; text-transform: uppercase; text-decoration: none; margin: 0 1rem; transition: color 0.3s ease;">Contacto</a>
+                </nav>
+
+                <!-- WhatsApp contact - discrete link -->
+                <div style="text-align: center; padding: 0.8rem 0 4rem 0;">
+                    <a href="https://wa.me/56989186523" target="_blank" rel="noopener noreferrer" id="whatsappLink" style="color: rgba(255, 255, 255, 0.3); font-size: 0.65rem; font-weight: 300; letter-spacing: 0.08rem; text-transform: uppercase; text-decoration: none; transition: all 0.3s ease; display: inline-block;">WhatsApp</a>
+                </div>
+
+                <!-- Strategic SEO Content -->
                 <div style="position: absolute; left: -9999px; opacity: 0;">
-                    <h1>DIRECCIÓN AUDIOVISUAL SANTIAGO CHILE</h1>
-                    <h2>FRANCISCO SANTELICES ARIZTÍA</h2>
-                    <h3>MOTION GRAPHICS & PRODUCCIÓN</h3>
-                    <h4>Director Audiovisual y Director Creativo Santiago Chile</h4>
-                    <p>Especialista en <strong>motion graphics chile</strong>, <strong>video corporativo santiago</strong>, <strong>spots publicitarios chile</strong>, <strong>dirección creativa audiovisual</strong>, <strong>branded content</strong> y <strong>storytelling de marca</strong>. Portfolio 2025 con <strong>campañas digitales creativas</strong>, <strong>marketing visual</strong>, <strong>video marketing</strong>, <strong>contenido para redes sociales</strong>, <strong>reels creativos</strong> y <strong>microcontenidos audiovisuales</strong>.</p>
-                    <span>Producción de spots publicitarios, animación 2D y 3D, postproducción cinematográfica, color grading, montaje y edición profesional, contenido vertical TikTok Instagram, videos interactivos, live streaming profesional, activaciones publicitarias, marketing de experiencias</span>
-                    <h5>Servicios de Video Marketing Chile 2025</h5>
-                    <ul style="list-style: none;">
-                        <li>Video Corporativo Santiago - Producción integral</li>
-                        <li>Spots Publicitarios Chile - Campañas creativas</li>
-                        <li>Motion Graphics - Animación 2D y 3D profesional</li>
-                        <li>Branded Content - Storytelling de marca efectivo</li>
-                        <li>Video Marketing - Estrategias audiovisuales digitales</li>
-                        <li>Contenido Redes Sociales - Reels e Instagram creativos</li>
-                        <li>Dirección Creativa - Campañas multiplataforma</li>
-                        <li>Postproducción Cinematográfica - Color grading profesional</li>
-                    </ul>
+                    <p>Servicios de motion graphics 2D y 3D, animación digital, video corporativo, spots publicitarios, branded content, diseño de identidad visual, desarrollo web responsive, fotografía comercial y de producto, color grading y postproducción cinematográfica profesional.</p>
+                    <p>Desarrollo de proyectos integrales desde la conceptualización hasta la entrega final. Colaboración con marcas, agencias y medios en la creación de contenido para campañas digitales, televisión, redes sociales y plataformas web.</p>
+                    <p>Especialización en narrativa visual, dirección de arte, edición y montaje profesional. Experiencia en producción de contenido para Instagram, TikTok, YouTube y campañas publicitarias multiplataforma. Enfoque en storytelling efectivo y comunicación visual estratégica.</p>
+                    <p>Productora audiovisual en Chile con servicios de preproducción, producción y postproducción. Manejo de equipos técnicos, iluminación, sonido directo, corrección de color y finalización de proyectos audiovisuales para medios digitales y tradicionales.</p>
                 </div>
             </div>
-            
-            <div class="enter-button-container">
-                <button class="enter-button" onclick="window.location.href='portfolio.html'">
-                    INGRESAR AL SITIO
-                </button>
-            </div>
+
+            <!-- Internal Links for SEO (hidden from view) -->
+            <nav style="position: absolute; left: -9999px; opacity: 0;" aria-hidden="true">
+                <a href="portfolio.html">Portfolio Audiovisual</a>
+                <a href="servicios.html">Servicios de Producción</a>
+                <a href="bio.html">Biografía Francisco Santelices</a>
+                <a href="diseño-web.html">Diseño Web</a>
+                <a href="photography.html">Fotografía Profesional</a>
+                <a href="design.html">Diseño Gráfico</a>
+                <a href="portafolio-profesional.html">Portafolio Profesional</a>
+            </nav>
         </div>
         
         <!-- Botón de diseño sonoro como elemento independiente -->
@@ -713,6 +743,72 @@
         // Initialize cursor position
         document.addEventListener('DOMContentLoaded', () => {
             cursor.style.opacity = '1';
+        });
+
+        // Toggle studio info
+        document.addEventListener('DOMContentLoaded', () => {
+            const toggleBtn = document.getElementById('toggleInfo');
+            const infoDiv = document.getElementById('studioInfo');
+            let isOpen = false;
+
+            toggleBtn.addEventListener('click', () => {
+                if (!isOpen) {
+                    // Open
+                    infoDiv.style.maxHeight = '500px';
+                    infoDiv.style.opacity = '1';
+                    toggleBtn.innerHTML = '⌃ CERRAR';
+                    toggleBtn.style.color = 'rgba(240, 185, 12, 0.7)';
+                    toggleBtn.style.borderColor = 'rgba(240, 185, 12, 0.3)';
+                    isOpen = true;
+                } else {
+                    // Close
+                    infoDiv.style.maxHeight = '0';
+                    infoDiv.style.opacity = '0';
+                    toggleBtn.innerHTML = '⌄ SOBRE EL ESTUDIO';
+                    toggleBtn.style.color = 'rgba(255, 255, 255, 0.5)';
+                    toggleBtn.style.borderColor = 'rgba(255, 255, 255, 0.2)';
+                    isOpen = false;
+                }
+            });
+
+            // Hover effect
+            toggleBtn.addEventListener('mouseenter', () => {
+                if (!isOpen) {
+                    toggleBtn.style.color = 'rgba(255, 255, 255, 0.8)';
+                    toggleBtn.style.borderColor = 'rgba(255, 255, 255, 0.4)';
+                }
+            });
+
+            toggleBtn.addEventListener('mouseleave', () => {
+                if (!isOpen) {
+                    toggleBtn.style.color = 'rgba(255, 255, 255, 0.5)';
+                    toggleBtn.style.borderColor = 'rgba(255, 255, 255, 0.2)';
+                }
+            });
+        });
+
+        // Footer links hover effect
+        document.addEventListener('DOMContentLoaded', () => {
+            const footerLinks = document.querySelectorAll('nav a');
+            footerLinks.forEach(link => {
+                link.addEventListener('mouseenter', () => {
+                    link.style.color = 'rgba(240, 185, 12, 0.8)';
+                });
+                link.addEventListener('mouseleave', () => {
+                    link.style.color = 'rgba(255, 255, 255, 0.5)';
+                });
+            });
+
+            // WhatsApp link hover effect
+            const whatsappLink = document.getElementById('whatsappLink');
+            if (whatsappLink) {
+                whatsappLink.addEventListener('mouseenter', () => {
+                    whatsappLink.style.color = 'rgba(240, 185, 12, 0.8)';
+                });
+                whatsappLink.addEventListener('mouseleave', () => {
+                    whatsappLink.style.color = 'rgba(255, 255, 255, 0.3)';
+                });
+            }
         });
     </script>
 </body>
