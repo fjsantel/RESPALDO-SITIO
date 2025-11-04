@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Estudio creativo en Santiago Chile. Motion graphics, producción audiovisual, diseño web y fotografía. Francisco Santelices Ariztía.">
+    <meta name="keywords" content="productora audiovisual santiago, productora contenidos chile, productora publicidad chile, motion graphics chile, diseño web santiago, comunicaciones audiovisuales, programas television, spots publicitarios, contenido digital, francisco santelices, creative content chile, produccion audiovisual santiago, agencia publicidad digital">
+    <meta name="author" content="Francisco Santelices Ariztía">
+    <meta name="robots" content="index, follow">
+    <meta name="google-site-verification" content="GOOGLE_VERIFICATION_CODE_PLACEHOLDER">
+    <link rel="canonical" href="https://franciscosantelices.cl/">
+    
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://franciscosantelices.cl/">
+    <meta property="og:title" content="Francisco Santelices Creative Content - Productora Audiovisual Santiago Chile">
+    <meta property="og:description" content="Productora Audiovisual Santiago Chile 🎬 Motion Graphics, Publicidad, Diseño Web, Comunicaciones. Contenido profesional para marcas, programas TV y campañas digitales.">
+    <meta property="og:image" content="https://franciscosantelices.cl/assets/logo.png">
+    <meta property="og:locale" content="es_CL">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:title" content="Francisco Santelices - Productora Audiovisual Santiago">
+    <meta property="twitter:description" content="Productora Audiovisual Chile 🎬 Motion Graphics, Publicidad, Diseño Web, Comunicaciones para marcas y programas TV">
+    <meta property="twitter:image" content="https://franciscosantelices.cl/assets/logo.png">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/logo.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/logo-tiny.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/logo.png">
+    <link rel="manifest" href="site.webmanifest">
+    
+    <title>Francisco Santelices | Productora Audiovisual Chile</title>
+    
+    <!-- Schema Markup para Videos -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "VideoObject",
+      "name": "Francisco Santelices - Director Audiovisual Santiago Chile Motion Graphics",
+      "description": "Director audiovisual profesional especializado en motion graphics Chile, producción audiovisual Santiago, diseño gráfico web y fotografía profesional. Portfolio 2025 con servicios integrales de postproducción.",
+      "thumbnailUrl": "https://franciscosantelices.cl/assets/logo.png",
+      "contentUrl": "https://github.com/fjsantel/RESPALDO-SITIO/raw/main/tentaculos_1.mp4",
+      "embedUrl": "https://franciscosantelices.cl/",
+      "uploadDate": "2024-12-01",
+      "duration": "PT30S",
+      "creator": {
+        "@type": "Person",
+        "name": "Francisco Santelices Ariztía"
+      },
+      "keywords": "motion graphics chile, director audiovisual santiago, producción audiovisual chile"
+    }
+    </script>
+    
+    <!-- Schema Markup para Organización y Logo -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Francisco Santelices Creative Content",
+      "alternateName": "Francisco Santelices Ariztía",
+      "url": "https://franciscosantelices.cl/",
+      "logo": "https://franciscosantelices.cl/assets/logo.png",
+      "image": "https://franciscosantelices.cl/assets/logo.png",
+      "description": "Productora Audiovisual Santiago Chile especializada en Motion Graphics, Publicidad, Diseño Web y Comunicaciones. Servicios integrales de contenido audiovisual para marcas, programas TV y campañas publicitarias.",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Santiago",
+        "addressCountry": "CL"
+      },
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "contactType": "customer service",
+        "areaServed": "CL"
+      },
+      "founder": {
+        "@type": "Person",
+        "name": "Francisco Santelices Ariztía"
+      },
+      "sameAs": [
+        "https://franciscosantelices.cl/"
+      ]
+    }
+    </script>
+    <!-- Critical CSS Inlined for Zero Blocking -->
+    <style>
+        /* CRITICAL INLINE CSS - Zero Render Blocking */
+        :root {
+            --black: #000000;
+            --text-primary: #FFFFFF;
+            --accent-yellow: #f0b90c;
+            --font-primary: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body, html {
+            height: 100%;
+            overflow: hidden;
+            font-family: var(--font-primary);
+            background-color: var(--black);
+        }
+        #custom-cursor {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            width: 0;
+            height: 0;
+            border-left: 8px solid transparent;
+            border-right: 8px solid transparent;
+            border-bottom: 14px solid var(--text-primary);
+            transform: translate(-50%, -50%);
+            transition: transform 0.1s ease-out;
+        }
+        body.cursor-hover #custom-cursor {
+            transform: translate(-50%, -50%) scale(1.8);
+            border-bottom-color: var(--accent-yellow);
+        }
+        .video-background {
+            width: 100%;
+            position: relative;
+            background-color: var(--black);
+        }
+        .video-background video {
+            width: 100%;
+            height: auto;
+            display: block;
+            background-color: var(--black);
+        }
+        .loading-content {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            color: var(--text-primary);
+            background-color: var(--black);
+        }
+        .text-section {
+            background-color: var(--black);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 2rem 0;
+        }
+        .loading-text {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 2rem;
+            max-width: 600px;
+            margin: 0 auto;
+            width: 100%;
+        }
+        .text-lines-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            max-width: 95vw;
+        }
+        .agency-title {
+            font-size: clamp(0.4rem, 1.1vw, 0.8rem);
+            font-weight: 300;
+            letter-spacing: clamp(0.08rem, 0.3vw, 0.2rem);
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+            line-height: 1.1;
+            animation: fadeInUp 1.5s ease-out;
+            white-space: nowrap;
+            text-align: center;
+        }
+
+        @media screen and (max-width: 480px) {
+            .agency-title {
+                font-size: 0.38rem;
+                letter-spacing: 0.06rem;
+            }
+        }
+        .main-title {
+            font-size: clamp(0.7rem, 1.76vw, 1.375rem);
+            font-weight: 700;
+            letter-spacing: clamp(0.18rem, 0.545vw, 0.425rem);
+            text-transform: uppercase;
+            margin-bottom: 0.165rem;
+            color: var(--text-primary);
+            line-height: 1.1;
+            animation: fadeInUp 1.5s ease-out;
+            white-space: nowrap;
+            text-align: center;
+        }
+
+        @media screen and (max-width: 480px) {
+            .main-title {
+                font-size: 0.65rem;
+                letter-spacing: 0.15rem;
+            }
+        }
+        .sub-title {
+            font-size: clamp(0.79rem, 1.8vw, 1.395rem);
+            font-weight: 400;
+            letter-spacing: clamp(0.72rem, 1.66vw, 1.19rem);
+            text-transform: uppercase;
+            color: var(--accent-yellow);
+            animation: fadeInUp 1.5s ease-out 0.3s both;
+            white-space: nowrap;
+            text-align: center;
+            margin-left: clamp(4px, 0.5vw, 9px);
+        }
+        .enter-button-container {
+            padding: 2rem;
+            padding-bottom: 3rem;
+            display: flex;
+            justify-content: center;
+            animation: fadeInUp 1.5s ease-out 0.6s both;
+        }
+        .enter-button {
+            background: transparent;
+            border: none;
+            color: var(--text-primary);
+            font-family: var(--font-primary);
+            font-size: 1.1rem;
+            font-weight: 300;
+            letter-spacing: 0.1rem;
+            text-transform: uppercase;
+            padding: 1rem 2.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            max-width: 600px;
+        }
+        .enter-button:hover {
+            color: var(--accent-yellow);
+            transform: translateY(-2px);
+        }
+        
+        /* Sistema de audio como elemento independiente */
+        .audio-system-container {
+            position: absolute;
+            bottom: 3%;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1000;
+            width: 100%;
+        }
+        
+        .audio-button-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        /* Sin cambios en versión web - solo mobile */
+        
+        /* Responsive mobile adjustments */
+        @media screen and (max-width: 768px) {
+            .text-section {
+                transform: translateY(-20%) !important;
+            }
+
+            .loading-text {
+                padding: 1rem !important;
+            }
+
+            .enter-button-container {
+                margin-top: -2rem !important;
+                padding: 1rem !important;
+                padding-bottom: 4rem !important;
+                transform: translateY(20%) !important;
+            }
+            
+            .audio-button-container {
+                margin-top: -1rem !important;
+                padding: 0.5rem !important;
+                transform: translateY(30%) !important;
+            }
+            
+            .audio-button {
+                font-size: 0.6rem !important;
+                padding: 0.3rem 0.8rem !important;
+            }
+            
+            .control-btn {
+                width: 20px !important;
+                height: 20px !important;
+                font-size: 0.6rem !important;
+            }
+        }
+        
+        @media screen and (max-width: 480px) {
+            .text-section {
+                transform: translateY(-25%) !important;
+            }
+
+            .loading-text {
+                padding: 0.5rem !important;
+            }
+
+            .enter-button-container {
+                margin-top: -2.5rem !important;
+                padding: 0.8rem !important;
+                padding-bottom: 5rem !important;
+                transform: translateY(25%) !important;
+            }
+            
+            .audio-button-container {
+                margin-top: -1.5rem !important;
+                padding: 0.3rem !important;
+                transform: translateY(35%) !important;
+            }
+            
+            .track-info {
+                font-size: 0.55rem !important;
+            }
+        }
+        
+        .audio-button {
+            background: transparent !important;
+            border: 1px solid rgba(255, 255, 255, 0.15) !important;
+            color: rgba(255, 255, 255, 0.6) !important;
+            font-family: var(--font-primary) !important;
+            font-size: 0.55rem !important;
+            font-weight: 300 !important;
+            letter-spacing: 0.03rem !important;
+            text-transform: uppercase !important;
+            padding: 0.3rem 0.7rem !important;
+            cursor: pointer !important;
+            transition: all 0.2s ease !important;
+            border-radius: 12px !important;
+        }
+        
+        /* Botón más pequeño cuando está activo */
+        .audio-button.active {
+            font-size: 0.45rem !important;
+            padding: 0.2rem 0.5rem !important;
+            transform: translateY(130%) !important;
+            margin-bottom: 0.5rem !important;
+        }
+        
+        .audio-button:hover {
+            border-color: rgba(240, 185, 12, 0.4) !important;
+            color: rgba(240, 185, 12, 0.8) !important;
+        }
+        
+        /* Controles de audio minimalistas */
+        .audio-controls {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.8rem;
+            margin-top: 0.5rem;
+            padding: 0.4rem 1rem;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 20px;
+            backdrop-filter: blur(3px);
+            width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .audio-controls.hidden {
+            display: none !important;
+        }
+        
+        .control-btn {
+            background: transparent !important;
+            border: 1px solid rgba(255, 255, 255, 0.2) !important;
+            color: rgba(255, 255, 255, 0.7) !important;
+            font-size: 0.9rem !important;
+            padding: 0.3rem !important;
+            cursor: pointer !important;
+            border-radius: 50% !important;
+            width: 32px !important;
+            height: 32px !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            transition: all 0.2s ease !important;
+        }
+        
+        .control-btn:hover {
+            color: rgba(255, 255, 255, 0.9) !important;
+            border-color: rgba(255, 255, 255, 0.4) !important;
+            transform: scale(1.1) !important;
+        }
+        
+        .track-info {
+            color: rgba(255, 255, 255, 0.5) !important;
+            font-size: 0.55rem !important;
+            font-weight: 300 !important;
+            letter-spacing: 0.02rem !important;
+            min-width: 50px;
+            text-align: center;
+        }
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        @media (max-width: 768px) {
+            .loading-text { padding: 1.5rem; max-width: 95vw; }
+            .enter-button { font-size: clamp(0.9rem, 2.5vw, 1.1rem); padding: 0.8rem 2rem; max-width: 95vw; }
+        }
+    </style>
+    
+    <!-- Load Montserrat after critical render -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&display=swap&text=DIRECCIÓN%20AUDIOVISUAL%20SANTIAGO%20CHILE%20FRANCISCO%20SANTELICES%20ARIZTÍA%20MOTION%20GRAPHICS%20PRODUCCIÓN%20INGRESAR%20AL%20SITIO" as="style" onload="this.onload=null;this.rel='stylesheet';document.documentElement.style.setProperty('--font-primary', 'Montserrat, -apple-system, BlinkMacSystemFont, sans-serif')">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&display=swap"></noscript>
+    <link rel="preload" href="https://github.com/fjsantel/RESPALDO-SITIO/raw/main/tentaculos_1.mp4" as="video" type="video/mp4">
+    <meta name="theme-color" content="#050505">
+    
+    <!-- Service Worker -->
+    <script>
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+            navigator.serviceWorker.register('/sw.js')
+                .then((registration) => {
+                    console.log('SW registered: ', registration);
+                })
+                .catch((registrationError) => {
+                    console.log('SW registration failed: ', registrationError);
+                });
+        });
+    }
+    </script>
+</head>
+<body>
+    <div id="custom-cursor"></div>
+    <div class="loading-content">
+        <!-- BLOQUE 1: Video completo sin crop -->
+        <div class="video-background">
+            <video autoplay loop muted playsinline>
+                <source src="https://github.com/fjsantel/RESPALDO-SITIO/raw/main/tentaculos_1.mp4" type="video/mp4">
+                Tu navegador no soporta la reproducción de video.
+            </video>
+        </div>
+
+        <!-- BLOQUE 2: Información principal -->
+        <div class="text-section">
+            <div class="loading-text">
+                <div class="text-lines-container">
+                    <p class="agency-title">AGENCIA DE CONTENIDOS / PRODUCTORA AUDIOVISUAL</p>
+                    <h1 class="main-title">FRANCISCO SANTELICES ARIZTÍA</h1>
+                    <p class="sub-title">CREATIVE CONTENT</p>
+                </div>
+
+                <!-- Enter button -->
+                <div style="padding: 2rem; padding-bottom: 1rem; display: flex; justify-content: center;">
+                    <button class="enter-button" onclick="window.location.href='portfolio.html'">
+                        INGRESAR AL SITIO
+                    </button>
+                </div>
+
+                <!-- Footer navigation -->
+                <nav style="text-align: center; padding: 1.5rem 0 0.5rem 0;">
+                    <a href="portfolio.html" style="color: rgba(255, 255, 255, 0.5); font-size: 0.7rem; font-weight: 300; letter-spacing: 0.08rem; text-transform: uppercase; text-decoration: none; margin: 0 1rem; transition: color 0.3s ease;">Portfolio</a>
+                    <span style="color: rgba(255, 255, 255, 0.2);">|</span>
+                    <a href="servicios.html" style="color: rgba(255, 255, 255, 0.5); font-size: 0.7rem; font-weight: 300; letter-spacing: 0.08rem; text-transform: uppercase; text-decoration: none; margin: 0 1rem; transition: color 0.3s ease;">Servicios</a>
+                    <span style="color: rgba(255, 255, 255, 0.2);">|</span>
+                    <a href="bio.html" style="color: rgba(255, 255, 255, 0.5); font-size: 0.7rem; font-weight: 300; letter-spacing: 0.08rem; text-transform: uppercase; text-decoration: none; margin: 0 1rem; transition: color 0.3s ease;">Contacto</a>
+                </nav>
+
+                <!-- WhatsApp contact -->
+                <div style="text-align: center; padding: 0.8rem 0 2rem 0;">
+                    <a href="https://wa.me/56989186523" target="_blank" rel="noopener noreferrer" id="whatsappLink" style="color: rgba(255, 255, 255, 0.3); font-size: 0.65rem; font-weight: 300; letter-spacing: 0.08rem; text-transform: uppercase; text-decoration: none; transition: all 0.3s ease; display: inline-block;">WhatsApp</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- BLOQUE 3: Sobre el Estudio (desplegable) -->
+        <div style="background-color: var(--black); padding: 2rem 0;">
+            <!-- Collapsible info toggle -->
+            <div style="text-align: center; padding: 1rem 0;">
+                <button id="toggleInfo" style="background: transparent; border: 1px solid rgba(255, 255, 255, 0.2); color: rgba(255, 255, 255, 0.5); font-family: var(--font-primary); font-size: 0.7rem; font-weight: 300; letter-spacing: 0.1rem; text-transform: uppercase; padding: 0.5rem 1.5rem; cursor: pointer; transition: all 0.3s ease; border-radius: 20px;">
+                    ⌄ SOBRE EL ESTUDIO
+                </button>
+            </div>
+
+            <!-- Collapsible description -->
+            <div id="studioInfo" style="max-height: 0; overflow: hidden; transition: max-height 0.4s ease, opacity 0.4s ease; opacity: 0; overflow-y: auto;">
+                <div style="color: rgba(255, 255, 255, 0.7); font-size: 0.85rem; font-weight: 300; letter-spacing: 0.05rem; max-width: 580px; margin: 0 auto; padding: 1rem 2rem 1.5rem 2rem; line-height: 1.8; text-align: center;">
+                    <p style="margin-bottom: 1.2rem;">
+                        Estudio creativo especializado en ecosistemas visuales. Producción y dirección audiovisual, fotografía, diseño gráfico web, digital e impreso. Motion graphics y postproducción.
+                    </p>
+                    <p style="margin-bottom: 1.2rem;">
+                        Desarrollo de proyectos desde preproducción hasta finalización. Dirección creativa, identidad visual, desarrollo web. Expertise técnico en iluminación, sonido directo, corrección de color y montaje.
+                    </p>
+                    <p style="margin-bottom: 0;">
+                        Proyectos para marcas, agencias y medios. Contenido para campañas publicitarias, plataformas digitales y televisión. Dirigido por Francisco Santelices Ariztía. Santiago de Chile.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+                <!-- Strategic SEO Content -->
+                <div style="position: absolute; left: -9999px; opacity: 0;">
+                    <p>Servicios de motion graphics 2D y 3D, animación digital, video corporativo, spots publicitarios, branded content, diseño de identidad visual, desarrollo web responsive, fotografía comercial y de producto, color grading y postproducción cinematográfica profesional.</p>
+                    <p>Desarrollo de proyectos integrales desde la conceptualización hasta la entrega final. Colaboración con marcas, agencias y medios en la creación de contenido para campañas digitales, televisión, redes sociales y plataformas web.</p>
+                    <p>Especialización en narrativa visual, dirección de arte, edición y montaje profesional. Experiencia en producción de contenido para Instagram, TikTok, YouTube y campañas publicitarias multiplataforma. Enfoque en storytelling efectivo y comunicación visual estratégica.</p>
+                    <p>Productora audiovisual en Chile con servicios de preproducción, producción y postproducción. Manejo de equipos técnicos, iluminación, sonido directo, corrección de color y finalización de proyectos audiovisuales para medios digitales y tradicionales.</p>
+                </div>
+            </div>
+
+            <!-- Internal Links for SEO (hidden from view) -->
+            <nav style="position: absolute; left: -9999px; opacity: 0;" aria-hidden="true">
+                <a href="portfolio.html">Portfolio Audiovisual</a>
+                <a href="servicios.html">Servicios de Producción</a>
+                <a href="bio.html">Biografía Francisco Santelices</a>
+                <a href="diseño-web.html">Diseño Web</a>
+                <a href="photography.html">Fotografía Profesional</a>
+                <a href="design.html">Diseño Gráfico</a>
+                <a href="portafolio-profesional.html">Portafolio Profesional</a>
+            </nav>
+        </div>
+        
+        <!-- Botón de diseño sonoro como elemento independiente -->
+        <div class="audio-system-container">
+            <div class="audio-button-wrapper">
+                <button class="audio-button" id="audioToggle">
+                    ACTIVAR DISEÑO SONORO
+                </button>
+                
+                <!-- Controles de audio (ocultos inicialmente) -->
+                <div class="audio-controls hidden" id="audioControls">
+                    <button class="control-btn" id="prevBtn">‹‹</button>
+                    <button class="control-btn" id="playPauseBtn">||</button>
+                    <button class="control-btn" id="nextBtn">››</button>
+                    <span class="track-info" id="trackInfo">Pista 1/4</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Sistema de Audio Diseño Sonoro
+        class AudioDesignSystem {
+            constructor() {
+                this.audioFiles = [
+                    './assets/sonidos/1.mp3',
+                    './assets/sonidos/2.mp3',
+                    './assets/sonidos/3.mp3',
+                    './assets/sonidos/4.mp3'
+                ];
+                this.currentTrack = 0;
+                this.isPlaying = false;
+                this.isActive = false;
+                this.audioElement = null;
+                console.log('AudioDesignSystem inicializado con archivos:', this.audioFiles);
+                this.testAudioFiles();
+                this.init();
+            }
+
+            testAudioFiles() {
+                console.log('🔍 Verificando archivos de audio...');
+                this.audioFiles.forEach((file, index) => {
+                    const testAudio = new Audio();
+                    testAudio.addEventListener('loadeddata', () => {
+                        console.log(`✅ Archivo ${index} OK: ${file}`);
+                    });
+                    testAudio.addEventListener('error', (e) => {
+                        console.error(`❌ Archivo ${index} FALLA: ${file}`, e);
+                    });
+                    testAudio.src = file;
+                });
+            }
+
+            init() {
+                const toggleBtn = document.getElementById('audioToggle');
+                const controls = document.getElementById('audioControls');
+                const playPauseBtn = document.getElementById('playPauseBtn');
+                const prevBtn = document.getElementById('prevBtn');
+                const nextBtn = document.getElementById('nextBtn');
+
+                toggleBtn.addEventListener('click', () => this.toggleAudioSystem());
+                playPauseBtn.addEventListener('click', () => this.togglePlayPause());
+                prevBtn.addEventListener('click', () => this.previousTrack());
+                nextBtn.addEventListener('click', () => this.nextTrack());
+            }
+
+            toggleAudioSystem() {
+                const toggleBtn = document.getElementById('audioToggle');
+                const controls = document.getElementById('audioControls');
+
+                if (!this.isActive) {
+                    // Activar sistema
+                    this.isActive = true;
+                    toggleBtn.textContent = 'DESACTIVAR SONIDO';
+                    toggleBtn.classList.add('active');
+                    controls.classList.remove('hidden');
+                    this.loadTrack(0);
+                    setTimeout(() => this.play(), 200);
+                    console.log('Audio system activated');
+                } else {
+                    // Desactivar sistema
+                    this.isActive = false;
+                    toggleBtn.textContent = 'ACTIVAR DISEÑO SONORO';
+                    toggleBtn.classList.remove('active');
+                    controls.classList.add('hidden');
+                    this.stop();
+                }
+            }
+
+            loadTrack(trackIndex) {
+                console.log(`🎵 Cargando track ${trackIndex + 1}: ${this.audioFiles[trackIndex]}`);
+                
+                // Detener y limpiar audio anterior
+                if (this.audioElement) {
+                    this.audioElement.pause();
+                    this.audioElement.src = '';
+                    this.audioElement = null;
+                }
+
+                this.currentTrack = trackIndex;
+                this.isPlaying = false;
+                
+                // Crear nuevo elemento de audio
+                this.audioElement = new Audio(this.audioFiles[trackIndex]);
+                this.audioElement.loop = true;
+                this.audioElement.volume = 0.4;
+                this.audioElement.preload = 'auto';
+                
+                // Eventos específicos para debugging
+                this.audioElement.addEventListener('loadstart', () => {
+                    console.log(`📂 Iniciando carga de pista ${trackIndex + 1}`);
+                });
+                
+                this.audioElement.addEventListener('loadeddata', () => {
+                    console.log(`✅ Datos cargados para pista ${trackIndex + 1}`);
+                });
+                
+                this.audioElement.addEventListener('canplay', () => {
+                    console.log(`▶️ Pista ${trackIndex + 1} lista para reproducir`);
+                });
+                
+                this.audioElement.addEventListener('error', (e) => {
+                    console.error(`❌ ERROR en pista ${trackIndex + 1}:`, e);
+                    console.error('Error details:', this.audioElement.error);
+                });
+                
+                this.audioElement.load();
+                
+                this.updateTrackInfo();
+                console.log(`🔧 Track ${trackIndex + 1} configurado`);
+            }
+
+            play() {
+                if (this.audioElement && !this.isPlaying) {
+                    console.log(`🔊 Intentando reproducir: ${this.audioElement.src}`);
+                    console.log(`Estado del audio: readyState=${this.audioElement.readyState}`);
+                    
+                    const playPromise = this.audioElement.play();
+                    if (playPromise !== undefined) {
+                        playPromise.then(() => {
+                            this.isPlaying = true;
+                            document.getElementById('playPauseBtn').textContent = '||';
+                            console.log('✅ Audio reproduciéndose correctamente');
+                        }).catch(e => {
+                            console.error('❌ Error al reproducir:', e);
+                            // No recargar para evitar bucles infinitos
+                        });
+                    }
+                } else if (!this.audioElement) {
+                    console.error('❌ No hay elemento de audio');
+                } else if (this.isPlaying) {
+                    console.log('ℹ️ Audio ya está reproduciéndose');
+                }
+            }
+
+            pause() {
+                if (this.audioElement && this.isPlaying) {
+                    this.audioElement.pause();
+                    this.isPlaying = false;
+                    document.getElementById('playPauseBtn').textContent = '▶';
+                    console.log('Audio paused');
+                }
+            }
+
+            stop() {
+                if (this.audioElement) {
+                    this.audioElement.pause();
+                    this.audioElement = null;
+                    this.isPlaying = false;
+                    document.getElementById('playPauseBtn').textContent = '▶';
+                }
+            }
+
+            togglePlayPause() {
+                console.log(`Toggle play/pause. Currently playing: ${this.isPlaying}`);
+                if (this.isPlaying) {
+                    this.pause();
+                } else {
+                    if (this.audioElement) {
+                        this.play();
+                    } else {
+                        console.log('No audio element, loading current track...');
+                        this.loadTrack(this.currentTrack);
+                        setTimeout(() => this.play(), 200);
+                    }
+                }
+            }
+
+            nextTrack() {
+                console.log('⏭️ Next track');
+                const wasPlaying = this.isPlaying;
+                const nextIndex = (this.currentTrack + 1) % this.audioFiles.length;
+                this.loadTrack(nextIndex);
+                if (wasPlaying) {
+                    setTimeout(() => this.play(), 300);
+                }
+            }
+
+            previousTrack() {
+                console.log('⏮️ Previous track');
+                const wasPlaying = this.isPlaying;
+                const prevIndex = (this.currentTrack - 1 + this.audioFiles.length) % this.audioFiles.length;
+                this.loadTrack(prevIndex);
+                if (wasPlaying) {
+                    setTimeout(() => this.play(), 300);
+                }
+            }
+
+            updateTrackInfo() {
+                const trackInfo = document.getElementById('trackInfo');
+                trackInfo.textContent = `Pista ${this.currentTrack + 1}/${this.audioFiles.length}`;
+            }
+        }
+
+        // Inicializar sistema de audio
+        document.addEventListener('DOMContentLoaded', () => {
+            new AudioDesignSystem();
+        });
+
+        // Custom cursor functionality
+        const cursor = document.getElementById('custom-cursor');
+        
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+            cursor.style.transform = 'translate(-50%, -50%)';
+        });
+
+        // Hover effects for interactive elements
+        const hoverElements = document.querySelectorAll('.enter-button, button, a');
+        
+        hoverElements.forEach(element => {
+            element.addEventListener('mouseenter', () => {
+                document.body.classList.add('cursor-hover');
+            });
+            
+            element.addEventListener('mouseleave', () => {
+                document.body.classList.remove('cursor-hover');
+            });
+        });
+
+        // Initialize cursor position
+        document.addEventListener('DOMContentLoaded', () => {
+            cursor.style.opacity = '1';
+        });
+
+        // Toggle studio info
+        document.addEventListener('DOMContentLoaded', () => {
+            const toggleBtn = document.getElementById('toggleInfo');
+            const infoDiv = document.getElementById('studioInfo');
+            let isOpen = false;
+
+            toggleBtn.addEventListener('click', () => {
+                if (!isOpen) {
+                    // Open - altura adaptativa según tamaño de pantalla
+                    const isMobile = window.innerWidth <= 768;
+                    infoDiv.style.maxHeight = isMobile ? '300px' : '500px';
+                    infoDiv.style.opacity = '1';
+                    toggleBtn.innerHTML = '⌃ CERRAR';
+                    toggleBtn.style.color = 'rgba(240, 185, 12, 0.7)';
+                    toggleBtn.style.borderColor = 'rgba(240, 185, 12, 0.3)';
+                    isOpen = true;
+                } else {
+                    // Close
+                    infoDiv.style.maxHeight = '0';
+                    infoDiv.style.opacity = '0';
+                    toggleBtn.innerHTML = '⌄ SOBRE EL ESTUDIO';
+                    toggleBtn.style.color = 'rgba(255, 255, 255, 0.5)';
+                    toggleBtn.style.borderColor = 'rgba(255, 255, 255, 0.2)';
+                    isOpen = false;
+                }
+            });
+
+            // Hover effect
+            toggleBtn.addEventListener('mouseenter', () => {
+                if (!isOpen) {
+                    toggleBtn.style.color = 'rgba(255, 255, 255, 0.8)';
+                    toggleBtn.style.borderColor = 'rgba(255, 255, 255, 0.4)';
+                }
+            });
+
+            toggleBtn.addEventListener('mouseleave', () => {
+                if (!isOpen) {
+                    toggleBtn.style.color = 'rgba(255, 255, 255, 0.5)';
+                    toggleBtn.style.borderColor = 'rgba(255, 255, 255, 0.2)';
+                }
+            });
+        });
+
+        // Footer links hover effect
+        document.addEventListener('DOMContentLoaded', () => {
+            const footerLinks = document.querySelectorAll('nav a');
+            footerLinks.forEach(link => {
+                link.addEventListener('mouseenter', () => {
+                    link.style.color = 'rgba(240, 185, 12, 0.8)';
+                });
+                link.addEventListener('mouseleave', () => {
+                    link.style.color = 'rgba(255, 255, 255, 0.5)';
+                });
+            });
+
+            // WhatsApp link hover effect
+            const whatsappLink = document.getElementById('whatsappLink');
+            if (whatsappLink) {
+                whatsappLink.addEventListener('mouseenter', () => {
+                    whatsappLink.style.color = 'rgba(240, 185, 12, 0.8)';
+                });
+                whatsappLink.addEventListener('mouseleave', () => {
+                    whatsappLink.style.color = 'rgba(255, 255, 255, 0.3)';
+                });
+            }
+        });
+    </script>
+</body>
+</html>
