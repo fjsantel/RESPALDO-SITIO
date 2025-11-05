@@ -113,9 +113,9 @@
         }
 
         .agency-title {
-            font-size: clamp(0.4rem, 1.1vw, 0.8rem);
+            font-size: 0.65rem;
             font-weight: 300;
-            letter-spacing: clamp(0.08rem, 0.3vw, 0.2rem);
+            letter-spacing: 0.15rem;
             text-transform: uppercase;
             margin-bottom: 0.5rem;
             color: var(--text-primary);
@@ -124,24 +124,53 @@
         }
 
         .main-title {
-            font-size: clamp(0.7rem, 1.76vw, 1.375rem);
-            font-weight: 700;
-            letter-spacing: clamp(0.18rem, 0.545vw, 0.425rem);
+            font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+            font-size: 1.7rem;
+            font-weight: 800;
+            letter-spacing: normal;
             text-transform: uppercase;
             margin-bottom: 0.165rem;
             color: var(--text-primary);
             line-height: 1.1;
             white-space: nowrap;
+            display: inline-block;
+            width: auto;
         }
 
         .sub-title {
-            font-size: clamp(0.79rem, 1.8vw, 1.395rem);
+            font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+            font-size: 2.2rem;
             font-weight: 400;
-            letter-spacing: clamp(0.51rem, 2.4vw, 1.75rem);
             text-transform: uppercase;
             color: var(--accent-yellow);
             white-space: nowrap;
-            margin-left: clamp(4px, 0.5vw, 9px);
+            display: inline-block;
+            letter-spacing: 7.5px;
+            word-spacing: normal;
+            text-align: center;
+            position: relative;
+        }
+
+        /* Escalar todo el bloque de títulos proporcionalmente en mobile/tablet */
+        @media (max-width: 1023px) {
+            .text-lines-container {
+                transform: scale(0.75);
+                transform-origin: center;
+            }
+        }
+
+        @media (max-width: 767px) {
+            .text-lines-container {
+                transform: scale(0.55);
+                transform-origin: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .text-lines-container {
+                transform: scale(0.45);
+                transform-origin: center;
+            }
         }
 
         /* Responsive adjustments */
@@ -604,8 +633,8 @@
         <div class="text-container">
             <div class="text-lines-container">
                 <p class="agency-title">AGENCIA DE CONTENIDOS / PRODUCTORA AUDIOVISUAL</p>
-                <h1 class="main-title">FRANCISCO SANTELICES ARIZTÍA</h1>
-                <p class="sub-title">CREATIVE CONTENT</p>
+                <h1 class="main-title" id="mainTitle">FRANCISCO SANTELICES ARIZTÍA</h1>
+                <p class="sub-title" id="subTitle">CREATIVE CONTENT</p>
             </div>
         </div>
     </div>
@@ -686,6 +715,23 @@
 
         updateResolution();
         window.addEventListener('resize', updateResolution);
+
+        // Centrar visualmente el sub-title compensando el letter-spacing
+        function centerSubTitle() {
+            const subTitle = document.getElementById('subTitle');
+            if (subTitle) {
+                // Obtener el letter-spacing actual calculado
+                const computedStyle = window.getComputedStyle(subTitle);
+                const letterSpacing = parseFloat(computedStyle.letterSpacing) || 7.5;
+                // Compensar desplazamiento visual
+                const offset = letterSpacing / 2;
+                subTitle.style.left = offset + 'px';
+            }
+        }
+
+        // Ejecutar al cargar y al redimensionar
+        window.addEventListener('load', centerSubTitle);
+        window.addEventListener('resize', centerSubTitle);
 
         // Log para verificar carga del video
         const video = document.querySelector('video');
