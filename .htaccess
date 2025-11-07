@@ -64,9 +64,15 @@
     Header always set Referrer-Policy "strict-origin-when-cross-origin"
 </IfModule>
 
-# Force HTTPS redirect
+# Force HTTPS redirect and www to non-www
 <IfModule mod_rewrite.c>
     RewriteEngine On
+
+    # Redirect www to non-www
+    RewriteCond %{HTTP_HOST} ^www\.franciscosantelices\.cl$ [NC]
+    RewriteRule ^(.*)$ https://franciscosantelices.cl/$1 [L,R=301]
+
+    # Force HTTPS
     RewriteCond %{HTTPS} off
     RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 </IfModule>
