@@ -1,0 +1,8 @@
+# Redirect www to non-www
+https://www.franciscosantelices.cl/* https://franciscosantelices.cl/:splat 301
+
+# Force HTTPS (Cloudflare maneja esto automáticamente, pero lo dejamos por si acaso)
+http://franciscosantelices.cl/* https://franciscosantelices.cl/:splat 301
+
+# 404 redirect to home
+/* /index.html 404
