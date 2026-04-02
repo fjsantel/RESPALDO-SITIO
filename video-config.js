@@ -61,8 +61,16 @@ const VIDEO_CONFIG = [
         url: 'https://www.youtube.com/embed/QHr9hXzFhq4?enablejsapi=1&autoplay=1&mute=1&loop=1&playlist=QHr9hXzFhq4&controls=0&modestbranding=1&rel=0&showinfo=0&fs=0&iv_load_policy=3&disablekb=1',
         title: 'CANALES<br><span class="subtitle">Consejo Empresarial de la Educación</span>',
         description: 'ONG Canales es una organización con más de 12 años de experiencia cuyo foco está en fortalecer la Educación Técnico Profesional a través de la vinculación y articulación de proyectos con organizaciones públicas y privadas. - Propósito Contribuir para que los egresados de la educación técnico profesional sean valorados y reconocidos como un motor del desarrollo de la sociedad. - Misión Establecer canales entre la educación técnico profesional y el sector empresarial, creando vínculos sólidos y fomentando un compromiso colaborativo para aportar al desarrollo de los territorios y la movilidad social desde la macrozona sur austral.'
+    },
+    {
+        // VIDEO 6 - SÉPTIMO VIDEO
+        index: 6,
+        videoId: '6-xb76aL0cU',
+        url: 'https://www.youtube.com/embed/6-xb76aL0cU?enablejsapi=1&autoplay=1&mute=1&loop=1&playlist=6-xb76aL0cU&controls=0&modestbranding=1&rel=0&showinfo=0&fs=0&iv_load_policy=3&disablekb=1',
+        title: 'WORKCENTER<br><span class="subtitle">Centros Privados de Negocios</span>',
+        description: 'Work Center es una empresa chilena especializada en el desarrollo de Centros Privados de Negocios, ofreciendo bodegas premium con oficina integrada en Santiago de Chile.'
     }
-    
+
     // PARA AGREGAR MÁS VIDEOS, COPIA ESTE FORMATO:
     /*
     ,{

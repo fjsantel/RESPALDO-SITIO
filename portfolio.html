@@ -689,23 +689,23 @@
         <!-- COMERCIAL TH HUNTER STANDALONE SECTION -->
         <section class="th-hunter-video-section" style="width: 100vw; margin: 0; padding: 0; background: #000;">
             <div class="th-hunter-video-container" style="width: 100vw; height: 56.25vw; max-height: 100vh; position: relative; background: #000;">
-                <iframe class="th-hunter-video" 
-                        src="https://www.youtube.com/embed/YSlpZopx-cU?enablejsapi=1&autoplay=1&mute=1&loop=1&playlist=YSlpZopx-cU&controls=0&modestbranding=1&rel=0&showinfo=0&fs=0&iv_load_policy=3&disablekb=1" 
-                        frameborder="0" 
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                <iframe class="th-hunter-video"
+                        src="https://www.youtube.com/embed/YSlpZopx-cU?enablejsapi=1&autoplay=1&mute=1&loop=1&playlist=YSlpZopx-cU&controls=0&modestbranding=1&rel=0&showinfo=0&fs=0&iv_load_policy=3&disablekb=1"
+                        frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                         allowfullscreen
                         referrerpolicy="strict-origin-when-cross-origin"
                         style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; background: #000;">
                 </iframe>
             </div>
-            
+
             <!-- TH Hunter Sound Control -->
             <div class="th-hunter-controls-below" style="background: #0D1117; padding: 20px; display: flex; justify-content: center;">
                 <div class="th-hunter-controls-container" style="background: #0D1117; padding: 15px 30px; border-radius: 8px; display: flex; align-items: center; gap: 20px;">
                     <button id="th-hunter-sound-btn" class="sound-activation-btn" style="background: #f0b90c; color: #000; border: none; padding: 15px 35px; cursor: pointer; border-radius: 4px; font-weight: 600; font-size: 14px; white-space: nowrap; min-width: fit-content; transition: all 0.3s ease;">ACTIVAR SONIDO</button>
                 </div>
             </div>
-            
+
             <!-- TH Hunter Text Container -->
             <div class="th-hunter-text-container">
                 <div class="th-hunter-text-layout">
@@ -714,6 +714,39 @@
                     </div>
                     <div class="th-hunter-description-section">
                         <p>"TH Hunter" corresponde al proyecto enológico TH Terroir Hunter de la viña chilena Undurraga. "TH" significa Terroir Hunter o "Cazador de Terroir", un proyecto que busca explorar y resaltar micro terruños especiales en diversas regiones de Chile para producir vinos con características únicas de su origen. Desarrollado junto a Ratzmendia</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ACTIVEIT STANDALONE SECTION -->
+        <section class="activeit-video-section" style="width: 100vw; margin: 0; padding: 0; background: #000;">
+            <div class="activeit-video-container" style="width: 100vw; height: 56.25vw; max-height: 100vh; position: relative; background: #000;">
+                <iframe class="activeit-video"
+                        src="https://www.youtube.com/embed/yyw-3OpEMcI?enablejsapi=1&autoplay=1&mute=1&loop=1&playlist=yyw-3OpEMcI&controls=0&modestbranding=1&rel=0&showinfo=0&fs=0&iv_load_policy=3&disablekb=1"
+                        frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        allowfullscreen
+                        referrerpolicy="strict-origin-when-cross-origin"
+                        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; background: #000;">
+                </iframe>
+            </div>
+
+            <!-- ACTIVEIT Sound Control -->
+            <div class="activeit-controls-below" style="background: #0D1117; padding: 20px; display: flex; justify-content: center;">
+                <div class="activeit-controls-container" style="background: #0D1117; padding: 15px 30px; border-radius: 8px; display: flex; align-items: center; gap: 20px;">
+                    <button id="activeit-sound-btn" class="sound-activation-btn" style="background: #f0b90c; color: #000; border: none; padding: 15px 35px; cursor: pointer; border-radius: 4px; font-weight: 600; font-size: 14px; white-space: nowrap; min-width: fit-content; transition: all 0.3s ease;">ACTIVAR SONIDO</button>
+                </div>
+            </div>
+
+            <!-- ACTIVEIT Text Container -->
+            <div class="activeit-text-container">
+                <div class="activeit-text-layout">
+                    <div class="activeit-title-section">
+                        <h3>ACTIVEIT<br><span class="subtitle">Consultora Tecnológica</span></h3>
+                    </div>
+                    <div class="activeit-description-section">
+                        <p>ACTIVEit es una consultora tecnológica chilena creada con el objetivo de liderar proyectos con altos estándares de calidad, incorporando las habilidades, herramientas y procesos de gestión necesarios para llevar a cabo soluciones exitosas. La empresa se especializa en soluciones IT innovadoras, ciberseguridad y desarrollo de software a medida, con el propósito de potenciar la innovación y optimizar los procesos de negocio de sus clientes a través de soluciones estratégicas.</p>
                     </div>
                 </div>
             </div>
@@ -1182,7 +1215,43 @@
         } else {
             console.error('TH Hunter sound button not found');
         }
-        
+
+        // ACTIVEIT Sound Button Handler
+        const activeitSoundBtn = document.getElementById('activeit-sound-btn');
+        if (activeitSoundBtn) {
+            let activeitMuted = true;
+
+            activeitSoundBtn.addEventListener('click', () => {
+                const activeitIframe = document.querySelector('.activeit-video');
+                console.log('ACTIVEIT button clicked, iframe found:', !!activeitIframe);
+
+                if (!activeitIframe) {
+                    console.error('ACTIVEIT iframe not found');
+                    return;
+                }
+
+                try {
+                    if (activeitMuted) {
+                        console.log('Unmuting ACTIVEIT video');
+                        activeitIframe.contentWindow.postMessage('{"event":"command","func":"unMute","args":""}', '*');
+                        activeitSoundBtn.textContent = 'SONIDO ACTIVADO';
+                        activeitMuted = false;
+                    } else {
+                        console.log('Muting ACTIVEIT video');
+                        activeitIframe.contentWindow.postMessage('{"event":"command","func":"mute","args":""}', '*');
+                        activeitSoundBtn.textContent = 'ACTIVAR SONIDO';
+                        activeitMuted = true;
+                    }
+                } catch (error) {
+                    console.error('ACTIVEIT postMessage failed:', error);
+                }
+            });
+
+            console.log('ACTIVEIT sound control initialized');
+        } else {
+            console.error('ACTIVEIT sound button not found');
+        }
+
         console.log('Single dynamic video navigation setup complete');
         
         // ===== LOS DUROS DE ROER SLIDER SETUP =====
